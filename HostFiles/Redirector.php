@@ -10,7 +10,7 @@
   }
 
   $uri .= $_SERVER['HTTP_HOST'];
-  $redirectPath = $uri . "/FaBOnline";
+  $redirectPath = $uri . "/GrandArchiveOnline";
   $autoDeleteGames = false;
 
   $roguelikePath = $redirectPath . "/Roguelike/CreateGame.php";

@@ -86,7 +86,7 @@ if (isset($_SESSION["userid"])) {
 if (count($favoriteDecks) == 0) {
   echo ("<div><label class='SelectDeckInput'>" . $starterDecksText . ": </label>");
   echo ("<select name='decksToTry' id='decksToTry'>");
-  echo ("<option value='1'>Ira Welcome Deck</option>");
+  echo ("<option value='1'>Lorraine Starter</option>");
   echo ("</select></div>");
 }
 echo ("<br>");

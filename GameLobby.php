@@ -146,12 +146,12 @@ $isMobile = IsMobile();
   $deckFile = "./Games/" . $gameName . "/p" . $playerID . "Deck.txt";
   $handler = fopen($deckFile, "r");
   if ($handler) {
-    $character = GetArray($handler);
+    $material = GetArray($handler);
 
     echo ("<center>");
     echo ("<div style='position:relative; display: inline-block;'>");
-    $overlayURL = ($contentCreator != null ? $contentCreator->HeroOverlayURL($character[0]) : "");
-    echo (Card($character[0], "concat", ($isMobile ? 100 : 250), 0, 1));
+    $overlayURL = ($contentCreator != null ? $contentCreator->HeroOverlayURL($material[0]) : "");
+    echo (Card($material[0], "concat", ($isMobile ? 100 : 250), 0, 1));
     if ($overlayURL != "") echo ("<img title='Portrait' style='position:absolute; z-index:1001; top: 27px; left: 0px; cursor:pointer; height:" . ($isMobile ? 100 : 250) . "; width:" . ($isMobile ? 100 : 250) . ";' src='" . $overlayURL . "' />");
     echo ("</div>");
     echo ("</center>");
@@ -160,49 +160,8 @@ $isMobile = IsMobile();
     echo ("<a href='MainMenu.php'><button class='GameLobby_Button' style='display:inline; cursor:pointer;'>Leave Lobby</button></a>");
     echo ("</div>");
 
-    $weapons = "";
-    $head = "";
-    $chest = "";
-    $arms = "";
-    $legs = "";
-    $offhand = "";
-    $quiver = "";
-    for ($i = 1; $i < count($character); ++$i) {
-      switch (CardSubtype($character[$i])) {
-        case "Head":
-          $head = $character[$i];
-          break;
-        case "Chest":
-          $chest = $character[$i];
-          break;
-        case "Arms":
-          $arms = $character[$i];
-          break;
-        case "Legs":
-          $legs = $character[$i];
-          break;
-        case "Off-Hand":
-          $offhand = $character[$i];
-          break;
-        case "Quiver":
-          $quiver = $character[$i];
-          break;
-        default:
-          if ($weapons != "") $weapons .= ",";
-          $weapons .= $character[$i];
-          break;
-      }
-    }
-
     $deck = GetArray($handler);
-    $headSB = GetArray($handler);
-    $chestSB = GetArray($handler);
-    $armsSB = GetArray($handler);
-    $legsSB = GetArray($handler);
-    $offhandSB = GetArray($handler);
-    $weaponSB = GetArray($handler);
-    $deckSB = GetArray($handler);
-    $quiverSB = GetArray($handler);
+    $deckSB = [];
 
     fclose($handler);
   }
@@ -263,29 +222,21 @@ $isMobile = IsMobile();
       <table>
         <?php
 
-        if (isset($head) && isset($headSB)) DisplayEquipRow($head, $headSB, "HEAD");
-        if (isset($chest) && isset($chestSB)) DisplayEquipRow($chest, $chestSB, "CHEST");
-        if (isset($arms) && isset($armsSB)) DisplayEquipRow($arms, $armsSB, "ARMS");
-        if (isset($legs) && isset($legsSB)) DisplayEquipRow($legs, $legsSB, "LEGS");
+        if (isset($material)) {
+          $cardSize = 110;
+          $count = 0;
+          sort($material);
+          for ($i = 0; $i < count($material); ++$i) {
+            $id = "DECK-" . $count;
+            echo ("<span style='cursor:pointer; padding-bottom:5px; padding-left:3px;' onclick='CardClick(\"" . $id . "\")'>" . Card($material[$i], "concat", $cardSize, 0, 1, 0, 0, 0, "", $id) . "</span>");
+
+            ++$count;
+          }
+        }
+
 
         ?>
       </table>
-      <div id="weaponDisplay" style="position:absolute; z-index:2; top:30px; left:50%; right:20px;">
-        <table>
-          <?php
-
-          if (isset($weapons)) {
-            $weaponArray = explode(",", $weapons);
-            $weapon1 = (count($weaponArray) > 0 ? $weaponArray[0] : "");
-            $weapon2 = (count($weaponArray) > 1 ? $weaponArray[1] : "");
-            if (isset($weapon1) && isset($weapon2) && isset($weaponSB)) DisplayWeaponRow($weapon1, $weapon2, $weaponSB, "WEAPONS");
-          }
-          if (isset($offhand) && isset($offhandSB)) DisplayEquipRow($offhand, $offhandSB, "OFFHAND");
-          if (isset($quiver) && isset($quiverSB)) DisplayEquipRow($quiver, $quiverSB, "QUIVER");
-
-          ?>
-        </table>
-      </div>
     </div>
 
     <div id="deckTab" style="position:absolute; z-index:1; cursor:pointer; top:20px; left:922px; width:280px; height:73px; background-color:rgba(74, 74, 74, 0.9); border: 2px solid #1a1a1a; border-radius: 5px;" onclick="TabClick('DECK');">
@@ -306,11 +257,7 @@ $isMobile = IsMobile();
         sort($deck);
         for ($i = 0; $i < count($deck); ++$i) {
           $id = "DECK-" . $count;
-          if(!($roguelikeGameID >= 0)) echo ("<span style='cursor:pointer; padding-bottom:5px; padding-left:3px;' onclick='CardClick(\"" . $id . "\")'>" . Card($deck[$i], "concat", $cardSize, 0, 1, 0, 0, 0, "", $id) . "</span>");
-          else
-          {
-            echo (Card($deck[$i], "concat", $cardSize, 0, 1, 0, 0, 0, "", $id));
-          }
+          echo (Card($deck[$i], "concat", $cardSize, 0, 1, 0, 0, 0, "", $id));
           ++$count;
         }
         for ($i = 0; $i < count($deckSB); ++$i) {

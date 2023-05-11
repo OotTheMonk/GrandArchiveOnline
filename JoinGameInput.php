@@ -32,7 +32,7 @@ if ($decklink == "" && $deck == "" && $favoriteDeckLink == "0") {
   $starterDeck = true;
   switch ($decksToTry) {
     case '1':
-      $decklink = "https://fabrary.net/decks/01GJG7Z4WGWSZ95FY74KX4M557";
+      $deck = "./lorraineStarter.txt";
       break;
     default:
       $decklink = "https://fabrary.net/decks/01GJG7Z4WGWSZ95FY74KX4M557";
@@ -288,60 +288,6 @@ if ($decklink != "") {
     die();
   }
 
-  if ($unsupportedCards != "") {
-    $_SESSION['error'] = '⚠️ The following cards are not yet supported: ' . $unsupportedCards;
-    header("Location: MainMenu.php");
-    die();
-  }
-
-  if (CharacterHealth($character) < 30 && ($format == "cc" || $format == "compcc")) {
-    $_SESSION['error'] = '⚠️ Young heroes are not legal in Classic Constructed: \n\nYoung - ' . CardName($character);
-    header("Location: MainMenu.php");
-    die();
-  }
-
-  if (CharacterHealth($character) >= 30 && ($format == "blitz" || $format == "compblitz")) {
-    $_SESSION['error'] = '⚠️ Adult heroes are not legal in Blitz: \n\nAdult - ' . CardName($character);
-    header("Location: MainMenu.php");
-    die();
-  }
-
-  if ($starterDeck && ($format == "compblitz" || $format == "compcc")) {
-    $_SESSION['error'] = 'ℹ️ You have enter a competitive game with a starter deck. \n\nTo play the competitive queue please provide a constructed deck or try the starter decks in the normal queue. \n\nThank you!';
-    header("Location: MainMenu.php");
-    die();
-  }
-
-  if ($bannedCard != "" && !$starterDeck) {
-    if ($format == "blitz" || $format == "compblitz") {
-      $_SESSION['error'] = '⚠️ The following cards are not legal in the Blitz format: \n\n' . $bannedCard;
-    } elseif ($format == "cc" || $format == "compcc" || $format == "livinglegendscc") {
-      $_SESSION['error'] = '⚠️ The following cards are not legal in the Classic Constructed format: \n\n' . $bannedCard;
-    } elseif ($format == "commoner") {
-      $_SESSION['error'] = '⚠️ The following cards are not legal the Commoner format: \n\n' . $bannedCard;
-    }
-    header("Location: MainMenu.php");
-    die();
-  }
-
-  //if($totalCards < 60  && ($format == "cc" || $format == "compcc" || $format == "livinglegendscc"))
-  if ($totalCards < 60  && ($format == "cc" || $format == "compcc")) {
-    $_SESSION['error'] = $format . '⚠️ The deck link you have entered has too few cards (' . $totalCards . ') and is likely for blitz.\n\nPlease double-check your decklist link and try again.';
-    header("Location: MainMenu.php");
-    die();
-  }
-
-  if (($totalCards < 40 || $totalCards > 52) && ($format == "blitz" || $format == "compblitz" || $format == "commoner")) {
-    $_SESSION['error'] = '⚠️ The deck link you have entered does not have 40 cards (' . $totalCards . ') and is likely for CC.\n\nPlease double-check your decklist link and try again.';
-    header("Location: MainMenu.php");
-    die();
-  }
-
-  if ($totalCards > 80  && $format == "compcc") {
-    $_SESSION['error'] = $format . '⚠️ The deck link you have entered has too many cards (' . $totalCards . ').\n\nPlease double-check your decklist link and try again.';
-    header("Location: MainMenu.php");
-    die();
-  }
 
   //We have the decklist, now write to file
   $filename = "./Games/" . $gameName . "/p" . $playerID . "Deck.txt";
@@ -385,20 +331,7 @@ if ($decklink != "") {
     addFavoriteDeck($_SESSION["userid"], $decklink, $deckName, $character, $deckFormat);
   }
 } else {
-  $character = "";
-  $deckOptions = explode("-", $deck);
-  if ($deckOptions[0] == "DRAFT") {
-    if ($set == "WTR") $deckFile = "./WTRDraftFiles/Games/" . $deckOptions[1] . "/LimitedDeck.txt";
-    else $deckFile = "./DraftFiles/Games/" . $deckOptions[1] . "/LimitedDeck.txt";
-  } else if ($deckOptions[0] == "SEALED") {
-    $deckFile = "./SealedFiles/Games/" . $deckOptions[1] . "/LimitedDeck.txt";
-  } else if ($deckOptions[0] == "ROGUELIKE") {
-    $deckFile = "./Roguelike/Games/" . $deckOptions[1] . "/LimitedDeck.txt";
-  } else {
-    //Draftfab
-    $deckFile = "./Games/" . $gameName . "/p" . $playerID . "DraftDeck.txt";
-    ParseDraftFab($deck, $deckFile);
-  }
+  $deckFile = $deck;
   copy($deckFile, "./Games/" . $gameName . "/p" . $playerID . "Deck.txt");
   copy($deckFile, "./Games/" . $gameName . "/p" . $playerID . "DeckOrig.txt");
 }

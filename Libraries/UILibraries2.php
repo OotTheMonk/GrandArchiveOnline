@@ -168,7 +168,7 @@ function Card($cardNumber, $folder, $maxHeight, $action = 0, $showHover = 0, $ov
     $folderPath = str_replace("CardImages", "WebpImages", $folder);
     $fileExt = ".webp";
   } else if ($folder == "concat" || $folder == "./concat" || $folder == "../concat") {
-    if (DelimStringContains(CardSubType($cardNumber), "Landmark")) $rotate = true;
+    //if (DelimStringContains(CardSubType($cardNumber), "Landmark")) $rotate = true;
     $fileExt = ".webp";
   }
   $actionData = $actionDataOverride != "" ? $actionDataOverride : $cardNumber;

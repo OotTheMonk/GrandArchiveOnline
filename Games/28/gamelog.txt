@@ -1,5 +1,0 @@
-Player 1 has connected.
-<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR078.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b></span>
-Player 1 pitched <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU058.webp')" onmouseout='HideCardDetail()'>Crane Dance</span></b>
-Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR078.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b>.
-Player 2 auto-passed.
