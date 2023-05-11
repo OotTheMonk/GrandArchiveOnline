@@ -1,0 +1,98 @@
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC132.webp')" onmouseout='HideCardDetail()'>Aether Flare</span></b></span>
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC113.webp')" onmouseout='HideCardDetail()'>Kano, Dracai of Aether</span></b> was targeted
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC122.webp')" onmouseout='HideCardDetail()'>Tome of Aetherwind</span></b></span>
+Player 1 undid their last action.
+The current player is inactive.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC126.webp')" onmouseout='HideCardDetail()'>Aether Spindle</span></b> from arsenal</span>
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC113.webp')" onmouseout='HideCardDetail()'>Kano, Dracai of Aether</span></b> was targeted
+Current player is active again.
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC140.webp')" onmouseout='HideCardDetail()'>Reverberate</span></b>
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC116.webp')" onmouseout='HideCardDetail()'>Storm Striders</span></b></span>
+Player 1 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC134.webp')" onmouseout='HideCardDetail()'>Aether Flare</span></b>
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC116.webp')" onmouseout='HideCardDetail()'>Storm Striders</span></b>.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR123.webp')" onmouseout='HideCardDetail()'>Aether Wildfire</span></b></span>
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC113.webp')" onmouseout='HideCardDetail()'>Kano, Dracai of Aether</span></b> was targeted
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR123.webp')" onmouseout='HideCardDetail()'>Aether Wildfire</span></b></span>
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC113.webp')" onmouseout='HideCardDetail()'>Kano, Dracai of Aether</span></b> was targeted
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR123.webp')" onmouseout='HideCardDetail()'>Aether Wildfire</span></b></span>
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC113.webp')" onmouseout='HideCardDetail()'>Kano, Dracai of Aether</span></b> was targeted
+The current player is inactive.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ELE222.webp')" onmouseout='HideCardDetail()'>Rosetta Thorn</span></b></span>
+Current player is active again.
+Player 1 has reconnected.
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ELE222.webp')" onmouseout='HideCardDetail()'>Rosetta Thorn</span></b></span>
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC081.webp')" onmouseout='HideCardDetail()'>Mordred Tide</span></b></span>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC081.webp')" onmouseout='HideCardDetail()'>Mordred Tide</span></b>.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR116.webp')" onmouseout='HideCardDetail()'>Shrill of Skullform</span></b> from arsenal</span>
+Player 1 pitched <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU146.webp')" onmouseout='HideCardDetail()'>Mauvrion Skies</span></b>
+Runechants trigger 1 total incoming arcane damage
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC112.webp')" onmouseout='HideCardDetail()'>Runechant</span></b> is dealing 1 arcane damage.
+<span style='color:<PLAYER2COLOR>; '>Player 2 took 1 arcane damage from <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC112.webp')" onmouseout='HideCardDetail()'>Runechant</span></b></span>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR116.webp')" onmouseout='HideCardDetail()'>Shrill of Skullform</span></b>.
+The current player is inactive.
+The current player is inactive.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has left the game.
+<span style='color:<PLAYER2COLOR>; '>test wins!</span>

@@ -1,0 +1,71 @@
+Player 1 has connected.
+<mark style='background-color: brown; color:azure;'>Player 1 manually added a card to their hand.</mark>
+<mark style='background-color: brown; color:azure;'>Player 1 manually added a card to their hand.</mark>
+Player 1 undid their last action.
+<mark style='background-color: brown; color:azure;'>Player 1 manually added a card to their hand.</mark>
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/OUT049.webp')" onmouseout='HideCardDetail()'>Mask of Many Faces</span></b></span>
+Player 1 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/OUT143.webp')" onmouseout='HideCardDetail()'>Concealed Blade (3)</span></b>
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/OUT049.webp')" onmouseout='HideCardDetail()'>Mask of Many Faces</span></b>.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/MON268.webp')" onmouseout='HideCardDetail()'>Belittle (3)</span></b></span>
+Resolving play ability of <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/MON268.webp')" onmouseout='HideCardDetail()'>Belittle (3)</span></b>.
+Player 2 auto-passed.
+Player 1 passed.
+Player 2 auto-passed.
+Combat resolved with a hit for 1 damage
+Processing hit effect for <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/MON268.webp')" onmouseout='HideCardDetail()'>Belittle (3)</span></b>
+The attack has go again, gaining an action point.
+The chain link was closed.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC212.webp')" onmouseout='HideCardDetail()'>Sun Kiss (1)</span></b></span>
+The combat chain was closed.
+Player 1 gained 3 health.
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC212.webp')" onmouseout='HideCardDetail()'>Sun Kiss (1)</span></b>.
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC212.webp')" onmouseout='HideCardDetail()'>Sun Kiss (1)</span></b></span>
+The combat chain was closed.
+Player 1 gained 3 health.
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC212.webp')" onmouseout='HideCardDetail()'>Sun Kiss (1)</span></b>.
+Player 1 reverted back to a prior turn.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC188.webp')" onmouseout='HideCardDetail()'>Push the Point (1)</span></b></span>
+Player 1 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR082.webp')" onmouseout='HideCardDetail()'>Ancestral Empowerment (1)</span></b>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC188.webp')" onmouseout='HideCardDetail()'>Push the Point (1)</span></b>.
+Player 2 auto-passed.
+Player 1 undid their last action.
+The current player is inactive.
+Current player is active again.
+The current player is inactive.
+Current player is active again.
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR078.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b></span>
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR078.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b></span>
+Player 1 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/OUT143.webp')" onmouseout='HideCardDetail()'>Concealed Blade (3)</span></b>
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR078.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b>.
+Player 2 auto-passed.
+Player 1 passed.
+Player 2 auto-passed.
+Combat resolved with a hit for 1 damage
+Processing hit effect for <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR078.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b>
+The attack has go again, gaining an action point.
+The chain link was closed.
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU049.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b></span>
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU049.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b>.
+Player 2 auto-passed.
+Player 1 passed.
+Player 2 auto-passed.
+Combat resolved with a hit for 2 damage
+Processing hit effect for <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU049.webp')" onmouseout='HideCardDetail()'>Harmonized Kodachi</span></b>
+The attack has go again, gaining an action point.
+The chain link was closed.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC188.webp')" onmouseout='HideCardDetail()'>Push the Point (1)</span></b></span>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC188.webp')" onmouseout='HideCardDetail()'>Push the Point (1)</span></b>.
+Player 2 auto-passed.
+Player 1 passed.
+Player 2 auto-passed.
+Combat resolved with a hit for 6 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC188.webp')" onmouseout='HideCardDetail()'>Push the Point (1)</span></b>
+The chain link was closed.
+The current player is inactive.
+Current player is active again.
+The current player is inactive.
+Current player is active again.
+The current player is inactive.
+Player 1 undid their last action.

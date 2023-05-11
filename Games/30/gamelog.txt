@@ -1,0 +1,61 @@
+Player 2 undid their last action.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+The current player is inactive.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR109.webp')" onmouseout='HideCardDetail()'>Ice Eternal</span></b></span>
+Current player is active again.
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/OUT001.webp')" onmouseout='HideCardDetail()'>Uzuri, Switchblade</span></b> was targeted
+The current player is inactive.
+The current player is inactive.
+Player 2 passed.
+Main player passed priority; attempting to end turn.
+Current player is active again.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR141.webp')" onmouseout='HideCardDetail()'>Haze Bending</span></b></span>
+Resolving play ability of <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR141.webp')" onmouseout='HideCardDetail()'>Haze Bending</span></b>.
+Player 1 passed.
+Main player passed priority; attempting to end turn.
+Turn player draw up to 4 cards.
+<span style='color:<PLAYER2COLOR>; '>Player 2 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR411.webp')" onmouseout='HideCardDetail()'>Kyloria</span></b></span>
+<b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR141.webp')" onmouseout='HideCardDetail()'>Haze Bending</span></b> was chosen as the attack target
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR411.webp')" onmouseout='HideCardDetail()'>Kyloria</span></b>.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Player 2 undid their last action.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+<span style='color:<PLAYER2COLOR>; '>Player 2 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR411.webp')" onmouseout='HideCardDetail()'>Kyloria</span></b></span>
+<b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR141.webp')" onmouseout='HideCardDetail()'>Haze Bending</span></b> was chosen as the attack target
+here
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR411.webp')" onmouseout='HideCardDetail()'>Kyloria</span></b>.
+Player 1 undid their last action.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+<span style='color:<PLAYER2COLOR>; '>Player 2 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR411.webp')" onmouseout='HideCardDetail()'>Kyloria</span></b></span>
+<b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR141.webp')" onmouseout='HideCardDetail()'>Haze Bending</span></b> was chosen as the attack target
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR411.webp')" onmouseout='HideCardDetail()'>Kyloria</span></b>.
+Player 1 undid their last action.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+The current player is inactive.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has left the game.
+<span style='color:<PLAYER1COLOR>; '>test wins!</span>
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has left the game.

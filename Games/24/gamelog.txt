@@ -1,0 +1,196 @@
+Player 1 has connected.
+Player 2 has connected.
+<mark style='background-color: brown; color:azure;'>Player 2 manually added a card to their hand.</mark>
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR063.webp')" onmouseout='HideCardDetail()'>Crush Confidence (1)</span></b></span>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU062.webp')" onmouseout='HideCardDetail()'>Rushing River (3)</span></b>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR063.webp')" onmouseout='HideCardDetail()'>Crush Confidence (1)</span></b>.
+Player 1 passed.
+Player 2 passed.
+Player 1 passed.
+Combat resolved with a hit for 7 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR063.webp')" onmouseout='HideCardDetail()'>Crush Confidence (1)</span></b>
+The chain link was closed.
+Player 2 undid their last action.
+<mark style='background-color: brown; color:azure;'>Player 2 manually added a card to their hand.</mark>
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU027.webp')" onmouseout='HideCardDetail()'>Righteous Cleansing (2)</span></b></span>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU062.webp')" onmouseout='HideCardDetail()'>Rushing River (3)</span></b>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR112.webp')" onmouseout='HideCardDetail()'>Whelming Gustwave (3)</span></b>
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/WTR063.webp')" onmouseout='HideCardDetail()'>Crush Confidence (1)</span></b>
+Resolving play ability of <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU027.webp')" onmouseout='HideCardDetail()'>Righteous Cleansing (2)</span></b>.
+Player 1 passed.
+Player 2 passed.
+Player 1 passed.
+Combat resolved with a hit for 10 damage
+Processing hit effect for <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU027.webp')" onmouseout='HideCardDetail()'>Righteous Cleansing (2)</span></b>
+CRU061
+Player 2 undid their last action.
+WTR085
+CRU061
+CRU061,WTR094
+CRU061,WTR094,WTR215
+Player 2 undid their last action.
+WTR085
+3
+Player 2 undid their last action.
+WTR085
+2
+Player 2 undid their last action.
+Player 2 undid their last action.
+The chain link was closed.
+The current player is inactive.
+Current player is active again.
+Player 1 undid their last action.
+Player 1 undid their last action.
+Player 1 undid their last action.
+Player 1 undid their last action.
+Player 1 undid their last action.
+Player 1 undid their last action.
+Player 2 passed.
+The chain link was closed.
+<mark style='background-color: brown; color:azure;'>Player 2 manually add 1 action point.</mark>
+<mark style='background-color: brown; color:azure;'>Player 2 manually added a card to their hand.</mark>
+<mark style='background-color: brown; color:azure;'>Player 2 manually added a card to their hand.</mark>
+<mark style='background-color: brown; color:azure;'>Player 2 manually added a card to their hand.</mark>
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b></span>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR202.webp')" onmouseout='HideCardDetail()'>Strategic Planning (3)</span></b>
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>.
+Player 1 passed.
+Player 2 passed.
+Player 1 passed.
+Combat resolved with a hit for 8 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>
+Player 2 undid their last action.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b></span>
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR202.webp')" onmouseout='HideCardDetail()'>Strategic Planning (3)</span></b>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>.
+Player 1 passed.
+Player 2 passed.
+Player 1 passed.
+Combat resolved with a hit for 8 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>
+Player 2 undid their last action.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b></span>
+Player 2 undid their last action.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b></span>
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR202.webp')" onmouseout='HideCardDetail()'>Strategic Planning (3)</span></b>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>.
+Player 1 passed.
+Player 2 passed.
+Player 1 passed.
+Combat resolved with a hit for 8 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>
+Player 2 undid their last action.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b></span>
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR202.webp')" onmouseout='HideCardDetail()'>Strategic Planning (3)</span></b>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>.
+Player 1 passed.
+Player 2 passed.
+Player 1 passed.
+Combat resolved with a hit for 8 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>
+Player 2 undid their last action.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b></span>
+WTR215 0
+WTR215 3
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b>
+WTR215 0
+WTR215 3
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR202.webp')" onmouseout='HideCardDetail()'>Strategic Planning (3)</span></b>
+WTR215 0
+WTR215 3
+WTR215 0
+WTR215 3
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>.
+WTR215 0
+WTR215 3
+Player 1 passed.
+WTR215 0
+WTR215 3
+WTR215 0
+WTR215 3
+WTR215 0
+WTR215 3
+Player 2 passed.
+WTR215 0
+WTR215 3
+Player 1 passed.
+Combat resolved with a hit for 8 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>
+WTR079 30
+WTR150 40
+UPR158 50
+CRU053 60
+WTR215 0
+WTR215 3
+Player 2 undid their last action.
+WTR215 0 -
+WTR215 3 
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b></span>
+WTR215 0 -
+WTR215 3 
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b>
+WTR215 0 -
+WTR215 3 
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR202.webp')" onmouseout='HideCardDetail()'>Strategic Planning (3)</span></b>
+WTR215 0 -
+WTR215 3 
+WTR215 0 -
+WTR215 3 
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>.
+WTR215 0 -
+WTR215 3 
+Player 1 passed.
+WTR215 0 -
+WTR215 3 
+WTR215 0 -
+WTR215 3 
+WTR215 0 -
+WTR215 3 
+Player 2 passed.
+WTR215 0 -
+WTR215 3 
+Player 1 passed.
+Combat resolved with a hit for 8 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>
+WTR079 30 0
+WTR150 40 0
+UPR158 50 0
+CRU053 60 0
+WTR215 0 -
+WTR215 3 
+Player 2 undid their last action.
+<span style='color:<PLAYER2COLOR>; '>Player 2 played <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b></span>
+Player 2 pitched <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR202.webp')" onmouseout='HideCardDetail()'>Strategic Planning (3)</span></b>
+Player 2 pitched <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR203.webp')" onmouseout='HideCardDetail()'>Brothers in Arms (1)</span></b>
+Resolving play ability of <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>.
+Player 1 passed.
+Player 2 passed.
+Player 1 passed.
+Combat resolved with a hit for 8 damage
+Processing hit effect for <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/CRU026.webp')" onmouseout='HideCardDetail()'>Mangle (1)</span></b>
+The chain link was closed.
+The current player is inactive.
+Current player is active again.
+The current player is inactive.
+Current player is active again.
+The current player is inactive.
+Current player is active again.
+The current player is inactive.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has left the game.
+<span style='color:<PLAYER2COLOR>; '>OotTheMonk wins!</span>
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has left the game.
+Player 2 has reconnected.
+Current player is active again.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has left the game.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.

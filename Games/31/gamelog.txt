@@ -1,0 +1,98 @@
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC003.webp')" onmouseout='HideCardDetail()'>Teklo Plasma Pistol</span></b>.
+<span style='color:<PLAYER2COLOR>; '>Player 2 blocked with <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR030.webp')" onmouseout='HideCardDetail()'>Sweeping Blow</span></b></span>
+<span style='color:<PLAYER2COLOR>; '>Player 2 blocked with <b><span style='color:#AF1518; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR017.webp')" onmouseout='HideCardDetail()'>Invoke Yendurai</span></b></span>
+Player 2 passed.
+Player 1 passed.
+Player 2 passed.
+Combat resolved with no hit
+The chain link was closed.
+Player 1 auto-passed.
+Main player passed priority; attempting to end turn.
+The combat chain was closed.
+Turn player draw up to 4 cards.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Player 2 passed.
+Main player passed priority; attempting to end turn.
+Turn player draw up to 4 cards.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR074.webp')" onmouseout='HideCardDetail()'>T-Bone</span></b></span>
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR001.webp')" onmouseout='HideCardDetail()'>Dromai, Ash Artist</span></b> was chosen as the attack target
+Boost banished <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC025.webp')" onmouseout='HideCardDetail()'>Throttle</span></b> and DID grant go again
+Resolving play ability of <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR074.webp')" onmouseout='HideCardDetail()'>T-Bone</span></b>.
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC003.webp')" onmouseout='HideCardDetail()'>Teklo Plasma Pistol</span></b></span>
+Add a steam counter ability was chosen.
+Player 1 pitched <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC009.webp')" onmouseout='HideCardDetail()'>Spark of Genius</span></b>
+Resolving activated ability of <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC003.webp')" onmouseout='HideCardDetail()'>Teklo Plasma Pistol</span></b>.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+<span style='color:<PLAYER1COLOR>; '>Player 1 activated <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC003.webp')" onmouseout='HideCardDetail()'>Teklo Plasma Pistol</span></b></span>
+Player 2 has reconnected.
+Attack ability was chosen.
+Player 1 undid their last action.
+<span style='color:<PLAYER1COLOR>; '>Player 1 played <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR074.webp')" onmouseout='HideCardDetail()'>T-Bone</span></b></span>
+<b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/UPR001.webp')" onmouseout='HideCardDetail()'>Dromai, Ash Artist</span></b> was chosen as the attack target
+Boost banished <b><span style='color:#009DDF; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC025.webp')" onmouseout='HideCardDetail()'>Throttle</span></b> and DID grant go again
+Resolving play ability of <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR074.webp')" onmouseout='HideCardDetail()'>T-Bone</span></b>.
+<span style='color:<PLAYER2COLOR>; '>Player 2 blocked with <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC154.webp')" onmouseout='HideCardDetail()'>Mage Master Boots</span></b></span>
+Player 2 cancel their blocks.
+<span style='color:<PLAYER2COLOR>; '>Player 2 blocked with <b><span style='color:DimGray; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/ARC154.webp')" onmouseout='HideCardDetail()'>Mage Master Boots</span></b></span>
+Player 2 passed.
+Player 1 passed.
+Player 2 passed.
+Combat resolved with a hit for 2 damage
+Processing hit effect for <b><span style='color:GoldenRod; cursor:default;' onmouseover="ShowDetail(event,'./WebpImages/EVR074.webp')" onmouseout='HideCardDetail()'>T-Bone</span></b>
+The attack has go again, gaining an action point.
+The chain link was closed.
+The current player is inactive.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+<span style='font-weight:bold; color:<PLAYER1COLOR>;'>test: </span>test
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Player 1 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
+Opponent has left the game.
+<span style='color:<PLAYER1COLOR>; '>test wins!</span>
+Player 2 has reconnected.
+Opponent has disconnected. Waiting 60 seconds to reconnect.

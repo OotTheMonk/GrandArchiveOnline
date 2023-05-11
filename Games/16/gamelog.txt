@@ -1,0 +1,3 @@
+Player 1 has connected.
+Thank you for reporting the player. The chat log has been saved to the server. Please report it to mods on the discord server with the game number for reference (16).
+The current player is inactive.

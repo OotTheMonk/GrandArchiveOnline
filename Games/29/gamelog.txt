@@ -1,0 +1,6 @@
+Player 2 has connected.
+Player 1 has connected.
+The current player is inactive.
+Current player is active again.
+The current player is inactive.
+Opponent has disconnected. Waiting 60 seconds to reconnect.
