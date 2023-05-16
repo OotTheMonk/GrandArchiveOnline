@@ -3,21 +3,36 @@
   include './zzImageConverter.php';
   include './Libraries/Trie.php';
 
-  //$jsonUrl = "https://raw.githubusercontent.com/the-fab-cube/flesh-and-blood-cards/v5.0.0/json/english/card.json";
-  $jsonUrl = "https://raw.githubusercontent.com/the-fab-cube/flesh-and-blood-cards/outsiders/json/english/card.json";
-  $curl = curl_init();
-  $headers = array(
-    "Content-Type: application/json",
-  );
-  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  $hasMoreData = true;
+  $page = 1;
+  while($hasMoreData)
+  {
+    $jsonUrl = "https://api.gatcg.com/cards/search?name=&page=" . $page;
+    $curl = curl_init();
+    $headers = array(
+      "Content-Type: application/json",
+    );
+    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
-  curl_setopt($curl, CURLOPT_URL, $jsonUrl);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-  $cardData = curl_exec($curl);
-  curl_close($curl);
+    curl_setopt($curl, CURLOPT_URL, $jsonUrl);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $cardData = curl_exec($curl);
+    curl_close($curl);
 
 
-  $cardArray = json_decode($cardData);
+    $response = json_decode($cardData);
+
+    for($i=0; $i<count($response->data); ++$i)
+    {
+      $card = $response->data[$i];
+      echo($card->name . " " . $card->element . " " . $card->uuid . " " . $card->speed . "<BR>");
+    }
+
+    echo("Page: " . $response->page . "<BR>");
+    ++$page;
+    $hasMoreData = $response->has_more;
+  }
+
 
   if(!is_dir("./GeneratedCode")) mkdir("./GeneratedCode", 777, true);
 
@@ -26,6 +41,7 @@
 
   fwrite($handler, "<?php\r\n");
 
+/*
   GenerateFunction($cardArray, $handler, "CardType", "type", "AA");
   GenerateFunction($cardArray, $handler, "AttackValue", "attack");
   GenerateFunction($cardArray, $handler, "BlockValue", "block", "3");
@@ -35,6 +51,7 @@
   GenerateFunction($cardArray, $handler, "CardSubtype", "subtype", "");
   GenerateFunction($cardArray, $handler, "CharacterHealth", "health", "20", true);//Also images
   GenerateFunction($cardArray, $handler, "Rarity", "rarity", "C");
+*/
 
   fwrite($handler, "?>");
 
