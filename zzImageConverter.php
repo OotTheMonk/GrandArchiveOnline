@@ -6,7 +6,7 @@ function CheckImage($cardID)
   if(!file_exists($filename))
   {
     //$imageURL = "https://fabrary.net/images/cards/" . $cardID . ".webp";
-    $imageURL= "https://d2h5owxb2ypf43.cloudfront.net/cards/" . $cardID . ".webp";
+    $imageURL= "https://img.silvie.org/cdn/deck-builder/" . $cardID . ".jpg";
     //$imageURL = "https://fabrary.net/images/cards/" . $cardID . ".width-450.webp";
     echo("Image for " . $cardID . " does not exist.<BR>");
     $handler = fopen($filename, "w");
@@ -21,7 +21,8 @@ function CheckImage($cardID)
     if(file_exists($filename))
     {
       echo("Normalizing file size for " . $cardID . ".<BR>");
-      $image = imagecreatefromwebp($filename);
+      //$image = imagecreatefromwebp($filename);
+      $image = imagecreatefromjpeg($filename);
       $image = imagescale($image, 450, 628);
       imagewebp($image, $filename);
       // Free up memory
@@ -31,13 +32,13 @@ function CheckImage($cardID)
   $concatFilename = "./concat/" . $cardID . ".webp";
   if(!file_exists($concatFilename))
   {
-    echo("Concat image for " . $cardID . " does not exist.<BR>");
+    echo("Concat image for " . $cardID . " does not exist. Converting: $filename<BR>");
     if(file_exists($filename))
     {
       echo("Attempting to convert image for " . $cardID . " to concat.<BR>");
       $image = imagecreatefromwebp($filename);
       $imageTop = imagecrop($image, ['x' => 0, 'y' => 0, 'width' => 450, 'height' => 372]);
-      $imageBottom = imagecrop($image, ['x' => 0, 'y' => 550, 'width' => 450, 'height' => 628]);
+      $imageBottom = imagecrop($image, ['x' => 0, 'y' => 570, 'width' => 450, 'height' => 600]);
 
       $dest = imagecreatetruecolor(450, 450);
       imagecopy($dest, $imageTop, 0, 0, 0, 0, 450, 372);

@@ -39,7 +39,7 @@
       AddToTrie($nameTrie, $card->uuid, 0, $card->name);
       AddToTrie($memoryCostTrie, $card->uuid, 0, ($card->cost_memory == null ? -1 : $card->cost_memory));
 
-      //CheckImage($card->uuid);//TODO
+      CheckImage($card->uuid);
       echo($card->name . " " . $card->element . " " . $card->uuid . " " . $card->speed . "<BR>");
     }
 
