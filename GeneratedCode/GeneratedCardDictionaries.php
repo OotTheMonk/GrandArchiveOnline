@@ -1,4 +1,5 @@
 <?php
+function CardElement($cardID) {
 switch($cardID[0]) {
 case "L":
 switch($cardID[1]) {
@@ -10168,6 +10169,9 @@ default: return "";
 }
 default: return "";
 }
+}
+
+function CardName($cardID) {
 switch($cardID[0]) {
 case "L":
 switch($cardID[1]) {
@@ -20337,6 +20341,9 @@ default: return "";
 }
 default: return "";
 }
+}
+
+function CardMemoryCost($cardID) {
 switch($cardID[0]) {
 case "L":
 switch($cardID[1]) {
@@ -30506,4 +30513,6 @@ default: return -1;
 }
 default: return -1;
 }
+}
+
 ?>

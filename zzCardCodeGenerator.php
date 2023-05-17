@@ -38,6 +38,8 @@
       AddToTrie($elementTrie, $card->uuid, 0, $card->element);
       AddToTrie($nameTrie, $card->uuid, 0, $card->name);
       AddToTrie($memoryCostTrie, $card->uuid, 0, ($card->cost_memory == null ? -1 : $card->cost_memory));
+
+      //CheckImage($card->uuid);//TODO
       echo($card->name . " " . $card->element . " " . $card->uuid . " " . $card->speed . "<BR>");
     }
 
@@ -68,9 +70,9 @@ speed - ??
 
   fwrite($handler, "<?php\r\n");
 
-  TraverseTrie($elementTrie, "", $handler, true, "");
-  TraverseTrie($nameTrie, "", $handler, true, "");
-  TraverseTrie($memoryCostTrie, "", $handler, false, -1);
+  GenerateFunction($elementTrie, $handler, "CardElement", true, "");
+  GenerateFunction($nameTrie, $handler, "CardName", true, "");
+  GenerateFunction($memoryCostTrie, $handler, "CardMemoryCost", false, -1);
 
 /*
   GenerateFunction($cardArray, $handler, "CardType", "type", "AA");
@@ -88,6 +90,13 @@ speed - ??
 
   fclose($handler);
 
+  function GenerateFunction($cardArray, $handler, $functionName, $isString, $defaultValue)
+  {
+    fwrite($handler, "function " . $functionName . "(\$cardID) {\r\n");
+    TraverseTrie($cardArray, "", $handler, $isString, $defaultValue);
+    fwrite($handler, "}\r\n\r\n");
+  }
+/*
   function GenerateFunction(&$cardArray, $handler, $functionName, $propertyName, $defaultValue="", $sparse=false)
   {
     echo("<BR>" . $functionName . "<BR>");
@@ -192,6 +201,7 @@ speed - ??
 
     fwrite($handler, "}\r\n\r\n");
   }
+  */
 
   function MapType($card)
   {
