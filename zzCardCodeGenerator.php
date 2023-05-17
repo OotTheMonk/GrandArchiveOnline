@@ -5,6 +5,15 @@
 
   $hasMoreData = true;
   $page = 1;
+  $nameTrie = [];
+  $elementTrie = [];
+  $memoryCostTrie = [];
+  $reserveCostTrie = [];
+  $levelTrie = [];
+  $powerTrie = [];
+  $lifeTrie = [];
+  $durabilityTrie = [];
+  $speedTrie = [];
   while($hasMoreData)
   {
     $jsonUrl = "https://api.gatcg.com/cards/search?name=&page=" . $page;
@@ -22,9 +31,13 @@
 
     $response = json_decode($cardData);
 
+
     for($i=0; $i<count($response->data); ++$i)
     {
       $card = $response->data[$i];
+      AddToTrie($elementTrie, $card->uuid, 0, $card->element);
+      AddToTrie($nameTrie, $card->uuid, 0, $card->name);
+      AddToTrie($memoryCostTrie, $card->uuid, 0, ($card->cost_memory == null ? -1 : $card->cost_memory));
       echo($card->name . " " . $card->element . " " . $card->uuid . " " . $card->speed . "<BR>");
     }
 
@@ -32,6 +45,20 @@
     ++$page;
     $hasMoreData = $response->has_more;
   }
+/*
+  types - array
+classes - array
+subtypes - array
+element - string
+name - string
+cost_memory - int
+cost_reserve - int
+level - int
+power - int (null?)
+life - int
+durability - int (null?)
+speed - ??
+*/
 
 
   if(!is_dir("./GeneratedCode")) mkdir("./GeneratedCode", 777, true);
@@ -40,6 +67,10 @@
   $handler = fopen($filename, "w");
 
   fwrite($handler, "<?php\r\n");
+
+  TraverseTrie($elementTrie, "", $handler, true, "");
+  TraverseTrie($nameTrie, "", $handler, true, "");
+  TraverseTrie($memoryCostTrie, "", $handler, false, -1);
 
 /*
   GenerateFunction($cardArray, $handler, "CardType", "type", "AA");
