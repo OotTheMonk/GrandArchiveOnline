@@ -38,7 +38,7 @@ function CheckImage($cardID)
       echo("Attempting to convert image for " . $cardID . " to concat.<BR>");
       $image = imagecreatefromwebp($filename);
       $imageTop = imagecrop($image, ['x' => 0, 'y' => 0, 'width' => 450, 'height' => 372]);
-      $imageBottom = imagecrop($image, ['x' => 0, 'y' => 570, 'width' => 450, 'height' => 600]);
+      $imageBottom = imagecrop($image, ['x' => 0, 'y' => 570, 'width' => 450, 'height' => 628]);
 
       $dest = imagecreatetruecolor(450, 450);
       imagecopy($dest, $imageTop, 0, 0, 0, 0, 450, 372);
