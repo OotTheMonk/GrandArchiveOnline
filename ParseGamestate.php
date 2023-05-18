@@ -30,9 +30,9 @@ function ParseGamestate($useRedis = false)
 {
   global $gameName, $playerHealths;
   global $p1Hand, $p1Deck, $p1CharEquip, $p1Resources, $p1Arsenal, $p1Items, $p1Auras, $p1Discard, $p1Pitch, $p1Banish;
-  global $p1ClassState, $p1CharacterEffects, $p1Soul, $p1CardStats, $p1TurnStats, $p1Allies, $p1Permanents, $p1Settings;
+  global $p1ClassState, $p1CharacterEffects, $p1Material, $p1CardStats, $p1TurnStats, $p1Allies, $p1Permanents, $p1Settings;
   global $p2Hand, $p2Deck, $p2CharEquip, $p2Resources, $p2Arsenal, $p2Items, $p2Auras, $p2Discard, $p2Pitch, $p2Banish;
-  global $p2ClassState, $p2CharacterEffects, $p2Soul, $p2CardStats, $p2TurnStats, $p2Allies, $p2Permanents, $p2Settings;
+  global $p2ClassState, $p2CharacterEffects, $p2Material, $p2CardStats, $p2TurnStats, $p2Allies, $p2Permanents, $p2Settings;
   global $landmarks, $winner, $firstPlayer, $currentPlayer, $currentTurn, $turn, $actionPoints, $combatChain, $combatChainState;
   global $currentTurnEffects, $currentTurnEffectsFromCombat, $nextTurnEffects, $decisionQueue, $dqVars, $dqState;
   global $layers, $layerPriority, $mainPlayer, $defPlayer, $lastPlayed, $chainLinks, $chainLinkSummary, $p1Key, $p2Key;
@@ -94,7 +94,7 @@ function ParseGamestate($useRedis = false)
   $p1Banish = GetStringArray($gamestateContent[10]); // 11
   $p1ClassState = GetStringArray($gamestateContent[11]); // 12
   $p1CharacterEffects = GetStringArray($gamestateContent[12]); // 13
-  $p1Soul = GetStringArray($gamestateContent[13]); // 14
+  $p1Material = GetStringArray($gamestateContent[13]); // 14
   $p1CardStats = GetStringArray($gamestateContent[14]); // 15
   $p1TurnStats = GetStringArray($gamestateContent[15]); // 16
   $p1Allies = GetStringArray($gamestateContent[16]); // 17
@@ -114,7 +114,7 @@ function ParseGamestate($useRedis = false)
   $p2Banish = GetStringArray($gamestateContent[28]); // 29
   $p2ClassState = GetStringArray($gamestateContent[29]); // 30
   $p2CharacterEffects = GetStringArray($gamestateContent[30]); // 31
-  $p2Soul = GetStringArray($gamestateContent[31]); // 32
+  $p2Material = GetStringArray($gamestateContent[31]); // 32
   $p2CardStats = GetStringArray($gamestateContent[32]); // 33
   $p2TurnStats = GetStringArray($gamestateContent[33]); // 34
   $p2Allies = GetStringArray($gamestateContent[34]); // 35
@@ -184,7 +184,7 @@ function BuildMyGamestate($playerID)
   global $myCharacterEffects, $myDiscard, $myCardStats, $myTurnStats;
   global $theirDeck, $theirHand, $theirResources, $theirCharacter, $theirArsenal, $theirHealth, $theirAuras, $theirPitch, $theirBanish, $theirClassState, $theirItems;
   global $theirCharacterEffects, $theirDiscard, $theirCardStats, $theirTurnStats;
-  global $p1Soul, $p2Soul, $mySoul, $theirSoul;
+  global $p1Material, $p2Material, $myMaterial, $theirMaterial;
   global $myStateBuiltFor, $mainPlayerGamestateStillBuilt;
   DoGamestateUpdate();
   $mainPlayerGamestateStillBuilt = 0;
@@ -202,7 +202,7 @@ function BuildMyGamestate($playerID)
   $myBanish = $playerID == 1 ? $p1Banish : $p2Banish;
   $myClassState = $playerID == 1 ? $p1ClassState : $p2ClassState;
   $myCharacterEffects = $playerID == 1 ? $p1CharacterEffects : $p2CharacterEffects;
-  $mySoul = $playerID == 1 ? $p1Soul : $p2Soul;
+  $myMaterial = $playerID == 1 ? $p1Material : $p2Material;
   $myCardStats = $playerID == 1 ? $p1CardStats : $p2CardStats;
   $myTurnStats = $playerID == 1 ? $p1TurnStats : $p2TurnStats;
   $theirHand = $playerID == 1 ? $p2Hand : $p1Hand;
@@ -218,7 +218,7 @@ function BuildMyGamestate($playerID)
   $theirBanish = $playerID == 1 ? $p2Banish : $p1Banish;
   $theirClassState = $playerID == 1 ? $p2ClassState : $p1ClassState;
   $theirCharacterEffects = $playerID == 1 ? $p2CharacterEffects : $p1CharacterEffects;
-  $theirSoul = $playerID == 1 ? $p2Soul : $p1Soul;
+  $theirMaterial = $playerID == 1 ? $p2Material : $p1Material;
   $theirCardStats = $playerID == 1 ? $p2CardStats : $p1CardStats;
   $theirTurnStats = $playerID == 1 ? $p2TurnStats : $p1TurnStats;
 }
@@ -232,7 +232,7 @@ function BuildMainPlayerGameState()
   global $defCharacterEffects, $defDiscard;
   global $p1Deck, $p1Hand, $p1Resources, $p1CharEquip, $p1Arsenal, $p1Auras, $p1Pitch, $p1Banish, $p1ClassState, $p1Items, $p1CharacterEffects, $p1Discard;
   global $p2Deck, $p2Hand, $p2Resources, $p2CharEquip, $p2Arsenal, $p2Auras, $p2Pitch, $p2Banish, $p2ClassState, $p2Items, $p2CharacterEffects, $p2Discard;
-  global $p1Soul, $p2Soul, $mainSoul, $defSoul;
+  global $p1Material, $p2Material, $mainMaterial, $defMaterial;
   global $p1CardStats, $p2CardStats, $mainCardStats, $defCardStats;
   global $p1TurnStats, $p2TurnStats, $mainTurnStats, $defTurnStats;
   DoGamestateUpdate();
@@ -250,7 +250,7 @@ function BuildMainPlayerGameState()
   $mainClassState = $mainPlayer == 1 ? $p1ClassState : $p2ClassState;
   $mainCharacterEffects = $mainPlayer == 1 ? $p1CharacterEffects : $p2CharacterEffects;
   $mainDiscard = $mainPlayer == 1 ? $p1Discard : $p2Discard;
-  $mainSoul = $mainPlayer == 1 ? $p1Soul : $p2Soul;
+  $mainMaterial = $mainPlayer == 1 ? $p1Material : $p2Material;
   $mainCardStats = $mainPlayer == 1 ? $p1CardStats : $p2CardStats;
   $mainTurnStats = $mainPlayer == 1 ? $p1TurnStats : $p2TurnStats;
   $defHand = $mainPlayer == 1 ? $p2Hand : $p1Hand;
@@ -266,7 +266,7 @@ function BuildMainPlayerGameState()
   $defClassState = $mainPlayer == 1 ? $p2ClassState : $p1ClassState;
   $defCharacterEffects = $mainPlayer == 1 ? $p2CharacterEffects : $p1CharacterEffects;
   $defDiscard = $mainPlayer == 1 ? $p2Discard : $p1Discard;
-  $defSoul = $mainPlayer == 1 ? $p2Soul : $p1Soul;
+  $defMaterial = $mainPlayer == 1 ? $p2Material : $p1Material;
   $defCardStats = $mainPlayer == 1 ? $p2CardStats : $p1CardStats;
   $defTurnStats = $mainPlayer == 1 ? $p2TurnStats : $p1TurnStats;
 
@@ -288,7 +288,7 @@ function UpdateGameStateInner()
   global $myCharacterEffects, $myDiscard, $myCardStats, $myTurnStats;
   global $theirDeck, $theirHand, $theirResources, $theirCharacter, $theirArsenal, $theirHealth, $theirAuras, $theirPitch, $theirBanish, $theirClassState, $theirItems;
   global $theirCharacterEffects, $theirDiscard, $theirCardStats, $theirTurnStats;
-  global $p1Soul, $p2Soul, $mySoul, $theirSoul;
+  global $p1Material, $p2Material, $myMaterial, $theirMaterial;
   $activePlayer = $myStateBuiltFor;
   if ($activePlayer == 1) {
     $p1Deck = $myDeck;
@@ -304,7 +304,7 @@ function UpdateGameStateInner()
     $p1ClassState = $myClassState;
     $p1CharacterEffects = $myCharacterEffects;
     $p1Discard = $myDiscard;
-    $p1Soul = $mySoul;
+    $p1Material = $myMaterial;
     $p1CardStats = $myCardStats;
     $p1TurnStats = $myTurnStats;
     $p2Deck = $theirDeck;
@@ -320,7 +320,7 @@ function UpdateGameStateInner()
     $p2ClassState = $theirClassState;
     $p2CharacterEffects = $theirCharacterEffects;
     $p2Discard = $theirDiscard;
-    $p2Soul = $theirSoul;
+    $p2Material = $theirMaterial;
     $p2CardStats = $theirCardStats;
     $p2TurnStats = $theirTurnStats;
   } else {
@@ -337,7 +337,7 @@ function UpdateGameStateInner()
     $p2ClassState = $myClassState;
     $p2CharacterEffects = $myCharacterEffects;
     $p2Discard = $myDiscard;
-    $p2Soul = $mySoul;
+    $p2Material = $myMaterial;
     $p2CardStats = $myCardStats;
     $p2TurnStats = $myTurnStats;
     $p1Deck = $theirDeck;
@@ -353,7 +353,7 @@ function UpdateGameStateInner()
     $p1ClassState = $theirClassState;
     $p1CharacterEffects = $theirCharacterEffects;
     $p1Discard = $theirDiscard;
-    $p1Soul = $theirSoul;
+    $p1Material = $theirMaterial;
     $p1CardStats = $theirCardStats;
     $p1TurnStats = $theirTurnStats;
   }
@@ -374,7 +374,7 @@ function UpdateMainPlayerGameStateInner()
   global $p1CharacterEffects, $p1Discard;
   global $p2Deck, $p2Hand, $p2Resources, $p2CharEquip, $p2Arsenal, $p2Auras, $p2Pitch, $p2Banish, $p2ClassState, $p2Items;
   global $p2CharacterEffects, $p2Discard;
-  global $p1Soul, $p2Soul, $mainSoul, $defSoul;
+  global $p1Material, $p2Material, $mainMaterial, $defMaterial;
   global $p1CardStats, $p2CardStats, $mainCardStats, $defCardStats;
   global $p1TurnStats, $p2TurnStats, $mainTurnStats, $defTurnStats;
 
@@ -391,7 +391,7 @@ function UpdateMainPlayerGameStateInner()
   $p1ClassState = $mpgBuiltFor == 1 ? $mainClassState : $defClassState;
   $p1CharacterEffects = $mpgBuiltFor == 1 ? $mainCharacterEffects : $defCharacterEffects;
   $p1Discard = $mpgBuiltFor == 1 ? $mainDiscard : $defDiscard;
-  $p1Soul = $mpgBuiltFor == 1 ? $mainSoul : $defSoul;
+  $p1Material = $mpgBuiltFor == 1 ? $mainMaterial : $defMaterial;
   $p1CardStats = $mpgBuiltFor == 1 ? $mainCardStats : $defCardStats;
   $p1TurnStats = $mpgBuiltFor == 1 ? $mainTurnStats : $defTurnStats;
   $p2Deck = $mpgBuiltFor == 2 ? $mainDeck : $defDeck;
@@ -407,7 +407,7 @@ function UpdateMainPlayerGameStateInner()
   $p2ClassState = $mpgBuiltFor == 2 ? $mainClassState : $defClassState;
   $p2CharacterEffects = $mpgBuiltFor == 2 ? $mainCharacterEffects : $defCharacterEffects;
   $p2Discard = $mpgBuiltFor == 2 ? $mainDiscard : $defDiscard;
-  $p2Soul = $mpgBuiltFor == 2 ? $mainSoul : $defSoul;
+  $p2Material = $mpgBuiltFor == 2 ? $mainMaterial : $defMaterial;
   $p2CardStats = $mpgBuiltFor == 2 ? $mainCardStats : $defCardStats;
   $p2TurnStats = $mpgBuiltFor == 2 ? $mainTurnStats : $defTurnStats;
 }

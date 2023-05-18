@@ -773,45 +773,22 @@ function CardBorderColor($cardID, $from, $isPlayable, $mod = "-")
 
 function CardLink($caption, $cardNumber, $recordMenu = false)
 {
-  //$file = "'./" . "CardImages" . "/" . $cardNumber . ".png'";
   global $darkMode, $playerID, $isReactFE;
-  if ($isReactFE) {
-    return "{{" . $cardNumber . "|" . CardName($cardNumber) . "|" . PitchValue($cardNumber) . "}}";
-  }
+
 
   $name = CardName($cardNumber);
   if ($name == "") return "";
-  $pitchValue = PitchValue($cardNumber);
-  $pitchText = "";
-  if ($recordMenu) {
-    $color = "#DDD";
-  } else {
-    switch ($pitchValue) {
-      case 3:
-        $color = "#009DDF";
-        $pitchText = " (3)";
-        break;
-      case 2:
-        $color = "GoldenRod";
-        $pitchText = " (2)";
-        break;
-      case 1:
-        $color = "#AF1518";
-        $pitchText = " (1)";
-        break;
-      default:
+  /*
         if ($darkMode) {
           $color = "#1a1a1a";
-          break;
         } else {
           $color = "#AAA";
-          break;
         }
-    }
-  }
-  if (function_exists("IsColorblindMode") && !IsColorblindMode($playerID)) $pitchText = "";
+        */
+  $color = "#AAA";
+  //if (function_exists("IsColorblindMode") && !IsColorblindMode($playerID)) $pitchText = "";
   $file = "'./" . "WebpImages" . "/" . $cardNumber . ".webp'";
-  return "<b><span style='color:" . $color . "; cursor:default;' onmouseover=\"ShowDetail(event," . $file . ")\" onmouseout='HideCardDetail()'>" . $name . $pitchText . "</span></b>";
+  return "<b><span style='color:" . $color . "; cursor:default;' onmouseover=\"ShowDetail(event," . $file . ")\" onmouseout='HideCardDetail()'>" . $name . "</span></b>";
 }
 
 function MainMenuUI()

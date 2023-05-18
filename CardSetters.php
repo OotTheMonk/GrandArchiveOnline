@@ -225,56 +225,22 @@ function SetCCAttackModifier($index, $amount)
   $combatChain[$index + 5] += $amount;
 }
 
-function AddSoul($cardID, $player, $from)
+function AddMaterial($cardID, $player, $from)
 {
   global $currentPlayer, $mainPlayer, $mainPlayerGamestateStillBuilt;
-  global $mySoul, $theirSoul, $mainSoul, $defSoul;
   AddEvent("SOUL", $cardID);
-  global $CS_NumAddedToSoul;
-  global $myStateBuiltFor;
-  if($cardID == "DYN066")
+  $material = &GetMaterial($player);
+  array_push($material, $cardID);
+}
+
+function RemoveMaterial($player, $index)
+{
+  $material = &GetMaterial($player);
+  for($i=$index+MaterialPieces()-1; $i>=$index; --$i)
   {
-    WriteLog("The spirit of Eirina is inside you, always.");
-    PutItemIntoPlayForPlayer($cardID, $player);
+    unset($material[$i]);
   }
-  else {
-    if ($mainPlayerGamestateStillBuilt) {
-      if ($player == $mainPlayer) AddSpecificSoul($cardID, $mainSoul, $from);
-      else AddSpecificSoul($cardID, $defSoul, $from);
-    } else {
-      if ($player == $myStateBuiltFor) AddSpecificSoul($cardID, $mySoul, $from);
-      else AddSpecificSoul($cardID, $theirSoul, $from);
-    }
-    IncrementClassState($player, $CS_NumAddedToSoul);
-  }
-}
-
-function AddSpecificSoul($cardID, &$soul, $from)
-{
-  array_push($soul, $cardID);
-}
-
-function BanishFromSoul($player, $index=0)
-{
-  global $mainPlayer, $mainPlayerGamestateStillBuilt;
-  global $mySoul, $theirSoul, $mainSoul, $defSoul;
-  global $myStateBuiltFor;
-  if($mainPlayerGamestateStillBuilt) {
-    if($player == $mainPlayer) BanishFromSpecificSoul($mainSoul, $player, $index);
-    else BanishFromSpecificSoul($defSoul, $player, $index);
-  } else {
-    if($player == $myStateBuiltFor) BanishFromSpecificSoul($mySoul, $player, $index);
-    else BanishFromSpecificSoul($theirSoul, $player, $index);
-  }
-}
-
-function BanishFromSpecificSoul(&$soul, $player, $index=0)
-{
-  if(count($soul) == 0) return;
-  $cardID = $soul[$index];
-  unset($soul[$index]);
-  $soul = array_values($soul);
-  BanishCardForPlayer($cardID, $player, "SOUL", "SOUL");
+  $material = array_values($material);
 }
 
 function EffectArcaneBonus($cardID)

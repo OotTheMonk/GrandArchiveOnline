@@ -176,7 +176,7 @@ function DecisionQueuePieces()
 }
 
 //0 - Card ID
-function SoulPieces()
+function MaterialPieces()
 {
   return 1;
 }

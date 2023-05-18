@@ -684,7 +684,7 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
   }
 
   if (($turn[0] == "MAT") && $currentPlayer == $playerID) {
-    ChoosePopup($myCharacter, GetIndices(count($myCharacter)), 16, "Choose a card to materialize", 1);
+    ChoosePopup($myMaterial, GetIndices(count($myMaterial)), 15, "Choose a card to materialize", 1);
   }
 
   if (($turn[0] == "CHOOSEPERMANENT" || $turn[0] == "MAYCHOOSEPERMANENT") && $turn[1] == $playerID) {
@@ -720,10 +720,6 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
 
   if ($turn[0] == "CHOOSETHEIRCHARACTER" && $turn[1] == $playerID) {
     ChoosePopup($theirCharacter, $turn[2], 16, "Choose a card from your opponent character/equipment", CharacterPieces());
-  }
-
-  if (($turn[0] == "CHOOSEMYSOUL" || $turn[0] == "MAYCHOOSEMYSOUL") && $turn[1] == $playerID) {
-    ChoosePopup($mySoul, $turn[2], 16, "Choose a card from your soul", SoulPieces());
   }
 
   if ($turn[0] == "PDECK" && $currentPlayer == $playerID) {
@@ -788,7 +784,6 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
   echo ($banishUI);
   echo ("</div>");
 
-  if (count($theirSoul) > 0) echo ("<div id='theirSoulCount'>" . count($theirSoul) . "</div>");
   echo ("</div>");
 
   //Show deck, discard, pitch, banish

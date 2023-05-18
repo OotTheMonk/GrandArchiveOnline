@@ -182,17 +182,17 @@ function &GetItems($player)
   }
 }
 
-function &GetSoul($player)
+function &GetMaterial($player)
 {
   global $currentPlayer, $mainPlayer, $mainPlayerGamestateStillBuilt;
-  global $mySoul, $theirSoul, $mainSoul, $defSoul;
+  global $myMaterial, $theirMaterial, $mainMaterial, $defMaterial;
   global $myStateBuiltFor;
   if ($mainPlayerGamestateStillBuilt) {
-    if ($player == $mainPlayer) return $mainSoul;
-    else return $defSoul;
+    if ($player == $mainPlayer) return $mainMaterial;
+    else return $defMaterial;
   } else {
-    if ($player == $myStateBuiltFor) return $mySoul;
-    else return $theirSoul;
+    if ($player == $myStateBuiltFor) return $myMaterial;
+    else return $theirMaterial;
   }
 }
 

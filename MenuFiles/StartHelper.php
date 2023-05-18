@@ -36,7 +36,7 @@ function initializePlayerState($handler, $deckHandler, $player)
 */
   fwrite($handler, implode(" ", $deckCards) . "\r\n");
 
-  fwrite($handler, implode(" ", $materialDeck) . "\r\n");//Material deck
+  fwrite($handler, "\r\n");//Character
 
   fwrite($handler, "0 0\r\n"); //Resources float/needed
   fwrite($handler, "\r\n"); //Arsenal
@@ -47,7 +47,7 @@ function initializePlayerState($handler, $deckHandler, $player)
   fwrite($handler, "\r\n"); //Banish
   fwrite($handler, "\r\n"); //Class State
   fwrite($handler, "\r\n"); //Character effects
-  fwrite($handler, "\r\n"); //Soul
+  fwrite($handler, implode(" ", $materialDeck) . "\r\n");//Material deck
   fwrite($handler, "\r\n"); //Card Stats
   fwrite($handler, "\r\n"); //Turn Stats
   fwrite($handler, "\r\n"); //Allies

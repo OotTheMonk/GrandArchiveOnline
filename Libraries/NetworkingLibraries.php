@@ -184,7 +184,15 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       if(CanPlayAsInstant($cardID, $index, "BANISH")) SetClassState($currentPlayer, $CS_PlayedAsInstant, "1");
       PlayCard($cardID, "BANISH", -1, $index, $banish[$index + 2]);
       break;
-    case 15: case 16: case 18: //Decision Queue (15 and 18 deprecated)
+    case 15: //Materialize
+      $index = $cardID;
+      $material = &GetMaterial($currentPlayer);
+      $cardID = $material[$index];
+      WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
+      //WriteLog($index);
+      //RemoveMaterial($currentPlayer, $index);
+      break;
+    case 16: case 18: //Decision Queue (15 and 18 deprecated)
       if(count($decisionQueue) > 0)
       {
         $index = $cardID;

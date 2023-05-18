@@ -22,6 +22,7 @@ function TypeToPlay($phase)
 {
   global $turn;
   switch ($phase) {
+    case "MAT": return "a card to materialize";
     case "M":
       return "an Action";
     case "B":
