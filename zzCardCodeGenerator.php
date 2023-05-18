@@ -38,6 +38,12 @@
       AddToTrie($elementTrie, $card->uuid, 0, $card->element);
       AddToTrie($nameTrie, $card->uuid, 0, $card->name);
       AddToTrie($memoryCostTrie, $card->uuid, 0, ($card->cost_memory == null ? -1 : $card->cost_memory));
+      AddToTrie($reserveCostTrie, $card->uuid, 0, ($card->cost_reserve == null ? -1 : $card->cost_reserve));
+      AddToTrie($levelTrie, $card->uuid, 0, ($card->level == null ? -1 : $card->level));
+      AddToTrie($powerTrie, $card->uuid, 0, ($card->power == null ? -1 : $card->power));
+      AddToTrie($lifeTrie, $card->uuid, 0, ($card->life == null ? -1 : $card->life));
+      AddToTrie($durabilityTrie, $card->uuid, 0, ($card->durability == null ? -1 : $card->durability));
+      AddToTrie($speedTrie, $card->uuid, 0, ($card->speed == null ? -1 : $card->speed));
 
       CheckImage($card->uuid);
       echo($card->name . " " . $card->element . " " . $card->uuid . " " . $card->speed . "<BR>");
@@ -51,15 +57,6 @@
   types - array
 classes - array
 subtypes - array
-element - string
-name - string
-cost_memory - int
-cost_reserve - int
-level - int
-power - int (null?)
-life - int
-durability - int (null?)
-speed - ??
 */
 
 
@@ -73,18 +70,12 @@ speed - ??
   GenerateFunction($elementTrie, $handler, "CardElement", true, "");
   GenerateFunction($nameTrie, $handler, "CardName", true, "");
   GenerateFunction($memoryCostTrie, $handler, "CardMemoryCost", false, -1);
-
-/*
-  GenerateFunction($cardArray, $handler, "CardType", "type", "AA");
-  GenerateFunction($cardArray, $handler, "AttackValue", "attack");
-  GenerateFunction($cardArray, $handler, "BlockValue", "block", "3");
-  GenerateFunction($cardArray, $handler, "CardName", "name");
-  GenerateFunction($cardArray, $handler, "PitchValue", "pitch", "1");
-  GenerateFunction($cardArray, $handler, "CardCost", "cost", "0");
-  GenerateFunction($cardArray, $handler, "CardSubtype", "subtype", "");
-  GenerateFunction($cardArray, $handler, "CharacterHealth", "health", "20", true);//Also images
-  GenerateFunction($cardArray, $handler, "Rarity", "rarity", "C");
-*/
+  GenerateFunction($reserveCostTrie, $handler, "CardReserveCost", false, -1);
+  GenerateFunction($levelTrie, $handler, "CardLevel", false, -1);
+  GenerateFunction($powerTrie, $handler, "CardPower", false, -1);
+  GenerateFunction($lifeTrie, $handler, "CardLife", false, -1);
+  GenerateFunction($durabilityTrie, $handler, "CardDurability", false, -1);
+  GenerateFunction($speedTrie, $handler, "CardSpeed", false, -1);
 
   fwrite($handler, "?>");
 
