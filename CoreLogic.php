@@ -1368,6 +1368,12 @@ function NameOverride($cardID, $player="")
   return $name;
 }
 
+function CardTypeContains($cardID, $type, $player="")
+{
+  $cardTypes = CardTypes($cardID);
+  return DelimStringContains($cardTypes, $type);
+}
+
 function ClassContains($cardID, $class, $player="")
 {
   $cardClass = ClassOverride($cardID, $player);

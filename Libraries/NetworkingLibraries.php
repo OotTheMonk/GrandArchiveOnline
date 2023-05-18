@@ -189,8 +189,16 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       $material = &GetMaterial($currentPlayer);
       $cardID = $material[$index];
       WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
-      //WriteLog($index);
-      //RemoveMaterial($currentPlayer, $index);
+      RemoveMaterial($currentPlayer, $index);
+      if(CardTypeContains($cardID, "SPIRIT")) AddCharacter($cardID, $currentPlayer);
+      else if(CardTypeContains($cardID, "CHAMPION"))
+      {
+        $char = &GetPlayerCharacter($currentPlayer);
+        $char[0] = $cardID;
+        $char[1] = 2;
+      }
+      MaterializeCardEffect($cardID);
+      $turn[0] = "M";
       break;
     case 16: case 18: //Decision Queue (15 and 18 deprecated)
       if(count($decisionQueue) > 0)
@@ -1863,6 +1871,19 @@ function PayAdditionalCosts($cardID, $from)
       AddDecisionQueue("MZBANISH", $currentPlayer, "GY,-," . $currentPlayer . ",1", 1);
       AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
       AddDecisionQueue("APPENDCLASSSTATE", $currentPlayer, $CS_AdditionalCosts . "-BANISH1ATTACK", 1);
+      break;
+    default:
+      break;
+  }
+}
+
+function MaterializeCardEffect($cardID)
+{
+  global $currentPlayer;
+  switch($cardID)
+  {
+    case "LMyKyVC2O9": case "tafqldAGRF": case "pNiyaGlIe7":
+      for($i=0; $i<7; ++$i) Draw($currentPlayer);
       break;
     default:
       break;
