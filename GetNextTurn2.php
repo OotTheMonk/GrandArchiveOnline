@@ -911,6 +911,34 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
     }
   }
   echo ("</div>");
+  //Now display their character and equipment
+  $numWeapons = 0;
+  echo ("<div id='theirChar'>");
+  $characterContents = "";
+  for ($i = 0; $i < count($theirCharacter); $i += CharacterPieces()) {
+    if ($i > 0 && $inGameStatus == "0") continue;
+    $atkCounters = 0;
+    $counters = 0;
+    //$type = CardType($theirCharacter[$i]);
+    $type = "C";
+    $sType = CardSubType($theirCharacter[$i]);
+    if ($type == "W") {
+      ++$numWeapons;
+      if ($numWeapons > 1) {
+        $type = "E";
+        $sType = "Off-Hand";
+      }
+    }
+    if (CardType($theirCharacter[$i]) == "W") $atkCounters = $theirCharacter[$i + 3];
+    if ($theirCharacter[$i + 2] > 0) $counters = $theirCharacter[$i + 2];
+    $counters = $theirCharacter[$i + 1] != 0 ? $counters : 0;
+    if ($characterContents != "") $characterContents .= "|";
+    $characterContents .= ClientRenderedCard(cardNumber: $theirCharacter[$i], overlay: ($theirCharacter[$i + 1] != 2 ? 1 : 0), counters: $counters, defCounters: $theirCharacter[$i + 4], atkCounters: $atkCounters, controller: $otherPlayer, type: $type, sType: $sType, isFrozen: ($theirCharacter[$i + 8] == 1), onChain: ($theirCharacter[$i + 6] == 1), isBroken: ($theirCharacter[$i + 1] == 0));
+
+  }
+  echo ($characterContents);
+
+  echo ("</div>");
 
 
   $restriction = "";
@@ -998,6 +1026,43 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
       echo (Card($myPermanents[$i], "concat", $cardSizeAura, 0, 1, controller: $playerID) . "&nbsp");
     }
   }
+  echo ("</div>");
+
+  //Now display my character and equipment
+  $numWeapons = 0;
+  $myCharData = "";
+  for ($i = 0; $i < count($myCharacter); $i += CharacterPieces()) {
+    $restriction = "";
+    $counters = 0;
+    $atkCounters = 0;
+    if (CardType($myCharacter[$i]) == "W") $atkCounters = $myCharacter[$i + 3];
+    if ($myCharacter[$i + 2] > 0) $counters = $myCharacter[$i + 2];
+    if ($turn[0] == "B") {
+      $playable = $playerID == $currentPlayer && $myCharacter[$i + 1] != 0 && IsPlayable($myCharacter[$i], $turn[0], "CHAR", $i, $restriction);
+    } else {
+      $playable = $playerID == $currentPlayer && $myCharacter[$i + 1] == 2 && IsPlayable($myCharacter[$i], $turn[0], "CHAR", $i, $restriction);
+    }
+    $border = CardBorderColor($myCharacter[$i], "CHAR", $playable);
+    //$type = CardType($myCharacter[$i]);
+    $type = "C";
+    $sType = CardSubType($myCharacter[$i]);
+    if ($type == "W") {
+      ++$numWeapons;
+      if ($numWeapons > 1) {
+        $type = "E";
+        $sType = "Off-Hand";
+      }
+    }
+    if ($myCharData != "") $myCharData .= "|";
+    $gem = 0;
+    if ($myCharacter[$i + 9] != 2 && $myCharacter[$i + 1] != 0 && $playerID != 3) {
+      $gem = ($myCharacter[$i + 9] == 1 ? 1 : 2);
+    }
+    $restriction = implode("_", explode(" ", $restriction));
+    $myCharData .= ClientRenderedCard($myCharacter[$i], $currentPlayer == $playerID && $playable ? 3 : 0, $myCharacter[$i + 1] != 2 ? 1 : 0, $border, $myCharacter[$i + 1] != 0 ? $counters : 0, strval($i), 0, $myCharacter[$i + 4], $atkCounters, $playerID, $type, $sType, $restriction, $myCharacter[$i + 1] == 0, $myCharacter[$i + 6] == 1, $myCharacter[$i + 8] == 1, $gem);
+  }
+  echo ("<div id='myChar' style='display:none;'>");
+  echo ($myCharData);
   echo ("</div>");
 
   //Show deck, discard, pitch, banish

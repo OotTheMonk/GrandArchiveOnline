@@ -758,15 +758,15 @@ function CardBorderColor($cardID, $from, $isPlayable, $mod = "-")
   if ($turn[0] == "B") return ($isPlayable ? 6 : 0);
   if ($from == "BANISH") {
     if ($isPlayable || PlayableFromBanish($cardID, $mod)) return 7;
-    if (HasBloodDebt($cardID)) return 2;
-    if ($isPlayable && HasReprise($cardID) && RepriseActive()) return 5;
-    if ($isPlayable && ComboActive($cardID)) return 5;
-    if ($isPlayable && HasRupture($cardID) && RuptureActive(true)) return 5;
+    //if (HasBloodDebt($cardID)) return 2;
+    //if ($isPlayable && HasReprise($cardID) && RepriseActive()) return 5;
+    //if ($isPlayable && ComboActive($cardID)) return 5;
+    //if ($isPlayable && HasRupture($cardID) && RuptureActive(true)) return 5;
     return 0;
   }
-  if ($isPlayable && ComboActive($cardID)) return 3;
-  if ($isPlayable && HasReprise($cardID) && RepriseActive()) return 3;
-  if ($isPlayable && HasRupture($cardID) && RuptureActive(true, (CardType($cardID) != "AA"))) return 3;
+  //if ($isPlayable && ComboActive($cardID)) return 3;
+  //if ($isPlayable && HasReprise($cardID) && RepriseActive()) return 3;
+  //if ($isPlayable && HasRupture($cardID) && RuptureActive(true, (CardType($cardID) != "AA"))) return 3;
   else if ($isPlayable) return 6;
   return 0;
 }

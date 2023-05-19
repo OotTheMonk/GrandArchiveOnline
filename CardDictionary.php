@@ -464,6 +464,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
   global $CCS_ResourceCostDefenseMin, $CCS_CardTypeDefenseRequirement, $actionPoints, $mainPlayer, $defPlayer;
   global $combatChain;
   if($player == "") $player = $currentPlayer;
+  if($phase == "M" && $from == "HAND") return true;
   return false;
 
 }

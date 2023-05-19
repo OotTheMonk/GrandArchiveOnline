@@ -190,12 +190,14 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       $cardID = $material[$index];
       WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
       RemoveMaterial($currentPlayer, $index);
-      if(CardTypeContains($cardID, "SPIRIT")) AddCharacter($cardID, $currentPlayer);
-      else if(CardTypeContains($cardID, "CHAMPION"))
+      if(CardTypeContains($cardID, "CHAMPION"))
       {
         $char = &GetPlayerCharacter($currentPlayer);
-        $char[0] = $cardID;
-        $char[1] = 2;
+        if(count($char) == 0) AddCharacter($cardID, $currentPlayer);
+        else {
+          $char[0] = $cardID;
+          $char[1] = 2;
+        }
       }
       MaterializeCardEffect($cardID);
       $turn[0] = "M";

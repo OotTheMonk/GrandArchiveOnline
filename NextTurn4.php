@@ -631,8 +631,8 @@
               }
               PopulateZone("myHand", cardSize);
               PopulateZone("theirHand", cardSize);
-              //PopulateZone("myChar", cardSize);
-              //PopulateZone("theirChar", cardSize);
+              PopulateZone("myChar", cardSize);
+              PopulateZone("theirChar", cardSize);
               var sidebarWrapper = document.getElementById("sidebarWrapper");
               if(sidebarWrapper)
               {
