@@ -409,43 +409,10 @@ function PermanentPlayAbilities($attackID, $from="")
 {
   global $mainPlayer, $actionPoints;
   $permanents = &GetPermanents($mainPlayer);
-  $cardType = CardType($attackID);
-  $cardSubType = CardSubType($attackID);
-  $cardPitch = PitchValue($attackID);
   for ($i = count($permanents) - PermanentPieces(); $i >= 0; $i -= PermanentPieces()) {
     $remove = 0;
     switch($permanents[$i]) {
-      case "ROGUE521":
-        if($cardPitch == 2 && $cardType != "AA")
-        {
-          AddCurrentTurnEffect($permanents[$i] . "-NA", $mainPlayer);
-        }
-        break;
-      case "ROGUE528":
-        if($cardType == "A") ++$actionPoints;
-        break;
 
-      case "ROGUE607":
-        if($cardType != "A" && $cardType != "AA") AddCurrentTurnEffect($permanents[$i], $mainPlayer);
-        break;
-      case "ROGUE702":
-        if($cardPitch == 2 && $cardType != "AA")
-        {
-          AddCurrentTurnEffect($permanents[$i] . "-NA", $mainPlayer);
-        }
-        break;
-      case "ROGUE704":
-        if($cardType == "AA")
-        {
-          $banish = &GetBanish($mainPlayer);
-          array_push($banish, $attackID);
-          array_push($banish, "");
-          array_push($banish, GetUniqueId());
-        }
-        break;
-      case "ROGUE706":
-        if($from == "ARS") Draw($mainPlayer);
-        break;
       default:
         break;
     }

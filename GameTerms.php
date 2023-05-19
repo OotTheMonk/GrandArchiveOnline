@@ -12,7 +12,7 @@ function PhaseName($phase)
     case "D":
       return "Defense Reaction";
     case "P":
-      return "Pitch";
+      return "Reserve";
     case "ARS":
       return "Arsenal";
   }
@@ -32,7 +32,7 @@ function TypeToPlay($phase)
     case "D":
       return "a reaction";
     case "P":
-      return "a card to pitch";
+      return "a card to reserve";
     case "ARS":
       return "a card to add to arsenal";
     case "PDECK":
@@ -125,7 +125,7 @@ function PlayTerm($phase, $from="", $cardID="")
   }
   switch ($phase) {
     case "P":
-      return "pitched";
+      return "reserved";
     case "B":
       return "blocked with";
     default:

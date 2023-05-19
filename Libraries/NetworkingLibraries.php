@@ -1206,8 +1206,6 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
       SetClassState($currentPlayer, $CS_AbilityIndex, $index);
       $layerIndex = AddLayer($cardID, $currentPlayer, $from, "-", "-");
       SetClassState($currentPlayer, $CS_LayerPlayIndex, $layerIndex);
-      if(ActionsThatDoArcaneDamage($cardID)) AssignArcaneBonus($currentPlayer);
-      else ClearNextCardArcaneBuffs($currentPlayer, $cardID, $from);
     }
     //CR 5.1.2 Announce (CR 2.0)
     if($from == "ARS") WriteLog("Player " . $playerID . " " . PlayTerm($turn[0]) . " " . CardLink($cardID, $cardID) . " from arsenal", $turn[0] != "P" ? $currentPlayer : 0);
@@ -1229,7 +1227,7 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
   if($turn[0] != "P") {
     if($dynCostResolved >= 0) {
       SetClassState($currentPlayer, $CS_DynCostResolved, $dynCostResolved);
-      $baseCost = ($from == "PLAY" || $from == "EQUIP" ? AbilityCost($cardID) : (CardCost($cardID) + SelfCostModifier($cardID)));
+      $baseCost = ($from == "PLAY" || $from == "EQUIP" ? AbilityCost($cardID) : (CardReserveCost($cardID) + SelfCostModifier($cardID)));
       if(!$playingCard) $resources[1] += $dynCostResolved;
       else {
         $frostbitesPaid = AuraCostModifier();
@@ -1273,11 +1271,9 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
       return;
     }
   } else if($turn[0] == "P") {
-    $pitchValue = PitchValue($cardID);
-    $resources[0] += $pitchValue;
-    array_push($pitch, $cardID);
-    if(CardCaresAboutPitch($turn[3])) AddAdditionalCost($currentPlayer, $cardID);
-    PitchAbility($cardID);
+    //$pitchValue = PitchValue($cardID);
+    $resources[0] += 1;
+    AddMemory($cardID, $currentPlayer, "HAND", "DOWN");
   }
   //CR 2.0 5.1.7. Pay Asset-Costs
   if($resources[0] < $resources[1]) {
@@ -1315,13 +1311,9 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
       PayAbilityAdditionalCosts($cardID);
       ActivateAbilityEffects();
     } else {
-      if(GetClassState($currentPlayer, $CS_NamesOfCardsPlayed) == "-") SetClassState($currentPlayer, $CS_NamesOfCardsPlayed, $cardID);
-      else SetClassState($currentPlayer, $CS_NamesOfCardsPlayed, GetClassState($currentPlayer, $CS_NamesOfCardsPlayed) . "," . $cardID);
       if($cardType == "A" && !$canPlayAsInstant) {
         ResetCombatChainState();
       }
-      if($cardType == "A" || $cardType == "AA") LoseHealth(CountCurrentTurnEffects("CRU123-DMG", $playerID), $playerID);
-      if(IsCardNamed($currentPlayer, $cardID, "Moon Wish")) AddCurrentTurnEffect("ARC185-GA", $currentPlayer);
       CombatChainPlayAbility($cardID);
       ItemPlayAbilities($cardID, $from);
       ResetCardPlayed($cardID);
@@ -1329,16 +1321,13 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
     if ($playType == "A" || $playType == "AA") {
       if (!$canPlayAsInstant) --$actionPoints;
       if ($cardType == "A" && $abilityType == "") {
-        IncrementClassState($currentPlayer, $CS_NumNonAttackCards);
-        if (ClassContains($cardID, "WIZARD", $currentPlayer)) {
-          IncrementClassState($currentPlayer, $CS_NumWizardNonAttack);
-        }
+        //IncrementClassState($currentPlayer, $CS_NumNonAttackCards);
+        //if (ClassContains($cardID, "WIZARD", $currentPlayer)) {
+        //  IncrementClassState($currentPlayer, $CS_NumWizardNonAttack);
+        //}
       }
-      IncrementClassState($currentPlayer, $CS_NumActionsPlayed);
+      //IncrementClassState($currentPlayer, $CS_NumActionsPlayed);
     }
-    if($from == "BANISH") IncrementClassState($currentPlayer, $CS_NumPlayedFromBanish);
-    if(HasBloodDebt($cardID)) IncrementClassState($currentPlayer, $CS_NumBloodDebtPlayed);
-    if(PitchValue($cardID) == 1) IncrementClassState($currentPlayer, $CS_NumRedPlayed);
     PayAdditionalCosts($cardID, $from);
   }
   if($cardType == "AA") IncrementClassState($currentPlayer, $CS_NumAttackCards); //Played or blocked
@@ -1352,7 +1341,6 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
   }
 
   if($turn[0] != "B" || (count($layers) > 0 && $layers[0] != "")) {
-    if(HasBoost($cardID)) Boost();
     MainCharacterPlayCardAbilities($cardID, $from);
     AuraPlayAbilities($cardID, $from);
     PermanentPlayAbilities($cardID, $from);
@@ -1562,10 +1550,6 @@ function PayAdditionalCosts($cardID, $from)
   if($from == "PLAY" && DelimStringContains($cardSubtype, "Item")) {
     PayItemAbilityAdditionalCosts($cardID, $from);
     return;
-  }
-  $fuseType = HasFusion($cardID);
-  if($fuseType != "") {
-    Fuse($cardID, $currentPlayer, $fuseType);
   }
   if(RequiresDiscard($cardID)) {
     $discarded = DiscardRandom($currentPlayer, $cardID);

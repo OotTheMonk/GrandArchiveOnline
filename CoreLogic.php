@@ -389,93 +389,7 @@ function MainCharacterPlayCardAbilities($cardID, $from)
     if($character[$i + 1] != 2) continue;
     $characterID = ShiyanaCharacter($character[$i]);
     switch($characterID) {
-      case "ARC075": case "ARC076": //Viserai
-        if(!IsStaticType(CardType($cardID), $from, $cardID) && ClassContains($cardID, "RUNEBLADE", $currentPlayer)) {
-          AddLayer("TRIGGER", $currentPlayer, $characterID, $cardID);
-        }
-        break;
-      case "CRU161":
-        if(ActionsThatDoArcaneDamage($cardID) && SearchCharacterActive($currentPlayer, "CRU161") && IsCharacterActive($currentPlayer, FindCharacterIndex($currentPlayer, "CRU161"))) {
-          AddLayer("TRIGGER", $currentPlayer, "CRU161");
-        }
-        break;
-      case "ELE062": case "ELE063":
-        if(CardType($cardID) == "A" && GetClassState($currentPlayer, $CS_NumNonAttackCards) == 2 && $from != "PLAY") {
-          AddLayer("TRIGGER", $currentPlayer, $characterID);
-        }
-        break;
-      case "EVR120": case "UPR102": case "UPR103": //Iyslander
-        if($currentPlayer != $mainPlayer && TalentContains($cardID, "ICE", $currentPlayer) && !IsStaticType(CardType($cardID), $from, $cardID)) {
-          AddLayer("TRIGGER", $currentPlayer, $characterID);
-        }
-        break;
-      case "DYN088":
-        $numBoostPlayed = 0;
-        if(HasBoost($cardID))
-        {
-          $numBoostPlayed = GetClassState($currentPlayer, $CS_NumBoostPlayed) + 1;
-          SetClassState($currentPlayer, $CS_NumBoostPlayed, $numBoostPlayed);
-        }
-        if($numBoostPlayed == 3)
-        {
-          $index = FindCharacterIndex($currentPlayer, "DYN088");
-          ++$character[$index + 2];
-        }
-        break;
-      case "DYN113": case "DYN114":
-        if(ContractType($cardID) != "")
-        {
-          AddLayer("TRIGGER", $currentPlayer, $characterID);
-        }
-        break;
-      case "OUT003":
-        if(HasStealth($cardID))
-        {
-          WriteLog("Arakni gives the attack Go Again.");
-          GiveAttackGoAgain();
-          $character[$i + 1] = 1;//Once per turn
-        }
-        break;
-      case "OUT091": case "OUT092": //Riptide
-        if($from == "HAND") {
-          AddLayer("TRIGGER", $currentPlayer, $characterID, $cardID);
-        }
-        break;
-      case "ROGUE017":
-        if(CardType($cardID) == "AA")
-        {
-          $deck = &GetDeck($currentPlayer);
-          array_unshift($deck, $cardID);
-          AddDecisionQueue("SHUFFLEDECK", $currentPlayer, "-", 1);
-        }
-        break;
-      case "ROGUE003":
-        if(CardType($cardID) == "AA")
-        {
-          $deck = &GetDeck($currentPlayer);
-          AddDecisionQueue("SHUFFLEDECK", $currentPlayer, "-", 1);
-        }
-        break;
-      case "ROGUE019":
-        if($cardID == "CRU066" || $cardID == "CRU067" || $cardID == "CRU068")
-        {
-          $choices = array("CRU057", "CRU058", "CRU059");
-          $hand = &GetHand($currentPlayer);
-          array_unshift($hand, $choices[rand(0, count($choices)-1)]);
-        }
-        else if($cardID == "CRU057" || $cardID == "CRU058" || $cardID == "CRU059")
-        {
-          $choices = array("CRU054", "CRU056");
-          $hand = &GetHand($currentPlayer);
-          array_unshift($hand, $choices[rand(0, count($choices)-1)]);
-        }
-        break;
-      case "ROGUE031":
-        global $actionPoints;
-        if(CardTalent($cardID) == "LIGHTNING"){
-          $actionPoints++;
-        }
-        break;
+
       default:
         break;
     }
@@ -1361,6 +1275,22 @@ function ClassOverride($cardID, $player="")
   return $cardClass;
 }
 
+//target type return values
+//-1: no target
+// 0: My Hero + Their Hero
+// 1: Their Hero only
+// 2: Any Target
+// 3: Their Hero + Their Allies
+// 4: My Hero only (For afflictions)
+function PlayRequiresTarget($cardID)
+{
+  switch($cardID)
+  {
+    default:
+      return -1;
+  }
+}
+
 function NameOverride($cardID, $player="")
 {
   $name = CardName($cardID);
@@ -1978,32 +1908,8 @@ function SameWeaponEquippedTwice()
 
 function SelfCostModifier($cardID)
 {
-  global $CS_NumCharged, $currentPlayer, $combatChain, $layers;
   switch($cardID) {
-    case "ARC080":
-    case "ARC082":
-    case "ARC088": case "ARC089": case "ARC090":
-    case "ARC094": case "ARC095": case "ARC096":
-    case "ARC097": case "ARC098": case "ARC099":
-    case "ARC100": case "ARC101": case "ARC102":
-      return (-1 * NumRunechants($currentPlayer));
-    case "MON032":
-      return (-1 * (2 * GetClassState($currentPlayer, $CS_NumCharged)));
-    case "MON084": case "MON085": case "MON086":
-      return TalentContains($combatChain[$layers[3]], "SHADOW") ? -1 : 0;
-    case "DYN104": case "DYN105": case "DYN106":
-      return CountItem("ARC036", $currentPlayer) > 0 || CountItem("DYN111", $currentPlayer) > 0 || CountItem("DYN112", $currentPlayer) > 0 ? -1 : 0;
-    case "OUT056": case "OUT057": case "OUT058":
-      return (ComboActive($cardID) ? -2 : 0);
-    case "OUT074": case "OUT075": case "OUT076":
-      return (ComboActive($cardID) ? -1 : 0);
-    case "OUT145": case "OUT146": case "OUT147":
-      return (-1 * DamageDealtBySubtype("Dagger"));
-    case "WTR206": case "WTR207": case "WTR208":
-      if(GetPlayerCharacter($currentPlayer)[0] == "ROGUE030"){
-        return -1;
-      }
-      else return 0;
+
     default: return 0;
   }
 }

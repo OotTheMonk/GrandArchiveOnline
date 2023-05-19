@@ -133,46 +133,25 @@ function AddCharacter($cardID, $player)
   array_push($char, 2);
 }
 
-function AddArsenal($cardID, $player, $from, $facing, $counters=0)
+function AddMemory($cardID, $player, $from, $facing, $counters=0)
 {
-  global $mainPlayer;
   $arsenal = &GetArsenal($player);
-  $character = &GetPlayerCharacter($player);
-  $cardSubType = CardSubType($cardID);
-  if($facing == "UP" && $from == "DECK" && $cardSubType == "Arrow" && $character[CharacterPieces()] == "DYN151") $counters=1;
   array_push($arsenal, $cardID);
   array_push($arsenal, $facing);
   array_push($arsenal, 1); //Num uses - currently always 1
   array_push($arsenal, $counters); //Counters
   array_push($arsenal, "0"); //Is Frozen (1 = Frozen)
   array_push($arsenal, GetUniqueId()); //Unique ID
-  $otherPlayer = $player == 1 ? 2 : 1;
-  if($facing == "UP") {
-    if($from == "DECK" && ($cardID == "ARC176" || $cardID == "ARC177" || $cardID == "ARC178")) {
-      WriteLog("Gained 1 action point from Back Alley Breakline");
-      if ($player == $mainPlayer) GainActionPoints(1);
-    }
-    if($from == "DECK" && CardSubType($cardID) == "Arrow" && SearchCharacterActive($player, "OUT097"))
-    {
-      AddLayer("TRIGGER", $player, "OUT097", "-", "-", -1);
-    }
-    switch ($cardID) {
-      case "ARC057": case "ARC058": case "ARC059":
-        AddCurrentTurnEffect($cardID, $player);
-        break;
-      case "ARC063": case "ARC064": case "ARC065":
-        Opt($cardID, 1);
-        break;
-      case "CRU123":
-        AddCurrentTurnEffect($cardID, $otherPlayer);
-        break;
-      case "OUT130": case "OUT131": case "OUT132":
-        SpireSnipingAbility($player);
-        break;
-      default:
-        break;
-    }
-  }
+}
+
+function AddArsenal($cardID, $player, $from, $facing, $counters=0)
+{
+  global $mainPlayer;
+  $arsenal = &GetArsenal($player);
+  $character = &GetPlayerCharacter($player);
+  $cardSubType = CardSubType($cardID);
+  WriteLog("Warning: Deprecated function AddArsenal called. Please report a bug.");
+  AddMemory($cardID, $player, $from, $facing, $counters);
 }
 
 function ArsenalEndTurn($player)

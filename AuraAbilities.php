@@ -601,35 +601,7 @@ function AuraPlayAbilities($attackID, $from="")
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = 0;
     switch($auras[$i]) {
-      case "WTR225":
-        if($cardType == "AA" || ($cardSubType == "Aura" && $from == "PLAY") || ($cardType == "W" && GetResolvedAbilityType($attackID) == "AA")) {
-          WriteLog(CardLink($auras[$i], $auras[$i]) . " grants go again");
-          GiveAttackGoAgain();
-          $remove = 1;
-        }
-        break;
-      case "ARC112":
-        if($cardType == "AA"|| ($cardSubType == "Aura" && $from == "PLAY") || ($cardType == "W" && GetResolvedAbilityType($attackID) == "AA")) {
-          $numRunechants = CountAura("ARC112", $currentPlayer);
-          if($cardType == "AA" && $numRunechants > 0) WriteLog("Runechants trigger " . $numRunechants . " total incoming arcane damage");
-          AddLayer("TRIGGER", $currentPlayer, $auras[$i], "-", "-", $auras[$i + 6]);
-        }
-        break;
-      case "MON157":
-        DimenxxionalCrossroadsPassive($attackID, $from);
-        break;
-      case "EVR143":
-        if($auras[$i + 5] > 0 && CardType($attackID) == "AA" && ClassContains($attackID, "ILLUSIONIST", $currentPlayer) && GetClassState($currentPlayer, $CS_NumIllusionistActionCardAttacks) <= 1) {
-          WriteLog(CardLink($auras[$i], $auras[$i]) . " gives the attack +2");
-          --$auras[$i + 5];
-          AddCurrentTurnEffect("EVR143", $currentPlayer, true);
-        }
-        break;
-      case "ELE175":
-        if($cardType == "A" || $cardType == "AA") {
-          AddLayer("TRIGGER", $currentPlayer, $auras[$i], $cardType, "-", $auras[$i + 6]);
-        }
-        break;
+      
       default: break;
     }
     if($remove == 1) DestroyAura($currentPlayer, $i);

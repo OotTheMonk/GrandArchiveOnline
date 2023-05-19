@@ -465,6 +465,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
   global $combatChain;
   if($player == "") $player = $currentPlayer;
   if($phase == "M" && $from == "HAND") return true;
+  if($phase == "P" && $from == "HAND") return true;
   return false;
 
 }
@@ -1025,20 +1026,6 @@ function AbilityPlayableFromCombatChain($cardID)
     case "MON281": case "MON282": case "MON283":
     case "ELE195": case "ELE196": case "ELE197":
     case "EVR157":
-      return true;
-    default: return false;
-  }
-}
-
-function CardCaresAboutPitch($cardID)
-{
-  $cardID = ShiyanaCharacter($cardID);
-  switch($cardID) {
-    case "ELE001": case "ELE002": case "ELE003":
-    case "DYN172": case "DYN173": case "DYN174":
-    case "DYN176": case "DYN177": case "DYN178":
-		case "DYN182": case "DYN183": case "DYN184":
-		case "DYN185": case "DYN186": case "DYN187":
       return true;
     default: return false;
   }
