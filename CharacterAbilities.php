@@ -271,30 +271,7 @@ function MainCharacterEndTurnAbilities()
   for($i = 0; $i < count($mainCharacter); $i += CharacterPieces()) {
     $characterID = ShiyanaCharacter($mainCharacter[$i]);
     switch($characterID) {
-      case "WTR115":
-        if(GetClassState($mainPlayer, $CS_HitsWDawnblade) == 0) $mainCharacter[$i + 3] = 0;
-        break;
-      case "CRU077":
-        KassaiEndTurnAbility();
-        break;
-      case "MON107":
-        if($mainClassState[$CS_AtksWWeapon] >= 2 && $mainCharacter[$i + 4] < 0) ++$mainCharacter[$i + 4];
-        break;
-      case "ELE223":
-        if(GetClassState($mainPlayer, $CS_NumNonAttackCards) == 0 || GetClassState($mainPlayer, $CS_NumAttackCards) == 0) $mainCharacter[$i + 3] = 0;
-        break;
-      case "ELE224":
-        if(GetClassState($mainPlayer, $CS_ArcaneDamageDealt) < $mainCharacter[$i + 2]) {
-          DestroyCharacter($mainPlayer, $i);
-          $mainCharacter[$i + 2] = 0;
-        }
-        break;
-      case "ROGUE018":
-        PlayAura("ELE109", $mainPlayer);
-        break;
-      case "ROGUE019":
-        DiscardRandom($currentPlayer, $cardID);
-        break;
+
       default: break;
     }
   }

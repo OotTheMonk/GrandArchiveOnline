@@ -370,10 +370,7 @@ function AuraBeginEndPhaseTriggers()
   $auras = &GetAuras($mainPlayer);
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     switch($auras[$i]) {
-      case "DYN244":
-      case "OUT234": case "OUT235": case "OUT236":
-        AddLayer("TRIGGER", $mainPlayer, $auras[$i], "-", "-", $auras[$i + 6]);
-        break;
+
       default: break;
     }
   }
@@ -388,56 +385,7 @@ function AuraBeginEndPhaseAbilities()
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = 0;
     switch($auras[$i]) {
-      case "ELE117":
-        ChannelTalent($i, "EARTH");
-        break;
-      case "ELE146":
-        ChannelTalent($i, "ICE");
-        break;
-      case "ELE175":
-        ChannelTalent($i, "LIGHTNING");
-        break;
-      case "UPR005":
-        $toBanish = ++$auras[$i + 2];
-        $discardReds = SearchCount(SearchDiscard($mainPlayer, pitch:1));
-        if($toBanish <= $discardReds) {
-          for($j = $toBanish; $j > 0; --$j) {
-            AddDecisionQueue("MULTIZONEINDICES", $mainPlayer, "MYDISCARD:pitch=1", ($j == $toBanish ? 0 : 1));
-            AddDecisionQueue("SETDQCONTEXT", $mainPlayer, "Choose $j card(s) to banish for Burn Them All", 1);
-            AddDecisionQueue("MAYCHOOSEMULTIZONE", $mainPlayer, "<-", 1);
-            AddDecisionQueue("MZBANISH", $mainPlayer, "GY,-," . $mainPlayer, 1);
-            AddDecisionQueue("MZREMOVE", $mainPlayer, "-", 1);
-          }
-          AddDecisionQueue("ELSE", $mainPlayer, "-");
-          AddDecisionQueue("PASSPARAMETER", $mainPlayer, "MYAURAS-" . $i, 1);
-          AddDecisionQueue("MZDESTROY", $mainPlayer, "-", 1);
-        } else {
-          WriteLog(CardLink($auras[$i], $auras[$i]) . " was destroyed");
-          DestroyAura($mainPlayer, $i);
-        }
-        break;
-      case "UPR138":
-        ChannelTalent($i, "ICE");
-        break;
-      case "UPR176": case "UPR177": case "UPR178":
-        if ($auras[$i] == "UPR176") $numOpt = 3;
-        else if ($auras[$i] == "UPR177") $numOpt = 2;
-        else $numOpt = 1;
-        for ($j = 0; $j < $numOpt; ++$j) PlayerOpt($mainPlayer, 1);
-        AddDecisionQueue("DRAW", $mainPlayer, "-", 1);
-        $remove = 1;
-        break;
-      case "ELE111":
-        FrostHexEndTurnAbility($mainPlayer);
-        $remove = 1;
-        break;
-      case "DYN175":
-        if ($auras[$i + 2] == 0) $remove = 1;
-        else {
-          --$auras[$i + 2];
-          DealArcane(2, 2, "PLAYCARD", "DYN175", false, $mainPlayer);
-        }
-        break;
+
       default: break;
     }
     if($remove == 1) DestroyAura($mainPlayer, $i);
@@ -476,14 +424,7 @@ function AuraEndTurnAbilities()
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = false;
     switch($auras[$i]) {
-      case "ARC167": case "ARC168": case "ARC169":
-        if(GetClassState($mainPlayer, $CS_NumNonAttackCards) == 0) $remove = true;
-        break;
-      case "ELE226": $remove = true; break;
-      case "UPR139": $remove = true; break;
-      case "DYN072":
-        if(GetClassState($mainPlayer, $CS_HitsWithSword) <= 0) $remove = true;
-        break;
+
       default: break;
     }
     if($remove) DestroyAura($mainPlayer, $i);
@@ -601,7 +542,7 @@ function AuraPlayAbilities($attackID, $from="")
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = 0;
     switch($auras[$i]) {
-      
+
       default: break;
     }
     if($remove == 1) DestroyAura($currentPlayer, $i);

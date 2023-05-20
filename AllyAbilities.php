@@ -64,24 +64,7 @@ function AllyAddGraveyard($player, $cardID, $subtype)
 
 function AllyHealth($cardID)
 {
-  switch($cardID) {
-    case "MON219": return 6;
-    case "MON220": return 6;
-    case "UPR406": return 6;
-    case "UPR407": return 5;
-    case "UPR408": return 4;
-    case "UPR409": return 3;
-    case "UPR410": return 2;
-    case "UPR411": return 2;
-    case "UPR412": return 4;
-    case "UPR413": return 7;
-    case "UPR414": return 6;
-    case "UPR415": return 4;
-    case "UPR416": return 1;
-    case "UPR417": return 3;
-    case "DYN612": return 4;
-    default: return 1;
-  }
+  return CardLife($cardID);
 }
 
 function AllyDestroyedAbility($player, $index)
@@ -306,9 +289,7 @@ function AllyEndTurnAbilities()
   $allies = &GetAllies($mainPlayer);
   for($i = count($allies) - AllyPieces(); $i >= 0; $i -= AllyPieces()) {
     switch($allies[$i]) {
-      case "UPR551":
-        DestroyAlly($mainPlayer, $i, true);
-        break;
+
       default: break;
     }
   }

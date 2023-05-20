@@ -30,11 +30,7 @@ function LandmarkBeginEndPhaseAbilities()
   global $landmarks, $mainPlayer;
   for ($i = 0; $i < count($landmarks); ++$i) {
     switch ($landmarks[$i]) {
-      case "MON000":
-        if (SearchPitchForColor($mainPlayer, 2) >= 2) {
-          AddCurrentTurnEffect("MON000", $mainPlayer);
-        }
-        break;
+
       default:
         break;
     }

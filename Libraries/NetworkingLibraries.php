@@ -1022,7 +1022,6 @@ function EndStep()
   AddLayer("ENDSTEP", $mainPlayer, "-");
   AuraBeginEndPhaseTriggers();
   BeginEndPhaseEffectTriggers();
-  if(HeaveIndices() != "") AddLayer("TRIGGER", $mainPlayer, "HEAVE");
 }
 
 //CR 2.0 4.4.2. - Beginning of the end phase
@@ -1031,8 +1030,6 @@ function FinishTurnPass()
   global $mainPlayer;
   ClearLog();
   ResetCombatChainState();
-  QuellEndPhase(1);
-  QuellEndPhase(2);
   ItemEndTurnAbilities();
   AuraBeginEndPhaseAbilities();
   LandmarkBeginEndPhaseAbilities();
@@ -1049,21 +1046,8 @@ function PassTurn()
     UpdateGameState($currentPlayer);
     BuildMainPlayerGameState();
   }
-  $MyPitch = GetPitch($playerID);
-  $TheirPitch = GetPitch(($playerID == 1 ? 2 : 1));
-  $MainHand = GetHand($mainPlayer);
 
-  if (EndTurnPitchHandling($playerID)) {
-    if (EndTurnPitchHandling(($playerID == 1 ? 2 : 1))) {
-      if (count($MainHand) > 0 && !ArsenalFull($mainPlayer) && $turn[0] != "ARS") //Arsenal
-      {
-        $currentPlayer = $mainPlayer;
-        $turn[0] = "ARS";
-      } else {
-        FinalizeTurn();
-      }
-    }
-  }
+  FinalizeTurn();
 }
 
 function FinalizeTurn()
@@ -1076,33 +1060,20 @@ function FinalizeTurn()
 
   $EffectContext = "-";
 
-  //4.4.2. First, the “beginning of the end phase” event occurs and abilities that trigger at the beginning of the end phase are triggered.
-  //Undo Intimidate
-  $defBanish = &GetBanish($defPlayer);
-  for ($i = count($defBanish) - BanishPieces(); $i >= 0; $i -= BanishPieces()) {
-    if ($defBanish[$i + 1] == "INT") {
-      array_push($defHand, $defBanish[$i]);
-      RemoveBanish($defPlayer, $i);
-    }
-  }
-
   LogEndTurnStats($mainPlayer);
   CurrentEffectEndTurnAbilities();
   AuraEndTurnAbilities();
   AllyEndTurnAbilities();
   MainCharacterEndTurnAbilities();
 
-  //4.4.3a All allies’ life totals are reset to their base life, modified by any counters on the object.
+  //All allies’ life totals are reset
   AllyBeginEndTurnEffects();
 
-  //4.4.3b The turn player may put a card from their hand face down into an empty arsenal zone they own.
   ArsenalEndTurn($mainPlayer);
   ArsenalEndTurn($defPlayer);
 
-  //4.4.3c Each player puts all cards in their pitch zone (if any) on the bottom of their deck in any order.The order cards are put on the bottom of the deck this way is hidden information.
   //Reset characters/equipment
   for ($i = 1; $i < count($mainCharacter); $i += CharacterPieces()) {
-    if ($mainCharacter[$i - 1] == "CRU177" && $mainCharacter[$i + 1] >= 3) $mainCharacter[$i] = 0; //Destroy Talishar if >= 3 rust counters
     if ($mainCharacter[$i + 6] == 1) $mainCharacter[$i] = 0; //Destroy if it was flagged for destruction
     if ($mainCharacter[$i] != 0) {
       $mainCharacter[$i] = 2;
@@ -1129,21 +1100,6 @@ function FinalizeTurn()
   $defResources[1] = 0;
   $lastPlayed = [];
 
-  // 4.4.3e The turn player draws cards until the number of cards in their hand is equal to their hero’s intellect.
-  //Draw Cards
-  if ($mainPlayer == $firstPlayer && $currentTurn == 1) //Defender draws up on turn 1
-  {
-    $toDraw = CharacterIntellect($defCharacter[0]) - count($defHand);
-    for ($i = 0; $i < $toDraw; ++$i) {
-      Draw($defPlayer, false, false);
-    }
-  }
-  $toDraw = CharacterIntellect($mainCharacter[0]) - count($mainHand) + CurrentEffectIntellectModifier();
-  for ($i = 0; $i < $toDraw; ++$i) {
-    Draw($mainPlayer, false, false);
-  }
-  if ($toDraw > 0) WriteLog("Turn player draw up to " . CharacterIntellect($mainCharacter[0]) + CurrentEffectIntellectModifier() . " cards.");
-
   ResetMainClassState();
   ResetCharacterEffects();
   UnsetTurnBanish();
@@ -1155,7 +1111,7 @@ function FinalizeTurn()
   if ($mainPlayer == 2) {
     $currentTurn += 1;
   }
-  $turn[0] = "M";
+  $turn[0] = "MAT";
   //$turn[1] = $mainPlayer == 2 ? $turn[1] + 1 : $turn[1];
   $turn[2] = "";
   $turn[3] = "";
@@ -1954,6 +1910,9 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
           break;
         case "BANISH":
           BanishCardForPlayer($cardID, $currentPlayer, $from, "NA");
+          break;
+        case "ALLY":
+          PlayAlly($cardID, $currentPlayer);
           break;
         default:
           break;

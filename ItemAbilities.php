@@ -192,9 +192,7 @@ function ItemEndTurnAbilities()
   for($i = count($items) - ItemPieces(); $i >= 0; $i -= ItemPieces()) {
     $remove = false;
     switch($items[$i]) {
-      case "EVR188":
-        $remove = TalismanOfBalanceEndTurn();
-        break;
+
       default: break;
     }
     if($remove) DestroyItemForPlayer($mainPlayer, $i);

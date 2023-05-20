@@ -824,16 +824,7 @@ function CurrentEffectEndTurnAbilities()
       AddNextTurnEffect($currentTurnEffects[$i], $currentTurnEffects[$i + 1]);
     }
     switch($currentTurnEffects[$i]) {
-      case "MON069": case "MON070": case "MON071":
-      case "EVR056":
-        if($mainPlayer == $currentTurnEffects[$i + 1]) {
-          $char = &GetPlayerCharacter($currentTurnEffects[$i + 1]);
-          for($j = 0; $j < count($char); $j += CharacterPieces()) {
-            if(CardType($char[$j]) == "W") $char[$j + 3] = 0;
-          }
-          $remove = true;
-        }
-        break;
+
       default: break;
     }
     if($remove) RemoveCurrentTurnEffect($i);
@@ -925,17 +916,10 @@ function IsCombatEffectPersistent($cardID)
 function BeginEndPhaseEffects()
 {
   global $currentTurnEffects, $mainPlayer, $EffectContext;
-  EndTurnBloodDebt(); //Must be done before resetting character (e.g. sleep dart)
   for($i = 0; $i < count($currentTurnEffects); $i += CurrentTurnPieces()) {
     $EffectContext = $currentTurnEffects[$i];
     switch($currentTurnEffects[$i]) {
-      case "EVR106":
-        if(CountAura("ARC112", $mainPlayer) > 0) WriteLog(CardLink($currentTurnEffects[$i], $currentTurnEffects[$i]) . " destroyed your Runechant tokens");
-        DestroyAllThisAura($currentTurnEffects[$i + 1], "ARC112");
-        break;
-      case "UPR200": case "UPR201": case "UPR202":
-        Draw($currentTurnEffects[$i + 1]);
-        break;
+
       default:
         break;
     }
@@ -947,12 +931,7 @@ function BeginEndPhaseEffectTriggers()
   global $currentTurnEffects, $mainPlayer;
   for($i = 0; $i < count($currentTurnEffects); $i += CurrentTurnPieces()) {
     switch($currentTurnEffects[$i]) {
-      case "ELE215-1":
-        AddLayer("TRIGGER", $mainPlayer, "ELE215", $currentTurnEffects[$i+1], "-", "-");
-        break;
-      case "DYN153":
-        AddLayer("TRIGGER", $mainPlayer, "DYN153", $currentTurnEffects[$i+1], "-", "-");
-        break;
+
       default: break;
     }
   }
