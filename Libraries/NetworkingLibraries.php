@@ -204,7 +204,7 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
         }
       }
       MaterializeCardEffect($cardID);
-      $turn[0] = "M";
+      StartTurn();
       break;
     case 16: case 18: //Decision Queue (15 and 18 deprecated)
       if(count($decisionQueue) > 0)
@@ -406,7 +406,7 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
     case 99: //Pass
       if($turn[0] == "MAT")
       {
-        $turn[0] = "M";
+        StartTurn();
       } else if(CanPassPhase($turn[0])) {
         PassInput(false);
       }

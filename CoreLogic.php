@@ -207,6 +207,14 @@ function CachedNumActionBlocked()
   return $combatChainState[$CSS_CachedNumActionBlocked];
 }
 
+function StartTurn()
+{
+  global $turn, $currentPlayer, $mainPlayer;
+  $mainPlayer = $currentPlayer;
+  $turn[0] = "M";
+  Draw($currentPlayer);
+}
+
 function StartTurnAbilities()
 {
   global $mainPlayer, $defPlayer;
@@ -2152,50 +2160,11 @@ function Draw($player, $mainPhase = true, $fromCardEffect = true)
 {
   global $EffectContext, $mainPlayer;
   $otherPlayer = ($player == 1 ? 2 : 1);
-  if($mainPhase && $player != $mainPlayer) {
-    $talismanOfTithes = SearchItemsForCard("EVR192", $otherPlayer);
-    if($talismanOfTithes != "") {
-      $indices = explode(",", $talismanOfTithes);
-      DestroyItemForPlayer($otherPlayer, $indices[0]);
-      WriteLog(CardLink("EVR192", "EVR192") . " prevented a draw and was destroyed");
-      return "";
-    }
-  }
-  if($fromCardEffect && (SearchAurasForCard("UPR138", $otherPlayer) != "" || SearchAurasForCard("UPR138", $player) != "")) {
-    WriteLog("Draw prevented by " . CardLink("UPR138", "UPR138"));
-    return "";
-  }
   $deck = &GetDeck($player);
   $hand = &GetHand($player);
   if(count($deck) == 0) return -1;
   if(CurrentEffectPreventsDraw($player, $mainPhase)) return -1;
   array_push($hand, array_shift($deck));
-  if($mainPhase && (SearchCharacterActive($otherPlayer, "EVR019") || (SearchCurrentTurnEffects("EVR019-SHIYANA", $otherPlayer) && SearchCharacterActive($otherPlayer, "CRU097")))) PlayAura("WTR075", $otherPlayer);
-  if(SearchCharacterActive($player, "EVR020")) {
-    if($EffectContext != "-") {
-      $cardType = CardType($EffectContext);
-      if($cardType == "A" || $cardType == "AA") PlayAura("WTR075", $player);
-    }
-  }
-  if(SearchCharacterActive($otherPlayer, "ROGUE026") && $mainPhase) {
-    //WriteLog("drawn card");
-    $health = &GetHealth($otherPlayer);
-    $health += -10;
-    if($health < 1)
-    {
-      $health = 1;
-      WriteLog("NO! You will not banish me! I refuse!");
-    }
-  }
-  if($mainPhase)
-  {
-    $numBrainstorm = CountCurrentTurnEffects("DYN196", $player);
-    if($numBrainstorm > 0)
-    {
-      $character = &GetPlayerCharacter($player);
-      for($i=0; $i<$numBrainstorm; ++$i) DealArcane(1, 2, "TRIGGER", $character[0]);
-    }
-  }
   PermanentDrawCardAbilities($player);
   $hand = array_values($hand);
   return $hand[count($hand) - 1];
