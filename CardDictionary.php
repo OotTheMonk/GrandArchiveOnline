@@ -264,28 +264,8 @@ function CardCost($cardID)
 function AbilityCost($cardID)
 {
   global $currentPlayer;
-  $cardID = ShiyanaCharacter($cardID);
-  $set = CardSet($cardID);
-  $class = CardClass($cardID);
-  $subtype = CardSubtype($cardID);
-  if($class == "ILLUSIONIST" && $subtype == "Aura") {
-    if(SearchCharacterForCard($currentPlayer, "MON003")) return 0;
-    if(SearchCharacterForCard($currentPlayer, "MON088")) return 3;
-  }
-  if(DelimStringContains($subtype, "Dragon") && SearchCharacterActive($currentPlayer, "UPR003")) return 0;
-  if($set == "WTR") return WTRAbilityCost($cardID);
-  else if($set == "ARC") return ARCAbilityCost($cardID);
-  else if($set == "CRU") return CRUAbilityCost($cardID);
-  else if($set == "MON") return MONAbilityCost($cardID);
-  else if($set == "ELE") return ELEAbilityCost($cardID);
-  else if($set == "EVR") return EVRAbilityCost($cardID);
-  else if($set == "UPR") return UPRAbilityCost($cardID);
-  else if($set == "DVR") return DVRAbilityCost($cardID);
-  else if($set == "RVD") return RVDAbilityCost($cardID);
-  else if($set == "DYN") return DYNAbilityCost($cardID);
-  else if($set == "OUT") return OUTAbilityCost($cardID);
-  else if($set == "ROG") return ROGUEAbilityCost($cardID);
-  return CardCost($cardID);
+  if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return 0;
+  return 0;
 }
 
 function DynamicCost($cardID)
@@ -339,70 +319,18 @@ function AttackValue($cardID)
 {
   global $combatChainState, $CCS_NumBoosted, $mainPlayer, $currentPlayer;
   if(!$cardID) return "";
-  $set = CardSet($cardID);
-  $class = CardClass($cardID);
-  $subtype = CardSubtype($cardID);
-  if($class == "ILLUSIONIST" && $subtype == "Aura") {
-    if(SearchCharacterForCard($mainPlayer, "MON003")) return 1;
-    if(SearchCharacterForCard($mainPlayer, "MON088")) return 4;
-  }
-  if($cardID == "CRU101") return 1 + $combatChainState[$CCS_NumBoosted];
-  else if($cardID == "MON191") return SearchPitchForNumCosts($mainPlayer) * 2;
-  else if($cardID == "EVR138") return FractalReplicationStats("Attack");
-  else if($cardID == "DYN216") return CountAura("MON104", $currentPlayer);
-  if($set != "ROG" && $set != "DUM") {
-    $number = intval(substr($cardID, 3));
-    if($number < 400) return GeneratedAttackValue($cardID);
-  }
-  if($set == "ROG") return ROGUEAttackValue($cardID);
-  switch ($cardID) {
-    case "UPR406": return 6;
-    case "UPR407": return 5;
-    case "UPR408": return 4;
-    case "UPR409": return 2;
-    case "UPR410": return 3;
-    case "UPR411": return 4;
-    case "UPR412": return 2;
-    case "UPR413": return 4;
-    case "UPR414": return 1;
-    case "UPR415": return 3;
-    case "UPR416": return 6;
-    case "UPR417": return 3;
-    case "DYN492a": return 5;
-    case "DYN612": return 4;
-    default: return 0;
-  }
+  return CardPower($cardID);
 }
 
 function HasGoAgain($cardID)
 {
-  $set = CardSet($cardID);
-  if($set == "ROG") return ROGUEHasGoAgain($cardID);
-  else return GeneratedGoAgain($cardID);
+  return true;
 }
 
 function GetAbilityType($cardID, $index = -1, $from="-")
 {
   global $currentPlayer;
-  $cardID = ShiyanaCharacter($cardID);
-  $set = CardSet($cardID);
-  $subtype = CardSubtype($cardID);
-  if($from == "PLAY" && ClassContains($cardID, "ILLUSIONIST", $currentPlayer) && $subtype == "Aura") {
-    if(SearchCharacterForCard($currentPlayer, "MON003") || SearchCharacterForCard($currentPlayer, "MON088")) return "AA";
-  }
-  if(DelimStringContains($subtype, "Dragon") && SearchCharacterActive($currentPlayer, "UPR003")) return "AA";
-  if($set == "WTR") return WTRAbilityType($cardID, $index);
-  else if($set == "ARC") return ARCAbilityType($cardID, $index);
-  else if($set == "CRU") return CRUAbilityType($cardID, $index);
-  else if($set == "MON") return MONAbilityType($cardID, $index);
-  else if($set == "ELE") return ELEAbilityType($cardID, $index);
-  else if($set == "EVR") return EVRAbilityType($cardID, $index);
-  else if($set == "UPR") return UPRAbilityType($cardID, $index);
-  else if($set == "DVR") return DVRAbilityType($cardID, $index);
-  else if($set == "RVD") return RVDAbilityType($cardID, $index);
-  else if($set == "DYN") return DYNAbilityType($cardID, $index);
-  else if($set == "OUT") return OUTAbilityType($cardID, $index);
-  else if($set == "ROG") return ROGUEAbilityType($cardID, $index);
+  if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "AA";
 }
 
 function GetAbilityTypes($cardID)
@@ -466,6 +394,11 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
   if($player == "") $player = $currentPlayer;
   if($phase == "M" && $from == "HAND") return true;
   if($phase == "P" && $from == "HAND") return true;
+  $cardType = CardType($cardID);
+  $isStaticType = IsStaticType($cardType, $from, $cardID);
+  if($isStaticType) $cardType = GetAbilityType($cardID, $index, $from);
+  if($phase == "M" && ($cardType == "A" || $cardType == "AA" || $cardType == "I")) return true;
+  if($phase == "INST" && $cardType == "I") return true;
   return false;
 
 }
@@ -640,27 +573,7 @@ function ETASteamCounters($cardID)
 
 function AbilityHasGoAgain($cardID)
 {
-  global $currentPlayer;
-  $cardID = ShiyanaCharacter($cardID);
-  $set = CardSet($cardID);
-  $class = CardClass($cardID);
-  $subtype = CardSubtype($cardID);
-  if($class == "ILLUSIONIST" && $subtype == "Aura" && SearchCharacterForCard($currentPlayer, "MON088")) return true;
-  if($set == "WTR") return WTRAbilityHasGoAgain($cardID);
-  else if($set == "ARC") return ARCAbilityHasGoAgain($cardID);
-  else if($set == "CRU") return CRUAbilityHasGoAgain($cardID);
-  else if($set == "MON") return MONAbilityHasGoAgain($cardID);
-  else if($set == "ELE") return ELEAbilityHasGoAgain($cardID);
-  else if($set == "EVR") return EVRAbilityHasGoAgain($cardID);
-  else if($set == "UPR") return UPRAbilityHasGoAgain($cardID);
-  else if($set == "DYN") return DYNAbilityHasGoAgain($cardID);
-  else if($set == "OUT") return OUTAbilityHasGoAgain($cardID);
-  else if($set == "ROG") return ROGUEAbilityHasGoAgain($cardID);
-  switch($cardID) {
-    case "RVD004": return true;
-    case "DVR004": return true;
-    default: return false;
-  }
+  return true;
 }
 
 function DoesEffectGrantDominate($cardID)
