@@ -118,7 +118,7 @@ function AddMemory($cardID, $player, $from, $facing, $counters=0)
 function BanishRandomMemory($player)
 {
   $memory = &GetMemory($player);
-  $index = GetRandom() % count($memory);
+  $index = (GetRandom() % (count($memory)/MemoryPieces())) * MemoryPieces();
   $cardID = $memory[$index];
   RemoveMemory($player, $index);
   BanishCardForPlayer($cardID, $player, "MEMORY", "-", "MEMORY");

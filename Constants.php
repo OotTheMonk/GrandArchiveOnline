@@ -110,6 +110,7 @@ function ArsenalPieces()
 {
   return 6;
 }
+function MemoryPieces() { return ArsenalPieces(); }
 
 //0 - Card ID
 //1 - Status: 2 = ready
