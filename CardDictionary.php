@@ -834,20 +834,9 @@ function PlayableFromBanish($cardID, $mod="")
 {
   global $currentPlayer, $CS_NumNonAttackCards, $CS_Num6PowBan;
   $mod = explode("-", $mod)[0];
-  if($mod == "TCL" || $mod == "TT" || $mod == "TCC" || $mod == "NT" || $mod == "INST" || $mod == "MON212" || $mod == "ARC119") return true;
+  if($mod == "TCL" || $mod == "TT" || $mod == "TCC" || $mod == "NT" || $mod == "INST") return true;
   switch($cardID) {
-    case "MON123": return GetClassState($currentPlayer, $CS_Num6PowBan) > 0;
-    case "MON156": case "MON158": return true;
-    case "MON159": case "MON160": case "MON161": return GetClassState($currentPlayer, $CS_NumNonAttackCards) > 0;
-    case "MON165": case "MON166": case "MON167": return true;
-    case "MON168": case "MON169": case "MON170": return GetClassState($currentPlayer, $CS_NumNonAttackCards) > 0;
-    case "MON171": case "MON172": case "MON173": return true;
-    case "MON174": case "MON175": case "MON176": return true;
-    case "MON177": case "MON178": case "MON179": return true;
-    case "MON180": case "MON181": case "MON182": return true;
-    case "MON183": case "MON184": case "MON185": return true;
-    case "MON190": case "MON191": case "MON194": case "MON200": case "MON201": case "MON202": case "MON203":
-    case "MON204": case "MON205": case "MON209": case "MON210": case "MON211": return true;
+
     default: return false;
   }
 }
@@ -856,7 +845,6 @@ function AbilityPlayableFromBanish($cardID)
 {
   global $currentPlayer, $mainPlayer;
   switch($cardID) {
-    case "MON192": return $currentPlayer == $mainPlayer;
     default: return false;
   }
 }
