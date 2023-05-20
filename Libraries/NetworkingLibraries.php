@@ -404,7 +404,10 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
     case 33: //Fully re-order layers
       break;
     case 99: //Pass
-      if(CanPassPhase($turn[0])) {
+      if($turn[0] == "MAT")
+      {
+        $turn[0] = "M";
+      } else if(CanPassPhase($turn[0])) {
         PassInput(false);
       }
       break;
