@@ -21,42 +21,13 @@ function BanishCard(&$banish, &$classState, $cardID, $modifier, $player = "", $f
   $rv = -1;
   if ($player == "") $player = $currentPlayer;
   AddEvent("BANISH", ($modifier == "INT" || $modifier == "UZURI" ? "CardBack" : $cardID));
-  if(($modifier == "BOOST" || $from == "DECK") && ($cardID == "ARC176" || $cardID == "ARC177" || $cardID == "ARC178")) {
-    WriteLog(CardLink($cardID, $cardID) . " was banished from your deck face up by an action card. Gained 1 action point.");
-    ++$actionPoints;
-  }
-  if (($modifier == "BOOST" && $from == "DECK") && ($cardID == "DYN101" || $cardID == "DYN102" || $cardID == "DYN103")) {
-    WriteLog(CardLink($cardID, $cardID) . " was banished to pay a boost cost. Put a counter on a Hyper Drive you control.");
-    AddLayer("TRIGGER", $player, $cardID);
-  }
-  //Do effects that change where it goes, or banish it if not
-  if($from == "DECK" && (SearchCharacterActive($player, "CRU099") || SearchCurrentTurnEffects("CRU099-SHIYANA", $player)) && CardSubType($cardID) == "Item" && CardCost($cardID) <= 2) {
-    $character = &GetPlayerCharacter($player);
-    AddLayer("TRIGGER", $player, $character[0], $cardID);
-  } else {
-    if(CardType($cardID) != "T") { //If you banish a token, the token ceases to exist.
-      $rv = count($banish);
-      array_push($banish, $cardID);
-      array_push($banish, $modifier);
-      array_push($banish, GetUniqueId());
-    }
+  if(CardType($cardID) != "T") { //If you banish a token, the token ceases to exist.
+    $rv = count($banish);
+    array_push($banish, $cardID);
+    array_push($banish, $modifier);
+    array_push($banish, GetUniqueId());
   }
   ++$classState[$CS_CardsBanished];
-  if(AttackValue($cardID) >= 6) {
-    $character = &GetPlayerCharacter($player);
-    if($classState[$CS_Num6PowBan] == 0 && $player == $mainPlayer) {
-      $characterID = ShiyanaCharacter($character[0]);
-      if(($characterID == "MON119" || $characterID == "MON120") && $character[1] == 2) { // Levia
-        WriteLog(CardLink($characterID, $characterID) . " banished a card with 6+ power, and won't lose health from Blood Debt this turn");
-      }
-    }
-    ++$classState[$CS_Num6PowBan];
-    $index = FindCharacterIndex($player, "MON122");
-    if($index >= 0 && IsEquipUsable($player, $index) && IsCharacterActive($player, $index) && $player == $mainPlayer) {
-      AddLayer("TRIGGER", $player, $character[$index]);
-    }
-  }
-  if($banishedBy != "") CheckContracts($banishedBy, $cardID);
   return $rv;
 }
 
@@ -144,6 +115,15 @@ function AddMemory($cardID, $player, $from, $facing, $counters=0)
   array_push($arsenal, GetUniqueId()); //Unique ID
 }
 
+function BanishRandomMemory($player)
+{
+  $memory = &GetMemory($player);
+  $index = GetRandom() % count($memory);
+  $cardID = $memory[$index];
+  RemoveMemory($player, $index);
+  BanishCardForPlayer($cardID, $player, "MEMORY", "-", "MEMORY");
+}
+
 function AddArsenal($cardID, $player, $from, $facing, $counters=0)
 {
   global $mainPlayer;
@@ -184,6 +164,18 @@ function ArsenalTurnFaceUpAbility($cardID, $player)
       break;
     default: break;
   }
+}
+
+function RemoveMemory($player, $index)
+{
+  $arsenal = &GetArsenal($player);
+  if(count($arsenal) == 0) return "";
+  $cardID = $arsenal[$index];
+  for($i = $index + ArsenalPieces() - 1; $i >= $index; --$i) {
+    unset($arsenal[$i]);
+  }
+  $arsenal = array_values($arsenal);
+  return $cardID;
 }
 
 function RemoveArsenal($player, $index)

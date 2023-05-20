@@ -189,7 +189,11 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       $material = &GetMaterial($currentPlayer);
       $cardID = $material[$index];
       WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
+      $cost = CardMemoryCost($cardID);
+      $memory = &GetMemory($currentPlayer);
+      if($cost > count($memory)) { WriteLog("Not enough memory"); break; }//TODO: Floating memory
       RemoveMaterial($currentPlayer, $index);
+      for($i=0; $i<$cost; ++$i) BanishRandomMemory($currentPlayer);
       if(CardTypeContains($cardID, "CHAMPION"))
       {
         $char = &GetPlayerCharacter($currentPlayer);
