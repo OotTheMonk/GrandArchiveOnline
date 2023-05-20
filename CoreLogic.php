@@ -1694,27 +1694,7 @@ function NumEquipBlock()
 
   function ResolveGoAgain($cardID, $player, $from)
   {
-    global $CS_NextNAACardGoAgain, $actionPoints, $mainPlayer;
-    $cardType = CardType($cardID);
-    $goAgainPrevented = CurrentEffectPreventsGoAgain();
-    if(IsStaticType($cardType, $from, $cardID))
-    {
-      $hasGoAgain = AbilityHasGoAgain($cardID);
-      if(!$hasGoAgain && GetResolvedAbilityType($cardID, $from) == "A") $hasGoAgain = CurrentEffectGrantsNonAttackActionGoAgain($cardID);
-    }
-    else
-    {
-      $hasGoAgain = HasGoAgain($cardID);
-      if(GetClassState($player, $CS_NextNAACardGoAgain) && $cardType == "A")
-      {
-        $hasGoAgain = true;
-        SetClassState($player, $CS_NextNAACardGoAgain, 0);
-      }
-      if($cardType == "AA" && SearchCurrentTurnEffects("ELE147", $player)) $hasGoAgain = false;
-      if($cardType == "A") $hasGoAgain = CurrentEffectGrantsNonAttackActionGoAgain($cardID) || $hasGoAgain;
-      if($cardType == "A" && $hasGoAgain && (SearchAuras("UPR190", 1) || SearchAuras("UPR190", 2))) $hasGoAgain = false;
-    }
-    if($player == $mainPlayer && $hasGoAgain && !$goAgainPrevented) ++$actionPoints;
+    ++$actionPoints;
   }
 
   function PitchDeck($player, $index)
@@ -2114,47 +2094,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     if($targetArr[0] == "LAYERUID") { $targetArr[0] = "LAYER"; $targetArr[1] = SearchLayersForUniqueID($targetArr[1]); }
     $target = $targetArr[0] . "-" . $targetArr[1];
   }
-  if(($set == "ELE" || $set == "UPR") && $additionalCosts != "-" && HasFusion($cardID)) {
-    FuseAbility($cardID, $currentPlayer, $additionalCosts);
+  //WTRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
+  switch($cardID)
+  {
+
+    default: break;
   }
-  if($set == "WTR") return WTRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-  else if($set == "ARC") {
-    switch($class) {
-      case "MECHANOLOGIST": return ARCMechanologistPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "RANGER": return ARCRangerPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "RUNEBLADE": return ARCRunebladePlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "WIZARD": return ARCWizardPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "GENERIC": return ARCGenericPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      default: return "";
-    }
-  }
-  else if($set == "CRU") return CRUPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-  else if($set == "MON") {
-    switch ($class) {
-      case "BRUTE": return MONBrutePlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "ILLUSIONIST": return MONIllusionistPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "RUNEBLADE": return MONRunebladePlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "WARRIOR": return MONWarriorPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "GENERIC": return MONGenericPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "NONE": return MONTalentPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      default: return "";
-    }
-  }
-  else if($set == "ELE") {
-    switch ($class) {
-      case "GUARDIAN": return ELEGuardianPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "RANGER": return ELERangerPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      case "RUNEBLADE": return ELERunebladePlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-      default: return ELETalentPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-    }
-  }
-  else if($set == "EVR") return EVRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-  else if($set == "UPR") return UPRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-  else if($set == "DVR") return DVRPlayAbility($cardID, $from, $resourcesPaid);
-  else if($set == "RVD") return RVDPlayAbility($cardID, $from, $resourcesPaid);
-  else if($set == "DYN") return DYNPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-  else if($set == "OUT") return OUTPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
-  else return ROGUEPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
 }
 
 function PitchAbility($cardID)

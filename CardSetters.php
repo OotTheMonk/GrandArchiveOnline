@@ -394,26 +394,13 @@ function AddGraveyard($cardID, $player, $from)
   global $currentPlayer, $mainPlayer, $mainPlayerGamestateStillBuilt;
   global $myDiscard, $theirDiscard, $mainDiscard, $defDiscard;
   global $myStateBuiltFor, $CS_CardsEnteredGY;
-  if ($cardID == "MON124") {
-    BanishCardForPlayer($cardID, $player, $from, "NA");
-    return;
-  } else if ($cardID == "CRU007" && $from != "CC") {
-    AddLayer("TRIGGER", $player, $cardID);
-  }
-  if ($cardID == "WTR164" || $cardID == "WTR165" || $cardID == "WTR166") {
-    AddBottomDeck($cardID, $player, $from);
-  } elseif (HasEphemeral($cardID)) {
-    return;
-  }
-  else {
-    IncrementClassState($player, $CS_CardsEnteredGY);
-    if ($mainPlayerGamestateStillBuilt) {
-      if ($player == $mainPlayer) AddSpecificGraveyard($cardID, $mainDiscard, $from);
-      else AddSpecificGraveyard($cardID, $defDiscard, $from);
-    } else {
-      if ($player == $myStateBuiltFor) AddSpecificGraveyard($cardID, $myDiscard, $from);
-      else AddSpecificGraveyard($cardID, $theirDiscard, $from);
-    }
+  IncrementClassState($player, $CS_CardsEnteredGY);
+  if ($mainPlayerGamestateStillBuilt) {
+    if ($player == $mainPlayer) AddSpecificGraveyard($cardID, $mainDiscard, $from);
+    else AddSpecificGraveyard($cardID, $defDiscard, $from);
+  } else {
+    if ($player == $myStateBuiltFor) AddSpecificGraveyard($cardID, $myDiscard, $from);
+    else AddSpecificGraveyard($cardID, $theirDiscard, $from);
   }
 }
 

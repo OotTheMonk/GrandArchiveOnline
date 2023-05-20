@@ -620,35 +620,11 @@ function CurrentEffectAttackAbility()
 function CurrentEffectPlayAbility($cardID, $from)
 {
   global $currentTurnEffects, $currentPlayer, $actionPoints, $CS_LastDynCost;
-
-  if(DynamicCost($cardID) != "") $cost = GetClassState($currentPlayer, $CS_LastDynCost);
-  else $cost = CardCost($cardID);
-
   for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
     $remove = false;
     if($currentTurnEffects[$i + 1] == $currentPlayer) {
       switch($currentTurnEffects[$i]) {
-        case "ARC209":
-          $cardType = CardType($cardID);
-          if (($cardType == "A" || $cardType == "AA") && $cost >= 0) {
-            ++$actionPoints;
-            $remove = true;
-          }
-          break;
-        case "ARC210":
-          $cardType = CardType($cardID);
-          if (($cardType == "A" || $cardType == "AA") && $cost >= 1) {
-            ++$actionPoints;
-            $remove = true;
-          }
-          break;
-        case "ARC211":
-          $cardType = CardType($cardID);
-          if (($cardType == "A" || $cardType == "AA") && $cost >= 2) {
-            ++$actionPoints;
-            $remove = true;
-          }
-          break;
+
         default:
           break;
       }
@@ -666,13 +642,7 @@ function CurrentEffectPlayOrActivateAbility($cardID, $from)
     $remove = false;
     if($currentTurnEffects[$i + 1] == $currentPlayer) {
       switch($currentTurnEffects[$i]) {
-        case "MON153": case "MON154":
-          $cardType = CardType($cardID);
-          if(($cardType == "AA" || $cardType == "W" || $cardType == "T") && (ClassContains($cardID, "RUNEBLADE", $currentPlayer) || TalentContains($cardID, "SHADOW", $currentPlayer))) {
-            GiveAttackGoAgain();
-            $remove = true;
-          }
-          break;
+
         default:
           break;
       }
