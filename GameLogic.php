@@ -700,7 +700,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         return $damage;
       } else {
         PrependDecisionQueue("TAKEDAMAGE", $targetPlayer, $parameter);
-        DoQuell($targetPlayer, $damage);
+        PrependDecisionQueue("PASSPARAMETER", $targetPlayer, "0");
       }
       return $damage;
     case "TAKEDAMAGE":
@@ -769,7 +769,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       PrependDecisionQueue("PASSPARAMETER", $target, "{1}");
       CheckSpellvoid($target, $damage);
       PrependDecisionQueue("INCDQVAR", $target, "1", 1);
-      DoQuell($target, $damage);
+      PrependDecisionQueue("PASSPARAMETER", $targetPlayer, "0");
       PrependDecisionQueue("INCDQVAR", $target, "1", 1);
       PrependDecisionQueue("PAYRESOURCES", $target, "<-", 1);
       PrependDecisionQueue("ARCANECHOSEN", $target, "-", 1, 1);
