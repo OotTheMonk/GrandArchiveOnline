@@ -369,6 +369,7 @@ function GetAbilityIndex($cardID, $index, $abilityName)
 function GetResolvedAbilityType($cardID, $from="-")
 {
   global $currentPlayer, $CS_AbilityIndex;
+  if($from == "HAND") return "";
   $abilityIndex = GetClassState($currentPlayer, $CS_AbilityIndex);
   $abilityTypes = GetAbilityTypes($cardID);
   if($abilityTypes == "" || $abilityIndex == "-") return GetAbilityType($cardID, -1, $from);
