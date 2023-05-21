@@ -25,22 +25,13 @@ function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
   $allies = &GetAllies($player);
   if(!$skipDestroy) {
     AllyDestroyedAbility($player, $index);
-    if(ClassContains($allies[$index], "ILLUSIONIST", $player) && SearchCharacterActive($player, "UPR152") && count($combatChain) > 0 && $player == $mainPlayer) {
-      AddDecisionQueue("YESNO", $player, "if_you_want_to_pay_3_to_gain_an_action_point", 0, 1);
-      AddDecisionQueue("NOPASS", $player, "-", 1);
-      AddDecisionQueue("PASSPARAMETER", $player, 3, 1);
-      AddDecisionQueue("PAYRESOURCES", $player, "<-", 1);
-      AddDecisionQueue("GAINACTIONPOINTS", $player, "1", 1);
-      AddDecisionQueue("FINDINDICES", $player, "EQUIPCARD,UPR152", 1);
-      AddDecisionQueue("DESTROYCHARACTER", $player, "-", 1);
-    }
   }
   if(IsSpecificAllyAttacking($player, $index) || (IsSpecificAllyAttackTarget($player, $index) && !$fromCombat)) {
     CloseCombatChain();
   }
   $cardID = $allies[$index];
-  AllyAddGraveyard($player, $cardID, "Invocation");
-  AllyAddGraveyard($player, $allies[$index+4], "Ash");
+  WriteLog("here");
+  AddGraveyard($cardID, $player, "PLAY");
   for($j = $index + AllyPieces() - 1; $j >= $index; --$j) unset($allies[$j]);
   $allies = array_values($allies);
   return $cardID;
