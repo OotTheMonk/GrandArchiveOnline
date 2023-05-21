@@ -546,8 +546,8 @@ function CardStats($player)
   $rv .= "<table style='text-align:center; margin-left:10px; margin-top:10px; width:100%; border-spacing: 0; border-collapse: collapse; font-size: 1em; line-height: 24px;'><tr>";
   $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Card ID</td>";
   $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Times<br>Played</td> ";
-  $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Times<br>Blocked</td>";
-  $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Times<br>Pitched</td>";
+  //$rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Times<br>Blocked</td>";
+  $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Times<br>Reserved</td>";
   $rv .= "</tr>";
   $BackgroundColor = "";
   if ($darkMode) {
@@ -559,25 +559,15 @@ function CardStats($player)
   }
   for ($i = 0; $i < count($cardStats); $i += CardStatPieces()) {
     $BackgroundColor = ($BackgroundColor == $lighterColor ? $darkerColor : $lighterColor);
-    $pitch = PitchValue($cardStats[$i]);
+    $style = "font-weight: bold; color:gray;";
     $timesPlayed = $cardStats[$i + $CardStats_TimesPlayed];
-    $playStyle = "";
-    if ($pitch == 3 && $timesPlayed > 1) $playStyle = "font-weight: bold; color:red;";
-    else if ($pitch == 3 && $timesPlayed > 0) $playStyle = "font-weight: bold; color:GoldenRod;";
-    else if ($pitch == 2 && $timesPlayed > 4) $playStyle = "font-weight: bold; color:red;";
-    else if ($pitch == 2 && $timesPlayed > 2) $playStyle = "font-weight: bold; color:GoldenRod;";
     $timesPitched = $cardStats[$i + $CardStats_TimesPitched];
-    $pitchStyle = "";
-    if ($pitch == 1 && $timesPitched > 1) $pitchStyle = "font-weight: bold; color:red;";
-    else if ($pitch == 1 && $timesPitched > 0) $pitchStyle = "font-weight: bold; color:GoldenRod;";
-    else if ($pitch == 2 && $timesPitched > 4) $pitchStyle = "font-weight: bold; color:red;";
-    else if ($pitch == 2 && $timesPitched > 2) $pitchStyle = "font-weight: bold; color:GoldenRod;";
-    $timesBlocked = $cardStats[$i + $CardStats_TimesBlocked];
+    //$timesBlocked = $cardStats[$i + $CardStats_TimesBlocked];
     $rv .= "<tr style='background-color:" . $BackgroundColor . ";'>";
     $rv .= "<td>" . CardLink($cardStats[$i], $cardStats[$i]) . "</td>";
-    $rv .= "<td style='" . $playStyle . "'>" . $timesPlayed . "</td>";
-    $rv .= "<td>" . $timesBlocked . "</td>";
-    $rv .= "<td style='" . $pitchStyle . "'>" . $timesPitched . "</td>";
+    $rv .= "<td>" . $timesPlayed . "</td>";
+    //$rv .= "<td>" . $timesBlocked . "</td>";
+    $rv .= "<td>" . $timesPitched . "</td>";
     $rv .= "</tr>";
   }
   $rv .= "</table>";
@@ -610,20 +600,20 @@ function CardStats($player)
     $rv .= "Total Damage Dealt: " . $totalDamageDealt . "<br>";
     $rv .= "Average Damage Threatened per turn: " . round($totalDamageThreatened / $numTurns, 2) . "<br>";
     $rv .= "Average Damage Dealt per turn: " . round($totalDamageDealt / $numTurns, 2) . "<br>";
-    $totalOffensiveCards = 4 * $numTurns - $totalDefensiveCards;
-    if ($totalOffensiveCards > 0) $rv .= "Average damage threatened per offensive card: " . round($totalDamageThreatened / $totalOffensiveCards, 2) . "<br>";
-    $rv .= "Average Resources Used per turn: " . round($totalResourcesUsed / $numTurns, 2) . "<br>";
-    $rv .= "Average Cards Left Over per turn: " . round($totalCardsLeft / $numTurns, 2) . "<br>";
-    $rv .= "Average Value per turn (Damage threatened + block): " . round(($totalDamageThreatened + $totalBlocked) / $numTurns, 2) . "<br>";
+    //$totalOffensiveCards = 4 * $numTurns - $totalDefensiveCards;
+    //if ($totalOffensiveCards > 0) $rv .= "Average damage threatened per offensive card: " . round($totalDamageThreatened / $totalOffensiveCards, 2) . "<br>";
+    //$rv .= "Average Resources Used per turn: " . round($totalResourcesUsed / $numTurns, 2) . "<br>";
+    //$rv .= "Average Cards Left Over per turn: " . round($totalCardsLeft / $numTurns, 2) . "<br>";
+    //$rv .= "Average Value per turn (Damage threatened + block): " . round(($totalDamageThreatened + $totalBlocked) / $numTurns, 2) . "<br>";
 
     //Cards per turn stats
     $rv .= "<table style='text-align:center; margin-right:10px; width: 100%; margin-top:10px; border-spacing: 0; border-collapse: collapse; font-size: 1em; line-height: 24px; font-weight:'><tr>";
     $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Turn<br>Number</td>";
     $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Cards<br>Played</td>";
-    $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Cards<br>Blocked</td>";
-    $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Cards<br>Pitched</td>";
-    $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Resources<br>Used</td>";
-    $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Cards<br>Left</td>";
+    //$rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Cards<br>Blocked</td>";
+    $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Cards<br>Reserved</td>";
+    //$rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Resources<br>Used</td>";
+    //$rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Cards<br>Left</td>";
     $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Damage<br>Dealt</td>";
     $rv .= "<td style='border-bottom: 1px solid black; border-top: 1px solid black;'>Damage<br>Taken</td>";
     $rv .= "</tr>";
@@ -633,10 +623,10 @@ function CardStats($player)
       $rv .= "<tr style='background-color:" . $BackgroundColor . ";'>";
       $rv .= "<td>" . (($i / TurnStatPieces()) + 1) . "</td>";
       $rv .= "<td>" . ($turnStats[$i + $TurnStats_CardsPlayedOffense] + $turnStats[$i + $TurnStats_CardsPlayedDefense]) . "</td>";
-      $rv .= "<td>" . $turnStats[$i + $TurnStats_CardsBlocked] . "</td>";
+      //$rv .= "<td>" . $turnStats[$i + $TurnStats_CardsBlocked] . "</td>";
       $rv .= "<td>" . $turnStats[$i + $TurnStats_CardsPitched] . "</td>";
-      $rv .= "<td>" . $turnStats[$i + $TurnStats_ResourcesUsed] . "</td>";
-      $rv .= "<td>" . $turnStats[$i + $TurnStats_CardsLeft] . "</td>";
+      //$rv .= "<td>" . $turnStats[$i + $TurnStats_ResourcesUsed] . "</td>";
+      //$rv .= "<td>" . $turnStats[$i + $TurnStats_CardsLeft] . "</td>";
       $rv .= "<td>" . $turnStats[$i + $TurnStats_DamageDealt] . "</td>";
       $rv .= "<td>" . $otherPlayerTurnStats[$i + $TurnStats_DamageDealt] . "</td>";
       $rv .= "</tr>";
@@ -785,7 +775,19 @@ function CardLink($caption, $cardNumber, $recordMenu = false)
           $color = "#AAA";
         }
         */
+  $element = CardElement($cardNumber);
   $color = "#AAA";
+  switch($element)
+  {
+    case "WIND": $color = "Green"; break;
+    case "CRUX": $color = "RoyalBlue"; break;
+    case "NORM": $color = "DarkGray"; break;
+    case "WATER": $color = "Blue"; break;
+    case "FIRE": $color = "Red"; break;
+    case "TERA": $color = "DarkGreen"; break;
+    case "LUXEM": $color = "GoldenRod"; break;
+    default: break;
+  }
   //if (function_exists("IsColorblindMode") && !IsColorblindMode($playerID)) $pitchText = "";
   $file = "'./" . "WebpImages" . "/" . $cardNumber . ".webp'";
   return "<b><span style='color:" . $color . "; cursor:default;' onmouseover=\"ShowDetail(event," . $file . ")\" onmouseout='HideCardDetail()'>" . $name . "</span></b>";

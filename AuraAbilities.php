@@ -522,9 +522,6 @@ function AuraLoseHealthAbilities($player, $amount)
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = 0;
     switch($auras[$i]) {
-      case "MON157":
-        if($player == $mainPlayer) $remove = 1;
-        break;
       default:
         break;
     }

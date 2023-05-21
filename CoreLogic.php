@@ -693,8 +693,10 @@ function PlayerLoseHealth($player, $amount)
 {
   $health = &GetHealth($player);
   $amount = AuraLoseHealthAbilities($player, $amount);
-  $health -= $amount;
-  if($health <= 0)
+  $char = &GetPlayerCharacter($player);
+  if(count($char) == 0) return;
+  $health += $amount;
+  if($health >= CardLife($char[0]))
   {
     PlayerWon(($player == 1 ? 2 : 1));
   }
