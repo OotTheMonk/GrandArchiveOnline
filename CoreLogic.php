@@ -212,6 +212,11 @@ function StartTurn()
   global $turn, $currentPlayer, $mainPlayer;
   $mainPlayer = $currentPlayer;
   $turn[0] = "M";
+  $memory = &GetMemory($currentPlayer);
+  for($i=count($memory)-MemoryPieces(); $i>=0; $i-=MemoryPieces())
+  {
+    AddHand($currentPlayer, RemoveMemory($currentPlayer, $i));
+  }
   Draw($currentPlayer);
 }
 

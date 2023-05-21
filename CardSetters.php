@@ -166,6 +166,12 @@ function ArsenalTurnFaceUpAbility($cardID, $player)
   }
 }
 
+function AddHand($player, $cardID)
+{
+  $hand = &GetHand($player);
+  array_push($hand, $cardID);
+}
+
 function RemoveMemory($player, $index)
 {
   $arsenal = &GetArsenal($player);
