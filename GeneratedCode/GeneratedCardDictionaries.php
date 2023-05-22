@@ -101719,4 +101719,1194 @@ default: return -1;
 }
 }
 
+function HasFloatingMemory($cardID) {
+switch($cardID[0]) {
+case "9":
+switch($cardID[1]) {
+case "G":
+switch($cardID[2]) {
+case "W":
+switch($cardID[3]) {
+case "x":
+switch($cardID[4]) {
+case "r":
+switch($cardID[5]) {
+case "T":
+switch($cardID[6]) {
+case "M":
+switch($cardID[7]) {
+case "f":
+switch($cardID[8]) {
+case "B":
+switch($cardID[9]) {
+case "z":
+return true;//Cram Session
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "v":
+switch($cardID[1]) {
+case "y":
+switch($cardID[2]) {
+case "R":
+switch($cardID[3]) {
+case "j":
+switch($cardID[4]) {
+case "D":
+switch($cardID[5]) {
+case "q":
+switch($cardID[6]) {
+case "l":
+switch($cardID[7]) {
+case "0":
+switch($cardID[8]) {
+case "T":
+switch($cardID[9]) {
+case "R":
+return true;//Tempered Steel
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "e":
+switch($cardID[2]) {
+case "f":
+switch($cardID[3]) {
+case "c":
+switch($cardID[4]) {
+case "X":
+switch($cardID[5]) {
+case "6":
+switch($cardID[6]) {
+case "t":
+switch($cardID[7]) {
+case "B":
+switch($cardID[8]) {
+case "e":
+switch($cardID[9]) {
+case "g":
+return true;//Veteran Soldier
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "G":
+switch($cardID[1]) {
+case "2":
+switch($cardID[2]) {
+case "X":
+switch($cardID[3]) {
+case "F":
+switch($cardID[4]) {
+case "R":
+switch($cardID[5]) {
+case "E":
+switch($cardID[6]) {
+case "8":
+switch($cardID[7]) {
+case "r":
+switch($cardID[8]) {
+case "F":
+switch($cardID[9]) {
+case "X":
+return true;//Harness Mana
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "u":
+switch($cardID[2]) {
+case "D":
+switch($cardID[3]) {
+case "K":
+switch($cardID[4]) {
+case "u":
+switch($cardID[5]) {
+case "P":
+switch($cardID[6]) {
+case "K":
+switch($cardID[7]) {
+case "N":
+switch($cardID[8]) {
+case "g":
+switch($cardID[9]) {
+case "h":
+return true;//Tidal Sweep
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "c":
+switch($cardID[1]) {
+case "W":
+switch($cardID[2]) {
+case "J":
+switch($cardID[3]) {
+case "q":
+switch($cardID[4]) {
+case "S":
+switch($cardID[5]) {
+case "w":
+switch($cardID[6]) {
+case "h":
+switch($cardID[7]) {
+case "K":
+switch($cardID[8]) {
+case "E":
+switch($cardID[9]) {
+case "Q":
+return true;//Honorable Vanguard
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "r":
+switch($cardID[1]) {
+case "W":
+switch($cardID[2]) {
+case "h":
+switch($cardID[3]) {
+case "F":
+switch($cardID[4]) {
+case "C":
+switch($cardID[5]) {
+case "8":
+switch($cardID[6]) {
+case "X":
+switch($cardID[7]) {
+case "B":
+switch($cardID[8]) {
+case "a":
+switch($cardID[9]) {
+case "H":
+return true;//Idle Thoughts
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "X":
+switch($cardID[2]) {
+case "H":
+switch($cardID[3]) {
+case "o":
+switch($cardID[4]) {
+case "9":
+switch($cardID[5]) {
+case "f":
+switch($cardID[6]) {
+case "L":
+switch($cardID[7]) {
+case "U":
+switch($cardID[8]) {
+case "3":
+switch($cardID[9]) {
+case "2":
+return true;//Ignite the Soul
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "F":
+switch($cardID[1]) {
+case "2":
+switch($cardID[2]) {
+case "w":
+switch($cardID[3]) {
+case "p":
+switch($cardID[4]) {
+case "1":
+switch($cardID[5]) {
+case "v":
+switch($cardID[6]) {
+case "0":
+switch($cardID[7]) {
+case "T":
+switch($cardID[8]) {
+case "y":
+switch($cardID[9]) {
+case "k":
+return true;//Reclaim
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "z":
+switch($cardID[1]) {
+case "P":
+switch($cardID[2]) {
+case "C":
+switch($cardID[3]) {
+case "4":
+switch($cardID[4]) {
+case "Y":
+switch($cardID[5]) {
+case "q":
+switch($cardID[6]) {
+case "o":
+switch($cardID[7]) {
+case "9":
+switch($cardID[8]) {
+case "F":
+switch($cardID[9]) {
+case "s":
+return true;//Kingdom Informant
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "p":
+switch($cardID[2]) {
+case "k":
+switch($cardID[3]) {
+case "c":
+switch($cardID[4]) {
+case "F":
+switch($cardID[5]) {
+case "s":
+switch($cardID[6]) {
+case "7":
+switch($cardID[7]) {
+case "2":
+switch($cardID[8]) {
+case "A":
+switch($cardID[9]) {
+case "h":
+return true;//Smack with Flute
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "4":
+switch($cardID[1]) {
+case "a":
+switch($cardID[2]) {
+case "7":
+switch($cardID[3]) {
+case "Q":
+switch($cardID[4]) {
+case "L":
+switch($cardID[5]) {
+case "L":
+switch($cardID[6]) {
+case "o":
+switch($cardID[7]) {
+case "u":
+switch($cardID[8]) {
+case "G":
+switch($cardID[9]) {
+case "k":
+return true;//Savage Slash
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "K":
+switch($cardID[2]) {
+case "2":
+switch($cardID[3]) {
+case "p":
+switch($cardID[4]) {
+case "T":
+switch($cardID[5]) {
+case "3":
+switch($cardID[6]) {
+case "R":
+switch($cardID[7]) {
+case "m":
+switch($cardID[8]) {
+case "T":
+switch($cardID[9]) {
+case "J":
+return true;//Chilling Touch
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "q":
+switch($cardID[1]) {
+case "2":
+switch($cardID[2]) {
+case "o":
+switch($cardID[3]) {
+case "k":
+switch($cardID[4]) {
+case "p":
+switch($cardID[5]) {
+case "D":
+switch($cardID[6]) {
+case "F":
+switch($cardID[7]) {
+case "J":
+switch($cardID[8]) {
+case "w":
+switch($cardID[9]) {
+case "5":
+return true;//Energetic Beastbonder
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "x":
+switch($cardID[2]) {
+case "b":
+switch($cardID[3]) {
+case "d":
+switch($cardID[4]) {
+case "X":
+switch($cardID[5]) {
+case "U":
+switch($cardID[6]) {
+case "7":
+switch($cardID[7]) {
+case "H":
+switch($cardID[8]) {
+case "4":
+switch($cardID[9]) {
+case "Z":
+return true;//Deep Sea Beastbonder
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "V":
+switch($cardID[1]) {
+case "V":
+switch($cardID[2]) {
+case "6":
+switch($cardID[3]) {
+case "A":
+switch($cardID[4]) {
+case "D":
+switch($cardID[5]) {
+case "d":
+switch($cardID[6]) {
+case "M":
+switch($cardID[7]) {
+case "r":
+switch($cardID[8]) {
+case "r":
+switch($cardID[9]) {
+case "5":
+return true;//Flame-Rune Swordsman
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "f":
+switch($cardID[1]) {
+case "M":
+switch($cardID[2]) {
+case "v":
+switch($cardID[3]) {
+case "7":
+switch($cardID[4]) {
+case "t":
+switch($cardID[5]) {
+case "I":
+switch($cardID[6]) {
+case "O":
+switch($cardID[7]) {
+case "Z":
+switch($cardID[8]) {
+case "w":
+switch($cardID[9]) {
+case "L":
+return true;//Aqueous Enchanting
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "x":
+switch($cardID[2]) {
+case "w":
+switch($cardID[3]) {
+case "y":
+switch($cardID[4]) {
+case "3":
+switch($cardID[5]) {
+case "h":
+switch($cardID[6]) {
+case "a":
+switch($cardID[7]) {
+case "E":
+switch($cardID[8]) {
+case "X":
+switch($cardID[9]) {
+case "U":
+return true;//Dewdrop Hares
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "2":
+switch($cardID[1]) {
+case "d":
+switch($cardID[2]) {
+case "j":
+switch($cardID[3]) {
+case "B":
+switch($cardID[4]) {
+case "o":
+switch($cardID[5]) {
+case "4":
+switch($cardID[6]) {
+case "e":
+switch($cardID[7]) {
+case "c":
+switch($cardID[8]) {
+case "D":
+switch($cardID[9]) {
+case "L":
+return true;//Drowned Cut
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "X":
+switch($cardID[1]) {
+case "e":
+switch($cardID[2]) {
+case "X":
+switch($cardID[3]) {
+case "e":
+switch($cardID[4]) {
+case "k":
+switch($cardID[5]) {
+case "4":
+switch($cardID[6]) {
+case "d":
+switch($cardID[7]) {
+case "K":
+switch($cardID[8]) {
+case "a":
+switch($cardID[9]) {
+case "v":
+return true;//Give Bath
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "Q":
+switch($cardID[1]) {
+case "Q":
+switch($cardID[2]) {
+case "a":
+switch($cardID[3]) {
+case "O":
+switch($cardID[4]) {
+case "g":
+switch($cardID[5]) {
+case "u":
+switch($cardID[6]) {
+case "r":
+switch($cardID[7]) {
+case "n":
+switch($cardID[8]) {
+case "j":
+switch($cardID[9]) {
+case "X":
+return true;//Imbue in Frost
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "W":
+switch($cardID[1]) {
+case "U":
+switch($cardID[2]) {
+case "A":
+switch($cardID[3]) {
+case "O":
+switch($cardID[4]) {
+case "M":
+switch($cardID[5]) {
+case "T":
+switch($cardID[6]) {
+case "Z":
+switch($cardID[7]) {
+case "7":
+switch($cardID[8]) {
+case "P":
+switch($cardID[9]) {
+case "2":
+return true;//Intrepid Highwayman
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "L":
+switch($cardID[1]) {
+case "9":
+switch($cardID[2]) {
+case "o":
+switch($cardID[3]) {
+case "1":
+switch($cardID[4]) {
+case "1":
+switch($cardID[5]) {
+case "y":
+switch($cardID[6]) {
+case "7":
+switch($cardID[7]) {
+case "y":
+switch($cardID[8]) {
+case "f":
+switch($cardID[9]) {
+case "a":
+return true;//Mind Freeze
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "B":
+switch($cardID[1]) {
+case "z":
+switch($cardID[2]) {
+case "y":
+switch($cardID[3]) {
+case "2":
+switch($cardID[4]) {
+case "h":
+switch($cardID[5]) {
+case "R":
+switch($cardID[6]) {
+case "K":
+switch($cardID[7]) {
+case "U":
+switch($cardID[8]) {
+case "m":
+switch($cardID[9]) {
+case "R":
+return true;//Seafaring Mercenary
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "x":
+switch($cardID[1]) {
+case "W":
+switch($cardID[2]) {
+case "J":
+switch($cardID[3]) {
+case "N":
+switch($cardID[4]) {
+case "D":
+switch($cardID[5]) {
+case "6":
+switch($cardID[6]) {
+case "8":
+switch($cardID[7]) {
+case "I":
+switch($cardID[8]) {
+case "8":
+switch($cardID[9]) {
+case "X":
+return true;//Water Barrier
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "6":
+switch($cardID[1]) {
+case "Y":
+switch($cardID[2]) {
+case "i":
+switch($cardID[3]) {
+case "M":
+switch($cardID[4]) {
+case "a":
+switch($cardID[5]) {
+case "C":
+switch($cardID[6]) {
+case "G":
+switch($cardID[7]) {
+case "s":
+switch($cardID[8]) {
+case "f":
+switch($cardID[9]) {
+case "V":
+return true;//Channel the Wind
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "S":
+switch($cardID[2]) {
+case "X":
+switch($cardID[3]) {
+case "L":
+switch($cardID[4]) {
+case "0":
+switch($cardID[5]) {
+case "9":
+switch($cardID[6]) {
+case "r":
+switch($cardID[7]) {
+case "E":
+switch($cardID[8]) {
+case "z":
+switch($cardID[9]) {
+case "S":
+return true;//Conduit of the Mad Mage
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "w":
+switch($cardID[1]) {
+case "P":
+switch($cardID[2]) {
+case "K":
+switch($cardID[3]) {
+case "x":
+switch($cardID[4]) {
+case "v":
+switch($cardID[5]) {
+case "z":
+switch($cardID[6]) {
+case "T":
+switch($cardID[7]) {
+case "m":
+switch($cardID[8]) {
+case "q":
+switch($cardID[9]) {
+case "q":
+return true;//Ensnaring Fumes
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "d":
+switch($cardID[1]) {
+case "s":
+switch($cardID[2]) {
+case "A":
+switch($cardID[3]) {
+case "q":
+switch($cardID[4]) {
+case "x":
+switch($cardID[5]) {
+case "M":
+switch($cardID[6]) {
+case "e":
+switch($cardID[7]) {
+case "z":
+switch($cardID[8]) {
+case "G":
+switch($cardID[9]) {
+case "b":
+return true;//Favorable Winds
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "i":
+switch($cardID[1]) {
+case "z":
+switch($cardID[2]) {
+case "G":
+switch($cardID[3]) {
+case "E":
+switch($cardID[4]) {
+case "j":
+switch($cardID[5]) {
+case "x":
+switch($cardID[6]) {
+case "B":
+switch($cardID[7]) {
+case "P":
+switch($cardID[8]) {
+case "o":
+switch($cardID[9]) {
+case "9":
+return true;//Menagerie Beastbonder
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "m":
+switch($cardID[1]) {
+case "H":
+switch($cardID[2]) {
+case "d":
+switch($cardID[3]) {
+case "6":
+switch($cardID[4]) {
+case "L":
+switch($cardID[5]) {
+case "L":
+switch($cardID[6]) {
+case "y":
+switch($cardID[7]) {
+case "M":
+switch($cardID[8]) {
+case "y":
+switch($cardID[9]) {
+case "F":
+return true;//Swift Recruit
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+case "N":
+switch($cardID[1]) {
+case "w":
+switch($cardID[2]) {
+case "s":
+switch($cardID[3]) {
+case "w":
+switch($cardID[4]) {
+case "A":
+switch($cardID[5]) {
+case "H":
+switch($cardID[6]) {
+case "o":
+switch($cardID[7]) {
+case "j":
+switch($cardID[8]) {
+case "e":
+switch($cardID[9]) {
+case "q":
+return true;//Young Beastbonder
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+default: return 0;
+}
+}
+
 ?>

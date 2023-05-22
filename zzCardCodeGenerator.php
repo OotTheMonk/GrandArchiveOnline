@@ -15,6 +15,8 @@
   $lifeTrie = [];
   $durabilityTrie = [];
   $speedTrie = [];
+  $floatingMemoryTrie = [];
+  $interceptTrie = [];
   while($hasMoreData)
   {
     $jsonUrl = "https://api.gatcg.com/cards/search?name=&page=" . $page;
@@ -47,6 +49,7 @@
       AddToTrie($lifeTrie, $card->uuid, 0, ($card->life == null ? -1 : $card->life));
       AddToTrie($durabilityTrie, $card->uuid, 0, ($card->durability == null ? -1 : $card->durability));
       AddToTrie($speedTrie, $card->uuid, 0, ($card->speed == null ? -1 : $card->speed));
+      if(str_contains($card->effect, "Floating Memory")) AddToTrie($floatingMemoryTrie, $card->uuid, 0, $card->name);
 
       CheckImage($card->uuid);
       echo($card->name . " " . $card->element . " " . $card->uuid . " " . $card->speed . "<BR>");
@@ -79,15 +82,16 @@ subtypes - array
   GenerateFunction($lifeTrie, $handler, "CardLife", false, -1);
   GenerateFunction($durabilityTrie, $handler, "CardDurability", false, -1);
   GenerateFunction($speedTrie, $handler, "CardSpeed", false, -1);
+  GenerateFunction($floatingMemoryTrie, $handler, "HasFloatingMemory", false, false, 1);
 
   fwrite($handler, "?>");
 
   fclose($handler);
 
-  function GenerateFunction($cardArray, $handler, $functionName, $isString, $defaultValue)
+  function GenerateFunction($cardArray, $handler, $functionName, $isString, $defaultValue, $dataType=0)
   {
     fwrite($handler, "function " . $functionName . "(\$cardID) {\r\n");
-    TraverseTrie($cardArray, "", $handler, $isString, $defaultValue);
+    TraverseTrie($cardArray, "", $handler, $isString, $defaultValue, $dataType);
     fwrite($handler, "}\r\n\r\n");
   }
 /*
