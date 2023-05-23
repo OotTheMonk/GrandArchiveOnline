@@ -23,8 +23,8 @@ $isMobile = IsMobile();
 ?>
 
 <head>
-  <title>Talishar</title>
-  <link rel="shortcut icon" type="image/png" href="Images/TeenyCoin.png" />
+  <title>Clarent</title>
+  <!--<link rel="shortcut icon" type="image/png" href="Images/TeenyCoin.png" />-->
   <link rel="stylesheet" href="./css/menuStyles2.css">
   <style>
     body {
@@ -57,12 +57,12 @@ $isMobile = IsMobile();
 
     .ContentWindow {
       padding: 0 1em;
-      background-color: rgba(40, 40, 40, .7);
+      background-color: rgba(0, 35, 85, .7);
       font-family: helvetica;
       color: white;
       position: absolute;
       border-radius: 8px;
-      border: 2px solid gray;
+      border: 2px solid DodgerBlue;
     }
 
     .NavBarDiv {
@@ -139,10 +139,10 @@ $isMobile = IsMobile();
   <div style='width: 100%'>
     <nav class='NavBarDiv'>
       <ul>
-        <?php if (!$isMobile) echo '<li><a target="_blank" href="https://discord.gg/JykuRkdd5S">Discord</a></li>'; ?>
+        <?php if (!$isMobile) echo '<li><a target="_blank" href="https://discord.gg/QbNknZnn6T">Discord</a></li>'; ?>
 
         <?php
-        if (!$isMobile) echo '<li><a target="_blank" href="https://twitter.com/talishar_online">Twitter</a></li>';
+        //if (!$isMobile) echo '<li><a target="_blank" href="https://twitter.com/talishar_online">Twitter</a></li>';
         ?>
         <!--<li><a target="_blank" href="https://www.patreon.com/talishar_online">Support Us</a></li>-->
       </ul>
@@ -150,11 +150,8 @@ $isMobile = IsMobile();
       <ul class='rightnav'>
         <li></li>
         <li><a href="MainMenu.php">Home Page</a></li>
-        <?php if (!$isMobile) echo '<li><a href="https://fabtcg.com/events" target="_blank">Find Local Events</a></li>'; ?>
-        <?php if (!$isMobile) echo '<li><a href="https://github.com/Talishar/Talishar/labels/bug" target="_blank">Known Bugs</a></li>'; ?>
         <?php //if($isPatron) echo "<li><a href='Replays.php'>Replays[BETA]</a></li>";
         ?>
-        <li><a href="https://www.draftfab.com/">DraftFaB</a></li>
         <?php
         if (isset($_SESSION["useruid"])) {
           echo "<li><a href='ProfilePage.php'>Profile</a></li>";
