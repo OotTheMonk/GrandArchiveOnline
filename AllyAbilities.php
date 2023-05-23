@@ -15,6 +15,11 @@ function PlayAlly($cardID, $player, $subCards = "-")
   return count($allies) - AllyPieces();
 }
 
+function RemoveAlly($player, $index)
+{
+  return DestroyAlly($player, $index, $true);
+}
+
 function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
 {
   global $combatChain, $mainPlayer;

@@ -345,6 +345,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
             default: return "-1";
           }
         case "BUFFALLY": MZBuffAlly($player, $lastResult); return $lastResult;
+        case "BOUNCE": MZBounce($player, $lastResult); return $lastResult;
         default: break;
       }
       return $lastResult;
