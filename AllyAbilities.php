@@ -83,25 +83,10 @@ function AllyDestroyedAbility($player, $index)
   global $mainPlayer;
   $allies = &GetAllies($player);
   $cardID = $allies[$index];
-  if(HasWard($cardID) && CardType($cardID) != "T" && SearchCharacterActive($player, "DYN213")) {
-    $index = FindCharacterIndex($player, "DYN213");
-    $char = &GetPlayerCharacter($player);
-    $char[$index + 1] = 1;
-    GainResources($player, 1);
-  }
   switch($cardID) {
-    case "UPR410":
-      if($player == $mainPlayer && $allies[$index + 8] > 0) {
-        GainActionPoints(1, $player);
-        WriteLog(CardLink($cardID, $cardID) . " leaves the arena. Gain 1 action point.");
-        --$allies[$index + 8];
-      }
-      break;
-    case "UPR551":
-      $gtIndex = FindCharacterIndex($player, "UPR151");
-      if ($gtIndex > -1) {
-        DestroyCharacter($player, $gtIndex);
-      }
+    case "iD8qbpA8z5"://Library Witch
+      WriteLog("Player $player drew a card from Library Witch");
+      Draw($player);
       break;
     default: break;
   }
