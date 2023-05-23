@@ -4,7 +4,7 @@ function PlayAlly($cardID, $player, $subCards = "-")
 {
   $allies = &GetAllies($player);
   array_push($allies, $cardID);
-  array_push($allies, 2);
+  array_push($allies, AllyEntersPlayState($cardID));
   array_push($allies, AllyHealth($cardID));
   array_push($allies, 0); //Frozen
   array_push($allies, $subCards); //Subcards
@@ -50,6 +50,15 @@ function AllyAddGraveyard($player, $cardID, $subtype)
     if(!SubtypeContains($id, $subtype, $player)) return;
     AddGraveyard($id, $player, "PLAY");
   }
+}
+
+function AllyEntersPlayState($cardID)
+{
+    switch($cardID)
+    {
+      case "2Q60hBYO3i": return 1;
+      default: return 2;
+    }
 }
 
 function AllyHealth($cardID)
