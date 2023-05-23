@@ -70,6 +70,7 @@ function AllyPride($cardID)
     case "hJ2xh9lNMR": return 2;//Gray Wolf
     case "GXeEa0pe3B": return 3;//Rebellious Bull
     case "MmbQQdsRhi": return 5;//Enraged Boars
+    case "1Sl4Gq2OuV": return 4;//Blue Slime
     default: return -1;
   }
 }
@@ -224,11 +225,10 @@ function AllyDamageTakenAbilities($player, $i)
 {
   $allies = &GetAllies($player);
   switch($allies[$i]) {
-    case "UPR413":
-      $allies[$i+2] -= 1;
-      $allies[$i+7] -= 1;
-      PutPermanentIntoPlay($player, "UPR043");
-      WriteLog(CardLink($allies[$i], $allies[$i]) . " got a -1 health counter and created an ash token");
+    case "1Sl4Gq2OuV"://Blue slime
+      $allies[$i+2] += 1;
+      $allies[$i+7] += 1;
+      WriteLog(CardLink($allies[$i], $allies[$i]) . " got a buff counter");
       break;
     default: break;
   }
