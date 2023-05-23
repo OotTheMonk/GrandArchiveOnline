@@ -724,7 +724,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         $damage -= $prevented;
         if($damage < 0) $damage = 0;
         $dqVars[0] = $damage;
-        if($damage > 0) CheckSpellvoid($player, $damage);
+        //if($damage > 0) CheckSpellvoid($player, $damage);
       }
       PrependDecisionQueue("INCDQVAR", $player, "1", 1);
       return $prevented;
@@ -763,10 +763,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $target = $targetPlayer;
       $sourceType = CardType($source);
       if($sourceType == "A" || $sourceType == "AA") $damage += CountCurrentTurnEffects("ELE065", $player);
-      $arcaneBarrier = ArcaneBarrierChoices($target, $damage);
+      $arcaneBarrier = 0;//ArcaneBarrierChoices($target, $damage);
       PrependDecisionQueue("TAKEARCANE", $target, $damage . "-" . $source . "-" . $player);
       PrependDecisionQueue("PASSPARAMETER", $target, "{1}");
-      CheckSpellvoid($target, $damage);
+      //CheckSpellvoid($target, $damage);
       PrependDecisionQueue("INCDQVAR", $target, "1", 1);
       PrependDecisionQueue("PASSPARAMETER", $targetPlayer, "0");
       PrependDecisionQueue("INCDQVAR", $target, "1", 1);

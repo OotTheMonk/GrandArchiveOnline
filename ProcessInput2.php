@@ -115,7 +115,7 @@ if ((IsPatron(1) || IsPatron(2)) && !IsReplay()) {
 //Now we can process the command
 ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkInput, false, $inputText);
 
-//ProcessMacros();
+ProcessMacros();
 if ($inGameStatus == $GameStatus_Rematch) {
   $origDeck = "./Games/" . $gameName . "/p1DeckOrig.txt";
   if (file_exists($origDeck)) copy($origDeck, "./Games/" . $gameName . "/p1Deck.txt");

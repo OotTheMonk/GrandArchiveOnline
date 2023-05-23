@@ -2169,6 +2169,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "RIVahUIQVD"://Fireball
       DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "rXHo9fLU32": //Ignite the Soul
+      DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -2194,6 +2197,7 @@ function PlayRequiresTarget($cardID)
   {
     case "145y6KBhxe": return 3;//Focused Flames
     case "RIVahUIQVD": return 2;//Fireball
+    case "rXHo9fLU32": return 2;//Ignite the Soul
     default: return -1;
   }
 }
@@ -2205,6 +2209,7 @@ function PlayRequiresTarget($cardID)
     {
       case "145y6KBhxe": return 4;//Focused Flames
       case "RIVahUIQVD": return 1+CharacterLevel($currentPlayer);
+      case "rXHo9fLU32": return 1;//Ignite the Soul
       return 0;
     }
   }
