@@ -58,7 +58,7 @@ function AllyEntersPlayState($cardID)
     switch($cardID)
     {
       case "2Q60hBYO3i": return 1;
-      case "GXeEa0pe3B": return 1;
+      case "GXeEa0pe3B": return 1;//Rebellious Bull
       default: return 2;
     }
 }
@@ -67,8 +67,8 @@ function AllyPride($cardID)
 {
   switch($cardID)
   {
-    case "hJ2xh9lNMR": return 2;
-    case "GXeEa0pe3B": return 3;
+    case "hJ2xh9lNMR": return 2;//Gray Wolf
+    case "GXeEa0pe3B": return 3;//Rebellious Bull
     default: return -1;
   }
 }
