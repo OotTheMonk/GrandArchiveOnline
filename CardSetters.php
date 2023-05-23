@@ -159,9 +159,6 @@ function ArsenalTurnFaceUpAbility($cardID, $player)
 {
   switch($cardID)
   {
-    case "OUT130": case "OUT131": case "OUT132":
-      SpireSnipingAbility($player);
-      break;
     default: break;
   }
 }

@@ -116,6 +116,15 @@ function CardTalent($cardID)
   return "NONE";
 }
 
+function HasEfficiency($cardID)
+{
+  switch($cardID)
+  {
+    case "UfQh069mc3": return true;
+    default: return false;
+  }
+}
+
 //Minimum cost of the card
 function CardCost($cardID)
 {

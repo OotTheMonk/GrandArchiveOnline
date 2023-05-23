@@ -1918,11 +1918,13 @@ function SameWeaponEquippedTwice()
 function SelfCostModifier($cardID)
 {
   global $currentPlayer;
+  $modifier = HasEfficiency($cardID) ? -1 * CharacterLevel($currentPlayer) : 0;
   switch($cardID) {
-    case "145y6KBhxe": return (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0);//Focused Flames
-    case "RIVahUIQVD": return (IsClassBonusActive($currentPlayer, "MAGE") ? -2 : 0);//Fireball
-    default: return 0;
+    case "145y6KBhxe": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0); break;//Focused Flames
+    case "RIVahUIQVD": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -2 : 0); break;//Fireball
+    default: break;
   }
+  return $modifier;
 }
 
 function IsAlternativeCostPaid($cardID, $from)
@@ -2169,8 +2171,21 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "RIVahUIQVD"://Fireball
       DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
-    case "rXHo9fLU32": //Ignite the Soul
+    case "rXHo9fLU32"://Ignite the Soul
       DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
+    case "rWhFC8XBaH"://Idle Thoughts
+      $deck = &GetDeck($currentPlayer);
+      $amount = count($deck) < 4 ? count($deck) : 4;
+      AddDecisionQueue("PASSPARAMETER", $currentPlayer, GetIndices($amount));
+      AddDecisionQueue("MULTIREMOVEDECK", $currentPlayer, "-");
+      AddDecisionQueue("CHOOSETOP", $currentPlayer, "<-");
+      break;
+    case "UfQh069mc3"://Disorienting Winds
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
+      Draw($currentPlayer);
       break;
     default: break;
   }
