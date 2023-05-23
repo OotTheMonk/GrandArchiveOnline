@@ -2187,6 +2187,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
       Draw($currentPlayer);
       break;
+    case "WShYN9M3lU"://Owl Familiar
+      if($from != "PLAY") PlayerOpt($currentPlayer, 2);
+      break;
     default: break;
   }
 }
