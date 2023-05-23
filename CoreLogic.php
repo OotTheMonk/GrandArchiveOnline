@@ -1920,6 +1920,7 @@ function SelfCostModifier($cardID)
   global $currentPlayer;
   switch($cardID) {
     case "145y6KBhxe": return (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0);//Focused Flames
+    case "RIVahUIQVD": return (IsClassBonusActive($currentPlayer, "MAGE") ? -2 : 0);//Fireball
     default: return 0;
   }
 }
@@ -2165,6 +2166,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "MECS7RHRZ8"://Impassioned Tutor
       if($from == "PLAY") AddCurrentTurnEffect("MECS7RHRZ8", $currentPlayer);
       break;
+    case "RIVahUIQVD"://Fireball
+      DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -2189,15 +2193,18 @@ function PlayRequiresTarget($cardID)
   switch($cardID)
   {
     case "145y6KBhxe": return 3;//Focused Flames
+    case "RIVahUIQVD": return 2;//Fireball
     default: return -1;
   }
 }
 
   function ArcaneDamage($cardID)
   {
+    global $currentPlayer;
     switch($cardID)
     {
       case "145y6KBhxe": return 4;//Focused Flames
+      case "RIVahUIQVD": return 1+CharacterLevel($currentPlayer);
       return 0;
     }
   }

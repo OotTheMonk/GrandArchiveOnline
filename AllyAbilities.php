@@ -69,6 +69,7 @@ function AllyPride($cardID)
   {
     case "hJ2xh9lNMR": return 2;//Gray Wolf
     case "GXeEa0pe3B": return 3;//Rebellious Bull
+    case "MmbQQdsRhi": return 5;//Enraged Boars
     default: return -1;
   }
 }
