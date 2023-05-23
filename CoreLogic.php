@@ -104,7 +104,7 @@ function CharacterLevel($player)
 {
   $char = &GetPlayerCharacter($player);
   if(count($char) == 0) return 0;
-  return CardLevel($char[0]);
+  return CardLevel($char[0]) + CurrentEffectLevelModifier();
 }
 
 function AddAttack(&$totalAttack, $amount)
@@ -2161,6 +2161,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         DamageTrigger($currentPlayer, 2, "PLAYCARD", $cardID);
         Draw($currentPlayer);
       }
+      break;
+    case "MECS7RHRZ8"://Impassioned Tutor
+      if($from == "PLAY") AddCurrentTurnEffect("MECS7RHRZ8", $currentPlayer);
       break;
     default: break;
   }
