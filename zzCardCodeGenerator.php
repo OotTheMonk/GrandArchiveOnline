@@ -6,6 +6,7 @@
   $hasMoreData = true;
   $page = 1;
   $typeTrie = [];
+  $classTrie = [];
   $nameTrie = [];
   $elementTrie = [];
   $memoryCostTrie = [];
@@ -39,6 +40,7 @@
     {
       $card = $response->data[$i];
       AddToTrie($typeTrie, $card->uuid, 0, implode(",", $card->types));
+      AddToTrie($classTrie, $card->uuid, 0, implode(",", $card->classes));
 
       AddToTrie($elementTrie, $card->uuid, 0, $card->element);
       AddToTrie($nameTrie, $card->uuid, 0, $card->name);
@@ -60,7 +62,6 @@
     $hasMoreData = $response->has_more;
   }
 /*
-classes - array
 subtypes - array
 */
 
@@ -73,6 +74,7 @@ subtypes - array
   fwrite($handler, "<?php\r\n");
 
   GenerateFunction($typeTrie, $handler, "CardTypes", true, "");
+  GenerateFunction($classTrie, $handler, "CardClasses", true, "");
   GenerateFunction($elementTrie, $handler, "CardElement", true, "");
   GenerateFunction($nameTrie, $handler, "CardName", true, "");
   GenerateFunction($memoryCostTrie, $handler, "CardMemoryCost", false, -1);
