@@ -1395,7 +1395,7 @@ function TalentContainsAny($cardID, $talents, $player="")
   return false;
 }
 
-function RevealCards($cards, $player="")
+function RevealCards($cards, $player="", $from="HAND")
 {
   global $currentPlayer;
   if($player == "") $player = $currentPlayer;
@@ -1411,7 +1411,6 @@ function RevealCards($cards, $player="")
   $string .= (count($cardArray) == 1 ? " is" : " are");
   $string .= " revealed.";
   WriteLog($string);
-  if($player != "" && SearchLandmark("ELE000")) KorshemRevealAbility($player);
   return true;
 }
 
@@ -1796,11 +1795,6 @@ function IsSpecificAuraAttacking($player, $index)
 
   function CanRevealCards($player)
   {
-    $otherPlayer = ($player == 1 ? 2 : 1);
-    if(SearchAurasForCard("UPR138", $player) != "" || SearchAurasForCard("UPR138", $otherPlayer) != "") {
-      WriteLog("Action prevented by " . CardLink("UPR138", "UPR138"));
-      return false;
-    }
     return true;
   }
 
@@ -1897,10 +1891,6 @@ function GetDamagePreventionTargetIndices()
   $rv = CombineSearches($rv, $theirAllies);
   $theirAuras = SearchMultiZoneFormat(SearchAura($otherPlayer), "THEIRAURAS");
   $rv = CombineSearches($rv, $theirAuras);
-  if (ArsenalHasFaceUpCard($otherPlayer)) {
-    $theirArsenal = SearchMultiZoneFormat(SearchArsenal($otherPlayer), "THEIRARS");
-    $rv = CombineSearches($rv, $theirArsenal);
-  }
   $theirHero = SearchMultiZoneFormat(SearchCharacter($otherPlayer, type: "C"), "THEIRCHAR");
   $rv = CombineSearches($rv, $theirHero);
   return $rv;
@@ -2189,6 +2179,24 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "WShYN9M3lU"://Owl Familiar
       if($from != "PLAY") PlayerOpt($currentPlayer, 2);
+      break;
+    case "1BkfdFqCrG"://Revitalizing Cleanse
+      if(CanRevealCards($currentPlayer))
+      {
+        $numWater = 0;
+        $cards = "";
+        $memory = &GetMemory($currentPlayer);
+        for($i=0; $i<count($memory); $i+=MemoryPieces())
+        {
+          if(CardElement($memory[$i]) == "WATER") ++$numWater;
+          if($cards != "") $cards .= ",";
+          $cards .= $memory[$i];
+        }
+        RevealCards($cards, $currentPlayer, "MEM");
+        Recover($currentPlayer, $numWater);
+        WriteLog("Recovered " . $numWater);
+      }
+      Draw($currentPlayer);
       break;
     default: break;
   }

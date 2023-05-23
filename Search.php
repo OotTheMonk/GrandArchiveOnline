@@ -47,10 +47,10 @@ function SearchCombatChainLink($player, $type = "", $subtype = "", $maxCost = -1
   return SearchInner($combatChain, $player, "CC", CombatChainPieces(), $type, $subtype, $maxCost, $minCost, $class, $talent, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
 }
 
-function SearchArsenal($player, $type = "", $subtype = "", $maxCost = -1, $minCost = -1, $class = "", $talent = "", $floatingMemoryOnly = false, $phantasmOnly = false, $pitch = -1, $specOnly = false, $maxAttack = -1, $maxDef = -1, $frozenOnly = false, $hasNegCounters = false, $hasEnergyCounters = false, $comboOnly = false, $minAttack = false)
+function SearchMemory($player, $type = "", $subtype = "", $maxCost = -1, $minCost = -1, $class = "", $talent = "", $floatingMemoryOnly = false, $phantasmOnly = false, $pitch = -1, $specOnly = false, $maxAttack = -1, $maxDef = -1, $frozenOnly = false, $hasNegCounters = false, $hasEnergyCounters = false, $comboOnly = false, $minAttack = false)
 {
-  $arsenal = &GetArsenal($player);
-  return SearchInner($arsenal, $player, "ARS", ArsenalPieces(), $type, $subtype, $maxCost, $minCost, $class, $talent, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
+  $arsenal = &GetMemory($player);
+  return SearchInner($arsenal, $player, "MEM", MemoryPieces(), $type, $subtype, $maxCost, $minCost, $class, $talent, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
 }
 
 function SearchAura($player, $type = "", $subtype = "", $maxCost = -1, $minCost = -1, $class = "", $talent = "", $floatingMemoryOnly = false, $phantasmOnly = false, $pitch = -1, $specOnly = false, $maxAttack = -1, $maxDef = -1, $frozenOnly = false, $hasNegCounters = false, $hasEnergyCounters = false, $comboOnly = false, $minAttack = false)
@@ -533,7 +533,6 @@ function SearchZoneForUniqueID($uniqueID, $player, $zone)
   {
     case "MYALLY": case "THEIRALLY": return SearchAlliesForUniqueID($uniqueID, $player);
     case "MYAURAS": case "THEIRAURAS": return SearchAurasForUniqueID($uniqueID, $player);
-    case "MYARS": case "THEIRARS": return SearchArsenalForUniqueID($uniqueID, $player);
     default: return -1;
   }
 }
@@ -543,7 +542,6 @@ function SearchForUniqueID($uniqueID, $player)
   $index = SearchAurasForUniqueID($uniqueID, $player);
   if ($index == -1) $index = SearchItemsForUniqueID($uniqueID, $player);
   if ($index == -1) $index = SearchAlliesForUniqueID($uniqueID, $player);
-  if ($index == -1) $index = SearchArsenalForUniqueID($uniqueID, $player);
   if ($index == -1) $index = SearchLayersForUniqueID($uniqueID);
   return $index;
 }
@@ -563,15 +561,6 @@ function SearchAurasForUniqueID($uniqueID, $player)
   $auras = &GetAuras($player);
   for ($i = 0; $i < count($auras); $i += AuraPieces()) {
     if ($auras[$i + 6] == $uniqueID) return $i;
-  }
-  return -1;
-}
-
-function SearchArsenalForUniqueID($uniqueID, $player)
-{
-  $arsenal = &GetArsenal($player);
-  for ($i = 0; $i < count($arsenal); $i += ArsenalPieces()) {
-    if ($arsenal[$i + 5] == $uniqueID) return $i;
   }
   return -1;
 }
@@ -689,18 +678,6 @@ function CountItem($cardID, $player)
     if ($items[$i] == $cardID) ++$count;
   }
   return $count;
-}
-
-function SearchArsenalReadyCard($player, $cardID)
-{
-  $arsenal = GetArsenal($player);
-  for ($i = 0; $i < count($arsenal); $i += ArsenalPieces()) {
-    if ($arsenal[$i] != $cardID) continue;
-    if ($arsenal[$i + 1] != "UP") continue;
-    if ($arsenal[$i + 2] == 0) continue;
-    return $i;
-  }
-  return -1;
 }
 
 function SearchArcaneReplacement($player, $zone)
@@ -911,8 +888,8 @@ function SearchMultizone($player, $searches)
         case "MYDISCARD": case "THEIRDISCARD":
           $searchResult = SearchDiscard($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $talent, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
           break;
-        case "MYARS": case "THEIRARS":
-          $searchResult = SearchArsenal($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $talent, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
+        case "MYMEM": case "THEIRMEM":
+          $searchResult = SearchMemory($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $talent, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
           break;
         case "MYAURAS": case "THEIRAURAS":
           $searchResult = SearchAura($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $talent, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
