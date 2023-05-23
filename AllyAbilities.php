@@ -57,6 +57,15 @@ function AllyEntersPlayState($cardID)
     }
 }
 
+function AllyPride($cardID)
+{
+  switch($cardID)
+  {
+    case "hJ2xh9lNMR": return 2;
+    default: return -1;
+  }
+}
+
 function AllyHealth($cardID)
 {
   return CardLife($cardID);

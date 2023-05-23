@@ -100,6 +100,13 @@ function EvaluateCombatChain(&$totalAttack, &$totalDefense, &$attackModifiers=[]
     }
 }
 
+function CharacterLevel($player)
+{
+  $char = &GetPlayerCharacter($player);
+  if(count($char) == 0) return 0;
+  return CardLevel($char[0]);
+}
+
 function AddAttack(&$totalAttack, $amount)
 {
   global $combatChain;

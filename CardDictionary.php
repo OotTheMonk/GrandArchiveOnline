@@ -271,6 +271,11 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
   global $combatChain;
   if($from == "ARS" || $from == "CHAR" || $from == "BANISH") return false;
   if($player == "") $player = $currentPlayer;
+  if($from == "PLAY")
+  {
+    $pride = AllyPride($cardID);
+    if($pride >= 0 && CharacterLevel($player) < $pride) return false;
+  }
   if($phase == "M" && $from == "HAND") return true;
   if($phase == "P" && $from == "HAND") return true;
   $cardType = CardType($cardID);
