@@ -2130,8 +2130,18 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "145y6KBhxe"://Focused Flames
       DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "776yt8UxhU"://Benevolent Battle Priest
+      if($from == "PLAY") Recover($currentPlayer, 1);
+      break;
     default: break;
   }
+}
+
+function Recover($player, $amount)
+{
+  $health = &GetHealth($player);
+  if($amount > $health) $health = 0;
+  else $health -= $amount;
 }
 
 
