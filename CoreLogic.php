@@ -207,6 +207,23 @@ function CachedNumActionBlocked()
   return $combatChainState[$CSS_CachedNumActionBlocked];
 }
 
+function AddFloatingMemoryChoice($fromDQ=false)
+{
+  global $currentPlayer;
+  if($fromDQ)
+  {
+
+  }
+  else {
+    AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:floatingMemoryOnly=true");
+    AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a floating memory card to banish", 1);
+    AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+    AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+    AddDecisionQueue("MULTIBANISH", $currentPlayer, "GY,-", 1);
+    AddDecisionQueue("DECDQVAR", $currentPlayer, "0", 1);
+  }
+}
+
 //This is always called from the decision queue
 function StartTurn()
 {
@@ -2113,7 +2130,6 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
   //WTRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
   switch($cardID)
   {
-
     default: break;
   }
 }

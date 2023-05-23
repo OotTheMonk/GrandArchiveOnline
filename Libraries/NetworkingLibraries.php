@@ -192,9 +192,9 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       $memory = &GetMemory($currentPlayer);
       if($cost > (count($memory) + SearchCount(SearchDiscard($currentPlayer, floatingMemoryOnly:true)))) { WriteLog("Not enough memory"); break; }
       WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
-      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:floatingMemoryOnly=true");
-      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a floating memory card to banish", 1);
-      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("PASSPARAMETER", $currentPlayer, $cost);
+      AddDecisionQueue("SETDQVAR", $currentPlayer, "0");
+      AddFloatingMemoryChoice();
       AddDecisionQueue("FINISHMATERIALIZE", $currentPlayer, $index);
       ProcessDecisionQueue();
       break;

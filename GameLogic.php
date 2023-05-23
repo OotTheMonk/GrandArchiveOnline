@@ -1333,8 +1333,9 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       if(CardType($params[0]) == "AA" || GetResolvedAbilityType($params[0], $params[1]) == "AA") GetTargetOfAttack();
       return $lastResult;
     case "FINISHMATERIALIZE":
+      $cost = $dqVars[0];
       $index = $parameter;
-      RemoveMaterial($currentPlayer, $index);
+      $cardID = RemoveMaterial($currentPlayer, $index);
       for($i=0; $i<$cost; ++$i) BanishRandomMemory($currentPlayer);
       if(CardTypeContains($cardID, "CHAMPION"))
       {

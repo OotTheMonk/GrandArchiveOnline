@@ -228,11 +228,13 @@ function AddMaterial($cardID, $player, $from)
 function RemoveMaterial($player, $index)
 {
   $material = &GetMaterial($player);
+  $cardID = $material[$index];
   for($i=$index+MaterialPieces()-1; $i>=$index; --$i)
   {
     unset($material[$i]);
   }
   $material = array_values($material);
+  return $cardID;
 }
 
 function EffectArcaneBonus($cardID)

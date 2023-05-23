@@ -822,10 +822,6 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
       if (HasBloodDebt($theirBanish[$i]) && $theirBanish[$i + 1] != "INT") ++$theirBloodDeptCount;
     }
 
-    if (TalentContains($theirCharacter[0], "SHADOW") || $theirBloodDeptCount > 0) {
-      $bloodDeptImage = IsImmuneToBloodDebt(($playerID == 1 ? 2 : 1)) ? "bloodDebtImmune2.png" : "bloodDebt2.png";
-      echo ("<div style='position:absolute; top:28%; left:104px; width:34px; font-size:24px; font-weight:550; color: #DDD; text-shadow: 2px 0 0 #1a1a1a, 0 -2px 0 #1a1a1a, 0 2px 0 #1a1a1a, -2px 0 0 #1a1a1a; text-align:center; padding-top:15px;'>" . $theirBloodDeptCount . "<img title='Blood Debt' style='position:absolute; z-index:-5; top: 40%; left: 50%; transform: translate(-50%, -50%); width:36px;' src='./Images/" . $bloodDeptImage . "'></img></div>");
-    }
     echo ("<span title='Click to see your opponent Banish Zone.' onclick='ShowPopup(\"theirBanishPopup\");' style='left:" . $cardIconLeft . "px; top:" . $cardIconTop + 2 . "px; cursor:pointer; position:absolute; display:inline-block;'>
       <img style=' opacity:0.9; height:" . $cardIconSize . "; width:" . $cardIconSize . "; display: block; margin-left: auto; margin-right: auto;' src='./Images/banish.png'>
       <div style='text-align:center; margin: 0; top: 50%; left: 50%; margin-right: -50%; width: 30px; height: 30px; padding: 3px; transform: translate(-50%, -50%); line-height: 1.2;
@@ -1160,11 +1156,6 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
       text-align: center; transform: translate(-50%, -50%); line-height: 1.2;
       position:absolute; z-index: 5; font-size:26px; font-weight: 600; color: #EEE; text-shadow: 3px 0 0 #000, 0 -2px 0 #000, 0 2px 0 #000, -2px 0 0 #000;'>" . count($myBanish) / BanishPieces());
     echo ("</img></div></span>");
-    if (TalentContains($myCharacter[0], "SHADOW") || SearchCount(SearchBanish($playerID, "", "", -1, -1, "", "", true))) {
-      $myBloodDeptCount = SearchCount(SearchBanish($playerID, "", "", -1, -1, "", "", true));
-      $bloodDeptImage = IsImmuneToBloodDebt($playerID) ? "bloodDebtImmune2.png" : "bloodDebt2.png";
-      echo ("<div style='position:absolute; top:28%; left:-40px; width:34px; font-size:24px; font-weight:550; color: #DDD; text-shadow: 2px 0 0 #1a1a1a, 0 -2px 0 #1a1a1a, 0 2px 0 #1a1a1a, -2px 0 0 #1a1a1a; text-align:center; padding-top:15px;'>" . $myBloodDeptCount . "<img title='Blood Debt' style='position:absolute; z-index:-5; top:40%; left:50%; transform: translate(-50%, -50%); width:36px;' src='./Images/" . $bloodDeptImage . "'></img></div>");
-    }
   } else {
     //Empty Banish div
     echo ("<div style='position:fixed; right:" . GetZoneRight("BANISH") . "; bottom:" . GetZoneBottom("MYBANISH") . "; border-radius:5%; padding:" . $cardSizeAura / 2 . "px; background-color: rgba(0, 0, 0, 0.4);'>");
