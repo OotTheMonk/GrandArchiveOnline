@@ -58,6 +58,7 @@ function AllyEntersPlayState($cardID)
     switch($cardID)
     {
       case "2Q60hBYO3i": return 1;
+      case "GXeEa0pe3B": return 1;
       default: return 2;
     }
 }
@@ -67,6 +68,7 @@ function AllyPride($cardID)
   switch($cardID)
   {
     case "hJ2xh9lNMR": return 2;
+    case "GXeEa0pe3B": return 3;
     default: return -1;
   }
 }
