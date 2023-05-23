@@ -73,7 +73,7 @@ $isMobile = IsMobile();
       height: 45px;
       width: 100%;
       z-index: 100;
-      background-color: rgba(30, 30, 30, .8);
+      background-color: rgba(0, 20, 50, .8);
     }
 
     .rightnav {
