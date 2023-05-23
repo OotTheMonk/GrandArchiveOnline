@@ -252,9 +252,6 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $pitch = &GetPitch($player);
       array_push($pitch, $lastResult);
       return $lastResult;
-    case "PITCHABILITY":
-      PitchAbility($lastResult);
-      return $lastResult;
     case "ADDARSENAL":
       $params = explode("-", $parameter);
       $from = (count($params) > 0 ? $params[0] : "-");
@@ -825,7 +822,6 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         }
         PrependDecisionQueue("PAYRESOURCES", $player, $parameter, 1);
         PrependDecisionQueue("SUBPITCHVALUE", $player, $lastResult, 1);
-        PrependDecisionQueue("PITCHABILITY", $player, "-", 1);
         PrependDecisionQueue("ADDMYPITCH", $player, "-", 1);
         PrependDecisionQueue("REMOVEMYHAND", $player, "-", 1);
         PrependDecisionQueue("CHOOSEHANDCANCEL", $player, "<-", 1);

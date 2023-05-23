@@ -1308,22 +1308,6 @@ function ClassOverride($cardID, $player="")
   return $cardClass;
 }
 
-//target type return values
-//-1: no target
-// 0: My Hero + Their Hero
-// 1: Their Hero only
-// 2: Any Target
-// 3: Their Hero + Their Allies
-// 4: My Hero only (For afflictions)
-function PlayRequiresTarget($cardID)
-{
-  switch($cardID)
-  {
-    default:
-      return -1;
-  }
-}
-
 function NameOverride($cardID, $player="")
 {
   $name = CardName($cardID);
@@ -1921,8 +1905,9 @@ function SameWeaponEquippedTwice()
 
 function SelfCostModifier($cardID)
 {
+  global $currentPlayer;
   switch($cardID) {
-
+    case "145y6KBhxe": return (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0);//Focused Flames
     default: return 0;
   }
 }
@@ -2115,6 +2100,14 @@ function ClearGameFiles($gameName)
   unlink("./Games/" . $gameName . "/lastTurnGamestate.txt");
 }
 
+function IsClassBonusActive($player, $class)
+{
+  $char = &GetPlayerCharacter($player);
+  if(count($char) == 0) return false;
+  if(ClassContains($char[0], $class, $player)) return true;
+  return false;
+}
+
 function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalCosts = "-")
 {
   global $currentPlayer, $layers;
@@ -2130,45 +2123,154 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
   //WTRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
   switch($cardID)
   {
+    case "7VxRE6HgZC"://Juggle Knives
+      DamageTrigger(($currentPlayer == 1 ? 2 : 1), 1, "PLAYCARD", $cardID);
+      if(IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "RANGER")) Draw($currentPlayer);
+      break;
+    case "145y6KBhxe"://Focused Flames
+      DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
 
-function PitchAbility($cardID)
-{
-  global $currentPlayer, $CS_NumAddedToSoul;
 
-  $pitchValue = PitchValue($cardID);
-  if(GetClassState($currentPlayer, $CS_NumAddedToSoul) > 0 && SearchCharacterActive($currentPlayer, "MON060") && TalentContains($cardID, "LIGHT", $currentPlayer)) {
-    $resources = &GetResources($currentPlayer);
-    $resources[0] += 1;
-  }
-  if($pitchValue == 1) {
-    $talismanOfRecompenseIndex = GetItemIndex("EVR191", $currentPlayer);
-    if($talismanOfRecompenseIndex > -1) {
-      WriteLog("Talisman of Recompense gained 3 instead of 1 and destroyed itself");
-      DestroyItemForPlayer($currentPlayer, $talismanOfRecompenseIndex);
-      GainResources($currentPlayer, 2);
-    }
-    if(SearchCharacterActive($currentPlayer, "UPR001") || SearchCharacterActive($currentPlayer, "UPR002") || SearchCurrentTurnEffects("UPR001-SHIYANA", $currentPlayer) || SearchCurrentTurnEffects("UPR002-SHIYANA", $currentPlayer)) {
-      WriteLog("Dromai creates an Ash");
-      PutPermanentIntoPlay($currentPlayer, "UPR043");
-    }
-  }
-  switch($cardID) {
-    case "WTR000": case "ARC000": case "CRU000": case "OUT000":
-      AddLayer("TRIGGER", $currentPlayer, $cardID);
-      break;
-    case "EVR000":
-      PlayAura("WTR075", $currentPlayer);
-      break;
-    case "UPR000":
-      AddCurrentTurnEffect($cardID, $currentPlayer);
-      break;
-    default:
-      break;
+//target type return values
+//-1: no target
+// 0: My Hero + Their Hero
+// 1: Their Hero only
+// 2: Any Target
+// 3: Their Hero + Their Allies
+// 4: My Hero only (For afflictions)
+function PlayRequiresTarget($cardID)
+{
+  switch($cardID)
+  {
+    case "145y6KBhxe": return 3;//Focused Flames
+    default: return -1;
   }
 }
+
+  function ArcaneDamage($cardID)
+  {
+    switch($cardID)
+    {
+      case "145y6KBhxe": return 4;//Focused Flames
+      return 0;
+    }
+  }
+
+  //Parameters:
+  //Player = Player controlling the arcane effects
+  //target = See function PlayRequiresTarget
+  function DealArcane($damage, $target=0, $type="PLAYCARD", $source="NA", $fromQueue=false, $player=0, $mayAbility=false, $limitDuplicates=false, $skipHitEffect=false, $resolvedTarget="", $nbArcaneInstance=1)
+  {
+    global $currentPlayer, $CS_ArcaneTargetsSelected;
+    if ($player == 0) $player = $currentPlayer;
+    if ($damage > 0) {
+      //$damage += CurrentEffectArcaneModifier($source, $player) * $nbArcaneInstance;
+      if ($type != "PLAYCARD") WriteLog(CardLink($source, $source) . " is dealing " . $damage . " arcane damage.");
+      if ($fromQueue) {
+        if (!$limitDuplicates) {
+          PrependDecisionQueue("PASSPARAMETER", $player, "{0}");
+          PrependDecisionQueue("SETCLASSSTATE", $player, $CS_ArcaneTargetsSelected); //If already selected for arcane multiselect (e.g. Singe/Azvolai)
+          PrependDecisionQueue("PASSPARAMETER", $player, "-");
+        }
+        if (!$skipHitEffect) PrependDecisionQueue("ARCANEHITEFFECT", $player, $source, 1);
+        PrependDecisionQueue("DEALARCANE", $player, $damage . "-" . $source . "-" . $type, 1);
+        if ($resolvedTarget != "") {
+          PrependDecisionQueue("PASSPARAMETER", $currentPlayer, $resolvedTarget);
+        } else {
+          PrependDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+          if ($mayAbility) {
+            PrependDecisionQueue("MAYCHOOSEMULTIZONE", $player, "<-", 1);
+          } else {
+            PrependDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
+          }
+          PrependDecisionQueue("SETDQCONTEXT", $player, "Choose a target for <0>");
+          PrependDecisionQueue("FINDINDICES", $player, "ARCANETARGET," . $target);
+          PrependDecisionQueue("SETDQVAR", $currentPlayer, "0");
+          PrependDecisionQueue("PASSPARAMETER", $currentPlayer, $source);
+        }
+      } else {
+        if ($resolvedTarget != "") {
+          AddDecisionQueue("PASSPARAMETER", $currentPlayer, $resolvedTarget);
+        } else {
+          AddDecisionQueue("PASSPARAMETER", $currentPlayer, $source);
+          AddDecisionQueue("SETDQVAR", $currentPlayer, "0");
+          AddDecisionQueue("FINDINDICES", $player, "ARCANETARGET," . $target);
+          AddDecisionQueue("SETDQCONTEXT", $player, "Choose a target for <0>");
+          if ($mayAbility) {
+            AddDecisionQueue("MAYCHOOSEMULTIZONE", $player, "<-", 1);
+          } else {
+            AddDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
+          }
+          AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+        }
+        AddDecisionQueue("DEALARCANE", $player, $damage . "-" . $source . "-" . $type, 1);
+        if (!$skipHitEffect) AddDecisionQueue("ARCANEHITEFFECT", $player, $source, 1);
+        if (!$limitDuplicates) {
+          AddDecisionQueue("PASSPARAMETER", $player, "-");
+          AddDecisionQueue("SETCLASSSTATE", $player, $CS_ArcaneTargetsSelected);
+          AddDecisionQueue("PASSPARAMETER", $player, "{0}");
+        }
+      }
+    }
+  }
+
+  function ArcaneHitEffect($player, $source, $target, $damage)
+  {
+
+  }
+
+  //target type return values
+  //-1: no target
+  // 0: My Hero + Their Hero
+  // 1: Their Hero only
+  // 2: Any Target
+  // 3: Their Allies
+  // 4: My Hero only (For afflictions)
+  function GetArcaneTargetIndices($player, $target)
+  {
+    global $CS_ArcaneTargetsSelected;
+    $otherPlayer = ($player == 1 ? 2 : 1);
+    if ($target == 4) return "MYCHAR-0";
+    if($target != 3) $rv = "THEIRCHAR-0";
+    else $rv = "";
+    if(($target == 0 && !ShouldAutotargetOpponent($player)) || $target == 2)
+    {
+      $rv .= ",MYCHAR-0";
+    }
+    if($target == 2)
+    {
+      $theirAllies = &GetAllies($otherPlayer);
+      for($i=0; $i<count($theirAllies); $i+=AllyPieces())
+      {
+        $rv .= ",THEIRALLY-" . $i;
+      }
+      $myAllies = &GetAllies($player);
+      for($i=0; $i<count($myAllies); $i+=AllyPieces())
+      {
+        $rv .= ",MYALLY-" . $i;
+      }
+    }
+    elseif($target == 3 || $target == 5)
+    {
+      $theirAllies = &GetAllies($otherPlayer);
+      for($i=0; $i<count($theirAllies); $i+=AllyPieces())
+      {
+        if($rv != "") $rv .= ",";
+        $rv .= "THEIRALLY-" . $i;
+      }
+    }
+    $targets = explode(",", $rv);
+    $targetsSelected = GetClassState($player, $CS_ArcaneTargetsSelected);
+    for($i=count($targets)-1; $i>=0; --$i)
+    {
+      if(DelimStringContains($targetsSelected, $targets[$i])) unset($targets[$i]);
+    }
+    return implode(",", $targets);
+  }
 
 function CountPitch(&$pitch, $min = 0, $max = 9999)
 {
