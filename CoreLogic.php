@@ -2155,6 +2155,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
       break;
+    case "LZ8JpWj27h"://Clumsy Apprentice
+      if($from != "PLAY")
+      {
+        DamageTrigger($currentPlayer, 2, "PLAYCARD", $cardID);
+        Draw($currentPlayer);
+      }
+      break;
     default: break;
   }
 }
