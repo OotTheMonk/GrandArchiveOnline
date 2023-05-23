@@ -303,7 +303,7 @@ function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFro
   $otherPlayer = $player == 2 ? 1 : 2;
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "ALLY";
   switch($cardID) {
-
+    case "2Ojrn7buPe": return "MATERIAL";//Tera Sight
     default: return "GY";
   }
 }

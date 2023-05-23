@@ -1344,6 +1344,18 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           $char[1] = 2;
         }
       }
+      else if(CardTypeContains($cardID, "REGALIA"))
+      {
+
+      }
+      else if(CardTypeContains($cardID, "WEAPON"))
+      {
+
+      }
+      else
+      {
+        AddHand($currentPlayer, $cardID);
+      }
       MaterializeCardEffect($cardID);
       StartTurn();
       return $cardID;

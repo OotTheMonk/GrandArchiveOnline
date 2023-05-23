@@ -2198,6 +2198,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       Draw($currentPlayer);
       break;
+    case "2Ojrn7buPe"://Tera Sight
+      Draw($currentPlayer);
+      break;
     default: break;
   }
 }

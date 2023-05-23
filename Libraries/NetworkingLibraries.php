@@ -1913,6 +1913,9 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
         case "ALLY":
           PlayAlly($cardID, $currentPlayer);
           break;
+        case "MATERIAL":
+          AddMaterial($cardID, $currentPlayer, $from);
+          break;
         default:
           break;
       }
