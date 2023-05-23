@@ -344,6 +344,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
             case "BANISH": case "MYBANISH": case "THEIRBANISH": return $zone[$mzArr[1] + 2];
             default: return "-1";
           }
+        case "BUFFALLY": MZBuffAlly($player, $lastResult); return $lastResult;
         default: break;
       }
       return $lastResult;

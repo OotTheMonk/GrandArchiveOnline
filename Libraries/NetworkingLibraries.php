@@ -1823,7 +1823,7 @@ function MaterializeCardEffect($cardID)
   global $currentPlayer;
   switch($cardID)
   {
-    case "LMyKyVC2O9": case "tafqldAGRF": case "pNiyaGlIe7":
+    case "LMyKyVC2O9": case "tafqldAGRF": case "pNiyaGlIe7": case "cFdWXaILRT":
       for($i=0; $i<7; ++$i) Draw($currentPlayer);
       break;
     default:

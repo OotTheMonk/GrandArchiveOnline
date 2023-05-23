@@ -65,6 +65,11 @@ function EvaluateCombatChain(&$totalAttack, &$totalDefense, &$attackModifiers=[]
       $attack = 0;
       if($attackType == "W") $attack = $mainCharacter[$combatChainState[$CCS_WeaponIndex]+3];
       else if(DelimStringContains(CardSubtype($combatChain[0]), "Aura")) $attack = $mainAuras[$combatChainState[$CCS_WeaponIndex]+3];
+      else if(CardTypeContains($combatChain[0], "ALLY", $mainPlayer))
+      {
+        $allies = &GetAllies($mainPlayer);
+        $attack = $allies[$combatChainState[$CCS_WeaponIndex]+7];
+      }
       if($canGainAttack || $attack < 0)
       {
         array_push($attackModifiers, "+1 Attack Counters");
@@ -2132,6 +2137,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "776yt8UxhU"://Benevolent Battle Priest
       if($from == "PLAY") Recover($currentPlayer, 1);
+      break;
+    case "G42RDwb3Ko"://Training Session
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
       break;
     default: break;
   }

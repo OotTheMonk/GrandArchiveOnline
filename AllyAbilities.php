@@ -10,12 +10,8 @@ function PlayAlly($cardID, $player, $subCards = "-")
   array_push($allies, $subCards); //Subcards
   array_push($allies, GetUniqueId()); //Unique ID
   array_push($allies, AllyEnduranceCounters($cardID)); //Endurance Counters
-  array_push($allies, 0); //Life Counters
+  array_push($allies, 0); //Buff Counters
   array_push($allies, 1); //Ability/effect uses
-  if($cardID == "UPR414") {
-    WriteLog(CardLink($cardID, $cardID) . " lets you transform up to 1 ash into an Ashwing.");
-    Transform($player, "Ash", "UPR042", true);
-  }
   return count($allies) - AllyPieces();
 }
 
