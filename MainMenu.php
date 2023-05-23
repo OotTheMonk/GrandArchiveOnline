@@ -44,7 +44,9 @@ $canSeeQueue = isset($_SESSION["useruid"]);
 </style>
 
 <div style="text-align: center; padding-top: 45px;">
-  <div style="display: inline-block; width:400px; height:180px; background-size: contain; background-image: url('Images/TalisharLogo.webp');"></div>
+  <!--<div style="display: inline-block; width:400px; height:180px; background-size: contain; background-image: url('Images/TalisharLogo.webp');"></div>-->
+  <h1 style='color:black;'>Clarent</h1>
+  <h3 style='color:black;'>A fan-made Grand Archive TCG Simulator</h3>
 </div>
 
 <div class="ContentWindow" style='width:27%; left:20px; top:60px; bottom:30px; overflow-y:auto;'>
@@ -62,7 +64,7 @@ if (IsMobile()) echo ("<div class='ContentWindow' style='top:240px; left:32%; wi
 else echo ("<div class='ContentWindow' style='top:225px; left:32%; width:36%; bottom: 30px; overflow-y:auto'>");
 
 ?>
-<h5>Talishar is an open-source, fan-made platform not associated with LSS. It may not be a completely accurate representation of the Rules as Written. If you have questions about interactions or rulings, please <a style='text-decoration: underline;' target='_blank' href='https://discord.gg/VFhYB9T7s8'>contact the judge community</a> for clarification.</h5>
+<h5>Clarent is an open-source, fan-made platform. It's still a work in progress so let us know if you find any bugs :)</h5>
 
 <h1><?php echo ($createNewGameText); ?></h1>
 
@@ -149,7 +151,7 @@ if ($canSeeQueue) {
   <h1>News</h1>
   <div style="position: relative;">
     <div style='vertical-align:middle; text-align:center;'>
-      <h3>This is the old version of the site and is no longer supported, go to <a style='color:blue' href='https://talishar.net'>talishar.net</a></h3>
+      <h3>Welcome to Clarent!</h3>
     </div>
   </div>
   <?php
