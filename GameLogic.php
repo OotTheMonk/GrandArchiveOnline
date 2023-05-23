@@ -1332,6 +1332,22 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $params = explode(",", $parameter);
       if(CardType($params[0]) == "AA" || GetResolvedAbilityType($params[0], $params[1]) == "AA") GetTargetOfAttack();
       return $lastResult;
+    case "FINISHMATERIALIZE":
+      $index = $parameter;
+      RemoveMaterial($currentPlayer, $index);
+      for($i=0; $i<$cost; ++$i) BanishRandomMemory($currentPlayer);
+      if(CardTypeContains($cardID, "CHAMPION"))
+      {
+        $char = &GetPlayerCharacter($currentPlayer);
+        if(count($char) == 0) AddCharacter($cardID, $currentPlayer);
+        else {
+          $char[0] = $cardID;
+          $char[1] = 2;
+        }
+      }
+      MaterializeCardEffect($cardID);
+      StartTurn();
+      return $cardID;
     default:
       return "NOTSTATIC";
   }

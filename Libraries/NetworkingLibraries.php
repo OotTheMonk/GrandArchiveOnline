@@ -188,23 +188,15 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       $index = $cardID;
       $material = &GetMaterial($currentPlayer);
       $cardID = $material[$index];
-      WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
       $cost = CardMemoryCost($cardID);
       $memory = &GetMemory($currentPlayer);
-      if($cost > count($memory)) { WriteLog("Not enough memory"); break; }//TODO: Floating memory
-      RemoveMaterial($currentPlayer, $index);
-      for($i=0; $i<$cost; ++$i) BanishRandomMemory($currentPlayer);
-      if(CardTypeContains($cardID, "CHAMPION"))
-      {
-        $char = &GetPlayerCharacter($currentPlayer);
-        if(count($char) == 0) AddCharacter($cardID, $currentPlayer);
-        else {
-          $char[0] = $cardID;
-          $char[1] = 2;
-        }
-      }
-      MaterializeCardEffect($cardID);
-      StartTurn();
+      if($cost > (count($memory) + SearchCount(SearchDiscard($currentPlayer, floatingMemoryOnly:true)))) { WriteLog("Not enough memory"); break; }
+      WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:floatingMemoryOnly=true");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a floating memory card to banish", 1);
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("FINISHMATERIALIZE", $currentPlayer, $index);
+      ProcessDecisionQueue();
       break;
     case 16: case 18: //Decision Queue (15 and 18 deprecated)
       if(count($decisionQueue) > 0)

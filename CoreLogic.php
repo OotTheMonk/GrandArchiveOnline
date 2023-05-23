@@ -207,11 +207,12 @@ function CachedNumActionBlocked()
   return $combatChainState[$CSS_CachedNumActionBlocked];
 }
 
+//This is always called from the decision queue
 function StartTurn()
 {
-  global $turn, $currentPlayer, $mainPlayer;
+  global $dqState, $currentPlayer, $mainPlayer;
   $mainPlayer = $currentPlayer;
-  $turn[0] = "M";
+  $dqState[1] = "M";
   $memory = &GetMemory($currentPlayer);
   for($i=count($memory)-MemoryPieces(); $i>=0; $i-=MemoryPieces())
   {
