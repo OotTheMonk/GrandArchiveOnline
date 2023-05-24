@@ -30,9 +30,12 @@ if ($matchup == "" && GetCachePiece($gameName, $playerID + 6) != "") {
 }
 if ($decklink == "" && $deck == "" && $favoriteDeckLink == "0") {
   $starterDeck = true;
-  switch ($decksToTry) {
+  switch($decksToTry) {
     case '1':
       $deck = "./lorraineStarter.txt";
+      break;
+    case '2':
+      $deck = "./silvieStarter.txt";
       break;
     default:
       $decklink = "https://fabrary.net/decks/01GJG7Z4WGWSZ95FY74KX4M557";

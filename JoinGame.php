@@ -67,6 +67,7 @@ if (isset($_SESSION["userid"])) {
     echo ("<div><label class='SelectDeckInput'>Starter Decks: </label>");
     echo ("<select name='decksToTry' id='decksToTry'>");
     echo ("<option value='1'>Lorraine Starter</option>");
+    echo ("<option value='2'>Silvie Starter</option>");
     echo ("</select></div>");
   }
 
