@@ -2212,6 +2212,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "F9POfB5Nah"://Scry the Skies
       PlayerOpt($currentPlayer, CharacterLevel($currentPlayer));
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SCRYTHESKIES", 1);
       break;
     default: break;
   }
