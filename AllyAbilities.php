@@ -140,15 +140,16 @@ function AllyAttackAbilities($attackID)
   $allies = &GetAllies($mainPlayer);
   for($i = 0; $i < count($allies); $i += AllyPieces()) {
     switch($allies[$i]) {
-      case "UPR412":
-        if($allies[$i + 8] > 0 && DelimStringContains(CardSubType($attackID), "Dragon") && GetClassState($mainPlayer, $CS_NumDragonAttacks) <= 1) {
-          AddCurrentTurnEffect("UPR412", $mainPlayer);
-          --$allies[$i + 8];
-        }
-        break;
       default: break;
     }
   }
+}
+
+function IsAlly($cardID, $player="")
+{
+  global $currentPlayer;
+  if($player == "") $player = $currentPlayer;
+  return CardTypeContains($cardID, "ALLY", $player);
 }
 
 //NOTE: This is for the actual attack abilities that allies have
@@ -158,64 +159,10 @@ function SpecificAllyAttackAbilities($attackID)
   $allies = &GetAllies($mainPlayer);
   $i = $combatChainState[$CCS_WeaponIndex];
   switch($allies[$i]) {
-    case "UPR406":
-      if(IsHeroAttackTarget() && CanRevealCards($mainPlayer)) {
-        $deck = &GetDeck($mainPlayer);
-        $redCount = 0;
-        $cards = "";
-        for($j = 0; $j < 3 && $j < count($deck); ++$j) {
-          if(PitchValue($deck[$j]) == 1) ++$redCount;
-          if($cards != "") $cards .= ",";
-          $cards .= $deck[$j];
-        }
-        RevealCards($cards);
-        if($redCount > 0) DealArcane($redCount * 2, 2, "ABILITY", $allies[$i], false, $mainPlayer);
-      }
-      return "";
-    case "UPR407":
-      if(IsHeroAttackTarget() && CanRevealCards($mainPlayer)) {
-        $deck = &GetDeck($mainPlayer);
-        $redCount = 0;
-        $cards = "";
-        for($j = 0; $j < 2 && $j < count($deck); ++$j) {
-          if(PitchValue($deck[$j]) == 1) ++$redCount;
-          if($cards != "") $cards .= ",";
-          $cards .= $deck[$j];
-        }
-        RevealCards($cards);
-        if($redCount > 0) {
-          $otherPlayer = ($mainPlayer == 1 ? 2 : 1);
-          AddDecisionQueue("FINDINDICES", $otherPlayer, "EQUIP");
-          AddDecisionQueue("CHOOSETHEIRCHARACTER", $mainPlayer, "<-", 1);
-          AddDecisionQueue("MODDEFCOUNTER", $otherPlayer, (-1 * $redCount), 1);
-          AddDecisionQueue("DESTROYEQUIPDEF0", $mainPlayer, "-", 1);
-        }
-      }
-      return "";
-    case "UPR408":
-      if(IsHeroAttackTarget()) {
-        $deck = new Deck($mainPlayer);
-        if($deck->Reveal(1)) {
-          if(PitchValue($deck->Top()) == 1) {
-            $otherPlayer = ($mainPlayer == 1 ? 2 : 1);
-            AddDecisionQueue("FINDINDICES", $otherPlayer, "HAND");
-            AddDecisionQueue("CHOOSETHEIRHAND", $mainPlayer, "<-", 1);
-            AddDecisionQueue("MULTIREMOVEHAND", $otherPlayer, "-", 1);
-            AddDecisionQueue("MULTIBANISH", $otherPlayer, "HAND,NA", 1);
-          }
-        }
-      }
-      return "";
-    case "UPR409":
-      DealArcane(1, 2, "PLAYCARD", $allies[$i], false, $mainPlayer, true, true);
-      DealArcane(1, 2, "PLAYCARD", $allies[$i], false, $mainPlayer, true, false);
-      return "";
-    case "UPR410":
-      if($attackID == $allies[$i] && $allies[$i + 8] > 0) {
-        GainActionPoints(1);
-        --$allies[$i + 8];
-        WriteLog("Gained 1 action point from " . CardLink($allies[$i], $allies[$i]));
-      }
+    case "DsiRzt0trX"://Hasty Messenger
+      WriteLog("test");
+      PummelHit($mainPlayer, true);
+      AddDecisionQueue("DRAW", $mainPlayer, "-", 1);
       break;
     default: break;
   }
