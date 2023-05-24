@@ -633,7 +633,6 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
         }
       }
 
-      //Add indication for Crown of Providence if you have the same card in hand and in the arsenal.
       if ($option[0] == "MYARS") $counters = "Arsenal";
 
       $index = intval($option[1]);

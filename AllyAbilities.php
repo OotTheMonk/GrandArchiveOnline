@@ -71,6 +71,7 @@ function AllyPride($cardID)
     case "GXeEa0pe3B": return 3;//Rebellious Bull
     case "MmbQQdsRhi": return 5;//Enraged Boars
     case "1Sl4Gq2OuV": return 4;//Blue Slime
+    //case "gKVMTAeLXQ": return 5;//Blazing Direwolf
     default: return -1;
   }
 }
@@ -163,6 +164,9 @@ function SpecificAllyAttackAbilities($attackID)
       WriteLog("test");
       PummelHit($mainPlayer, true);
       AddDecisionQueue("DRAW", $mainPlayer, "-", 1);
+      break;
+    case "gKVMTAeLXQ"://Blazing Direwolf
+      if(IsClassBonusActive($mainPlayer, "TAMER")) DealArcane(2, 2, "PLAYCARD", "gKVMTAeLXQ", true, $mainPlayer);
       break;
     default: break;
   }

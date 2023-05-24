@@ -472,6 +472,8 @@ function LoadBadges($userID)
 
 function GetMyAwardableBadges($userID)
 {
+	return [];
+	/*
 	if ($userID == "") return "";
 	$output = [];
 	$conn = GetDBConnection();
@@ -488,6 +490,7 @@ function GetMyAwardableBadges($userID)
 	}
 	mysqli_close($conn);
 	return $output;
+	*/
 }
 
 function AwardBadge($userID, $badgeID)
