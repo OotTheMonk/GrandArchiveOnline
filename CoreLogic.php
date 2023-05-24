@@ -1722,6 +1722,7 @@ function NumEquipBlock()
 
   function ResolveGoAgain($cardID, $player, $from)
   {
+    global $actionPoints;
     ++$actionPoints;
   }
 
@@ -2213,6 +2214,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "F9POfB5Nah"://Scry the Skies
       PlayerOpt($currentPlayer, CharacterLevel($currentPlayer));
       AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SCRYTHESKIES", 1);
+      break;
+    case "LROrzTmh55"://Fire Resonance Bauble
+    case "2gv7DC0KID"://Grand Crusader's Ring
+    case "bHGUNMFLg9"://Wind Resonance Bauble
+    case "dSSRtNnPtw"://Water Resonance Bauble
+      Draw($currentPlayer);
       break;
     default: break;
   }

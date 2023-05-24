@@ -214,6 +214,11 @@ function GetAbilityType($cardID, $index = -1, $from="-")
 {
   global $currentPlayer;
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "AA";
+  switch($cardID)
+  {
+    case "LROrzTmh55": return "I";
+    default: return "";
+  }
 }
 
 function GetAbilityTypes($cardID)
