@@ -14,10 +14,7 @@ function CardType($cardID)
 function CardSubType($cardID)
 {
   if(!$cardID) return "";
-  switch($cardID) {
-    default:
-      return "";
-  }
+  return CardSubTypes($cardID);
 }
 
 function CharacterHealth($cardID)
