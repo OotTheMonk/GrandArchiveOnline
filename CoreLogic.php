@@ -2201,7 +2201,26 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "2Ojrn7buPe"://Tera Sight
       Draw($currentPlayer);
       break;
+    case "a8I89SP24E"://Sink into Oblivion
+      Mill($currentPlayer, 3);//TODO: Should be able to target
+      break;
+    case "BqDw4Mei4C"://Creative Shock
+      Draw($currentPlayer);
+      Draw($currentPlayer);
+      PummelHit($currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "MAGE")) AddDecisionQueue("SPECIFICCARD", $currentPlayer, "CREATIVESHOCK", 1);
+      break;
     default: break;
+  }
+}
+
+function Mill($player, $amount)
+{
+  $deck = &GetDeck($player);
+  if($amount > count($deck)) $amount = count($deck);
+  for($i=0; $i<$amount; ++$i)
+  {
+    AddGraveyard(array_shift($deck), $player, "DECK");
   }
 }
 

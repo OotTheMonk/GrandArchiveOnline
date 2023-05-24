@@ -1348,10 +1348,6 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       {
 
       }
-      else if(CardTypeContains($cardID, "WEAPON"))
-      {
-
-      }
       else
       {
         AddHand($currentPlayer, $cardID);
