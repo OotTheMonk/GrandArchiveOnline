@@ -2210,6 +2210,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       PummelHit($currentPlayer);
       if(IsClassBonusActive($currentPlayer, "MAGE")) AddDecisionQueue("SPECIFICCARD", $currentPlayer, "CREATIVESHOCK", 1);
       break;
+    case "F9POfB5Nah"://Scry the Skies
+      PlayerOpt($currentPlayer, CharacterLevel($currentPlayer));
+      break;
     default: break;
   }
 }
