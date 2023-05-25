@@ -216,7 +216,12 @@ function GetAbilityType($cardID, $index = -1, $from="-")
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "AA";
   switch($cardID)
   {
-    case "LROrzTmh55": return "I";
+    case "LROrzTmh55"://Fire Resonance Bauble
+    case "2gv7DC0KID"://Grand Crusader's Ring
+    case "bHGUNMFLg9"://Wind Resonance Bauble
+    case "dSSRtNnPtw"://Water Resonance Bauble
+    case "Z9TCpaMJTc"://Bauble of Abundance
+    case "yDARN8eV6B"://Tome of Knowledge
     default: return "";
   }
 }

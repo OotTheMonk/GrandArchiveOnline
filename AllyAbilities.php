@@ -245,6 +245,7 @@ function AllyLevelModifiers($player)
     $remove = false;
     switch($allies[$i]) {
       case "qxbdXU7H4Z": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$levelModifier; break;
+      case "yDARN8eV6B": if(IsClassBonusActive($player, "MAGE")) ++$levelModifier; break;//Tome of Knowledge
       default: break;
     }
     if($remove) DestroyAlly($player, $i);
