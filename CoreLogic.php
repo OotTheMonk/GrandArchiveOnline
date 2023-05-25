@@ -2259,6 +2259,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect("XLrHaYV9VB", $currentPlayer);
       Draw($currentPlayer);
       break;
+    case "zrBBvgIvt6"://Tide Diviner
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "DECKTOPXREMOVE," . CharacterLevel($currentPlayer)+1);
+      AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+      AddDecisionQueue("CHOOSECARD", $currentPlayer, "<-", 1);
+      AddDecisionQueue("ADDHAND", $currentPlayer, "-", 1);
+      AddDecisionQueue("OP", $currentPlayer, "REMOVECARD");
+      AddDecisionQueue("MULTIADDDISCARD", $currentPlayer, "<-");
+      break;
     default: break;
   }
 }
