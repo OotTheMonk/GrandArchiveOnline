@@ -31,7 +31,6 @@ function PutItemIntoPlayForPlayer($item, $player, $steamCounterModifier = 0, $nu
 function ItemUses($cardID)
 {
   switch($cardID) {
-    case "EVR070": return 3;
     default: return 1;
   }
 }
@@ -45,6 +44,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
     case "dSSRtNnPtw"://Water Resonance Bauble
+    case "Z9TCpaMJTc"://Bauble of Abundance
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;

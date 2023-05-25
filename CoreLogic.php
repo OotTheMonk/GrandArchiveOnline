@@ -2250,6 +2250,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       MZFreeze($target);
       break;
+    case "Z9TCpaMJTc"://Bauble of Abundance
+      Draw($currentPlayer);
+      Draw(($currentPlayer == 1 ? 2 : 1));
+      break;
     default: break;
   }
 }
