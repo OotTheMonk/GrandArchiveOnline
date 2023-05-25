@@ -664,8 +664,6 @@ function CurrentEffectDamageModifiers($player, $source, $type)
     $remove = 0;
     switch($currentTurnEffects[$i])
     {
-      case "ELE059": case "ELE060": case "ELE061": if($type == "COMBAT" || $type == "ATTACKHIT") ++$modifier; break;
-      case "ELE186": case "ELE187": case "ELE188": if(TalentContainsAny($source, "LIGHTNING,ELEMENTAL", $player)) ++$modifier; break;
       default: break;
     }
     if($remove == 1) RemoveCurrentTurnEffect($i);
@@ -684,13 +682,7 @@ function CurrentEffectDamageEffects($target, $source, $type, $damage)
     $remove = 0;
     switch($currentTurnEffects[$i])
     {
-      case "ELE044": case "ELE045": case "ELE046": if(IsHeroAttackTarget() && CardType($source) == "AA") PlayAura("ELE111", $target); break;
-      case "ELE050": case "ELE051": case "ELE052": if(IsHeroAttackTarget() && CardType($source) == "AA") PayOrDiscard($target, 1); break;
-      case "ELE064": if(IsHeroAttackTarget() && $source == "ELE064") BlossomingSpellbladeDamageEffect($target); break;
-      case "UPR106": case "UPR107": case "UPR108":
-        if((IsHeroAttackTarget() || (IsHeroAttackTarget() == "" && $source != "ELE111")) && $type == "ARCANE") {
-          PlayAura("ELE111", $target, $damage); $remove = 1;
-        } break;
+
       default: break;
     }
     if($remove == 1) RemoveCurrentTurnEffect($i);
@@ -1396,19 +1388,6 @@ function TalentContains($cardID, $talent, $player="")
 {
   $cardTalent = TalentOverride($cardID, $player);
   return DelimStringContains($cardTalent, $talent);
-}
-
-//talents = comma delimited list of talents to check
-function TalentContainsAny($cardID, $talents, $player="")
-{
-  $cardTalent = TalentOverride($cardID, $player);
-  //Loop over current turn effects to find modifiers
-  $talentArr = explode(",", $talents);
-  for($i=0; $i<count($talentArr); ++$i)
-  {
-    if(DelimStringContains($cardTalent, $talentArr[$i])) return true;
-  }
-  return false;
 }
 
 function RevealCards($cards, $player="", $from="HAND")
@@ -2198,6 +2177,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       for($i=0; $i<count($allies); $i+=AllyPieces())
       {
         ++$allies[$i+2];
+      }
+      break;
+    case "dY36bObi9p"://Reckless Researcher
+      if($from != "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=FIRE");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZBANISH", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
       }
       break;
     default: break;
