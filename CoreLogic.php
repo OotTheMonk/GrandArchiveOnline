@@ -2193,6 +2193,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "dZ960Hnkzv"://Vertus, Gaia's Roar
       AddCurrentTurnEffect("dZ960Hnkzv", $currentPlayer);
       break;
+    case "dsAqxMezGb"://Favorable Winds
+      $allies = &GetAllies($currentPlayer);
+      for($i=0; $i<count($allies); $i+=AllyPieces())
+      {
+        ++$allies[$i+2];
+      }
+      break;
     default: break;
   }
 }
