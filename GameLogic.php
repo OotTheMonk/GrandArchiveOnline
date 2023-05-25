@@ -373,7 +373,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $from = $params[0];
       $relationship = $params[1];//exclude other or include
       $type = $params[2];
-      $compare = $params[3];
+      $compareArr = explode("&", $params[3]);
       $input = [];
       switch($from)
       {
@@ -388,12 +388,15 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       {
         $inputArr = explode("-", $input[$i]);
         $passFilter = ($relationship == "include" ? false : true);
-        switch($type)
+        for($j=0; $j<count($compareArr); ++$j)
         {
-          case "type": if(CardType($inputArr[0]) == $compare) $passFilter = !$passFilter; break;
-          case "subtype": if(SubtypeContains($inputArr[0], $compare, $player)) $passFilter = !$passFilter; break;
-          case "player": if($inputArr[0] == $compare) $passFilter = !$passFilter; break;
-          default: break;
+          switch($type)
+          {
+            case "type": if(CardType($inputArr[0]) == $compareArr[$j]) $passFilter = !$passFilter; break;
+            case "subtype": if(SubtypeContains($inputArr[0], $compareArr[$j], $player)) $passFilter = !$passFilter; break;
+            case "player": if($inputArr[0] == $compareArr[$j]) $passFilter = !$passFilter; break;
+            default: break;
+          }
         }
         if($passFilter) array_push($output, $inputArr[1]);
       }

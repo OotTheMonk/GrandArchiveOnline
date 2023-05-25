@@ -2221,6 +2221,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "dSSRtNnPtw"://Water Resonance Bauble
       Draw($currentPlayer);
       break;
+    case "YOjdZJpOO1"://Blissful Calling
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "DECKTOPXREMOVE," . 5);
+      AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+      AddDecisionQueue("FILTER", $currentPlayer, "LastResult-include-subtype-BEAST&ANIMAL", 1);
+      AddDecisionQueue("CHOOSECARD", $currentPlayer, "<-", 1);
+      AddDecisionQueue("ADDHAND", $currentPlayer, "-", 1);
+      AddDecisionQueue("OP", $currentPlayer, "REMOVECARD");
+      AddDecisionQueue("CHOOSEBOTTOM", $currentPlayer, "<-");
+      break;
     default: break;
   }
 }

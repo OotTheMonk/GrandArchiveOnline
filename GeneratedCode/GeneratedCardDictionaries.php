@@ -10171,7 +10171,7 @@ default: return "";
 }
 }
 
-function CardSubTypes($cardID) {
+function CardClasses($cardID) {
 switch($cardID[0]) {
 case "L":
 switch($cardID[1]) {
@@ -20343,7 +20343,7 @@ default: return "";
 }
 }
 
-function CardClasses($cardID) {
+function CardSubTypes($cardID) {
 switch($cardID[0]) {
 case "L":
 switch($cardID[1]) {

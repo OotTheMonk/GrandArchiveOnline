@@ -75,8 +75,8 @@ subtypes - array
   fwrite($handler, "<?php\r\n");
 
   GenerateFunction($typeTrie, $handler, "CardTypes", true, "");
-  GenerateFunction($classTrie, $handler, "CardSubTypes", true, "");
-  GenerateFunction($subtypeTrie, $handler, "CardClasses", true, "");
+  GenerateFunction($classTrie, $handler, "CardClasses", true, "");
+  GenerateFunction($subtypeTrie, $handler, "CardSubTypes", true, "");
   GenerateFunction($elementTrie, $handler, "CardElement", true, "");
   GenerateFunction($nameTrie, $handler, "CardName", true, "");
   GenerateFunction($memoryCostTrie, $handler, "CardMemoryCost", false, -1);
