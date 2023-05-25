@@ -12,7 +12,9 @@ function PlayAlly($cardID, $player, $subCards = "-")
   array_push($allies, AllyEnduranceCounters($cardID)); //Endurance Counters
   array_push($allies, 0); //Buff Counters
   array_push($allies, 1); //Ability/effect uses
-  return count($allies) - AllyPieces();
+  $index = count($allies) - AllyPieces();
+  CurrentEffectAllyEntersPlay($player, $index);
+  return $index;
 }
 
 function RemoveAlly($player, $index)

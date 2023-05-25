@@ -375,6 +375,33 @@ function CurrentEffectNameModifier($effectID, $effectParameter)
   return $name;
 }
 
+function CurrentEffectAllyEntersPlay($player, $index)
+{
+  global $currentTurnEffects;
+  $levelModifier = 0;
+  $allies = &GetAllies($player);
+  for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
+    $remove = false;
+    if($currentTurnEffects[$i + 1] == $player) {
+      switch($currentTurnEffects[$i]) {
+        case "RfPP8h16Wv":
+          if(SubtypeContains($allies[$index], "BEAST", $player) || SubtypeContains($allies[$index], "ANIMAL", $player))
+          {
+            ++$allies[$index+2];
+            ++$allies[$index+7];
+            $remove = 1;
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    if($remove) RemoveCurrentTurnEffect($i);
+  }
+  $currentTurnEffects = array_values($currentTurnEffects);
+  return $levelModifier;
+}
+
 function CurrentEffectLevelModifier()
 {
   global $currentPlayer, $currentTurnEffects;
