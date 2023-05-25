@@ -74,6 +74,7 @@ function AllyPride($cardID)
     case "MmbQQdsRhi": return 5;//Enraged Boars
     case "1Sl4Gq2OuV": return 4;//Blue Slime
     case "gKVMTAeLXQ": return 5;//Blazing Direwolf
+    case "dZ960Hnkzv": return 10;//Vertus, Gaia's Roar
     default: return -1;
   }
 }

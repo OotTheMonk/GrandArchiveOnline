@@ -17,8 +17,15 @@ function EffectHitEffect($cardID)
 
 function EffectAttackModifier($cardID)
 {
-  $set = CardSet($cardID);
-  return 0;
+  global $mainPlayer;
+  $params = explode("-", $cardID);
+  $cardID = $params[0];
+  if(count($params) > 1) $subparam = $params[1];
+  switch($cardID)
+  {
+    case "dZ960Hnkzv": return SearchCount(SearchAllies($mainPlayer, "", "BEAST")) + SearchCount(SearchAllies($mainPlayer, "", "ANIMAL"));//Vertus, Gaia's Roar
+    default: return 0;
+  }
 }
 
 function EffectHasBlockModifier($cardID)
@@ -294,21 +301,12 @@ function IsCombatEffectActive($cardID)
 {
   global $combatChain, $currentPlayer;
   if(count($combatChain) == 0) return;
-  if($cardID == "AIM") return true;
-  $cardID = ShiyanaCharacter($cardID);
   $attackID = $combatChain[0];
-  $set = CardSet($cardID);
-  if($set == "WTR") return WTRCombatEffectActive($cardID, $attackID);
-  else if($set == "ARC") return ARCCombatEffectActive($cardID, $attackID);
-  else if($set == "CRU") return CRUCombatEffectActive($cardID, $attackID);
-  else if($set == "MON") return MONCombatEffectActive($cardID, $attackID);
-  else if($set == "ELE") return ELECombatEffectActive($cardID, $attackID);
-  else if($set == "EVR") return EVRCombatEffectActive($cardID, $attackID);
-  else if($set == "DVR") return DVRCombatEffectActive($cardID, $attackID);
-  else if($set == "UPR") return UPRCombatEffectActive($cardID, $attackID);
-  else if($set == "DYN") return DYNCombatEffectActive($cardID, $attackID);
-  else if($set == "OUT") return OUTCombatEffectActive($cardID, $attackID);
-  else if($set == "ROG") return ROGUECombatEffectActive($cardID, $attackID);
+  switch($cardID)
+  {
+    case "dZ960Hnkzv": return IsAlly($attackID);
+    default: return false;
+  }
 }
 
 function IsCombatEffectPersistent($cardID)
@@ -317,7 +315,7 @@ function IsCombatEffectPersistent($cardID)
   $effectArr = explode(",", $cardID);
   $cardID = ShiyanaCharacter($effectArr[0]);
   switch($cardID) {
-
+    case "dZ960Hnkzv": return true;
     default:
       return false;
   }
@@ -412,6 +410,7 @@ function CurrentEffectLevelModifier()
       switch($currentTurnEffects[$i]) {
         case "MECS7RHRZ8": $levelModifier += 1; break;
         case "XLrHaYV9VB": $levelModifier += 1; break;
+        case "9GWxrTMfBz": $levelModifier += 1; break;
         default:
           break;
       }

@@ -1439,53 +1439,11 @@ function DoesAttackHaveGoAgain()
   $attackType = CardType($combatChain[0]);
   $attackSubtype = CardSubType($combatChain[0]);
   if(CurrentEffectPreventsGoAgain()) return false;
-  if(SearchCurrentTurnEffects("ELE147", $mainPlayer)) return false; //Blizzard
   if(HasGoAgain($combatChain[0])) return true;
-  if(ClassContains($combatChain[0], "ILLUSIONIST", $mainPlayer))
-  {
-    if(SearchCharacterForCard($mainPlayer, "MON003") && SearchPitchForColor($mainPlayer, 2) > 0) return true;
-    if(DelimStringContains(CardSubtype($combatChain[0]), "Aura") && SearchCharacterForCard($mainPlayer, "MON088")) return true;
-  }
-  if(SearchAuras("UPR139", $mainPlayer)) return false;//Hypothermia
   if($combatChainState[$CCS_CurrentAttackGainedGoAgain] == 1 || CurrentEffectGrantsGoAgain() || MainCharacterGrantsGoAgain()) return true;
-  if(ClassContains($combatChain[0], "ILLUSIONIST", $mainPlayer))
-  {
-    if($attackType == "AA" && SearchAuras("MON013", $mainPlayer)) return true;
-  }
-  if(DelimStringContains($attackSubtype, "Dragon") && GetClassState($mainPlayer, $CS_NumRedPlayed) > 0 && (SearchCharacterActive($mainPlayer, "UPR001") || SearchCharacterActive($mainPlayer, "UPR002") || SearchCurrentTurnEffects("UPR001-SHIYANA", $mainPlayer) || SearchCurrentTurnEffects("UPR002-SHIYANA", $mainPlayer))) return true;
-  $mainPitch = &GetPitch($mainPlayer);
   switch($combatChain[0])
   {
-    case "WTR083": case "WTR084": return ComboActive($combatChain[0]);
-    case "WTR095": case "WTR096": case "WTR097": return ComboActive($combatChain[0]);
-    case "WTR104": case "WTR105": case "WTR106": return ComboActive($combatChain[0]);
-    case "WTR110": case "WTR111": case "WTR112": return ComboActive($combatChain[0]);
-    case "WTR161": return count($myDeck) == 0;
-    case "ARC197": case "ARC198": case "ARC199": return GetClassState($mainPlayer, $CS_NumNonAttackCards) > 0;
-    case "CRU010": case "CRU011": case "CRU012": if(NumCardsNonEquipBlocking() < 2) return true;
-    case "CRU057": case "CRU058": case "CRU059":
-    case "CRU060": case "CRU061": case "CRU062": return ComboActive($combatChain[0]);
-    case "CRU151": case "CRU152": case "CRU153": return GetClassState($defPlayer, $CS_ArcaneDamageTaken) > 0;
-    case "MON180": case "MON181": case "MON182": return GetClassState($defPlayer, $CS_ArcaneDamageTaken) > 0;
-    case "MON199": case "MON220": return (count(GetSoul($defPlayer)) > 0 && !IsAllyAttackTarget());
-    case "MON223": case "MON224": case "MON225": return NumCardsNonEquipBlocking() < 2;
-    case "MON248": case "MON249": case "MON250": return SearchHighestAttackDefended() < CachedTotalAttack();
-    case "MON293": case "MON294": case "MON295": return SearchPitchHighestAttack($mainPitch) > AttackValue($combatChain[0]);
-    case "ELE216": case "ELE217": case "ELE218": return CachedTotalAttack() > AttackValue($combatChain[0]);
-    case "ELE216": case "ELE217": case "ELE218": return HasIncreasedAttack();
-    case "EVR105": return GetClassState($mainPlayer, $CS_NumAuras) > 0;
-    case "EVR138": return FractalReplicationStats("GoAgain");
-    case "UPR046":
-    case "UPR063": case "UPR064": case "UPR065":
-    case "UPR069": case "UPR070": case "UPR071": return NumDraconicChainLinks() >= 2;
-    case "UPR048": return NumChainLinksWithName("Phoenix Flame") >= 1;
-    case "UPR092": return GetClassState($mainPlayer, $CS_NumRedPlayed) > 1;
-    case "DYN047": return (ComboActive($combatChain[0]));
-    case "DYN056": case "DYN057": case "DYN058": return (ComboActive($combatChain[0]));
-    case "DYN069": case "DYN070":
-      $anotherWeaponGainedGoAgain = GetClassState($mainPlayer, $CS_AnotherWeaponGainedGoAgain);
-      if (SameWeaponEquippedTwice()) return $anotherWeaponGainedGoAgain != "-";
-      else return $anotherWeaponGainedGoAgain != "-" && $anotherWeaponGainedGoAgain != $combatChain[0];
+
     default: break;
   }
   return false;
@@ -1522,50 +1480,10 @@ function AttackDestroyed($attackID)
   $character = &GetPlayerCharacter($mainPlayer);
   switch($attackID)
   {
-    case "EVR139": MirragingMetamorphDestroyed(); break;
-    case "EVR144": case "EVR145": case "EVR146": CoalescentMirageDestroyed(); break;
-    case "EVR147": case "EVR148": case "EVR149": PlayAura("MON104", $mainPlayer); break;
-    case "UPR021": case "UPR022": case "UPR023": PutPermanentIntoPlay($mainPlayer, "UPR043"); break;
-    case "UPR027": case "UPR028": case "UPR029": PutPermanentIntoPlay($mainPlayer, "UPR043"); break;
+
     default: break;
   }
   AttackDestroyedEffects($attackID);
-  for($i=0; $i<SearchCount(SearchAurasForCard("MON012", $mainPlayer)); ++$i)
-  {
-    if(TalentContains($attackID, "LIGHT", $mainPlayer)) $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "SOUL";
-    DealArcane(1, 0, "STATIC", "MON012", false, $mainPlayer);
-  }
-  if($type == "AA" && ClassContains($attackID, "ILLUSIONIST", $mainPlayer))
-  {
-    for($i=0; $i<count($character); $i += CharacterPieces())
-    {
-      if($character[$i+1] == 0) continue;
-      switch($character[$i]) {
-        case 'MON089':
-          if ($character[$i+5] > 0){
-            AddDecisionQueue("YESNO", $mainPlayer, "if_you_want_to_pay_1_to_gain_an_action_point", 0, 1);
-            AddDecisionQueue("NOPASS", $mainPlayer, "-", 1);
-            AddDecisionQueue("PASSPARAMETER", $mainPlayer, 1, 1);
-            AddDecisionQueue("PAYRESOURCES", $mainPlayer, "<-", 1);
-            AddDecisionQueue("GAINACTIONPOINTS", $mainPlayer, "1", 1);
-            AddDecisionQueue("WRITELOG", $mainPlayer, "Player_" . $mainPlayer . "_gained_an_action_point_from_" . CardLink($character[$i], $character[$i]), 1);
-            --$character[$i+5];
-          }
-          break;
-        default: break;
-      }
-    }
-  }
-  if(ClassContains($attackID, "ILLUSIONIST", $mainPlayer) && SearchCharacterActive($mainPlayer, "UPR152"))
-  {
-    AddDecisionQueue("YESNO", $mainPlayer, "if_you_want_to_pay_3_to_gain_an_action_point", 0, 1);
-    AddDecisionQueue("NOPASS", $mainPlayer, "-", 1);
-    AddDecisionQueue("PASSPARAMETER", $mainPlayer, 3, 1);
-    AddDecisionQueue("PAYRESOURCES", $mainPlayer, "<-", 1);
-    AddDecisionQueue("GAINACTIONPOINTS", $mainPlayer, "1", 1);
-    AddDecisionQueue("FINDINDICES", $mainPlayer, "EQUIPCARD,UPR152", 1);
-    AddDecisionQueue("DESTROYCHARACTER", $mainPlayer, "-", 1);
-  }
 }
 
 function AttackDestroyedEffects($attackID)
@@ -1575,7 +1493,6 @@ function AttackDestroyedEffects($attackID)
   {
     switch($currentTurnEffects[$i])
     {
-      case "EVR150": case "EVR151": case "EVR152": Draw($mainPlayer); break;
       default: break;
     }
   }
@@ -2260,12 +2177,21 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       Draw($currentPlayer);
       break;
     case "zrBBvgIvt6"://Tide Diviner
-      AddDecisionQueue("FINDINDICES", $currentPlayer, "DECKTOPXREMOVE," . CharacterLevel($currentPlayer)+1);
-      AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
-      AddDecisionQueue("CHOOSECARD", $currentPlayer, "<-", 1);
-      AddDecisionQueue("ADDHAND", $currentPlayer, "-", 1);
-      AddDecisionQueue("OP", $currentPlayer, "REMOVECARD");
-      AddDecisionQueue("MULTIADDDISCARD", $currentPlayer, "<-");
+      if($from != "PLAY")
+      {
+        AddDecisionQueue("FINDINDICES", $currentPlayer, "DECKTOPXREMOVE," . CharacterLevel($currentPlayer)+1);
+        AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+        AddDecisionQueue("CHOOSECARD", $currentPlayer, "<-", 1);
+        AddDecisionQueue("ADDHAND", $currentPlayer, "-", 1);
+        AddDecisionQueue("OP", $currentPlayer, "REMOVECARD");
+        AddDecisionQueue("MULTIADDDISCARD", $currentPlayer, "<-");
+      }
+      break;
+    case "9GWxrTMfBz"://Cram Session
+      AddCurrentTurnEffect("9GWxrTMfBz", $currentPlayer);
+      break;
+    case "dZ960Hnkzv"://Vertus, Gaia's Roar
+      AddCurrentTurnEffect("dZ960Hnkzv", $currentPlayer);
       break;
     default: break;
   }
