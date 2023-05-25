@@ -2230,6 +2230,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("OP", $currentPlayer, "REMOVECARD");
       AddDecisionQueue("CHOOSEBOTTOM", $currentPlayer, "<-");
       break;
+    case "SrBA7h2a1N"://Freezing Hail
+      DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      MZFreeze($target);
+      break;
     default: break;
   }
 }
@@ -2266,6 +2270,7 @@ function PlayRequiresTarget($cardID)
     case "145y6KBhxe": return 3;//Focused Flames
     case "RIVahUIQVD": return 2;//Fireball
     case "rXHo9fLU32": return 2;//Ignite the Soul
+    case "SrBA7h2a1N": return 2;//Freezing Hail
     default: return -1;
   }
 }
@@ -2278,6 +2283,7 @@ function PlayRequiresTarget($cardID)
       case "145y6KBhxe": return 4;//Focused Flames
       case "RIVahUIQVD": return 1+CharacterLevel($currentPlayer);
       case "rXHo9fLU32": return 1;//Ignite the Soul
+      case "SrBA7h2a1N": return 2;//Freezing Hail
       return 0;
     }
   }

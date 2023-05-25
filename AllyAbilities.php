@@ -211,6 +211,17 @@ function AllyTakeDamageAbilities($player, $index, $damage, $preventable)
   return $damage;
 }
 
+function AllyBeginTurnEffects()
+{
+  global $mainPlayer;
+  $mainAllies = &GetAllies($mainPlayer);
+  for($i = 0; $i < count($mainAllies); $i += AllyPieces()) {
+    if($mainAllies[$i+1] != 0) {
+      if($mainAllies[$i+3] != 1) $mainAllies[$i+1] = 2;
+    }
+  }
+}
+
 function AllyBeginEndTurnEffects()
 {
   global $mainPlayer, $defPlayer;
@@ -218,15 +229,14 @@ function AllyBeginEndTurnEffects()
   $mainAllies = &GetAllies($mainPlayer);
   for($i = 0; $i < count($mainAllies); $i += AllyPieces()) {
     if($mainAllies[$i+1] != 0) {
-      $mainAllies[$i+1] = 2;
       $mainAllies[$i+2] = AllyHealth($mainAllies[$i]) + $mainAllies[$i+7];
+      $mainAllies[$i+3] = 0;
       $mainAllies[$i+8] = 1;
     }
   }
   $defAllies = &GetAllies($defPlayer);
   for($i = 0; $i < count($defAllies); $i += AllyPieces()) {
     if($defAllies[$i+1] != 0) {
-      $defAllies[$i+1] = 2;
       $defAllies[$i+2] = AllyHealth($defAllies[$i]) + $defAllies[$i + 7];
       $defAllies[$i+8] = 1;
     }

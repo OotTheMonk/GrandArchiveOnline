@@ -1131,6 +1131,7 @@ function FinalizeTurn()
 
   //Start of turn effects
   if ($mainPlayer == 1) StatsStartTurn();
+  AllyBeginTurnEffects();
   StartTurnAbilities();
   $MakeStartTurnBackup = true;
 
