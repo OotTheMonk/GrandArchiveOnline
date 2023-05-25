@@ -102,9 +102,22 @@ function EvaluateCombatChain(&$totalAttack, &$totalDefense, &$attackModifiers=[]
 
 function CharacterLevel($player)
 {
+  global $CS_CachedCharacterLevel;
+  return GetClassState($player, $CS_CachedCharacterLevel);
+}
+
+function CalculateCharacterLevel($player)
+{
   $char = &GetPlayerCharacter($player);
   if(count($char) == 0) return 0;
-  return CardLevel($char[0]) + CurrentEffectLevelModifier();
+  return CardLevel($char[0]) + CurrentEffectLevelModifier() + AllyLevelModifiers($player);
+}
+
+function CacheCharacterLevel()
+{
+  global $CS_CachedCharacterLevel;
+  SetClassState(1, $CS_CachedCharacterLevel, CalculateCharacterLevel(1));
+  SetClassState(2, $CS_CachedCharacterLevel, CalculateCharacterLevel(2));
 }
 
 function AddAttack(&$totalAttack, $amount)
@@ -166,15 +179,18 @@ function CacheCombatResult()
 {
   global $combatChain, $combatChainState, $CCS_CachedTotalAttack, $CCS_CachedTotalBlock, $CCS_CachedDominateActive, $CCS_CachedNumBlockedFromHand, $CCS_CachedOverpowerActive;
   global $CSS_CachedNumActionBlocked, $CCS_CachedNumDefendedFromHand;
-  if(count($combatChain) == 0) return;
-  $combatChainState[$CCS_CachedTotalAttack] = 0;
-  $combatChainState[$CCS_CachedTotalBlock] = 0;
-  EvaluateCombatChain($combatChainState[$CCS_CachedTotalAttack], $combatChainState[$CCS_CachedTotalBlock]);
-  $combatChainState[$CCS_CachedDominateActive] = (IsDominateActive() ? "1" : "0");
-  if ($combatChainState[$CCS_CachedNumBlockedFromHand] == 0) $combatChainState[$CCS_CachedNumBlockedFromHand] = NumBlockedFromHand();
-  $combatChainState[$CCS_CachedOverpowerActive] = (IsOverpowerActive() ? "1" : "0");
-  $combatChainState[$CSS_CachedNumActionBlocked] = NumActionBlocked();
-  $combatChainState[$CCS_CachedNumDefendedFromHand] = NumDefendedFromHand(); //Reprise
+  if(count($combatChain) > 0)
+  {
+    $combatChainState[$CCS_CachedTotalAttack] = 0;
+    $combatChainState[$CCS_CachedTotalBlock] = 0;
+    EvaluateCombatChain($combatChainState[$CCS_CachedTotalAttack], $combatChainState[$CCS_CachedTotalBlock]);
+    $combatChainState[$CCS_CachedDominateActive] = (IsDominateActive() ? "1" : "0");
+    if ($combatChainState[$CCS_CachedNumBlockedFromHand] == 0) $combatChainState[$CCS_CachedNumBlockedFromHand] = NumBlockedFromHand();
+    $combatChainState[$CCS_CachedOverpowerActive] = (IsOverpowerActive() ? "1" : "0");
+    $combatChainState[$CSS_CachedNumActionBlocked] = NumActionBlocked();
+    $combatChainState[$CCS_CachedNumDefendedFromHand] = NumDefendedFromHand(); //Reprise
+  }
+  CacheCharacterLevel();
 }
 
 function CachedTotalAttack()

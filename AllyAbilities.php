@@ -73,7 +73,7 @@ function AllyPride($cardID)
     case "GXeEa0pe3B": return 3;//Rebellious Bull
     case "MmbQQdsRhi": return 5;//Enraged Boars
     case "1Sl4Gq2OuV": return 4;//Blue Slime
-    //case "gKVMTAeLXQ": return 5;//Blazing Direwolf
+    case "gKVMTAeLXQ": return 5;//Blazing Direwolf
     default: return -1;
   }
 }
@@ -197,12 +197,6 @@ function AllyTakeDamageAbilities($player, $index, $damage, $preventable)
   for($i = count($allies) - AllyPieces(); $i >= 0; $i -= AllyPieces()) {
     $remove = false;
     switch($allies[$i]) {
-      case "DYN612":
-        if($damage > 0) {
-          if($preventable) $damage -= 4;
-          $remove = true;
-        }
-        break;
       default: break;
     }
     if($remove) DestroyAlly($player, $i);
@@ -241,6 +235,21 @@ function AllyBeginEndTurnEffects()
       $defAllies[$i+8] = 1;
     }
   }
+}
+
+function AllyLevelModifiers($player)
+{
+  $allies = &GetAllies($player);
+  $levelModifier = 0;
+  for($i = count($allies) - AllyPieces(); $i >= 0; $i -= AllyPieces()) {
+    $remove = false;
+    switch($allies[$i]) {
+      case "qxbdXU7H4Z": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$levelModifier; break;
+      default: break;
+    }
+    if($remove) DestroyAlly($player, $i);
+  }
+  return $levelModifier;
 }
 
 function AllyEndTurnAbilities()

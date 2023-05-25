@@ -144,7 +144,7 @@ if ($inGameStatus == $GameStatus_Rematch) {
   $currentPlayer = 1;
 }
 
-//CacheCombatResult();
+CacheCombatResult();
 //CombatDummyAI(); //Only does anything if applicable
 //EncounterAI();
 
