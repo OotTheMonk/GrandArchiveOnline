@@ -2255,6 +2255,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       Draw($currentPlayer);
       Draw(($currentPlayer == 1 ? 2 : 1));
       break;
+    case "XLrHaYV9VB"://Arcane Sight
+      AddCurrentTurnEffect("XLrHaYV9VB", $currentPlayer);
+      Draw($currentPlayer);
+      break;
     default: break;
   }
 }

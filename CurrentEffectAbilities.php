@@ -411,6 +411,7 @@ function CurrentEffectLevelModifier()
     if($currentTurnEffects[$i + 1] == $currentPlayer) {
       switch($currentTurnEffects[$i]) {
         case "MECS7RHRZ8": $levelModifier += 1; break;
+        case "XLrHaYV9VB": $levelModifier += 1; break;
         default:
           break;
       }
