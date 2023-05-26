@@ -102,6 +102,10 @@ function AllyDestroyedAbility($player, $index)
       WriteLog("Player $player drew a card from Library Witch");
       Draw($player);
       break;
+    case "l64yfOVhkp"://Prodigious Burstmage
+      Draw($player);
+      PummelHit($player, fromDQ:IsDecisionQueueActive());
+      break;
     default: break;
   }
 }

@@ -916,7 +916,6 @@ function FinalizeChainLink($chainClosed = false)
   BuildMainPlayerGameState();
 
   if (DoesAttackHaveGoAgain() && !$chainClosed) {
-    WriteLog("The attack has go again, gaining an action point.");
     ++$actionPoints;
     if ($combatChain[0] == "DVR002" && SearchCharacterActive($mainPlayer, "DVR001")) DoriQuicksilverProdigyEffect();
     if (CardType($combatChain[0]) == "W" && GetClassState($mainPlayer, $CS_AnotherWeaponGainedGoAgain) == "-") SetClassState($mainPlayer, $CS_AnotherWeaponGainedGoAgain, $combatChain[0]);
