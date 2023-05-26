@@ -2231,6 +2231,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       RevealCards($toReveal, $currentPlayer);
       break;
+    case "SPESFtKHLw"://Rallied Advance
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "WAKEUP", 1);
+      break;
     default: break;
   }
 }

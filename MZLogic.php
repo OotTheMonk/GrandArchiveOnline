@@ -171,11 +171,26 @@ function MZFreeze($target)
   }
 }
 
+function MZWakeUp($player, $target)
+{
+  $pieces = explode("-", $target);
+  $player = (substr($pieces[0], 0, 2) == "MY" ? $player : ($player == 1 ? 2 : 1));
+  $zone = &GetMZZone($player, $pieces[0]);
+  switch($pieces[0]) {
+    case "MYCHAR": case "THEIRCHAR":
+      $zone[$pieces[1]+1] = 2;
+      break;
+    case "THEIRALLY": case "MYALLY":
+      $zone[$pieces[1]+1] = 2;
+      break;
+    default: break;
+  }
+}
+
 function MZBounce($player, $target)
 {
-  global $currentPlayer;
   $pieces = explode("-", $target);
-  $player = (substr($pieces[0], 0, 2) == "MY" ? $currentPlayer : ($currentPlayer == 1 ? 2 : 1));
+  $player = (substr($pieces[0], 0, 2) == "MY" ? $player : ($player == 1 ? 2 : 1));
   $zone = &GetMZZone($player, $pieces[0]);
   switch($pieces[0]) {
     case "THEIRALLY": case "MYALLY":
