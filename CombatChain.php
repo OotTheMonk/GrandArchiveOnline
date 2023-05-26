@@ -55,6 +55,7 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
     case "HWFWO0TB8l": return IsClassBonusActive($mainPlayer, "TAMER") ? 2 : 0;//Tempest Silverback
     case "krgjMyVHRd": return SearchDiscard($mainPlayer, element:"WATER");//Lakeside Serpent
     case "LUfgfsWTTO": return SearchDiscard($mainPlayer, element:"FIRE");//Fiery Momentum
+    case "vBetRTn3eW": if(IsClassBonusActive($mainPlayer, "WARRIOR")) { $memory = &GetMemory($mainPlayer); return count($memory) == 1 ? 2 : 0; } return 0;//Opening Cut
     default: return 0;
   }
 }
