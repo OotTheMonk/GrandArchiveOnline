@@ -2188,6 +2188,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
       }
       break;
+    case "FCbKYZcbNq"://Trusty Steed
+      if($from != "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID");
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "FCbKYZcbNq,HAND");
+      }
+      break;
     default: break;
   }
 }

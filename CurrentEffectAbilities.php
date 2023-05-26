@@ -24,6 +24,7 @@ function EffectAttackModifier($cardID)
   switch($cardID)
   {
     case "dZ960Hnkzv": return SearchCount(SearchAllies($mainPlayer, "", "BEAST")) + SearchCount(SearchAllies($mainPlayer, "", "ANIMAL"));//Vertus, Gaia's Roar
+    case "FCbKYZcbNq": return 2;
     default: return 0;
   }
 }
@@ -305,6 +306,7 @@ function IsCombatEffectActive($cardID)
   switch($cardID)
   {
     case "dZ960Hnkzv": return IsAlly($attackID);
+    case "FCbKYZcbNq": return true;
     default: return false;
   }
 }
