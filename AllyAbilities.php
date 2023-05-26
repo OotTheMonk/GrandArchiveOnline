@@ -97,6 +97,7 @@ function AllyDestroyedAbility($player, $index)
   global $mainPlayer;
   $allies = &GetAllies($player);
   $cardID = $allies[$index];
+  OnKillAbility();
   switch($cardID) {
     case "iD8qbpA8z5"://Library Witch
       WriteLog("Player $player drew a card from Library Witch");
@@ -106,6 +107,17 @@ function AllyDestroyedAbility($player, $index)
       Draw($player);
       PummelHit($player, fromDQ:IsDecisionQueueActive());
       break;
+    default: break;
+  }
+}
+
+function OnKillAbility()
+{
+  global $combatChain, $mainPlayer;
+  if(count($combatChain) == 0) return;
+  switch($combatChain[0])
+  {
+    case "71i7d3JB9A": if(CharacterLevel($mainPlayer) >= 2) { WriteLog("Drew from Clean Cut"); Draw($mainPlayer); } break;
     default: break;
   }
 }
