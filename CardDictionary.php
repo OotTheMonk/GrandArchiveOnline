@@ -6,7 +6,8 @@ include "GeneratedCode/GeneratedCardDictionaries.php";
 function CardType($cardID)
 {
   if(!$cardID) return "";
-  if(CardTypeContains($cardID, "ATTACK", $currentPlayer)
+  if(CardTypeContains($cardID, "ATTACK")) return "AA";
+  return CardSpeed($cardID) == "1" ? "I" : "A";
 }
 
 function CardSubType($cardID)
@@ -389,19 +390,7 @@ function HasBladeBreak($cardID)
 {
   global $defPlayer;
   switch($cardID) {
-    case "WTR079": case "WTR150": case "WTR155": case "WTR156": case "WTR157": case "WTR158": return true;
-    case "ARC041": return true;
-    case "CRU122": return true;
-    case "MON060": return true;
-    case "ELE144": case "ELE204": case "ELE213": case "ELE224": return true;
-    case "EVR037": case "EVR086": return true;
-    case "DVR003": case "DVR006": return true;
-    case "RVD003": return true;
-    case "UPR136": case "UPR158": case "UPR182": return true;
-    case "DYN045": case "DYN152": case "DYN171": return true;
-    case "OUT049": case "OUT094": case "OUT099": case "OUT139": case "OUT140": case "OUT141": case "OUT157": case "OUT158": return true;
-    case "MON241": case "MON242": case "MON243": case "MON244": return SearchCurrentTurnEffects($cardID, $defPlayer); //Ironhide
-    case "OUT174": return SearchCurrentTurnEffects($cardID . "-BB", $defPlayer); //Vambrace of determination
+
     default: return false;
   }
 }
@@ -409,14 +398,7 @@ function HasBladeBreak($cardID)
 function HasBattleworn($cardID)
 {
   switch($cardID) {
-    case "WTR004": case "WTR005": case "WTR041": case "WTR042": case "WTR080": case "WTR116": case "WTR117": return true;
-    case "ARC004": case "ARC078": case "ARC150": return true;
-    case "CRU053": return true;
-    case "MON107": case "MON108": case "MON122": case "MON230": return true;
-    case "EVR001": case "EVR053": return true;
-    case "DVR005": return true;
-    case "DYN006": case "DYN026": case "DYN046": case "DYN089": case "DYN117": case "DYN118": return true;
-    case "OUT011": return true;
+
     default: return false;
   }
 }
@@ -424,11 +406,7 @@ function HasBattleworn($cardID)
 function HasTemper($cardID)
 {
   switch($cardID) {
-    case "CRU025": case "CRU081": case "CRU141": return true;
-    case "EVR018": return true;
-    case "EVR020": return true;
-    case "UPR084": return true;
-    case "DYN027": case "DYN492b": return true;
+
     default: return false;
   }
 }
@@ -436,12 +414,7 @@ function HasTemper($cardID)
 function RequiresDiscard($cardID)
 {
   switch($cardID) {
-    case "WTR006": case "WTR007": case "WTR008": case "WTR011": case "WTR012": case "WTR013": case "WTR014": case "WTR015":
-    case "WTR016": case "WTR020": case "WTR021": case "WTR022": case "WTR029": case "WTR030": case "WTR031": case "WTR035":
-    case "WTR036": case "WTR037":
-    case "CRU010": case "CRU011": case "CRU012": case "CRU019": case "CRU020": case "CRU021":
-    case "DYN007": case "DYN016": case "DYN017": case "DYN018": case "DYN019": case "DYN020": case "DYN021":
-      return true;
+
     default: return false;
   }
 }
@@ -449,20 +422,7 @@ function RequiresDiscard($cardID)
 function ETASteamCounters($cardID)
 {
   switch ($cardID) {
-    case "ARC017": return 1;
-    case "ARC007": case "ARC019": return 2;
-    case "ARC036": return 3;
-    case "ARC035": return 4;
-    case "ARC037": return 5;
-    case "CRU104": return 0;
-    case "CRU105": return 0;
-    case "EVR069": return 1;
-    case "EVR071": return 1;
-    case "EVR072": return 3;
-    case "DYN093": return 5;
-    case "DYN110": return 3;
-    case "DYN111": return 2;
-    case "DYN112": return 1;
+
     default: return 0;
   }
 }
@@ -474,24 +434,9 @@ function AbilityHasGoAgain($cardID)
 
 function DoesEffectGrantDominate($cardID)
 {
-  global $combatChainState, $CCS_AttackFused;
-  $cardID = ShiyanaCharacter($cardID);
+  global $combatChainState;
   switch ($cardID) {
-    case "WTR038": case "WTR039": case "WTR197":
-    case "ARC011": case "ARC012": case "ARC013": case "ARC019": case "ARC038": case "ARC039":
-    case "CRU013": case "CRU014": case "CRU015":
-    case "CRU038": case "CRU039": case "CRU040": case "CRU094-2": case "CRU095-2": case "CRU096-2":
-    case "CRU106": case "CRU107": case "CRU108":
-    case "MON109": case "MON129": case "MON130": case "MON131": case "MON132": case "MON133": case "MON134":
-    case "MON195": case "MON196": case "MON197": case "MON223": case "MON224": case "MON225":
-    case "MON278": case "MON279": case "MON280": case "MON406":
-    case "ELE005": case "ELE016": case "ELE017": case "ELE018": case "ELE033-2": case "ELE056": case "ELE057": case "ELE058":
-    case "ELE092-DOMATK": case "ELE097": case "ELE098": case "ELE099": case "ELE166": case "ELE167": case "ELE168": case "ELE205":
-    case "EVR017": case "EVR019": case "UPR091":
-    case "DYN028":
-    case "ROGUE710-DO":
-      return true;
-    case "ELE154": case "ELE155": case "ELE156": return $combatChainState[$CCS_AttackFused] == 1;
+
     default: return false;
   }
 }
@@ -499,12 +444,7 @@ function DoesEffectGrantDominate($cardID)
 function CharacterNumUsesPerTurn($cardID)
 {
   switch ($cardID) {
-    case "WTR038": case "WTR039": return 999;
-    case "ELE034": return 2;
-    case "UPR183": return 999;
-    case "DYN001": case "DYN193": return 999;
-    case "DYN492a": return 999;
-    case "OUT093": return 2;
+
     default: return 1;
   }
 }
@@ -513,16 +453,7 @@ function CharacterNumUsesPerTurn($cardID)
 function CharacterDefaultActiveState($cardID)
 {
   switch ($cardID) {
-    case "WTR117": return 1;
-    case "ARC152": return 1;
-    case "CRU053": case "CRU161": return 1;
-    case "MON122": return 1;
-    case "ELE173": case "ELE174": return 1;
-    case "MON061": case "MON090": case "MON188": case "MON400": case "MON401": case "MON402": return 1;
-    case "DYN236": case "DYN237": case "DYN238": case "DYN239": return 1;
-    case "EVR037": return 1;
-    case "UPR004": case "UPR047": case "UPR125": case "UPR184": case "UPR185": case "UPR186": return 0;
-    case "DYN006": return 1;
+
     default: return 2;
   }
 }
@@ -531,17 +462,7 @@ function CharacterDefaultActiveState($cardID)
 function AuraDefaultHoldTriggerState($cardID)
 {
   switch ($cardID) {
-    case "WTR046": case "WTR047": case "WTR054": case "WTR055": case "WTR056": case "WTR069": case "WTR070": case "WTR071":
-    case "WTR072": case "WTR073": case "WTR074": case "WTR075": return 0;
-    case "ARC112": return 1;
-    case "CRU028": case "CRU029": case "CRU030": case "CRU031": case "CRU038": case "CRU039": case "CRU040":
-     case "CRU075": case "CRU144": return 0;
-    case "MON186": return 0;
-    case "ELE025": case "ELE026": case "ELE027": case "ELE028": case "ELE029": case "ELE030":
-    case "ELE206": case "ELE207": case "ELE208": case "ELE109": case "ELE110": case "ELE111": return 0;
-    case "EVR107": case "EVR108": case "EVR109": case "EVR131": case "EVR132": case "EVR133": return 0;
-    case "UPR190": case "UPR218": case "UPR219": case "UPR220": return 0;
-    case "DYN217": return 0;
+
     default: return 2;
   }
 }
@@ -549,10 +470,7 @@ function AuraDefaultHoldTriggerState($cardID)
 function ItemDefaultHoldTriggerState($cardID)
 {
   switch($cardID) {
-    case "ARC007": case "ARC035":
-    case "MON302":
-    case "EVR069": case "EVR071":
-      return 0;
+
     default: return 2;
   }
 }
@@ -566,10 +484,7 @@ function IsCharacterActive($player, $index)
 function HasReprise($cardID)
 {
   switch($cardID) {
-    case "WTR118": case "WTR120": case "WTR121": case "WTR123": case "WTR124": case "WTR125": case "WTR132":
-    case "WTR133": case "WTR134": case "WTR135": case "WTR136": case "WTR137": case "WTR138": case "WTR139": case "WTR140":
-    case "CRU083": case "CRU088": case "CRU089": case "CRU090":
-      return true;
+
     default: return false;
   }
 }
@@ -578,8 +493,7 @@ function HasReprise($cardID)
 function RepriseActive()
 {
   global $currentPlayer, $mainPlayer;
-  if($currentPlayer == $mainPlayer) return CachedNumDefendedFromHand() > 0;
-  else return 0;
+  return 0;
 }
 
 function HasCombo($cardID)
