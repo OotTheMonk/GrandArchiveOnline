@@ -124,6 +124,16 @@ function HasEfficiency($cardID)
   }
 }
 
+function HasVigor($cardID, $player)
+{
+  switch($cardID)
+  {
+    case "JEOxGQppTE"://Windrider Vanguard
+      return IsClassBonusActive($player, "WARRIOR") || IsClassBonusActive($player, "GUARDIAN");
+    default: return false;
+  }
+}
+
 //Minimum cost of the card
 function CardCost($cardID)
 {
