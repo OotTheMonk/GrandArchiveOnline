@@ -118,6 +118,7 @@ function HasEfficiency($cardID)
   {
     case "UfQh069mc3": return true;
     case "SSu2eQZFJV": return true;
+    case "ZgA7cWNKGy": return true;
     default: return false;
   }
 }

@@ -2196,6 +2196,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "zpkcFs72Ah"://Smack with Flute
       AddCurrentTurnEffect("zpkcFs72Ah", $currentPlayer);
       break;
+    case "ZgA7cWNKGy"://Summon Gale
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
+      break;
     case "sHzSmygjWY"://Gaia's Songbird
 
       break;
