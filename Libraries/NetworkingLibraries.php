@@ -1532,6 +1532,10 @@ function MaterializeCardEffect($cardID)
     case "RfPP8h16Wv"://Silvie, Wilds Whisperer
       AddCurrentTurnEffect("RfPP8h16Wv", $currentPlayer);
       break;
+    case "nllCALIXDT"://Silvie, With the Pack
+      if(SearchCount(SearchAllies($currentPlayer, "", "BEAST")) > 0) Draw($currentPlayer);
+      if(SearchCount(SearchAllies($currentPlayer, "", "ANIMAL")) > 0) Draw($currentPlayer);
+      break;
     default:
       break;
   }
