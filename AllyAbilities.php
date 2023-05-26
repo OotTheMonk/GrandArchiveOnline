@@ -76,6 +76,7 @@ function AllyPride($cardID)
     case "gKVMTAeLXQ": return 5;//Blazing Direwolf
     case "dZ960Hnkzv": return 10;//Vertus, Gaia's Roar
     case "HWFWO0TB8l": return 5;//Tempest Silverback
+    case "krgjMyVHRd": return 6;//Lakeside Serpent
     default: return -1;
   }
 }

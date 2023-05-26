@@ -52,8 +52,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
   global $CS_NumNonAttackCards, $CS_NumPlayedFromBanish, $CS_NumAuras, $CS_AtksWWeapon;
   if($repriseActive == -1) $repriseActive = RepriseActive();
   switch($cardID) {
-    case "HWFWO0TB8l"://Tempest Silverback
-      return IsClassBonusActive($currentPlayer, "TAMER") ? 2 : 0;
+    case "HWFWO0TB8l": return IsClassBonusActive($mainPlayer, "TAMER") ? 2 : 0;//Tempest Silverback
+    case "krgjMyVHRd": return SearchDiscard($mainPlayer, element:"WATER");//Lakeside Serpent
     default: return 0;
   }
 }
