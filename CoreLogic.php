@@ -2179,6 +2179,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "PLljzdiMmq"://Invoke Dominance
       AddCurrentTurnEffect("PLljzdiMmq", $currentPlayer);
       break;
+    case "blq7qXGvWH"://Arcane Disposition
+      Draw($currentPlayer);
+      Draw($currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "MAGE")) Draw($currentPlayer);
+      AddCurrentTurnEffect("blq7qXGvWH", $currentPlayer);
+      break;
     case "sHzSmygjWY"://Gaia's Songbird
 
       break;

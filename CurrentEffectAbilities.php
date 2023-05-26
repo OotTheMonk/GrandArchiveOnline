@@ -341,7 +341,10 @@ function BeginEndPhaseEffectTriggers()
   global $currentTurnEffects, $mainPlayer;
   for($i = 0; $i < count($currentTurnEffects); $i += CurrentTurnPieces()) {
     switch($currentTurnEffects[$i]) {
-
+      case "blq7qXGvWH":
+        DiscardHand($mainPlayer);
+        WriteLog("Arcane Disposition discarded your hand");
+        break;
       default: break;
     }
   }
