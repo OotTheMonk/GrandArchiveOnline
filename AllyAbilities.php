@@ -5,7 +5,7 @@ function PlayAlly($cardID, $player, $subCards = "-")
   $allies = &GetAllies($player);
   array_push($allies, $cardID);
   array_push($allies, AllyEntersPlayState($cardID));
-  array_push($allies, AllyHealth($cardID));
+  array_push($allies, AllyHealth($cardID, $player));
   array_push($allies, 0); //Frozen
   array_push($allies, $subCards); //Subcards
   array_push($allies, GetUniqueId()); //Unique ID
@@ -75,13 +75,20 @@ function AllyPride($cardID)
     case "1Sl4Gq2OuV": return 4;//Blue Slime
     case "gKVMTAeLXQ": return 5;//Blazing Direwolf
     case "dZ960Hnkzv": return 10;//Vertus, Gaia's Roar
+    case "HWFWO0TB8l": return 5;//Tempest Silverback
     default: return -1;
   }
 }
 
-function AllyHealth($cardID)
+function AllyHealth($cardID, $playerID="")
 {
-  return CardLife($cardID);
+  $health = CardLife($cardID);
+  switch($cardID)
+  {
+    case "HWFWO0TB8l": if(IsClassBonusActive($playerID, "TAMER")) $health += 2;//Tempest Silverback;
+    default: break;
+  }
+  return $health;
 }
 
 function AllyDestroyedAbility($player, $index)
@@ -223,7 +230,7 @@ function AllyBeginEndTurnEffects()
   $mainAllies = &GetAllies($mainPlayer);
   for($i = 0; $i < count($mainAllies); $i += AllyPieces()) {
     if($mainAllies[$i+1] != 0) {
-      $mainAllies[$i+2] = AllyHealth($mainAllies[$i]) + $mainAllies[$i+7];
+      $mainAllies[$i+2] = AllyHealth($mainAllies[$i], $mainPlayer) + $mainAllies[$i+7];
       $mainAllies[$i+3] = 0;
       $mainAllies[$i+8] = 1;
     }
@@ -231,7 +238,7 @@ function AllyBeginEndTurnEffects()
   $defAllies = &GetAllies($defPlayer);
   for($i = 0; $i < count($defAllies); $i += AllyPieces()) {
     if($defAllies[$i+1] != 0) {
-      $defAllies[$i+2] = AllyHealth($defAllies[$i]) + $defAllies[$i + 7];
+      $defAllies[$i+2] = AllyHealth($defAllies[$i], $defPlayer) + $defAllies[$i + 7];
       $defAllies[$i+8] = 1;
     }
   }
