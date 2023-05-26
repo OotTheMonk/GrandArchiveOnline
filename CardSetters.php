@@ -296,7 +296,6 @@ function ClearNextCardArcaneBuffs($player, $playedCard="", $from="")
     {
       switch($currentTurnEffects[$i])
       {
-        case "DYN200": case "DYN201": case "DYN202": if(!IsStaticType(CardType($playedCard), $from, $playedCard))$remove = 1; break;
         default: break;
       }
     }

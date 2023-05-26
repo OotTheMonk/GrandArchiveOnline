@@ -91,30 +91,13 @@ function CharacterTakeDamageAbility($player, $index, $damage, $preventable)
 {
   $char = &GetPlayerCharacter($player);
   $otherPlayer = $player == 1 ? 1 : 2;
-  //CR 2.1 6.4.10f If an effect states that a prevention effect can not prevent the damage of an event, the prevention effect still applies to the event but its prevention amount is not reduced. Any additional modifications to the event by the prevention effect still occur.
   $type = "-";//Add this if it ever matters
   switch ($char[$index]) {
-    case "DYN213":
-      if ($damage > 0) {
-        if ($preventable) $damage -= 1;
-        $remove = 1;
-      }
-      break;
-    case "DYN214":
-      if ($damage > 0) {
-        if ($preventable) $damage -= 1;
-        $remove = 1;
-      }
-      break;
+
     default:
       break;
   }
   if ($remove == 1) {
-    if (HasWard($char[$index]) && (SearchCharacterActive($player, "DYN213") || $char[$index] == "DYN213") && CardType($char[$index]) != "T") {
-      $kimonoIndex = FindCharacterIndex($player, "DYN213");
-      $char[$kimonoIndex + 1] = 1;
-      GainResources($player, 1);
-    }
     DestroyCharacter($player, $index);
   }
   if ($damage <= 0) $damage = 0;
@@ -284,78 +267,8 @@ function MainCharacterHitAbilities()
   $mainCharacter = &GetPlayerCharacter($mainPlayer);
 
   for($i = 0; $i < count($mainCharacter); $i += CharacterPieces()) {
-    if(CardType($mainCharacter[$i]) == "W" || $mainCharacter[$i + 1] != "2") continue;
-    $characterID = ShiyanaCharacter($mainCharacter[$i], $mainPlayer);
     switch($characterID) {
-      case "WTR076": case "WTR077":
-        if(CardType($attackID) == "AA") {
-          AddLayer("TRIGGER", $mainPlayer, $characterID);
-          $mainCharacter[$i + 1] = 1;
-        }
-        break;
-      case "WTR079":
-        if(CardType($attackID) == "AA" && HitsInRow() >= 2) {
-          AddLayer("TRIGGER", $mainPlayer, $characterID);
-          $mainCharacter[$i + 1] = 1;
-        }
-        break;
-      case "WTR113": case "WTR114":
-        if($mainCharacter[$i + 1] == 2 && CardType($attackID) == "W" && $mainCharacter[$combatChainState[$CCS_WeaponIndex] + 1] != 0) {
-          $mainCharacter[$i + 1] = 1;
-          $mainCharacter[$combatChainState[$CCS_WeaponIndex] + 1] = 2;
-          ++$mainCharacter[$combatChainState[$CCS_WeaponIndex] + 5];
-        }
-        break;
-      case "WTR117":
-        if(CardType($attackID) == "W" && IsCharacterActive($mainPlayer, $i)) {
-          AddLayer("TRIGGER", $mainPlayer, $characterID);
-        }
-        break;
-      case "ARC152":
-        if(CardType($attackID) == "AA" && IsCharacterActive($mainPlayer, $i)) {
-          AddLayer("TRIGGER", $mainPlayer, $characterID);
-        }
-        break;
-      case "CRU047":
-        if(CardType($attackID) == "AA" && $mainCharacter[$i+5] == 1) {
-          AddCurrentTurnEffectFromCombat("CRU047", $mainPlayer);
-          $mainCharacter[$i+5] = 0;
-        }
-        break;
-      case "CRU053":
-        if(CardType($attackID) == "AA" && ClassContains($attackID, "NINJA", $mainPlayer) && IsCharacterActive($mainPlayer, $i)) {
-          AddLayer("TRIGGER", $mainPlayer, $characterID);
-        }
-        break;
-      case "ELE062": case "ELE063":
-        if(IsHeroAttackTarget() && CardType($attackID) == "AA" && !SearchAuras("ELE109", $mainPlayer)) {
-          PlayAura("ELE109", $mainPlayer);
-        }
-        break;
-      case "EVR037":
-        if(CardType($attackID) == "AA" && IsCharacterActive($mainPlayer, $i)) {
-          AddLayer("TRIGGER", $mainPlayer, $characterID);
-        }
-        break;
-      case "ROGUE016":
-        if (CardType($attackID) == "AA")
-        {
-          $deck = &GetDeck($mainPlayer);
-          array_unshift($deck, "ARC069");
-        }
-        break;
-      case "ROGUE024":
-        if (IsHeroAttackTarget()) {
-          $otherPlayer = ($mainPlayer == 1 ? 2 : 1);
-          DamageTrigger($otherPlayer, 1, "ATTACKHIT");
-        }
-        break;
-      case "ROGUE028":
-        if (IsHeroAttackTarget()) {
-          PlayAura("MON104", $mainPlayer);
-          PlayAura("MON104", $mainPlayer);
-        }
-        break;
+
       default:
         break;
     }
@@ -372,13 +285,7 @@ function MainCharacterAttackModifiers($index = -1, $onlyBuffs = false)
   for($i = 0; $i < count($mainCharacterEffects); $i += CharacterEffectPieces()) {
     if($mainCharacterEffects[$i] == $index) {
       switch($mainCharacterEffects[$i + 1]) {
-        case "WTR119": $modifier += 2; break;
-        case "WTR122": $modifier += 1; break;
-        case "WTR135": case "WTR136": case "WTR137": $modifier += 1; break;
-        case "CRU079": case "CRU080": $modifier += 1; break;
-        case "MON105": case "MON106": $modifier += 1; break;
-        case "MON113": case "MON114": case "MON115": $modifier += 1; break;
-        case "EVR055-1": $modifier += 1; break;
+
         default:
           break;
       }
@@ -389,11 +296,8 @@ function MainCharacterAttackModifiers($index = -1, $onlyBuffs = false)
   $mainCharacter = &GetPlayerCharacter($mainPlayer);
   for($i = 0; $i < count($mainCharacter); $i += CharacterPieces()) {
     if(!IsEquipUsable($mainPlayer, $i)) continue;
-    $characterID = ShiyanaCharacter($mainCharacter[$i]);
     switch($characterID) {
-      case "MON029": case "MON030":
-        if (HaveCharged($mainPlayer) && NumAttacksBlocking() > 0) $modifier += 1;
-        break;
+
       default: break;
     }
   }
@@ -408,9 +312,7 @@ function MainCharacterHitEffects()
   for($i = 0; $i < count($mainCharacterEffects); $i += 2) {
     if($mainCharacterEffects[$i] == $combatChainState[$CCS_WeaponIndex]) {
       switch($mainCharacterEffects[$i + 1]) {
-        case "WTR119":
-          Draw($mainPlayer);
-          break;
+
         default: break;
       }
     }
@@ -426,7 +328,7 @@ function MainCharacterGrantsGoAgain()
   for($i = 0; $i < count($mainCharacterEffects); $i += 2) {
     if($mainCharacterEffects[$i] == $combatChainState[$CCS_WeaponIndex]) {
       switch($mainCharacterEffects[$i + 1]) {
-        case "EVR055-2": return true;
+
         default: break;
       }
     }

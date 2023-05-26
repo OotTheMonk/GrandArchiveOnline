@@ -390,24 +390,7 @@ function CharacterPlayCardAbilities($cardID, $from)
     $characterID = ShiyanaCharacter($character[$i]);
     switch($characterID)
     {
-      case "UPR158":
-        if(GetClassState($currentPlayer, $CS_NumLess3PowAAPlayed) == 2 && AttackValue($cardID) <= 2)
-        {
-          AddCurrentTurnEffect($characterID, $currentPlayer);
-          WriteLog(CardLink($characterID, $characterID) . " gives the attack +1 and makes the damage unable to be prevented");
-          $character[$i+1] = 1;
-        }
-        break;
-      case "CRU046": case "ROGUE008":
-        if (GetClassState($currentPlayer, $CS_NumAttacks) == 2) {
-          AddCurrentTurnEffect($characterID, $currentPlayer);
-          $character[$i + 1] = 1;
-        }
-        break;
-      case "ROGUE025":
-        $resources = &GetResources($currentPlayer);
-        ++$resources[0];
-        break;
+
       default:
         break;
     }
@@ -416,24 +399,9 @@ function CharacterPlayCardAbilities($cardID, $from)
   $otherCharacter = &GetPlayerCharacter($otherPlayer);
   for($i=0; $i<count($otherCharacter); $i+=CharacterPieces())
   {
-    //WriteLog("OtherPlayer->".$otherCharacter[0]);
     $characterID = $otherCharacter[$i];
     switch($characterID)
     {
-      case "ROGUE026":
-        //WriteLog("cardID->".$cardID.",CardType->".CardType($cardID));
-        if(CardType($cardID) != "W" && CardType($cardID) != "E")
-        {
-          $generatedAmount = CardCost($cardID);
-          if($generatedAmount < 1) $generatedAmount = 1;
-          //WriteLog("GeneratedAmount->".$generatedAmount);
-          for($j = 0; $j < $generatedAmount; ++$j)
-          {
-            PutItemIntoPlayForPlayer("DYN243", $currentPlayer);
-            //PutItemIntoPlay(1, "DYN243");
-          }
-        }
-        break;
       default:
         break;
     }
@@ -695,10 +663,6 @@ function AttackDamageAbilities($damageDone)
   $attackID = $combatChain[0];
   switch($attackID)
   {
-    case "ELE036":
-      if(IsHeroAttackTarget() && $damageDone >= NumEquipment($defPlayer))
-      { AddCurrentTurnEffect("ELE036", $defPlayer); AddNextTurnEffect("ELE036", $defPlayer); }
-      break;
     default: break;
   }
 }
@@ -2214,6 +2178,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "PLljzdiMmq"://Invoke Dominance
       AddCurrentTurnEffect("PLljzdiMmq", $currentPlayer);
+      break;
+    case "sHzSmygjWY"://Gaia's Songbird
+
       break;
     default: break;
   }
