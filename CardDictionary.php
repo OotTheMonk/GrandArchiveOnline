@@ -312,6 +312,7 @@ function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFro
   switch($cardID) {
     case "2Ojrn7buPe": return "MATERIAL";//Tera Sight
     case "PLljzdiMmq": return "MATERIAL";//Invoke Dominance
+    case "cVRIUJdTW5": return "MATERIAL";//Meadowbloom Dryad
     default: return "GY";
   }
 }

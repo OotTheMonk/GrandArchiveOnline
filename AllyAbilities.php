@@ -14,6 +14,7 @@ function PlayAlly($cardID, $player, $subCards = "-")
   array_push($allies, 1); //Ability/effect uses
   $index = count($allies) - AllyPieces();
   CurrentEffectAllyEntersPlay($player, $index);
+  AllyEntersPlayAbilities($player);
   return $index;
 }
 
@@ -63,6 +64,23 @@ function AllyEntersPlayState($cardID)
       case "GXeEa0pe3B": return 1;//Rebellious Bull
       default: return 2;
     }
+}
+
+function AllyEntersPlayAbilities($player)
+{
+  $allies = &GetAllies($player);
+  for($i=0; $i<count($allies); $i+=AllyPieces())
+  {
+    switch($allies[$i])
+    {
+      case "cVRIUJdTW5"://Meadowbloom Dryad
+        AddDecisionQueue("MULTIZONEINDICES", $player, "MYALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $player, "<-", 1);
+        AddDecisionQueue("MZOP", $player, "BUFFALLY", 1);
+        break;
+      default: break;
+    }
+  }
 }
 
 function AllyPride($cardID)
