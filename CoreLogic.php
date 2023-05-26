@@ -2185,6 +2185,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       if(IsClassBonusActive($currentPlayer, "MAGE")) Draw($currentPlayer);
       AddCurrentTurnEffect("blq7qXGvWH", $currentPlayer);
       break;
+    case "e8nFGSSvgc"://Restorative Slash
+      Recover($currentPlayer, 3);
+      break;
     case "sHzSmygjWY"://Gaia's Songbird
 
       break;
