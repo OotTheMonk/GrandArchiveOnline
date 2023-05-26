@@ -125,6 +125,9 @@ function AllyDestroyedAbility($player, $index)
       Draw($player);
       PummelHit($player, fromDQ:IsDecisionQueueActive());
       break;
+    case "pnDhApDNvR"://Magus Disciple
+      if(IsClassBonusActive($player, "MAGE") || IsClassBonusActive($player, "CLERIC")) Draw($player);
+      break;
     default: break;
   }
 }
@@ -290,6 +293,7 @@ function AllyLevelModifiers($player)
       case "yDARN8eV6B": if(IsClassBonusActive($player, "MAGE")) ++$levelModifier; break;//Tome of Knowledge
       case "izGEjxBPo9": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$levelModifier; break;
       case "q2okpDFJw5": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$levelModifier; break; //Energetic Beastbonder
+      case "pnDhApDNvR": ++$levelModifier; break;//Magus Disciple
       default: break;
     }
     if($remove) DestroyAlly($player, $i);
