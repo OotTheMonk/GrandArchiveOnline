@@ -54,6 +54,7 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
   switch($cardID) {
     case "HWFWO0TB8l": return IsClassBonusActive($mainPlayer, "TAMER") ? 2 : 0;//Tempest Silverback
     case "krgjMyVHRd": return SearchDiscard($mainPlayer, element:"WATER");//Lakeside Serpent
+    case "LUfgfsWTTO": return SearchDiscard($mainPlayer, element:"FIRE");//Fiery Momentum
     default: return 0;
   }
 }
