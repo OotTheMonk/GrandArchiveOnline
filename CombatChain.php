@@ -3,46 +3,20 @@
 function ProcessHitEffect($cardID)
 {
   WriteLog("Processing hit effect for " . CardLink($cardID, $cardID));
-  global $currentPlayer, $combatChain;
-  if(CardType($combatChain[0]) == "AA" && (SearchAuras("CRU028", 1) || SearchAuras("CRU028", 2))) return;
+  global $mainPlayer, $combatChainState, $CCS_GoesWhereAfterLinkResolves;
   if(HitEffectsArePrevented()) return;
-  $cardID = ShiyanaCharacter($cardID);
-  $set = CardSet($cardID);
-  $class = CardClass($cardID);
-  if($set == "WTR") return WTRHitEffect($cardID);
-  else if($set == "ARC") {
-    switch ($class) {
-      case "MECHANOLOGIST": return ARCMechanologistHitEffect($cardID);
-      case "RANGER": return ARCRangerHitEffect($cardID);
-      case "RUNEBLADE": return ARCRunebladeHitEffect($cardID);
-      case "WIZARD": return ARCWizardHitEffect($cardID);
-      case "GENERIC": return ARCGenericHitEffect($cardID);
-    }
+  switch($cardID)
+  {
+    case "TgYTZg6TaG"://Wind Cutter
+      $memory = &GetMemory($mainPlayer);
+      $rand = GetRandom()%(count($memory)/MemoryPieces());
+      $toReveal = $memory[$rand*MemoryPieces()];
+      $wasRevealed = RevealCards($toReveal);
+      if($wasRevealed && CardElement($toReveal) == "WIND") $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "MEMORY";
+      break;
+    default: break;
   }
-  else if($set == "CRU") return CRUHitEffect($cardID);
-  else if ($set == "MON") {
-    switch ($class) {
-      case "BRUTE": return MONBruteHitEffect($cardID);
-      case "ILLUSIONIST": return MONIllusionistHitEffect($cardID);
-      case "RUNEBLADE": return MONRunebladeHitEffect($cardID);
-      case "WARRIOR": return MONWarriorHitEffect($cardID);
-      case "GENERIC": return MONGenericHitEffect($cardID);
-      case "NONE": return MONTalentHitEffect($cardID);
-      default: return "";
-    }
-  }
-  else if($set == "ELE") {
-    switch ($class) {
-      case "GUARDIAN": return ELEGuardianHitEffect($cardID);
-      case "RANGER": return ELERangerHitEffect($cardID);
-      case "RUNEBLADE": return ELERunebladeHitEffect($cardID);
-      default: return ELETalentHitEffect($cardID);
-    }
-  }
-  else if ($set == "EVR") return EVRHitEffect($cardID);
-  else if ($set == "UPR") return UPRHitEffect($cardID);
-  else if ($set == "DYN") return DYNHitEffect($cardID);
-  else if ($set == "OUT") return OUTHitEffect($cardID);
+
 }
 
 function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive = -1)
@@ -56,6 +30,7 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
     case "krgjMyVHRd": return SearchDiscard($mainPlayer, element:"WATER");//Lakeside Serpent
     case "LUfgfsWTTO": return SearchDiscard($mainPlayer, element:"FIRE");//Fiery Momentum
     case "vBetRTn3eW": if(IsClassBonusActive($mainPlayer, "WARRIOR")) { $memory = &GetMemory($mainPlayer); return count($memory) == 1 ? 2 : 0; } return 0;//Opening Cut
+    case "TgYTZg6TaG": return (IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0);
     default: return 0;
   }
 }

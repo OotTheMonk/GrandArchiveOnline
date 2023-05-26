@@ -949,6 +949,9 @@ function FinalizeChainLink($chainClosed = false)
         case "BANISH":
           BanishCardForPlayer($combatChain[$i - 1], $mainPlayer, "CC", $modifier);
           break;
+        case "MEMORY":
+          AddMemory($combatChain[$i - 1], $mainPlayer, "CC", "DOWN");
+          break;
         default:
           break;
       }
