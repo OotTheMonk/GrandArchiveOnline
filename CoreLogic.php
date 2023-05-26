@@ -2212,6 +2212,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
       AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       break;
+    case "PLljzdiMmq"://Invoke Dominance
+      AddCurrentTurnEffect("PLljzdiMmq", $currentPlayer);
+      break;
     default: break;
   }
 }

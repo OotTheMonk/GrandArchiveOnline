@@ -303,6 +303,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
 
 }
 
+//Preserve
 function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFrom="")
 {
   global $currentPlayer, $CS_NumWizardNonAttack, $CS_NumBoosted, $mainPlayer;
@@ -311,6 +312,7 @@ function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFro
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "ALLY";
   switch($cardID) {
     case "2Ojrn7buPe": return "MATERIAL";//Tera Sight
+    case "PLljzdiMmq": return "MATERIAL";//Invoke Dominance
     default: return "GY";
   }
 }
