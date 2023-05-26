@@ -119,6 +119,7 @@ function HasEfficiency($cardID)
     case "UfQh069mc3": return true;
     case "SSu2eQZFJV": return true;
     case "ZgA7cWNKGy": return true;
+    case "WsunZX4IlW": return true;//Ravaging Tempest
     default: return false;
   }
 }

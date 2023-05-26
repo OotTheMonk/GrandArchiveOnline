@@ -2201,6 +2201,23 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
       break;
+    case "WsunZX4IlW"://Ravaging Tempest
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      $theirAllies = &GetAllies($otherPlayer);
+      for($i=count($theirAllies)-AllyPieces(); $i>=0; $i-=AllyPieces())
+      {
+        $cardID = RemoveAlly($otherPlayer, $i);
+        BanishCardForPlayer($cardID, $otherPlayer, "PLAY", "-", $currentPlayer);
+        Draw($otherPlayer);
+      }
+      $myAllies = &GetAllies($currentPlayer);
+      for($i=count($myAllies)-AllyPieces(); $i>=0; $i-=AllyPieces())
+      {
+        $cardID = RemoveAlly($currentPlayer, $i);
+        BanishCardForPlayer($cardID, $currentPlayer, "PLAY", "-", $currentPlayer);
+        Draw($currentPlayer);
+      }
+      break;
     case "sHzSmygjWY"://Gaia's Songbird
 
       break;
