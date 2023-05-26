@@ -2197,6 +2197,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "FCbKYZcbNq,HAND");
       }
       break;
+    case "gvXQa57cxe"://Shout at Your Pets
+      if(SearchCount(SearchAllies($currentPlayer, "", "BEAST")) + SearchCount(SearchAllies($currentPlayer, "", "ANIMAL")) > 0) AddCurrentTurnEffect("gvXQa57cxe", $currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "TAMER"))
+      {
+        PummelHit($currentPlayer, true);
+        AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      }
+      break;
     default: break;
   }
 }

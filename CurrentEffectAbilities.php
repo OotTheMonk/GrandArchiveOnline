@@ -413,6 +413,7 @@ function CurrentEffectLevelModifier()
         case "MECS7RHRZ8": $levelModifier += 1; break;
         case "XLrHaYV9VB": $levelModifier += 1; break;
         case "9GWxrTMfBz": $levelModifier += 1; break;
+        case "gvXQa57cxe": $levelModifier += 1; break;
         default:
           break;
       }

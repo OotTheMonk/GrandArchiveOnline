@@ -164,7 +164,6 @@ function SpecificAllyAttackAbilities($attackID)
   $i = $combatChainState[$CCS_WeaponIndex];
   switch($allies[$i]) {
     case "DsiRzt0trX"://Hasty Messenger
-      WriteLog("test");
       PummelHit($mainPlayer, true);
       AddDecisionQueue("DRAW", $mainPlayer, "-", 1);
       break;
