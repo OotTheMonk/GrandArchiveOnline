@@ -2219,7 +2219,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       break;
     case "sHzSmygjWY"://Gaia's Songbird
-
+      $deck = &GetDeck($currentPlayer);
+      $toReveal = "";
+      for($i=0; $i<count($deck); ++$i)
+      {
+        $card = array_shift($deck);
+        if($toReveal != "") $toReveal .= ",";
+        $toReveal .= $card;
+        if(SubtypeContains($card, "BEAST", $currentPlayer)) { AddHand($currentPlayer, $card); break; }
+        else array_push($deck, $card);
+      }
+      RevealCards($toReveal, $currentPlayer);
       break;
     default: break;
   }
