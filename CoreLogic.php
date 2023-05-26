@@ -2205,6 +2205,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       }
       break;
+    case "hDUP6BY5Cx"://Cemetery Sentry
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYHAND:element=FIRE");
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZDISCARD", $currentPlayer, "HAND", 1);
+      AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      break;
     default: break;
   }
 }
