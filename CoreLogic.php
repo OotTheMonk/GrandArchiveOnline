@@ -2188,6 +2188,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "e8nFGSSvgc"://Restorative Slash
       Recover($currentPlayer, 3);
       break;
+    case "F2wp1v0Tyk"://Reclaim
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
+      break;
     case "sHzSmygjWY"://Gaia's Songbird
 
       break;
