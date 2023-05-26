@@ -117,6 +117,7 @@ function HasEfficiency($cardID)
   switch($cardID)
   {
     case "UfQh069mc3": return true;
+    case "SSu2eQZFJV": return true;
     default: return false;
   }
 }
