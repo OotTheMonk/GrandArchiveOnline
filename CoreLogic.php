@@ -110,7 +110,7 @@ function CalculateCharacterLevel($player)
 {
   $char = &GetPlayerCharacter($player);
   if(count($char) == 0) return 0;
-  return CardLevel($char[0]) + CurrentEffectLevelModifier() + AllyLevelModifiers($player);
+  return CardLevel($char[0]) + CurrentEffectLevelModifier() + AllyLevelModifiers($player) + ItemLevelModifiers($player);
 }
 
 function CacheCharacterLevel()

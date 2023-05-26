@@ -193,21 +193,22 @@ function SteamCounterLogic($item, $playerID, $uniqueID)
 {
   global $CS_NumBoosted;
   $counters = ETASteamCounters($item);
-  switch($item) {
-    case "CRU104":
-      $counters += GetClassState($playerID, $CS_NumBoosted);
-      break;
-    default: break;
-  }
-  if(ClassContains($item, "MECHANOLOGIST", $playerID)) {
-    $items = &GetItems($playerID);
-    for($i=count($items)-ItemPieces(); $i>=0; $i-=ItemPieces()) {
-      if($items[$i] == "DYN093") {
-        AddLayer("TRIGGER", $playerID, $items[$i], $uniqueID, "-", $items[$i+4]);
-      }
+  return $counters;
+}
+
+function ItemLevelModifiers($player)
+{
+  $items = &GetItems($player);
+  $modifier = 0;
+  for($i=0; $i<count($items); $i+=ItemPieces())
+  {
+    switch($items[$i])
+    {
+      case "JPcFmCpdiF": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$modifier; break;//Beastbond Ears
+      default: break;
     }
   }
-  return $counters;
+  return $modifier;
 }
 
 
