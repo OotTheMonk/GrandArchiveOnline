@@ -36,6 +36,12 @@ function SpecificCardLogic($player, $card, $lastResult)
       $deck = &GetDeck($player);
       if(count($deck) > 0 && RevealCards($deck[0], $player) && CardElement($deck[0]) == "WIND") { AddHand($player, array_shift($deck)); }
       return $lastResult;
+    case "ORBOFREGRET":
+      $count = SearchCount($lastResult);
+      for($i = 0; $i < $count; ++$i) Draw($player);
+      WriteLog(CardLink("BY0E8si926", "BY0E8si926") . " shuffled and drew " . $count . " cards");
+      return "1";
+      return $lastResult;
     default: return "";
   }
 }

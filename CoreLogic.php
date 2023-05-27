@@ -2098,6 +2098,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect("6e7lRnczfL", $currentPlayer);
       Draw($currentPlayer);
       break;
+    case "BY0E8si926"://Orb of Regret
+      $indices = GetMyHandIndices();
+      if($indices == "") return "";
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "MULTIHAND");
+      AddDecisionQueue("MULTICHOOSEHAND", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MULTIREMOVEHAND", $currentPlayer, "-", 1);
+      AddDecisionQueue("MULTIADDDECK", $currentPlayer, "-", 1);
+      AddDecisionQueue("SHUFFLEDECK", $currentPlayer, "-", 1);
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "ORBOFREGRET", 1);
+      break;
     case "UiohpiTtgs"://Chalice of Blood
       Draw($currentPlayer);
       Draw($currentPlayer);
