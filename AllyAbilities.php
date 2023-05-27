@@ -151,13 +151,17 @@ function AllyStartTurnAbilities($player)
   $allies = &GetAllies($player);
   for($i = 0; $i < count($allies); $i += AllyPieces()) {
     switch($allies[$i]) {
-      case "UPR414":
-        WriteLog(CardLink($allies[$i], $allies[$i]) . " lets you transform up to 1 ash into an Ashwing.");
-        Transform($player, "Ash", "UPR042", true);
-        break;
+      case "075L8pLihO": BuffAlly($player, $i, 3); break;
       default: break;
     }
   }
+}
+
+function BuffAlly($player, $index, $amount=1)
+{
+  $allies = &GetAllies($player);
+  $allies[$index+7] += $amount;//Buff counters
+  $allies[$index+2] += $amount;//Life
 }
 
 function AllyEnduranceCounters($cardID)
