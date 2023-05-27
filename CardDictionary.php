@@ -335,7 +335,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
   $isStaticType = IsStaticType($cardType, $from, $cardID);
   if($isStaticType) $cardType = GetAbilityType($cardID, $index, $from);
   if($phase == "M" && ($cardType == "A" || $cardType == "AA" || $cardType == "I")) return true;
-  if($phase == "INSTANT" && $cardType == "I") return true;
+  if($cardType == "I" && ($phase == "INSTANT" || $phase == "A" || $phase == "D")) return true;
   return false;
 
 }

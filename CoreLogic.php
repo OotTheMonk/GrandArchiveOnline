@@ -1624,6 +1624,12 @@ function NumEquipBlock()
     return $target[0] == "THEIRALLY";
   }
 
+  function AttackIndex()
+  {
+    global $combatChainState, $CCS_WeaponIndex;
+    return $combatChainState[$CCS_WeaponIndex];
+  }
+
   function IsSpecificAllyAttackTarget($player, $index)
   {
     $mzTarget = GetAttackTarget();
@@ -1639,7 +1645,7 @@ function NumEquipBlock()
   {
     global $combatChain;
     if(count($combatChain) == 0) return false;
-    return DelimStringContains(CardSubtype($combatChain[0]), "Ally");
+    return IsAlly($combatChain[0]);
   }
 
   function IsSpecificAllyAttacking($player, $index)
@@ -1650,7 +1656,7 @@ function NumEquipBlock()
     $weaponIndex = intval($combatChainState[$CCS_WeaponIndex]);
     if($weaponIndex == -1) return false;
     if($weaponIndex != $index) return false;
-    if(!DelimStringContains(CardSubtype($combatChain[0]), "Ally")) return false;
+    if(!IsAlly($combatChain[0])) return false;
     return true;
   }
 
@@ -2317,6 +2323,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "At1UNRG7F0"://Devastating Blow
       if(CharacterLevel($currentPlayer) >= 3 && (IsClassBonusActive($currentPlayer, "GUARDIAN") || IsClassBonusActive($currentPlayer, "WARRIOR"))) AddCurrentTurnEffect("At1UNRG7F0", $currentPlayer);
+      break;
+    case "cQlxapCsxQ"://Spontaneous Combustion
+      if(IsAllyAttacking()) DealArcane(4, source:"cQlxapCsxQ", resolvedTarget:"THEIRALLY-" . AttackIndex());
       break;
     default: break;
   }
