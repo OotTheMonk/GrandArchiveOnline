@@ -120,6 +120,7 @@ function HasEfficiency($cardID)
     case "SSu2eQZFJV": return true;
     case "ZgA7cWNKGy": return true;
     case "WsunZX4IlW": return true;//Ravaging Tempest
+    case "uTBsOYf15p": return true;//Purging Flames
     default: return false;
   }
 }

@@ -335,8 +335,7 @@ function ArsenalAttackAbilities()
   {
     switch($arsenal[$i])
     {
-      case "MON406": if($attackType == "AA" && $arsenal[$i+1] == "UP") LadyBarthimontAbility($mainPlayer, $i); break;
-      case "RVD007": if($attackType == "AA" && $attackVal >= 6 && $arsenal[$i+1] == "UP") ChiefRukutanAbility ($mainPlayer, $i); break;
+
       default: break;
     }
   }
@@ -353,7 +352,6 @@ function ArsenalAttackModifier()
   {
     switch($arsenal[$i])
     {
-      case "MON405": $modifier += ($arsenal[$i+1] == "UP" && $attackType == "W" && Is1H($attackID) ? 1 : 0); break;
       default: break;
     }
   }
@@ -372,8 +370,7 @@ function ArsenalHitEffects()
   {
     switch($arsenal[$i])
     {
-      case "MON405": if($arsenal[$i+1] == "UP" && $attackType == "W") MinervaThemisAbility($mainPlayer, $i); break;
-      case "DVR007": if($arsenal[$i+1] == "UP" && $attackType == "W" && $attackSubType == "Sword") HalaGoldenhelmAbility($mainPlayer, $i); break;
+
       default: break;
     }
   }
@@ -432,7 +429,6 @@ function ArsenalPlayCardAbilities($cardID)
   {
     switch($arsenal[$i])
     {
-      case "MON407": if($arsenal[$i+1] == "UP" && $cardType == "A") LordSutcliffeAbility($currentPlayer, $i); break;
       default: break;
     }
   }
@@ -2258,6 +2254,21 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
           AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
         }
         AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "soO3hjaVfN", 1);
+      }
+      break;
+    case "uTBsOYf15p"://Purge in Flames
+      $amount = IsClassBonusActive($currentPlayer, "MAGE") ? 3 : 2;
+      DealArcane($amount, source:"uTBsOYf15p", resolvedTarget:"THEIRCHAR-0");
+      $otherPlayer = $currentPlayer == 1 ? 2 : 1;
+      $theirAllies = &GetAllies($otherPlayer);
+      for($i=count($theirAllies) - AllyPieces(); $i>=0; $i-=AllyPieces())
+      {
+        DealArcane($amount, source:"uTBsOYf15p", resolvedTarget:"THEIRALLY-$i");
+      }
+      $allies = &GetAllies($currentPlayer);
+      for($i=count($allies) - AllyPieces(); $i>=0; $i-=AllyPieces())
+      {
+        DealArcane($amount, source:"uTBsOYf15p", resolvedTarget:"MYALLY-$i");
       }
       break;
     default: break;
