@@ -104,7 +104,8 @@ function AllyHealth($cardID, $playerID="")
   $health = CardLife($cardID);
   switch($cardID)
   {
-    case "HWFWO0TB8l": if(IsClassBonusActive($playerID, "TAMER")) $health += 2;//Tempest Silverback;
+    case "HWFWO0TB8l": if(IsClassBonusActive($playerID, "TAMER")) $health += 2;//Tempest Silverback
+    case "7NMFSRR5V3": if(SearchCount(SearchAllies($playerID, subtype:"BEAST")) > 0) $health += 1;//Fervent Beastmaster
     default: break;
   }
   return $health;

@@ -132,6 +132,7 @@ function HasVigor($cardID, $player)
     case "JEOxGQppTE"://Windrider Vanguard
       return IsClassBonusActive($player, "WARRIOR") || IsClassBonusActive($player, "GUARDIAN");
     case "3TfIePpuZO": return true;//Trained Hawk
+    case "7NMFSRR5V3": return IsClassBonusActive($player, "TAMER");
     default: return false;
   }
 }
