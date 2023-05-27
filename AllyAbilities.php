@@ -108,6 +108,7 @@ function AllyHealth($cardID, $playerID="")
   {
     case "HWFWO0TB8l": if(IsClassBonusActive($playerID, "TAMER")) $health += 2;//Tempest Silverback
     case "7NMFSRR5V3": if(SearchCount(SearchAllies($playerID, subtype:"BEAST")) > 0) $health += 1;//Fervent Beastmaster
+    case "csMiEObm2l": if(CharacterLevel($playerID) >= 3 && IsClassBonusActive($playerID, "WARRIOR")) $health += 1;//Strapping Conscript
     default: break;
   }
   return $health;
