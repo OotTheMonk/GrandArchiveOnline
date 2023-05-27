@@ -34,7 +34,8 @@ function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
     CloseCombatChain();
   }
   $cardID = $allies[$index];
-  AddGraveyard($cardID, $player, "PLAY");
+  if($cardID == "075L8pLihO") AddMemory($cardID, $player, "PLAY", "DOWN");
+  else AddGraveyard($cardID, $player, "PLAY");
   for($j = $index + AllyPieces() - 1; $j >= $index; --$j) unset($allies[$j]);
   $allies = array_values($allies);
   return $cardID;
