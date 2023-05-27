@@ -71224,7 +71224,7 @@ switch($cardID[8]) {
 case "O":
 switch($cardID[9]) {
 case "9":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71258,7 +71258,7 @@ switch($cardID[8]) {
 case "5":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71288,7 +71288,7 @@ switch($cardID[8]) {
 case "q":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71322,7 +71322,7 @@ switch($cardID[8]) {
 case "7":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71356,7 +71356,7 @@ switch($cardID[8]) {
 case "T":
 switch($cardID[9]) {
 case "O":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71390,7 +71390,7 @@ switch($cardID[8]) {
 case "h":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71420,7 +71420,7 @@ switch($cardID[8]) {
 case "f":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71454,7 +71454,7 @@ switch($cardID[8]) {
 case "h":
 switch($cardID[9]) {
 case "k":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71488,7 +71488,7 @@ switch($cardID[8]) {
 case "6":
 switch($cardID[9]) {
 case "E":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71526,7 +71526,7 @@ switch($cardID[8]) {
 case "R":
 switch($cardID[9]) {
 case "T":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71560,7 +71560,7 @@ switch($cardID[8]) {
 case "E":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71594,7 +71594,7 @@ switch($cardID[8]) {
 case "x":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71628,7 +71628,7 @@ switch($cardID[8]) {
 case "2":
 switch($cardID[9]) {
 case "l":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71662,7 +71662,7 @@ switch($cardID[8]) {
 case "W":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71700,7 +71700,7 @@ switch($cardID[8]) {
 case "R":
 switch($cardID[9]) {
 case "F":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71772,7 +71772,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "7":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71806,7 +71806,7 @@ switch($cardID[8]) {
 case "v":
 switch($cardID[9]) {
 case "R":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71836,7 +71836,7 @@ switch($cardID[8]) {
 case "R":
 switch($cardID[9]) {
 case "b":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71908,7 +71908,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "f":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71942,7 +71942,7 @@ switch($cardID[8]) {
 case "r":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -71976,7 +71976,7 @@ switch($cardID[8]) {
 case "B":
 switch($cardID[9]) {
 case "r":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72010,7 +72010,7 @@ switch($cardID[8]) {
 case "6":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72044,7 +72044,7 @@ switch($cardID[8]) {
 case "v":
 switch($cardID[9]) {
 case "d":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72150,7 +72150,7 @@ switch($cardID[8]) {
 case "A":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72184,7 +72184,7 @@ switch($cardID[8]) {
 case "9":
 switch($cardID[9]) {
 case "3":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72218,7 +72218,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "G":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72290,7 +72290,7 @@ switch($cardID[8]) {
 case "J":
 switch($cardID[9]) {
 case "A":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72324,7 +72324,7 @@ switch($cardID[8]) {
 case "w":
 switch($cardID[9]) {
 case "f":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72358,7 +72358,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72464,7 +72464,7 @@ switch($cardID[8]) {
 case "r":
 switch($cardID[9]) {
 case "K":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72498,7 +72498,7 @@ switch($cardID[8]) {
 case "b":
 switch($cardID[9]) {
 case "Y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72638,7 +72638,7 @@ switch($cardID[8]) {
 case "2":
 switch($cardID[9]) {
 case "u":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72672,7 +72672,7 @@ switch($cardID[8]) {
 case "X":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72706,7 +72706,7 @@ switch($cardID[8]) {
 case "x":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72740,7 +72740,7 @@ switch($cardID[8]) {
 case "E":
 switch($cardID[9]) {
 case "s":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72812,7 +72812,7 @@ switch($cardID[8]) {
 case "F":
 switch($cardID[9]) {
 case "s":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72846,7 +72846,7 @@ switch($cardID[8]) {
 case "A":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72880,7 +72880,7 @@ switch($cardID[8]) {
 case "t":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72914,7 +72914,7 @@ switch($cardID[8]) {
 case "V":
 switch($cardID[9]) {
 case "8":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -72948,7 +72948,7 @@ switch($cardID[8]) {
 case "i":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73016,7 +73016,7 @@ switch($cardID[8]) {
 case "V":
 switch($cardID[9]) {
 case "v":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73050,7 +73050,7 @@ switch($cardID[8]) {
 case "Y":
 switch($cardID[9]) {
 case "3":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73084,7 +73084,7 @@ switch($cardID[8]) {
 case "f":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73118,7 +73118,7 @@ switch($cardID[8]) {
 case "W":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73152,7 +73152,7 @@ switch($cardID[8]) {
 case "f":
 switch($cardID[9]) {
 case "V":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73186,7 +73186,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "S":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73258,7 +73258,7 @@ switch($cardID[8]) {
 case "F":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73292,7 +73292,7 @@ switch($cardID[8]) {
 case "3":
 switch($cardID[9]) {
 case "B":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73326,7 +73326,7 @@ switch($cardID[8]) {
 case "K":
 switch($cardID[9]) {
 case "o":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73360,7 +73360,7 @@ switch($cardID[8]) {
 case "q":
 switch($cardID[9]) {
 case "j":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73394,7 +73394,7 @@ switch($cardID[8]) {
 case "i":
 switch($cardID[9]) {
 case "r":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73428,7 +73428,7 @@ switch($cardID[8]) {
 case "g":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73462,7 +73462,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "W":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73534,7 +73534,7 @@ switch($cardID[8]) {
 case "V":
 switch($cardID[9]) {
 case "D":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73568,7 +73568,7 @@ switch($cardID[8]) {
 case "6":
 switch($cardID[9]) {
 case "D":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73602,7 +73602,7 @@ switch($cardID[8]) {
 case "s":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73636,7 +73636,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "f":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73708,7 +73708,7 @@ switch($cardID[8]) {
 case "g":
 switch($cardID[9]) {
 case "s":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73742,7 +73742,7 @@ switch($cardID[8]) {
 case "Q":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73776,7 +73776,7 @@ switch($cardID[8]) {
 case "c":
 switch($cardID[9]) {
 case "3":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73810,7 +73810,7 @@ switch($cardID[8]) {
 case "t":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73882,7 +73882,7 @@ switch($cardID[8]) {
 case "T":
 switch($cardID[9]) {
 case "c":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73916,7 +73916,7 @@ switch($cardID[8]) {
 case "G":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73950,7 +73950,7 @@ switch($cardID[8]) {
 case "I":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -73984,7 +73984,7 @@ switch($cardID[8]) {
 case "u":
 switch($cardID[9]) {
 case "B":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74018,7 +74018,7 @@ switch($cardID[8]) {
 case "T":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74056,7 +74056,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "4":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74090,7 +74090,7 @@ switch($cardID[8]) {
 case "E":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74124,7 +74124,7 @@ switch($cardID[8]) {
 case "Q":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74158,7 +74158,7 @@ switch($cardID[8]) {
 case "U":
 switch($cardID[9]) {
 case "H":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74192,7 +74192,7 @@ switch($cardID[8]) {
 case "y":
 switch($cardID[9]) {
 case "F":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74226,7 +74226,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "c":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74264,7 +74264,7 @@ switch($cardID[8]) {
 case "N":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74298,7 +74298,7 @@ switch($cardID[8]) {
 case "Q":
 switch($cardID[9]) {
 case "t":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74332,7 +74332,7 @@ switch($cardID[8]) {
 case "J":
 switch($cardID[9]) {
 case "V":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74366,7 +74366,7 @@ switch($cardID[8]) {
 case "1":
 switch($cardID[9]) {
 case "N":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74400,7 +74400,7 @@ switch($cardID[8]) {
 case "L":
 switch($cardID[9]) {
 case "w":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74434,7 +74434,7 @@ switch($cardID[8]) {
 case "5":
 switch($cardID[9]) {
 case "H":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74506,7 +74506,7 @@ switch($cardID[8]) {
 case "O":
 switch($cardID[9]) {
 case "1":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74540,7 +74540,7 @@ switch($cardID[8]) {
 case "v":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74578,7 +74578,7 @@ switch($cardID[8]) {
 case "C":
 switch($cardID[9]) {
 case "9":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74612,7 +74612,7 @@ switch($cardID[8]) {
 case "j":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74646,7 +74646,7 @@ switch($cardID[8]) {
 case "H":
 switch($cardID[9]) {
 case "8":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74680,7 +74680,7 @@ switch($cardID[8]) {
 case "6":
 switch($cardID[9]) {
 case "B":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74714,7 +74714,7 @@ switch($cardID[8]) {
 case "i":
 switch($cardID[9]) {
 case "1":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74786,7 +74786,7 @@ switch($cardID[8]) {
 case "Z":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74820,7 +74820,7 @@ switch($cardID[8]) {
 case "6":
 switch($cardID[9]) {
 case "I":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74854,7 +74854,7 @@ switch($cardID[8]) {
 case "W":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74888,7 +74888,7 @@ switch($cardID[8]) {
 case "S":
 switch($cardID[9]) {
 case "u":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74922,7 +74922,7 @@ switch($cardID[8]) {
 case "5":
 switch($cardID[9]) {
 case "p":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74956,7 +74956,7 @@ switch($cardID[8]) {
 case "D":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -74990,7 +74990,7 @@ switch($cardID[8]) {
 case "f":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75024,7 +75024,7 @@ switch($cardID[8]) {
 case "9":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75096,7 +75096,7 @@ switch($cardID[8]) {
 case "5":
 switch($cardID[9]) {
 case "t":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75130,7 +75130,7 @@ switch($cardID[8]) {
 case "l":
 switch($cardID[9]) {
 case "W":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75164,7 +75164,7 @@ switch($cardID[8]) {
 case "A":
 switch($cardID[9]) {
 case "C":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75194,7 +75194,7 @@ switch($cardID[8]) {
 case "G":
 switch($cardID[9]) {
 case "3":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75228,7 +75228,7 @@ switch($cardID[8]) {
 case "l":
 switch($cardID[9]) {
 case "U":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75262,7 +75262,7 @@ switch($cardID[8]) {
 case "P":
 switch($cardID[9]) {
 case "2":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75296,7 +75296,7 @@ switch($cardID[8]) {
 case "n":
 switch($cardID[9]) {
 case "w":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75368,7 +75368,7 @@ switch($cardID[8]) {
 case "y":
 switch($cardID[9]) {
 case "K":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75402,7 +75402,7 @@ switch($cardID[8]) {
 case "U":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75440,7 +75440,7 @@ switch($cardID[8]) {
 case "x":
 switch($cardID[9]) {
 case "J":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75474,7 +75474,7 @@ switch($cardID[8]) {
 case "p":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75508,7 +75508,7 @@ switch($cardID[8]) {
 case "k":
 switch($cardID[9]) {
 case "p":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75546,7 +75546,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "R":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75580,7 +75580,7 @@ switch($cardID[8]) {
 case "c":
 switch($cardID[9]) {
 case "w":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75614,7 +75614,7 @@ switch($cardID[8]) {
 case "K":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75652,7 +75652,7 @@ switch($cardID[8]) {
 case "I":
 switch($cardID[9]) {
 case "K":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75686,7 +75686,7 @@ switch($cardID[8]) {
 case "M":
 switch($cardID[9]) {
 case "R":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75720,7 +75720,7 @@ switch($cardID[8]) {
 case "C":
 switch($cardID[9]) {
 case "x":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75754,7 +75754,7 @@ switch($cardID[8]) {
 case "M":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75788,7 +75788,7 @@ switch($cardID[8]) {
 case "v":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75822,7 +75822,7 @@ switch($cardID[8]) {
 case "o":
 switch($cardID[9]) {
 case "b":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75860,7 +75860,7 @@ switch($cardID[8]) {
 case "R":
 switch($cardID[9]) {
 case "x":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75894,7 +75894,7 @@ switch($cardID[8]) {
 case "X":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75924,7 +75924,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75958,7 +75958,7 @@ switch($cardID[8]) {
 case "J":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -75996,7 +75996,7 @@ switch($cardID[8]) {
 case "i":
 switch($cardID[9]) {
 case "F":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76030,7 +76030,7 @@ switch($cardID[8]) {
 case "U":
 switch($cardID[9]) {
 case "S":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76064,7 +76064,7 @@ switch($cardID[8]) {
 case "T":
 switch($cardID[9]) {
 case "E":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76102,7 +76102,7 @@ switch($cardID[8]) {
 case "l":
 switch($cardID[9]) {
 case "x":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76136,7 +76136,7 @@ switch($cardID[8]) {
 case "T":
 switch($cardID[9]) {
 case "t":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76170,7 +76170,7 @@ switch($cardID[8]) {
 case "y":
 switch($cardID[9]) {
 case "k":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76204,7 +76204,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76238,7 +76238,7 @@ switch($cardID[8]) {
 case "N":
 switch($cardID[9]) {
 case "q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76272,7 +76272,7 @@ switch($cardID[8]) {
 case "R":
 switch($cardID[9]) {
 case "b":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76306,7 +76306,7 @@ switch($cardID[8]) {
 case "b":
 switch($cardID[9]) {
 case "P":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76340,7 +76340,7 @@ switch($cardID[8]) {
 case "B":
 switch($cardID[9]) {
 case "1":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76378,7 +76378,7 @@ switch($cardID[8]) {
 case "u":
 switch($cardID[9]) {
 case "M":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76412,7 +76412,7 @@ switch($cardID[8]) {
 case "l":
 switch($cardID[9]) {
 case "r":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76442,7 +76442,7 @@ switch($cardID[8]) {
 case "Q":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76476,7 +76476,7 @@ switch($cardID[8]) {
 case "w":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76510,7 +76510,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "Z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76544,7 +76544,7 @@ switch($cardID[8]) {
 case "F":
 switch($cardID[9]) {
 case "Y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76578,7 +76578,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "Z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76612,7 +76612,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "c":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76650,7 +76650,7 @@ switch($cardID[8]) {
 case "r":
 switch($cardID[9]) {
 case "3":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76684,7 +76684,7 @@ switch($cardID[8]) {
 case "y":
 switch($cardID[9]) {
 case "l":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76718,7 +76718,7 @@ switch($cardID[8]) {
 case "x":
 switch($cardID[9]) {
 case "w":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76752,7 +76752,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76790,7 +76790,7 @@ switch($cardID[8]) {
 case "Y":
 switch($cardID[9]) {
 case "S":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76824,7 +76824,7 @@ switch($cardID[8]) {
 case "j":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76854,7 +76854,7 @@ switch($cardID[8]) {
 case "I":
 switch($cardID[9]) {
 case "k":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76888,7 +76888,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "8":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76922,7 +76922,7 @@ switch($cardID[8]) {
 case "t":
 switch($cardID[9]) {
 case "w":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76956,7 +76956,7 @@ switch($cardID[8]) {
 case "E":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -76990,7 +76990,7 @@ switch($cardID[8]) {
 case "9":
 switch($cardID[9]) {
 case "p":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77024,7 +77024,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "F":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77058,7 +77058,7 @@ switch($cardID[8]) {
 case "G":
 switch($cardID[9]) {
 case "b":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77092,7 +77092,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "v":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77130,7 +77130,7 @@ switch($cardID[8]) {
 case "m":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77164,7 +77164,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77198,7 +77198,7 @@ switch($cardID[8]) {
 case "D":
 switch($cardID[9]) {
 case "Z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77232,7 +77232,7 @@ switch($cardID[8]) {
 case "s":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77270,7 +77270,7 @@ switch($cardID[8]) {
 case "2":
 switch($cardID[9]) {
 case "T":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77304,7 +77304,7 @@ switch($cardID[8]) {
 case "g":
 switch($cardID[9]) {
 case "9":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77338,7 +77338,7 @@ switch($cardID[8]) {
 case "7":
 switch($cardID[9]) {
 case "Y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77372,7 +77372,7 @@ switch($cardID[8]) {
 case "W":
 switch($cardID[9]) {
 case "H":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77410,7 +77410,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "E":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77444,7 +77444,7 @@ switch($cardID[8]) {
 case "j":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77482,7 +77482,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77516,7 +77516,7 @@ switch($cardID[8]) {
 case "L":
 switch($cardID[9]) {
 case "l":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77550,7 +77550,7 @@ switch($cardID[8]) {
 case "5":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77588,7 +77588,7 @@ switch($cardID[8]) {
 case "9":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77622,7 +77622,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77656,7 +77656,7 @@ switch($cardID[8]) {
 case "y":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77690,7 +77690,7 @@ switch($cardID[8]) {
 case "g":
 switch($cardID[9]) {
 case "c":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77728,7 +77728,7 @@ switch($cardID[8]) {
 case "k":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77758,7 +77758,7 @@ switch($cardID[8]) {
 case "g":
 switch($cardID[9]) {
 case "7":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77792,7 +77792,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "d":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77826,7 +77826,7 @@ switch($cardID[8]) {
 case "G":
 switch($cardID[9]) {
 case "k":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77860,7 +77860,7 @@ switch($cardID[8]) {
 case "6":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77894,7 +77894,7 @@ switch($cardID[8]) {
 case "Y":
 switch($cardID[9]) {
 case "S":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77928,7 +77928,7 @@ switch($cardID[8]) {
 case "T":
 switch($cardID[9]) {
 case "J":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77962,7 +77962,7 @@ switch($cardID[8]) {
 case "x":
 switch($cardID[9]) {
 case "s":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -77996,7 +77996,7 @@ switch($cardID[8]) {
 case "X":
 switch($cardID[9]) {
 case "n":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78034,7 +78034,7 @@ switch($cardID[8]) {
 case "P":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78068,7 +78068,7 @@ switch($cardID[8]) {
 case "6":
 switch($cardID[9]) {
 case "t":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78102,7 +78102,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78136,7 +78136,7 @@ switch($cardID[8]) {
 case "v":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78170,7 +78170,7 @@ switch($cardID[8]) {
 case "V":
 switch($cardID[9]) {
 case "C":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78204,7 +78204,7 @@ switch($cardID[8]) {
 case "o":
 switch($cardID[9]) {
 case "9":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78238,7 +78238,7 @@ switch($cardID[8]) {
 case "I":
 switch($cardID[9]) {
 case "n":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78272,7 +78272,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "C":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78310,7 +78310,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "M":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78344,7 +78344,7 @@ switch($cardID[8]) {
 case "Z":
 switch($cardID[9]) {
 case "O":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78382,7 +78382,7 @@ switch($cardID[8]) {
 case "I":
 switch($cardID[9]) {
 case "D":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78416,7 +78416,7 @@ switch($cardID[8]) {
 case "R":
 switch($cardID[9]) {
 case "D":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78450,7 +78450,7 @@ switch($cardID[8]) {
 case "3":
 switch($cardID[9]) {
 case "i":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78484,7 +78484,7 @@ switch($cardID[8]) {
 case "D":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78518,7 +78518,7 @@ switch($cardID[8]) {
 case "E":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78552,7 +78552,7 @@ switch($cardID[8]) {
 case "P":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78590,7 +78590,7 @@ switch($cardID[8]) {
 case "C":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78624,7 +78624,7 @@ switch($cardID[8]) {
 case "u":
 switch($cardID[9]) {
 case "u":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78658,7 +78658,7 @@ switch($cardID[8]) {
 case "F":
 switch($cardID[9]) {
 case "0":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78692,7 +78692,7 @@ switch($cardID[8]) {
 case "H":
 switch($cardID[9]) {
 case "j":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78730,7 +78730,7 @@ switch($cardID[8]) {
 case "n":
 switch($cardID[9]) {
 case "Y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78764,7 +78764,7 @@ switch($cardID[8]) {
 case "j":
 switch($cardID[9]) {
 case "q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78798,7 +78798,7 @@ switch($cardID[8]) {
 case "x":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78832,7 +78832,7 @@ switch($cardID[8]) {
 case "u":
 switch($cardID[9]) {
 case "V":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78866,7 +78866,7 @@ switch($cardID[8]) {
 case "r":
 switch($cardID[9]) {
 case "G":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78900,7 +78900,7 @@ switch($cardID[8]) {
 case "Z":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78938,7 +78938,7 @@ switch($cardID[8]) {
 case "n":
 switch($cardID[9]) {
 case "F":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -78972,7 +78972,7 @@ switch($cardID[8]) {
 case "Y":
 switch($cardID[9]) {
 case "B":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79006,7 +79006,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "b":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79036,7 +79036,7 @@ switch($cardID[8]) {
 case "S":
 switch($cardID[9]) {
 case "A":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79074,7 +79074,7 @@ switch($cardID[8]) {
 case "c":
 switch($cardID[9]) {
 case "B":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79108,7 +79108,7 @@ switch($cardID[8]) {
 case "s":
 switch($cardID[9]) {
 case "w":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79142,7 +79142,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "i":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79176,7 +79176,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "F":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79210,7 +79210,7 @@ switch($cardID[8]) {
 case "m":
 switch($cardID[9]) {
 case "q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79248,7 +79248,7 @@ switch($cardID[8]) {
 case "2":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79282,7 +79282,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "C":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79316,7 +79316,7 @@ switch($cardID[8]) {
 case "m":
 switch($cardID[9]) {
 case "R":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79354,7 +79354,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79392,7 +79392,7 @@ switch($cardID[8]) {
 case "X":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79426,7 +79426,7 @@ switch($cardID[8]) {
 case "g":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79460,7 +79460,7 @@ switch($cardID[8]) {
 case "h":
 switch($cardID[9]) {
 case "O":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79498,7 +79498,7 @@ switch($cardID[8]) {
 case "U":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79532,7 +79532,7 @@ switch($cardID[8]) {
 case "J":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79566,7 +79566,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "v":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79600,7 +79600,7 @@ switch($cardID[8]) {
 case "E":
 switch($cardID[9]) {
 case "V":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79634,7 +79634,7 @@ switch($cardID[8]) {
 case "V":
 switch($cardID[9]) {
 case "B":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79664,7 +79664,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "K":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79702,7 +79702,7 @@ switch($cardID[8]) {
 case "C":
 switch($cardID[9]) {
 case "J":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79736,7 +79736,7 @@ switch($cardID[8]) {
 case "O":
 switch($cardID[9]) {
 case "I":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79770,7 +79770,7 @@ switch($cardID[8]) {
 case "R":
 switch($cardID[9]) {
 case "d":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79804,7 +79804,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "2":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79842,7 +79842,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "H":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79876,7 +79876,7 @@ switch($cardID[8]) {
 case "h":
 switch($cardID[9]) {
 case "i":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79910,7 +79910,7 @@ switch($cardID[8]) {
 case "Z":
 switch($cardID[9]) {
 case "8":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79944,7 +79944,7 @@ switch($cardID[8]) {
 case "I":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -79982,7 +79982,7 @@ switch($cardID[8]) {
 case "Z":
 switch($cardID[9]) {
 case "q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80016,7 +80016,7 @@ switch($cardID[8]) {
 case "I":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80050,7 +80050,7 @@ switch($cardID[8]) {
 case "f":
 switch($cardID[9]) {
 case "N":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80084,7 +80084,7 @@ switch($cardID[8]) {
 case "W":
 switch($cardID[9]) {
 case "Y":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80122,7 +80122,7 @@ switch($cardID[8]) {
 case "9":
 switch($cardID[9]) {
 case "A":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80156,7 +80156,7 @@ switch($cardID[8]) {
 case "V":
 switch($cardID[9]) {
 case "3":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80190,7 +80190,7 @@ switch($cardID[8]) {
 case "Z":
 switch($cardID[9]) {
 case "C":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80224,7 +80224,7 @@ switch($cardID[8]) {
 case "S":
 switch($cardID[9]) {
 case "O":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80258,7 +80258,7 @@ switch($cardID[8]) {
 case "f":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80292,7 +80292,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "i":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80326,7 +80326,7 @@ switch($cardID[8]) {
 case "h":
 switch($cardID[9]) {
 case "U":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80364,7 +80364,7 @@ switch($cardID[8]) {
 case "B":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80398,7 +80398,7 @@ switch($cardID[8]) {
 case "L":
 switch($cardID[9]) {
 case "0":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80436,7 +80436,7 @@ switch($cardID[8]) {
 case "T":
 switch($cardID[9]) {
 case "R":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80470,7 +80470,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "W":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80504,7 +80504,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "g":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80538,7 +80538,7 @@ switch($cardID[8]) {
 case "K":
 switch($cardID[9]) {
 case "X":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80576,7 +80576,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "H":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80610,7 +80610,7 @@ switch($cardID[8]) {
 case "3":
 switch($cardID[9]) {
 case "2":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80644,7 +80644,7 @@ switch($cardID[8]) {
 case "e":
 switch($cardID[9]) {
 case "O":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80678,7 +80678,7 @@ switch($cardID[8]) {
 case "a":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80712,7 +80712,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "x":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80746,7 +80746,7 @@ switch($cardID[8]) {
 case "u":
 switch($cardID[9]) {
 case "e":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80784,7 +80784,7 @@ switch($cardID[8]) {
 case "Z":
 switch($cardID[9]) {
 case "R":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80818,7 +80818,7 @@ switch($cardID[8]) {
 case "q":
 switch($cardID[9]) {
 case "q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80852,7 +80852,7 @@ switch($cardID[8]) {
 case "W":
 switch($cardID[9]) {
 case "h":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80890,7 +80890,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "k":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80924,7 +80924,7 @@ switch($cardID[8]) {
 case "N":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80958,7 +80958,7 @@ switch($cardID[8]) {
 case "b":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -80992,7 +80992,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81030,7 +81030,7 @@ switch($cardID[8]) {
 case "r":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81064,7 +81064,7 @@ switch($cardID[8]) {
 case "N":
 switch($cardID[9]) {
 case "G":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81102,7 +81102,7 @@ switch($cardID[8]) {
 case "w":
 switch($cardID[9]) {
 case "L":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81136,7 +81136,7 @@ switch($cardID[8]) {
 case "X":
 switch($cardID[9]) {
 case "U":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81174,7 +81174,7 @@ switch($cardID[8]) {
 case "4":
 switch($cardID[9]) {
 case "E":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81208,7 +81208,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81246,7 +81246,7 @@ switch($cardID[8]) {
 case "0":
 switch($cardID[9]) {
 case "j":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81280,7 +81280,7 @@ switch($cardID[8]) {
 case "8":
 switch($cardID[9]) {
 case "l":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81314,7 +81314,7 @@ switch($cardID[8]) {
 case "A":
 switch($cardID[9]) {
 case "Q":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -81352,7 +81352,7 @@ switch($cardID[8]) {
 case "7":
 switch($cardID[9]) {
 case "6":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;

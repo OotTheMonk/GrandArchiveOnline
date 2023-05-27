@@ -2312,6 +2312,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "8nbmykyXcw"://Conceal
       AddCurrentTurnEffect("8nbmykyXcw", $currentPlayer);
       break;
+    case "914hZjxDL0"://Peer into Mana
+      PlayAura("ENLIGHTEN", $currentPlayer, 2+CharacterLevel($currentPlayer));
+      break;
     default: break;
   }
 }
