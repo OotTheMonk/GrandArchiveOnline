@@ -1785,6 +1785,7 @@ function SelfCostModifier($cardID)
   switch($cardID) {
     case "145y6KBhxe": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0); break;//Focused Flames
     case "RIVahUIQVD": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -2 : 0); break;//Fireball
+    case "MwXulmKsIg": $modifier += (IsClassBonusActive($currentPlayer, "TAMER") ? -1 : 0); break;//Song of Return
     default: break;
   }
   return $modifier;
@@ -2285,6 +2286,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "n8wyfG9hbY"://Fairy Whispers
       PlayerOpt($currentPlayer, 3);
       AddDecisionQueue("SPECIFICCARD", $currentPlayer, "FAIRYWHISPERS");
+      break;
+    case "MwXulmKsIg"://Song of Return
+      for($i=0; $i<2; ++$i) {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
+      }
       break;
     default: break;
   }
