@@ -313,3 +313,12 @@ function AllyEndTurnAbilities()
     }
   }
 }
+
+function GiveAlliesHealthBonus($player, $amount)
+{
+  $allies = &GetAllies($player);
+  for($i=0; $i<count($allies); $i+=AllyPieces())
+  {
+    $allies[$i+2] += $amount;
+  }
+}

@@ -2139,11 +2139,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect("dZ960Hnkzv", $currentPlayer);
       break;
     case "dsAqxMezGb"://Favorable Winds
-      $allies = &GetAllies($currentPlayer);
-      for($i=0; $i<count($allies); $i+=AllyPieces())
-      {
-        ++$allies[$i+2];
-      }
+      GiveAlliesHealthBonus($currentPlayer, 1);
       break;
     case "dY36bObi9p"://Reckless Researcher
       if($from != "PLAY")
@@ -2293,6 +2289,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
         AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
       }
+      break;
+    case "4hbA9FT56L"://Song of Nurturing
+      GiveAlliesHealthBonus($currentPlayer, 2);
+      if(IsClassBonusActive($currentPlayer, "TAMER")) AddCurrentTurnEffect("4hbA9FT56L", $currentPlayer);
       break;
     default: break;
   }

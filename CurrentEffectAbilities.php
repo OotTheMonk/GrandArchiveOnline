@@ -25,6 +25,7 @@ function EffectAttackModifier($cardID)
   {
     case "dZ960Hnkzv": return SearchCount(SearchAllies($mainPlayer, "", "BEAST")) + SearchCount(SearchAllies($mainPlayer, "", "ANIMAL"));//Vertus, Gaia's Roar
     case "FCbKYZcbNq": return 2;
+    case "4hbA9FT56L": return 1;
     default: return 0;
   }
 }
@@ -307,6 +308,7 @@ function IsCombatEffectActive($cardID)
   {
     case "dZ960Hnkzv": return IsAlly($attackID);
     case "FCbKYZcbNq": return true;
+    case "4hbA9FT56L": return IsAlly($attackID);
     default: return false;
   }
 }
@@ -318,6 +320,7 @@ function IsCombatEffectPersistent($cardID)
   $cardID = ShiyanaCharacter($effectArr[0]);
   switch($cardID) {
     case "dZ960Hnkzv": return true;
+    case "4hbA9FT56L": return true;
     default:
       return false;
   }
