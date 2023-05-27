@@ -2355,6 +2355,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect("Kc5Bktw0yK", $currentPlayer);
       if(IsHarmonizeActive($currentPlayer)) Draw($currentPlayer);
       break;
+    case "L9yBqoOshh"://Spark Alight
+      DealArcane(ArcaneDamage($cardID), 2, "PLAYCARD", $cardID, resolvedTarget:$target);
+      break;
     default: break;
   }
 }
@@ -2404,6 +2407,7 @@ function PlayRequiresTarget($cardID)
     case "RIVahUIQVD": return 2;//Fireball
     case "rXHo9fLU32": return 2;//Ignite the Soul
     case "SrBA7h2a1N": return 2;//Freezing Hail
+    case "L9yBqoOshh": return 2;//Spark Alight
     default: return -1;
   }
 }
@@ -2417,6 +2421,7 @@ function PlayRequiresTarget($cardID)
       case "RIVahUIQVD": return 1+CharacterLevel($currentPlayer);
       case "rXHo9fLU32": return 1;//Ignite the Soul
       case "SrBA7h2a1N": return 2;//Freezing Hail
+      case "L9yBqoOshh": return (IsClassBonusActive($currentPlayer, "MAGE") ? 3 : 2);//Spark Alight
       return 0;
     }
   }
