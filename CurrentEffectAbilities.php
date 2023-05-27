@@ -429,6 +429,7 @@ function CurrentEffectLevelModifier()
         case "PLljzdiMmq": $levelModifier += 3; break;
         case "zpkcFs72Ah": $levelModifier += 1; break;
         case "aKgdkLSBza": $levelModifier += 1; break;//Wilderness Harpist
+        case "dmfoA7jOjy": $levelModifier += 2; break;//Crystal of Empowerment
         default:
           break;
       }

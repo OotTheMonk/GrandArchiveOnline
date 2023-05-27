@@ -2113,6 +2113,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       Draw($currentPlayer);
       Draw($currentPlayer);
       break;
+    case "dmfoA7jOjy"://Crystal of Empowerment
+      AddCurrentTurnEffect("dmfoA7jOjy", $currentPlayer);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
