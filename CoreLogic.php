@@ -2091,6 +2091,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       PlayerOpt($currentPlayer, CharacterLevel($currentPlayer));
       AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SCRYTHESKIES", 1);
       break;
+    case "UiohpiTtgs"://Chalice of Blood
+      Draw($currentPlayer);
+      Draw($currentPlayer);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
