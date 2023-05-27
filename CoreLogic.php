@@ -1792,6 +1792,7 @@ function SelfCostModifier($cardID)
     case "145y6KBhxe": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0); break;//Focused Flames
     case "RIVahUIQVD": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -2 : 0); break;//Fireball
     case "MwXulmKsIg": $modifier += (IsClassBonusActive($currentPlayer, "TAMER") ? -1 : 0); break;//Song of Return
+    case "DBJ4DuLABr": $modifier += (IsClassBonusActive($currentPlayer, "ASSASSIN") ? -2 : 0); break;//Shroud in Mist
     default: break;
   }
   return $modifier;
@@ -2336,6 +2337,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "cQlxapCsxQ"://Spontaneous Combustion
       if(IsAllyAttacking()) DealArcane(4, source:"cQlxapCsxQ", resolvedTarget:"THEIRALLY-" . AttackIndex());
+      break;
+    case "DBJ4DuLABr"://Shroud in Mist
+      AddCurrentTurnEffect("DBJ4DuLABr", $currentPlayer);
       break;
     default: break;
   }

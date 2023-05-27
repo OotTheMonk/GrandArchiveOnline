@@ -1461,7 +1461,8 @@ function GetTargetOfAttack()
   $defPlayer = $mainPlayer == 1 ? 2 : 1;
   $numTargets = 1;
   $targets = "THEIRCHAR-0";
-  if(!SearchCurrentTurnEffects("8nbmykyXcw", $defPlayer))
+  //Conceal + Shroud in Mist
+  if(!SearchCurrentTurnEffects("8nbmykyXcw", $defPlayer) && !SearchCurrentTurnEffects("DBJ4DuLABr", $defPlayer))
   {
     $allies = &GetAllies($defPlayer);
     for($i = 0; $i < count($allies); $i += AllyPieces()) {
