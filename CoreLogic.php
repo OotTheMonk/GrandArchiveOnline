@@ -2298,8 +2298,19 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       GiveAlliesHealthBonus($currentPlayer, 2);
       if(IsClassBonusActive($currentPlayer, "TAMER")) AddCurrentTurnEffect("4hbA9FT56L", $currentPlayer);
       break;
+    case "7tUvIHeo0i"://Increasing Danger
+      Draw($currentPlayer);
+      DrawIntoMemory(1);
+      DrawIntoMemory(2);
+      break;
     default: break;
   }
+}
+
+function DrawIntoMemory($player)
+{
+  $deck = &GetDeck($player);
+  if(count($deck) > 0) AddMemory(array_shift($deck), $player, "DECK", "DOWN");
 }
 
 function Mill($player, $amount)

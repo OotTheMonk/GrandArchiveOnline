@@ -30,8 +30,7 @@ function SpecificCardLogic($player, $card, $lastResult)
       if(CardElement($lastResult) == "FIRE") DealArcane(2, 2, "PLAYCARD", "BqDw4Mei4C", true, $player);
       return $lastResult;
     case "SCRYTHESKIES":
-      $deck = &GetDeck($player);
-      if(count($deck) > 0) AddMemory(array_shift($deck), $player, "DECK", "DOWN");
+      DrawIntoMemory($player);
       return $lastResult;
     case "FAIRYWHISPERS":
       $deck = &GetDeck($player);
