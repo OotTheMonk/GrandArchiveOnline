@@ -1989,7 +1989,7 @@ function IsClassBonusActive($player, $class)
 
 function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalCosts = "-")
 {
-  global $currentPlayer, $layers;
+  global $currentPlayer, $layers, $CS_NumAttacks;
   $cardID = ShiyanaCharacter($cardID);
   $set = CardSet($cardID);
   $class = CardClass($cardID);
@@ -2302,6 +2302,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       Draw($currentPlayer);
       DrawIntoMemory(1);
       DrawIntoMemory(2);
+      break;
+    case "7UXGwC7lSO"://Tactful Seargeant
+      if($from != "PLAY" && GetClassState($currentPlayer, $CS_NumAttacks) > 0)
+      {
+        DrawIntoMemory($currentPlayer);
+      }
       break;
     default: break;
   }
