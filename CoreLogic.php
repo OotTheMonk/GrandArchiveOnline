@@ -2272,6 +2272,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         DealArcane($amount, source:"uTBsOYf15p", resolvedTarget:"MYALLY-$i");
       }
       break;
+    case "NwswAHojeq"://Young Beastbonder
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
+      AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "GETCARDID", 1);
+      AddDecisionQueue("ALLCARDSUBTYPEORPASS", $currentPlayer, "BEAST", 1);
+      AddDecisionQueue("PASSPARAMETER", $currentPlayer, "{0}", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
+      break;
     default: break;
   }
 }
