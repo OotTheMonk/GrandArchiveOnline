@@ -2116,6 +2116,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "dmfoA7jOjy"://Crystal of Empowerment
       AddCurrentTurnEffect("dmfoA7jOjy", $currentPlayer);
       break;
+    case "hLHpI5rHIK"://Bauble of Mending
+      Draw($currentPlayer);
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "ADDHEALTH", 1);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
