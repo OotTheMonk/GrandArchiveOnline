@@ -148,7 +148,11 @@ function HasTrueSight($cardID, $player)
 
 function HasStealth($cardID, $player)
 {
-  
+  switch($cardID)
+  {
+    case "aKgdkLSBza": return IsClassBonusActive($player, "TAMER");//Wilderness Harpist
+    default: return false;
+  }
 }
 
 //Minimum cost of the card

@@ -1262,6 +1262,7 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
     SetClassState($currentPlayer, $CS_PlayedAsInstant, "0");
     IncrementClassState($currentPlayer, $CS_NumCardsPlayed);
     if(SubtypeContains($cardID, "MELODY")) IncrementClassState($currentPlayer, $CS_NumMelodyPlayed);
+    AllyPlayCardAbility($cardID);
     if(IsStaticType($cardType, $from, $cardID)) {
       $playType = GetResolvedAbilityType($cardID, $from);
       $abilityType = $playType;

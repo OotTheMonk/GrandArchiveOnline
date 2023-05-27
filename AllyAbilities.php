@@ -195,6 +195,23 @@ function AllyAttackAbilities($attackID)
   }
 }
 
+function AllyPlayCardAbility($cardID, $player="")
+{
+  global $currentPlayer;
+  if($player == "") $player = $currentPlayer;
+  $allies = &GetAllies($player);
+  for($i=0; $i<count($allies); $i+=AllyPieces())
+  {
+    switch($allies[$i])
+    {
+      case "aKgdkLSBza"://Wilderness Harpist
+        if(SubtypeContains($cardID, "HARMONY") || SubtypeContains($cardID, "MELODY")) AddCurrentTurnEffect("aKgdkLSBza", $player);
+        break;
+      default: break;
+    }
+  }
+}
+
 function IsAlly($cardID, $player="")
 {
   global $currentPlayer;

@@ -386,7 +386,6 @@ function CurrentEffectNameModifier($effectID, $effectParameter)
 function CurrentEffectAllyEntersPlay($player, $index)
 {
   global $currentTurnEffects;
-  $levelModifier = 0;
   $allies = &GetAllies($player);
   for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
     $remove = false;
@@ -424,6 +423,7 @@ function CurrentEffectLevelModifier()
         case "gvXQa57cxe": $levelModifier += 1; break;
         case "PLljzdiMmq": $levelModifier += 3; break;
         case "zpkcFs72Ah": $levelModifier += 1; break;
+        case "aKgdkLSBza": $levelModifier += 1; break;//Wilderness Harpist
         default:
           break;
       }
