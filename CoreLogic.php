@@ -2315,6 +2315,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "914hZjxDL0"://Peer into Mana
       PlayAura("ENLIGHTEN", $currentPlayer, 2+CharacterLevel($currentPlayer));
       break;
+    case "At1UNRG7F0"://Devastating Blow
+      if(CharacterLevel($currentPlayer) >= 3 && (IsClassBonusActive($currentPlayer, "GUARDIAN") || IsClassBonusActive($currentPlayer, "WARRIOR"))) AddCurrentTurnEffect("At1UNRG7F0", $currentPlayer);
+      break;
     default: break;
   }
 }

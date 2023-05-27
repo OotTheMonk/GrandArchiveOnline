@@ -26,6 +26,7 @@ function EffectAttackModifier($cardID)
     case "dZ960Hnkzv": return SearchCount(SearchAllies($mainPlayer, "", "BEAST")) + SearchCount(SearchAllies($mainPlayer, "", "ANIMAL"));//Vertus, Gaia's Roar
     case "FCbKYZcbNq": return 2;
     case "4hbA9FT56L": return 1;
+    case "At1UNRG7F0": return 4;
     default: return 0;
   }
 }
@@ -311,6 +312,7 @@ function IsCombatEffectActive($cardID)
     case "dZ960Hnkzv": return IsAlly($attackID);
     case "FCbKYZcbNq": return true;
     case "4hbA9FT56L": return IsAlly($attackID);
+    case "At1UNRG7F0": return true;//Devastating Blow
     default: return false;
   }
 }
