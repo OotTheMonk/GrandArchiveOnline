@@ -2351,8 +2351,18 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "DBJ4DuLABr"://Shroud in Mist
       AddCurrentTurnEffect("DBJ4DuLABr", $currentPlayer);
       break;
+    case "Kc5Bktw0yK"://Empowering Harmony
+      AddCurrentTurnEffect("Kc5Bktw0yK", $currentPlayer);
+      if(IsHarmonizeActive($currentPlayer)) Draw($currentPlayer);
+      break;
     default: break;
   }
+}
+
+function IsHarmonizeActive($player)
+{
+  global $CS_NumMelodyPlayed;
+  return GetClassState($player, $CS_NumMelodyPlayed) > 0;
 }
 
 function DrawIntoMemory($player)
