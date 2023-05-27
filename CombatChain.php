@@ -21,9 +21,7 @@ function ProcessHitEffect($cardID)
 
 function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive = -1)
 {
-  global $mainPlayer, $mainPitch, $CS_Num6PowDisc, $combatChain, $combatChainState, $mainAuras, $CS_CardsBanished;
-  global $CS_NumCharged, $CCS_NumBoosted, $defPlayer, $CS_ArcaneDamageTaken;
-  global $CS_NumNonAttackCards, $CS_NumPlayedFromBanish, $CS_NumAuras, $CS_AtksWWeapon;
+  global $mainPlayer, $defPlayer, $combatChain, $combatChainState;
   if($repriseActive == -1) $repriseActive = RepriseActive();
   switch($cardID) {
     case "HWFWO0TB8l": return IsClassBonusActive($mainPlayer, "TAMER") ? 2 : 0;//Tempest Silverback
@@ -33,6 +31,12 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
     case "TgYTZg6TaG": return (IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0);
     case "7NMFSRR5V3": return SearchCount(SearchAllies($playerID, subtype:"BEAST")) > 0 ? 1 : 0;//Fervent Beastmaster
     case "csMiEObm2l": return CharacterLevel($playerID) >= 3 && IsClassBonusActive($playerID, "WARRIOR") ? 1 :0;//Strapping Conscript
+    case "LNSRQ5xW6E"://Stillwater Patrol
+      $target = GetAttackTarget();
+      $targetArr = explode("-", $target);
+      if($targetArr != "THEIRALLY") return 0;
+      $allies = &GetAllies($defPlayer);
+      return HasStealth($allies[$targetArr[1]], $defPlayer, $targetArr[1]) ? 1 : 0;
     default: return 0;
   }
 }

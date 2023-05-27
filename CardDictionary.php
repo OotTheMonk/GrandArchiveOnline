@@ -142,6 +142,7 @@ function HasTrueSight($cardID, $player)
   switch($cardID)
   {
     case "3TfIePpuZO": return true;//Trained Hawk
+    case "LNSRQ5xW6E": return true;//Stillwater Patrol
     default: return false;
   }
 }
