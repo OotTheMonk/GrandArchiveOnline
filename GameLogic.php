@@ -720,8 +720,12 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $type = (count($params) > 2 ? $params[2] : "-");
       if(!CanDamageBePrevented($player, $damage, "DAMAGE")) $lastResult = 0;
       $damage -= intval($lastResult);
+      if($type == "COMBAT")
+      {
+        if($source == "soO3hjaVfN" && SearchCurrentTurnEffects("soO3hjaVfN", $mainPlayer, true)) $damage *= 2;
+        $dqState[6] = $damage;
+      }
       $damage = DealDamageAsync($player, $damage, $type, $source);
-      if($type == "COMBAT") $dqState[6] = $damage;
       return $damage;
     case "AFTERQUELL":
       $maxQuell = GetClassState($player, $CS_MaxQuellUsed);

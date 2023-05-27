@@ -342,11 +342,6 @@ function CanPlayInstant($phase)
 function IsPitchRestricted($cardID, &$restriction, $from = "", $index = -1)
 {
   global $playerID;
-  if(SearchCurrentTurnEffects("ELE035-3", $playerID) && CardCost($cardID) == 0) { $restriction = "ELE035"; return true; }
-  $pitchValue = PitchValue($cardID);
-  if($pitchValue == 1 && SearchCurrentTurnEffects("OUT101-1", $playerID)) { $restriction = "OUT101"; return true; }
-  else if($pitchValue == 2 && SearchCurrentTurnEffects("OUT101-2", $playerID)) { $restriction = "OUT101"; return true; }
-  else if($pitchValue == 3 && SearchCurrentTurnEffects("OUT101-3", $playerID)) { $restriction = "OUT101"; return true; }
   return false;
 }
 
@@ -678,15 +673,6 @@ function RequiresDieRoll($cardID, $from, $player)
   global $turn;
   if(GetDieRoll($player) > 0) return false;
   if($turn[0] == "B") return false;
-  $type = CardType($cardID);
-  if($type == "AA" && AttackValue($cardID) >= 6 && (SearchCharacterActive($player, "CRU002") || SearchCurrentTurnEffects("CRU002-SHIYANA", $player))) return true;
-  switch ($cardID) {
-    case "WTR004": case "WTR005": case "WTR010": return true;
-    case "WTR162": return $from == "PLAY";
-    case "CRU009": return true;
-    case "EVR004": return true;
-    case "EVR014": case "EVR015": case "EVR016": return true;
-  }
   return false;
 }
 
@@ -694,16 +680,6 @@ function SpellVoidAmount($cardID, $player)
 {
   if($cardID == "ARC112" && SearchCurrentTurnEffects("DYN171", $player)) return 1;
   switch($cardID) {
-    case "ELE173": return 2;
-    case "MON061": return 2;
-    case "MON090": return 1;
-    case "MON188": return 2;
-    case "MON302": return 1;
-    case "MON400": return 1;
-    case "MON401": return 1;
-    case "MON402": return 1;
-    case "DYN236": case "DYN237": case "DYN238": case "DYN239": return 1;
-		case "DYN246": return 1;
     default: return 0;
   }
 }
@@ -711,16 +687,7 @@ function SpellVoidAmount($cardID, $player)
 function IsSpecialization($cardID)
 {
   switch ($cardID) {
-    case "WTR006": case "WTR009": case "WTR043": case "WTR047": case "WTR081": case "WTR083": case "WTR119": case "WTR121":
-    case "ARC007": case "ARC009": case "ARC043": case "ARC046": case "ARC080": case "ARC083": case "ARC118": case "ARC121":
-    case "CRU000": case "CRU074":
-    case "MON005": case "MON007": case "MON035": case "MON189": case "MON190": case "MON198": case "MON199":
-    case "ELE004": case "ELE036": case "ELE066":
-    case "EVR003": case "EVR039": case "EVR055": case "EVR070":
-    case "DVR008": case "RVD008": return true;
-    case "UPR090": case "UPR091": case "UPR109": case "UPR126":
-    case "DYN121":
-    case "OUT013": case "OUT053": case "OUT055": case "OUT097": case "OUT098": case "OUT102": case "OUT103": case "OUT104": return true;
+
     default:
       return false;
   }
@@ -729,17 +696,7 @@ function IsSpecialization($cardID)
 function Is1H($cardID)
 {
   switch ($cardID) {
-    case "WTR078": case "CRU049":
-    case "CRU004": case "CRU005":
-    case "CRU051": case "CRU052":
-    case "CRU079": case "CRU080":
-    case "MON105": case "MON106":
-    case "ELE003": case "ELE202":
-    case "DYN069": case "DYN070":
-    case "DYN115": case "DYN116":
-    case "OUT005": case "OUT006":
-    case "OUT007": case "OUT008":
-    case "OUT009": case "OUT010": return true;
+
     default:
       return false;
   }
@@ -748,11 +705,7 @@ function Is1H($cardID)
 function AbilityPlayableFromCombatChain($cardID)
 {
   switch($cardID) {
-    case "MON245":
-    case "MON281": case "MON282": case "MON283":
-    case "ELE195": case "ELE196": case "ELE197":
-    case "EVR157":
-      return true;
+
     default: return false;
   }
 }
@@ -760,28 +713,7 @@ function AbilityPlayableFromCombatChain($cardID)
 function CardHasAltArt($cardID)
 {
   switch ($cardID) {
-    case "WTR002": case "WTR150": case "WTR162":
-    case "WTR224":
-      return true;
-    case "MON155": case "MON215": case "MON216":
-    case "MON217": case "MON219": case "MON220":
-      return true;
-    case "ELE146":
-      return true;
-    case "UPR006": case "UPR007": case "UPR008":
-    case "UPR009": case "UPR010": case "UPR011":
-    case "UPR012": case "UPR013": case "UPR014":
-    case "UPR015": case "UPR016": case "UPR017":
-      return true;
-    case "UPR042": case "UPR043": case "UPR169":
-      return true;
-    case "UPR406": case "UPR407": case "UPR408":
-    case "UPR409": case "UPR410": case "UPR411":
-    case "UPR412": case "UPR413": case "UPR414":
-    case "UPR415": case "UPR416": case "UPR417":
-      return true;
-    case "DYN234":
-      return true;
+
   default:
       return false;
   }
@@ -790,7 +722,6 @@ function CardHasAltArt($cardID)
 function IsIyslander($character)
 {
   switch($character) {
-    case 'EVR120': case 'UPR102': case 'UPR103': return true;
     default: return false;
   }
 }
@@ -799,8 +730,6 @@ function WardAmount($cardID)
 {
   switch($cardID)
   {
-    case "DYN213": case "DYN214": return 1;
-    case "DYN612": return 4;
     default: return 0;
   }
 }
@@ -808,15 +737,7 @@ function WardAmount($cardID)
 function HasWard($cardID)
 {
   switch ($cardID) {
-    case "MON103":
-    case "UPR039": case "UPR040": case "UPR041":
-    case "UPR218": case "UPR219": case "UPR220":
-    case "DYN213":
-    case "DYN214": case "DYN215": case "DYN217":
-    case "DYN218": case "DYN219": case "DYN220":
-    case "DYN221": case "DYN222": case "DYN223":
-    case "DYN612":
-      return true;
+
     default: return false;
   }
 }
@@ -827,19 +748,7 @@ function HasDominate($cardID)
   global $CS_NumAuras, $CCS_NumBoosted;
   switch ($cardID)
   {
-    case "WTR095": case "WTR096": case "WTR097": return (ComboActive() ? true : false);
-    case "WTR179": case "WTR180": case "WTR181": return true;
-    case "ARC080": return true;
-    case "MON004": return true;
-    case "MON023": case "MON024": case "MON025": return true;
-    case "MON246": return SearchDiscard($mainPlayer, "AA") == "";
-    case "MON275": case "MON276": case "MON277": return true;
-    case "ELE209": case "ELE210": case "ELE211": return HasIncreasedAttack();
-    case "EVR027": case "EVR028": case "EVR029": return true;
-    case "EVR038": return (ComboActive() ? true : false);
-    case "EVR076": case "EVR077": case "EVR078": return $combatChainState[$CCS_NumBoosted] > 0;
-    case "EVR110": case "EVR111": case "EVR112": return GetClassState($mainPlayer, $CS_NumAuras) > 0;
-    case "OUT027": case "OUT028": case "OUT029": return true;
+
     default: break;
   }
   return false;

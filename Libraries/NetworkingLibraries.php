@@ -837,6 +837,7 @@ function ResolveChainLink()
     $index = $target[1];
     $allies = &GetAllies($defPlayer);
     $totalAttack = AllyDamagePrevention($defPlayer, $index, $totalAttack);
+    if($combatChain[0] == "soO3hjaVfN" && SearchCurrentTurnEffects("soO3hjaVfN", $mainPlayer, true)) $totalAttack *= 2;
     if($index < count($allies))
     {
       $allies[$index + 2] = intval($allies[$index+2]) - $totalAttack;
@@ -882,11 +883,9 @@ function ResolveCombatDamage($damageDone)
         if($combatChain[$i] == $mainPlayer) {
           $EffectContext = $combatChain[$i - 1];
           ProcessHitEffect($combatChain[$i - 1]);
-          if($damageDone >= 4) ProcessCrushEffect($combatChain[$i - 1]);
         }
       }
       for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
-        if($currentTurnEffects[$i] == "DYN213") AddLayer("TRIGGER", $currentTurnEffects[$i + 1], "DYN213");
         if(IsCombatEffectActive($currentTurnEffects[$i])) {
           if($currentTurnEffects[$i + 1] == $mainPlayer) {
             $shouldRemove = EffectHitEffect($currentTurnEffects[$i]);

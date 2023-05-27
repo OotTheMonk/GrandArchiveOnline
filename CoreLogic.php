@@ -2232,9 +2232,29 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       RevealCards($toReveal, $currentPlayer);
       break;
     case "SPESFtKHLw"://Rallied Advance
-      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
-      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-      AddDecisionQueue("MZOP", $currentPlayer, "WAKEUP", 1);
+      if(IsClassBonusActive($currentPlayer, "GUARDIAN") || IsClassBonusActive($currentPlayer, "WARRIOR"))
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "WAKEUP", 1);
+      }
+      break;
+    case "soO3hjaVfN"://Rending Flames
+      if(SearchCount(SearchDiscard($currentPlayer, element:"FIRE")) >= 3 && (true || IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "WARRIOR")))
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=FIRE");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZBANISH", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+        for($i=0; $i<2; ++$i)
+        {
+          AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=FIRE", 1);
+          AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+          AddDecisionQueue("MZBANISH", $currentPlayer, "<-", 1);
+          AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+        }
+        AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "soO3hjaVfN", 1);
+      }
       break;
     default: break;
   }
