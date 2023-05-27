@@ -33,6 +33,10 @@ function SpecificCardLogic($player, $card, $lastResult)
       $deck = &GetDeck($player);
       if(count($deck) > 0) AddMemory(array_shift($deck), $player, "DECK", "DOWN");
       return $lastResult;
+    case "FAIRYWHISPERS":
+      $deck = &GetDeck($player);
+      if(count($deck) > 0 && RevealCards($deck[0], $player) && CardElement($deck[0]) == "WIND") { AddHand($player, array_shift($deck)); }
+      return $lastResult;
     default: return "";
   }
 }

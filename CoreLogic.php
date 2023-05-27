@@ -2282,6 +2282,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("PASSPARAMETER", $currentPlayer, "{0}", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
       break;
+    case "n8wyfG9hbY"://Fairy Whispers
+      PlayerOpt($currentPlayer, 3);
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "FAIRYWHISPERS");
+      break;
     default: break;
   }
 }
