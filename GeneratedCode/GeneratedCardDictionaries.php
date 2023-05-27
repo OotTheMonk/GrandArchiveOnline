@@ -83358,7 +83358,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "S":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -84296,7 +84296,7 @@ switch($cardID[8]) {
 case "Q":
 switch($cardID[9]) {
 case "z":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -88274,7 +88274,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "5":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -91096,7 +91096,7 @@ switch($cardID[8]) {
 case "N":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;
@@ -91380,7 +91380,7 @@ switch($cardID[8]) {
 case "z":
 switch($cardID[9]) {
 case "a":
-return -1;
+return 0;
 default: return -1;
 }
 default: return -1;

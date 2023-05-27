@@ -146,11 +146,13 @@ function HasTrueSight($cardID, $player)
   }
 }
 
-function HasStealth($cardID, $player)
+function HasStealth($cardID, $player, $index)
 {
+  $allies = &GetAllies($player);
   switch($cardID)
   {
     case "aKgdkLSBza": return IsClassBonusActive($player, "TAMER");//Wilderness Harpist
+    case "CvvgJR4fNa": return $allies[$index+1] == 2 && IsClassBonusActive($player, "ASSASSIN");//Patient Rogue
     default: return false;
   }
 }

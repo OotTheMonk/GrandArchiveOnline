@@ -153,6 +153,7 @@ function AllyStartTurnAbilities($player)
   for($i = 0; $i < count($allies); $i += AllyPieces()) {
     switch($allies[$i]) {
       case "075L8pLihO": BuffAlly($player, $i, 3); break;
+      case "CvvgJR4fNa": AddCurrentTurnEffect("CvvgJR4fNa", $player, "PLAY", $allies[$i+5]); break;//Patient Rogue
       default: break;
     }
   }

@@ -48,7 +48,7 @@
       AddToTrie($memoryCostTrie, $card->uuid, 0, ($card->cost_memory == null ? -1 : $card->cost_memory));
       AddToTrie($reserveCostTrie, $card->uuid, 0, ($card->cost_reserve == null ? -1 : $card->cost_reserve));
       AddToTrie($levelTrie, $card->uuid, 0, ($card->level == null ? 0 : $card->level));
-      AddToTrie($powerTrie, $card->uuid, 0, ($card->power == null ? -1 : $card->power));
+      AddToTrie($powerTrie, $card->uuid, 0, ($card->power === null ? -1 : $card->power));
       AddToTrie($lifeTrie, $card->uuid, 0, ($card->life == null ? -1 : $card->life));
       AddToTrie($durabilityTrie, $card->uuid, 0, ($card->durability == null ? -1 : $card->durability));
       AddToTrie($speedTrie, $card->uuid, 0, ($card->speed == null ? -1 : $card->speed));

@@ -27,6 +27,7 @@ function EffectAttackModifier($cardID)
     case "FCbKYZcbNq": return 2;
     case "4hbA9FT56L": return 1;
     case "At1UNRG7F0": return 4;
+    case "CvvgJR4fNa": return 3;//Patient Rogue
     default: return 0;
   }
 }
@@ -313,6 +314,7 @@ function IsCombatEffectActive($cardID)
     case "FCbKYZcbNq": return true;
     case "4hbA9FT56L": return IsAlly($attackID);
     case "At1UNRG7F0": return true;//Devastating Blow
+    case "CvvgJR4fNa": return true;//Patient Rogue
     default: return false;
   }
 }
@@ -325,6 +327,7 @@ function IsCombatEffectPersistent($cardID)
   switch($cardID) {
     case "dZ960Hnkzv": return true;
     case "4hbA9FT56L": return true;
+    case "CvvgJR4fNa": return true;//Patient Rogue
     default:
       return false;
   }
