@@ -47,6 +47,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "Z9TCpaMJTc"://Bauble of Abundance
     case "yDARN8eV6B"://Tome of Knowledge
     case "UiohpiTtgs"://Chalice of Blood
+    case "P7hHZBVScB"://Orb of Glitter
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
@@ -148,8 +149,8 @@ function ItemStartTurnAbility($index)
   global $mainPlayer;
   $mainItems = &GetItems($mainPlayer);
   switch($mainItems[$index]) {
-    case "ARC007": case "ARC035": case "EVR069": case "EVR071":
-      AddLayer("TRIGGER", $mainPlayer, $mainItems[$index], "-", "-", $mainItems[$index + 4]);
+    case "P7hHZBVScB"://Orb of Glitter
+      PlayerOpt($mainPlayer, 1);
       break;
     default: break;
   }

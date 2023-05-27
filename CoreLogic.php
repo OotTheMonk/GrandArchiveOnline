@@ -2096,6 +2096,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "bHGUNMFLg9"://Wind Resonance Bauble
     case "dSSRtNnPtw"://Water Resonance Bauble
     case "yDARN8eV6B"://Tome of Knowledge
+    case "P7hHZBVScB"://Orb of Glitter
       Draw($currentPlayer);
       break;
     case "YOjdZJpOO1"://Blissful Calling

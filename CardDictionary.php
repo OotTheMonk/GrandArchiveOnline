@@ -236,6 +236,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "Z9TCpaMJTc"://Bauble of Abundance
     case "yDARN8eV6B"://Tome of Knowledge
     case "UiohpiTtgs"://Chalice of Blood
+    case "P7hHZBVScB"://Orb of Glitter
       return "I";
     default: return "";
   }
