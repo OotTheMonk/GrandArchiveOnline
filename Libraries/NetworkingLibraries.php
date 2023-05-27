@@ -1461,15 +1461,6 @@ function GetTargetOfAttack()
   $defPlayer = $mainPlayer == 1 ? 2 : 1;
   $numTargets = 1;
   $targets = "THEIRCHAR-0";
-  $auras = &GetAuras($defPlayer);
-  $arcLightIndex = -1;
-  for($i = 0; $i < count($auras); $i += AuraPieces()) {
-    if(HasSpectra($auras[$i])) {
-      $targets .= ",THEIRAURAS-" . $i;
-      ++$numTargets;
-      if ($auras[$i] == "MON005") $arcLightIndex = $i;
-    }
-  }
   if(!SearchCurrentTurnEffects("8nbmykyXcw", $defPlayer))
   {
     $allies = &GetAllies($defPlayer);
@@ -1478,7 +1469,6 @@ function GetTargetOfAttack()
       ++$numTargets;
     }
   }
-  if($arcLightIndex > -1) $targets = "THEIRAURAS-" . $arcLightIndex;
   if($numTargets > 1) {
     PrependDecisionQueue("PROCESSATTACKTARGET", $mainPlayer, "-");
     PrependDecisionQueue("CHOOSEMULTIZONE", $mainPlayer, $targets);
@@ -1632,6 +1622,9 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
           break;
         case "MATERIAL":
           AddMaterial($cardID, $currentPlayer, $from);
+          break;
+        case "MEMORY":
+          AddMemory($cardID, $currentPlayer, $from, "DOWN");
           break;
         default:
           break;
