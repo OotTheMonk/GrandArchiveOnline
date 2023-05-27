@@ -2309,6 +2309,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         DrawIntoMemory($currentPlayer);
       }
       break;
+    case "8nbmykyXcw"://Conceal
+      AddCurrentTurnEffect("8nbmykyXcw", $currentPlayer);
+      break;
     default: break;
   }
 }

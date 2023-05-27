@@ -1469,10 +1469,13 @@ function GetTargetOfAttack()
       if ($auras[$i] == "MON005") $arcLightIndex = $i;
     }
   }
-  $allies = &GetAllies($defPlayer);
-  for($i = 0; $i < count($allies); $i += AllyPieces()) {
-    $targets .= ",THEIRALLY-" . $i;
-    ++$numTargets;
+  if(!SearchCurrentTurnEffects("8nbmykyXcw", $defPlayer))
+  {
+    $allies = &GetAllies($defPlayer);
+    for($i = 0; $i < count($allies); $i += AllyPieces()) {
+      $targets .= ",THEIRALLY-" . $i;
+      ++$numTargets;
+    }
   }
   if($arcLightIndex > -1) $targets = "THEIRAURAS-" . $arcLightIndex;
   if($numTargets > 1) {

@@ -146,6 +146,11 @@ function HasTrueSight($cardID, $player)
   }
 }
 
+function HasStealth($cardID, $player)
+{
+  
+}
+
 //Minimum cost of the card
 function CardCost($cardID)
 {
