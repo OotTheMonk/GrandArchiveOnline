@@ -2088,6 +2088,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       PlayerOpt($currentPlayer, CharacterLevel($currentPlayer));
       AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SCRYTHESKIES", 1);
       break;
+    case "6e7lRnczfL"://Horn of Beastcalling
+      AddCurrentTurnEffect("6e7lRnczfL", $currentPlayer);
+      Draw($currentPlayer);
+      break;
     case "UiohpiTtgs"://Chalice of Blood
       Draw($currentPlayer);
       Draw($currentPlayer);

@@ -93,7 +93,9 @@ function CurrentEffectCostModifiers($cardID, $from)
     $remove = false;
     if($currentTurnEffects[$i + 1] == $currentPlayer) {
       switch($currentTurnEffects[$i]) {
-
+        case "6e7lRnczfL"://Horn of Beastcalling
+          if(SubtypeContains($cardID, "BEAST")) { $costModifier -= 3; $remove = true; }
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);
