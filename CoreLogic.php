@@ -2406,7 +2406,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       {
         BuffAlly($currentPlayer, $i);
       }
-      if(IsHarmonizeActive($currentPlayer)) Draw($currentPlayer);
+      if(IsHarmonizeActive($currentPlayer) && IsClassBonusActive($currentPlayer, "TAMER")) Draw($currentPlayer);
       break;
     default: break;
   }
