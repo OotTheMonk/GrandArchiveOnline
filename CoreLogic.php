@@ -2371,6 +2371,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "W1vZwOXfG3", 1);
       }
       break;
+    case "WAFNy2lY5t"://Melodious Flute
+      global $CS_NumMelodyPlayed;
+      IncrementClassState($currentPlayer, $CS_NumMelodyPlayed);//TODO: not really right but fine for now
+      break;
     default: break;
   }
 }

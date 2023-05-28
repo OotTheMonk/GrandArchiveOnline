@@ -53,6 +53,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "dmfoA7jOjy"://Crystal of Empowerment
     case "IC3OU6vCnF"://Mana Limiter
     case "hLHpI5rHIK"://Bauble of Mending
+    case "WAFNy2lY5t"://Melodious Flute
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
@@ -212,6 +213,7 @@ function ItemLevelModifiers($player)
     switch($items[$i])
     {
       case "JPcFmCpdiF": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$modifier; break;//Beastbond Ears
+      case "WAFNy2lY5t": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$modifier; break;//Melodious Flute
       default: break;
     }
   }
