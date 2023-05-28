@@ -29,6 +29,7 @@ function EffectAttackModifier($cardID)
     case "At1UNRG7F0": return 4;
     case "CvvgJR4fNa": return 3;//Patient Rogue
     case "W1vZwOXfG3": return 2;//Embertail Squirrel
+    case "rPpLwLPGaL": return 1;//Phalanx Captain
     default: return 0;
   }
 }
@@ -317,6 +318,7 @@ function IsCombatEffectActive($cardID)
     case "At1UNRG7F0": return true;//Devastating Blow
     case "CvvgJR4fNa": return true;//Patient Rogue
     case "W1vZwOXfG3": return true;//Embertail Squirrel
+    case "rPpLwLPGaL": return true;//Phalanx Captain
     default: return false;
   }
 }

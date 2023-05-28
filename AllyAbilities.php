@@ -198,6 +198,7 @@ function AllyAttackAbilities($attackID)
   $allies = &GetAllies($mainPlayer);
   for($i = 0; $i < count($allies); $i += AllyPieces()) {
     switch($allies[$i]) {
+      case "rPpLwLPGaL": if(SubtypeContains($attackID, "HUMAN", $mainPlayer)) AddCurrentTurnEffect("rPpLwLPGaL", $mainPlayer, "PLAY"); break;//Phalanx Captain
       default: break;
     }
   }
