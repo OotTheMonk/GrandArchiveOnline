@@ -114,6 +114,7 @@ function CardTalent($cardID)
 
 function HasEfficiency($cardID)
 {
+  global $currentPlayer;
   switch($cardID)
   {
     case "UfQh069mc3": return true;
@@ -121,6 +122,7 @@ function HasEfficiency($cardID)
     case "ZgA7cWNKGy": return true;
     case "WsunZX4IlW": return true;//Ravaging Tempest
     case "uTBsOYf15p": return true;//Purging Flames
+    case "IyXuaLKjSA": return IsClassBonusActive($currentPlayer, "MAGE");//Frozen Nova
     default: return false;
   }
 }

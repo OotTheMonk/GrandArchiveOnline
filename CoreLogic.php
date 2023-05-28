@@ -2397,22 +2397,29 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect("k71PE3clOI", $currentPlayer);
       DrawIntoMemory($currentPlayer);
       break;
+    case "IyXuaLKjSA"://Frozen Nova
+      DamageAllAllies(1, "IyXuaLKjSA", true, true);
+      break;
     default: break;
   }
 }
 
-function DamageAllAllies($amount, $source)
+function DamageAllAllies($amount, $source, $alsoRest=false, $alsoFreeze=false)
 {
   global $currentPlayer;
   $otherPlayer = $currentPlayer == 1 ? 2 : 1;
   $theirAllies = &GetAllies($otherPlayer);
   for($i=count($theirAllies) - AllyPieces(); $i>=0; $i-=AllyPieces())
   {
+    if($alsoRest) $theirAllies[$i+1] = 1;
+    if($alsoFreeze) $theirAllies[$i+3] = 1;
     DealArcane($amount, source:$source, resolvedTarget:"THEIRALLY-$i");
   }
   $allies = &GetAllies($currentPlayer);
   for($i=count($allies) - AllyPieces(); $i>=0; $i-=AllyPieces())
   {
+    if($alsoRest) $allies[$i+1] = 1;
+    if($alsoFreeze) $allies[$i+3] = 1;
     DealArcane($amount, source:$source, resolvedTarget:"MYALLY-$i");
   }
 }
