@@ -2199,11 +2199,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       break;
     case "hDUP6BY5Cx"://Cemetery Sentry
-      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYHAND:element=FIRE");
-      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-      AddDecisionQueue("MZDISCARD", $currentPlayer, "HAND", 1);
-      AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
-      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      if($from != "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYHAND:element=FIRE");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZDISCARD", $currentPlayer, "HAND", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+        AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      }
       break;
     case "PLljzdiMmq"://Invoke Dominance
       AddCurrentTurnEffect("PLljzdiMmq", $currentPlayer);
@@ -2357,6 +2360,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "L9yBqoOshh"://Spark Alight
       DealArcane(ArcaneDamage($cardID), 2, "PLAYCARD", $cardID, resolvedTarget:$target);
+      break;
+    case "W1vZwOXfG3"://Embertail Squirrel
+      if($from == "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYHAND:element=FIRE");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZDISCARD", $currentPlayer, "HAND", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+        AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "W1vZwOXfG3", 1);
+      }
       break;
     default: break;
   }
