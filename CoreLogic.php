@@ -1786,7 +1786,7 @@ function SameWeaponEquippedTwice()
 
 function SelfCostModifier($cardID)
 {
-  global $currentPlayer;
+  global $currentPlayer, $CS_NumAttacks;
   $modifier = HasEfficiency($cardID) ? -1 * CharacterLevel($currentPlayer) : 0;
   switch($cardID) {
     case "145y6KBhxe": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0); break;//Focused Flames
@@ -1795,6 +1795,7 @@ function SelfCostModifier($cardID)
     case "DBJ4DuLABr": $modifier += (IsClassBonusActive($currentPlayer, "ASSASSIN") ? -2 : 0); break;//Shroud in Mist
     case "Uxn14UqyQg": $modifier += (IsClassBonusActive($currentPlayer, "ASSASSIN") ? -2 : 0); break;//Immolation Trap
     case "rPpLwLPGaL": $modifier += (IsClassBonusActive($currentPlayer, "WARRIOR") ? -1*SearchCount(SearchAllies($currentPlayer, subtype:"HUMAN")) : 0); break;//Phalanx Captain
+    case "k71PE3clOI": $modifier += GetClassState($currentPlayer, $CS_NumAttacks) > 0 ? -2 : 0; break;//Inspiring Call
     default: break;
   }
   return $modifier;
@@ -2391,6 +2392,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "LRsgl92Iqa"://Mark the Target
       DealArcane(ArcaneDamage($cardID), 2, "PLAYCARD", $cardID, resolvedTarget:$target);
       if(IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "RANGER")) AddPreparationCounters($currentPlayer, 1);
+      break;
+    case "k71PE3clOI"://Inspiring Call
+      AddCurrentTurnEffect("k71PE3clOI", $currentPlayer);
+      DrawIntoMemory($currentPlayer);
       break;
     default: break;
   }

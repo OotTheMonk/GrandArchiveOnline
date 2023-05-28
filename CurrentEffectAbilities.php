@@ -30,6 +30,7 @@ function EffectAttackModifier($cardID)
     case "CvvgJR4fNa": return 3;//Patient Rogue
     case "W1vZwOXfG3": return 2;//Embertail Squirrel
     case "rPpLwLPGaL": return 1;//Phalanx Captain
+    case "k71PE3clOI": return 1;//Inspiring Call
     default: return 0;
   }
 }
@@ -319,6 +320,7 @@ function IsCombatEffectActive($cardID)
     case "CvvgJR4fNa": return true;//Patient Rogue
     case "W1vZwOXfG3": return true;//Embertail Squirrel
     case "rPpLwLPGaL": return true;//Phalanx Captain
+    case "k71PE3clOI": return IsAlly($attackID);//Inspiring Call
     default: return false;
   }
 }
@@ -333,6 +335,7 @@ function IsCombatEffectPersistent($cardID)
     case "4hbA9FT56L": return true;
     case "CvvgJR4fNa": return true;//Patient Rogue
     case "W1vZwOXfG3": return true;//Embertail Squirrel
+    case "k71PE3clOI": return true;//Inspiring Call
     default:
       return false;
   }
