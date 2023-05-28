@@ -2408,6 +2408,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       if(IsHarmonizeActive($currentPlayer) && IsClassBonusActive($currentPlayer, "TAMER")) Draw($currentPlayer);
       break;
+    case "Huh1DljE0j"://Second Wind
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "WAKEUP", 1);
+      if(IsClassBonusActive($currentPlayer, "WARRIOR"))
+      {
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID");
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "Huh1DljE0j,HAND");//TODO Bug; can't buff opponent's thing
+      }
+      break;
     default: break;
   }
 }
