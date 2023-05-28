@@ -2375,6 +2375,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       global $CS_NumMelodyPlayed;
       IncrementClassState($currentPlayer, $CS_NumMelodyPlayed);//TODO: not really right but fine for now
       break;
+    case "uZCyXDNJ6I"://Accepted Contract
+      AddPreparationCounters($currentPlayer, 3);
+      break;
     default: break;
   }
 }
@@ -2383,6 +2386,12 @@ function IsHarmonizeActive($player)
 {
   global $CS_NumMelodyPlayed;
   return GetClassState($player, $CS_NumMelodyPlayed) > 0;
+}
+
+function AddPreparationCounters($player, $amount=1)
+{
+  global $CS_PreparationCounters;
+  IncrementClassState($player, $CS_PreparationCounters, $amount);
 }
 
 function DrawIntoMemory($player)
