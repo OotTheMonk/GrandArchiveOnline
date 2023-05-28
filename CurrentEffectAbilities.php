@@ -31,6 +31,7 @@ function EffectAttackModifier($cardID)
     case "W1vZwOXfG3": return 2;//Embertail Squirrel
     case "rPpLwLPGaL": return 1;//Phalanx Captain
     case "k71PE3clOI": return 1;//Inspiring Call
+    case "Huh1DljE0j": return 1;//Second Wind
     default: return 0;
   }
 }
@@ -321,6 +322,7 @@ function IsCombatEffectActive($cardID)
     case "W1vZwOXfG3": return true;//Embertail Squirrel
     case "rPpLwLPGaL": return true;//Phalanx Captain
     case "k71PE3clOI": return IsAlly($attackID);//Inspiring Call
+    case "Huh1DljE0j": return true;//Second Wind
     default: return false;
   }
 }
