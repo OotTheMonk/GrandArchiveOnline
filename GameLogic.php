@@ -346,6 +346,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           }
         case "BUFFALLY": MZBuffAlly($player, $lastResult); return $lastResult;
         case "BOUNCE": MZBounce($player, $lastResult); return $lastResult;
+        case "REST": MZRest($player, $lastResult); return $lastResult;
         case "WAKEUP": MZWakeUp($player, $lastResult); return $lastResult;
         case "ADDHEALTH": MZAddHealth($player, $lastResult); return $lastResult;
         default: break;
@@ -633,57 +634,11 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $char = &GetPlayerCharacter($player);
       if($char[$parameter + 1] != 2) return "PASS";
       return 1;
-    case "LORDOFWIND":
-      $number = 0;
-       if($lastResult != "") {
-        $number = count(explode(",", $lastResult));
-       }
-      AddResourceCost($player, $number);
-      AddCurrentTurnEffect("WTR081-" . $number, $player);
-      return $number;
-    case "VOFTHEVANGUARD":
-      if($parameter == "1" && TalentContains($lastResult, "LIGHT")) {
-        WriteLog("V of the Vanguard gives all attacks on this combat chain +1");
-        AddCurrentTurnEffect("MON035", $player);
-      }
-      $hand = &GetHand($player);
-      if(count($hand) > 0) {
-        PrependDecisionQueue("VOFTHEVANGUARD", $player, "1", 1);
-        PrependDecisionQueue("CHARGE", $player, "-", 1);
-      }
-      return "1";
-    case "TRIPWIRETRAP":
-      if($lastResult == 0) {
-        WriteLog("Hit effects are prevented by " . CardLink("CRU126", "CRU126") . " this chain link");
-        HitEffectsPreventedThisLink();
-      }
-      return 1;
     case "ATTACKMODIFIER":
       $amount = intval($parameter);
       WriteLog($amount);
       $combatChain[5] += $amount;
       return $parameter;
-    case "SONATAARCANIX":
-      $cards = explode(",", $lastResult);
-      $numAA = 0;
-      $numNAA = 0;
-      $AAIndices = "";
-      for($i = 0; $i < count($cards); ++$i) {
-        $cardType = CardType($cards[$i]);
-        if($cardType == "A") ++$numNAA;
-        else if($cardType == "AA") {
-          ++$numAA;
-          if($AAIndices != "") $AAIndices .= ",";
-          $AAIndices .= $i;
-        }
-      }
-      $numMatch = ($numAA > $numNAA ? $numNAA : $numAA);
-      if($numMatch == 0) return "PASS";
-      return $numMatch . "-" . $AAIndices . "-" . $numMatch;
-    case "SONATAARCANIXSTEP2":
-      $numArcane = count(explode(",", $lastResult));
-      DealArcane($numArcane, 0, "PLAYCARD", "MON231", true);
-      return 1;
     case "CHARGE":
       DQCharge();
       return "1";

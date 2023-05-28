@@ -2379,6 +2379,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
       break;
+    case "raG5r85ieO"://Piper's Lullaby
+      if(SearchCount(SearchAllies($currentPlayer, "", "BEAST")) + SearchCount(SearchAllies($currentPlayer, "", "ANIMAL")) > 0) AddCurrentTurnEffect("raG5r85ieO", $currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "TAMER"))
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
+      }
+      break;
     default: break;
   }
 }

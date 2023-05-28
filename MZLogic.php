@@ -178,6 +178,22 @@ function MZFreeze($target)
   }
 }
 
+function MZRest($player, $target)
+{
+  $pieces = explode("-", $target);
+  $player = (substr($pieces[0], 0, 2) == "MY" ? $player : ($player == 1 ? 2 : 1));
+  $zone = &GetMZZone($player, $pieces[0]);
+  switch($pieces[0]) {
+    case "MYCHAR": case "THEIRCHAR":
+      $zone[$pieces[1]+1] = 1;
+      break;
+    case "THEIRALLY": case "MYALLY":
+      $zone[$pieces[1]+1] = 1;
+      break;
+    default: break;
+  }
+}
+
 function MZWakeUp($player, $target)
 {
   $pieces = explode("-", $target);

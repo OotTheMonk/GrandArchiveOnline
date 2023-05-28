@@ -351,7 +351,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
 //Preserve
 function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFrom="")
 {
-  global $currentPlayer, $CS_NumWizardNonAttack, $CS_NumBoosted, $mainPlayer;
+  global $currentPlayer, $mainPlayer;
   if($player == "") $player = $currentPlayer;
   $otherPlayer = $player == 2 ? 1 : 2;
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "ALLY";

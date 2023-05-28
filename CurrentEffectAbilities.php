@@ -436,6 +436,7 @@ function CurrentEffectLevelModifier()
         case "aKgdkLSBza": $levelModifier += 1; break;//Wilderness Harpist
         case "dmfoA7jOjy": $levelModifier += 2; break;//Crystal of Empowerment
         case "Kc5Bktw0yK": $levelModifier += 2; break;//Empowering Harmony
+        case "raG5r85ieO": $levelModifier += 1; break;//Piper's Lullaby
         default:
           break;
       }
