@@ -196,7 +196,6 @@ function AllyAttackAbilities($attackID)
 {
   global $mainPlayer, $combatChainState, $CCS_AttackUniqueID;
   $allies = &GetAllies($mainPlayer);
-  WriteLog($combatChainState[$CCS_AttackUniqueID]);
   for($i = 0; $i < count($allies); $i += AllyPieces()) {
     switch($allies[$i]) {
       case "rPpLwLPGaL": if($allies[$i+5] != $combatChainState[$CCS_AttackUniqueID] && SubtypeContains($attackID, "HUMAN", $mainPlayer)) AddCurrentTurnEffect("rPpLwLPGaL", $mainPlayer, "PLAY"); break;//Phalanx Captain

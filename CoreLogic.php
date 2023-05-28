@@ -2418,6 +2418,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "Huh1DljE0j,HAND");//TODO Bug; can't buff opponent's thing
       }
       break;
+    case "EtIGAJ8sxw"://Strategic Planning
+      PlayerOpt($currentPlayer, 2);
+      AddPreparationCounters($currentPlayer, 1);
+      break;
     default: break;
   }
 }
