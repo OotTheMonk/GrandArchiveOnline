@@ -1793,6 +1793,7 @@ function SelfCostModifier($cardID)
     case "RIVahUIQVD": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -2 : 0); break;//Fireball
     case "MwXulmKsIg": $modifier += (IsClassBonusActive($currentPlayer, "TAMER") ? -1 : 0); break;//Song of Return
     case "DBJ4DuLABr": $modifier += (IsClassBonusActive($currentPlayer, "ASSASSIN") ? -2 : 0); break;//Shroud in Mist
+    case "Uxn14UqyQg": $modifier += (IsClassBonusActive($currentPlayer, "ASSASSIN") ? -2 : 0); break;//Immolation Trap
     default: break;
   }
   return $modifier;
@@ -2371,6 +2372,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "wOKw0q4SZR"://Anger the Skies
       $amount = IsClassBonusActive($currentPlayer, "MAGE") ? 4 : 3;
       DamageAllAllies($amount, "wOKw0q4SZR");
+      break;
+    case "Uxn14UqyQg"://Immolation Trap
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
       break;
     default: break;
   }
