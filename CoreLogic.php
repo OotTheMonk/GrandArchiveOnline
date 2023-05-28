@@ -2425,8 +2425,27 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "4NkVdSx9ed"://Careful Study
       PlayAura("ENLIGHTEN", $currentPlayer, 5);
       break;
+    case "1o0tKizBZ6"://Windstream Mutt
+      if($from != "PLAY" && IsClassBonusActive($currentPlayer, "TAMER"))
+      {
+        if(CardElement(MemoryRevealRandom($currentPlayer)) == "WIND")
+        {
+          AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+          AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+          AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
+        }
+      }
     default: break;
   }
+}
+
+function MemoryRevealRandom($player)
+{
+  $memory = &GetMemory($player);
+  $rand = GetRandom()%(count($memory)/MemoryPieces());
+  $toReveal = $memory[$rand*MemoryPieces()];
+  $wasRevealed = RevealCards($toReveal);
+  return $wasRevealed ? $toReveal : "";
 }
 
 function DamageAllAllies($amount, $source, $alsoRest=false, $alsoFreeze=false)

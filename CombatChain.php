@@ -8,11 +8,7 @@ function ProcessHitEffect($cardID)
   switch($cardID)
   {
     case "TgYTZg6TaG"://Wind Cutter
-      $memory = &GetMemory($mainPlayer);
-      $rand = GetRandom()%(count($memory)/MemoryPieces());
-      $toReveal = $memory[$rand*MemoryPieces()];
-      $wasRevealed = RevealCards($toReveal);
-      if($wasRevealed && CardElement($toReveal) == "WIND") $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "MEMORY";
+      if(CardElement(MemoryRevealRandom($mainPlayer)) == "WIND") $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "MEMORY";
       break;
     default: break;
   }
