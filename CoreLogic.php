@@ -2400,6 +2400,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "IyXuaLKjSA"://Frozen Nova
       DamageAllAllies(1, "IyXuaLKjSA", true, true);
       break;
+    case "ify06tSEVC"://Attune with the Winds
+      $allies = &GetAllies($currentPlayer);
+      for($i=0; $i<count($allies); $i+=AllyPieces())
+      {
+        BuffAlly($currentPlayer, $i);
+      }
+      if(IsHarmonizeActive($currentPlayer)) Draw($currentPlayer);
+      break;
     default: break;
   }
 }
