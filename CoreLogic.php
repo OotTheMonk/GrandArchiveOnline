@@ -2422,6 +2422,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       PlayerOpt($currentPlayer, 2);
       AddPreparationCounters($currentPlayer, 1);
       break;
+    case "4NkVdSx9ed"://Careful Study
+      PlayAura("ENLIGHTEN", $currentPlayer, 5);
+      break;
     default: break;
   }
 }

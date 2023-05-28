@@ -123,6 +123,7 @@ function HasEfficiency($cardID)
     case "WsunZX4IlW": return true;//Ravaging Tempest
     case "uTBsOYf15p": return true;//Purging Flames
     case "IyXuaLKjSA": return IsClassBonusActive($currentPlayer, "MAGE");//Frozen Nova
+    case "4NkVdSx9ed": return true;//Careful Study
     default: return false;
   }
 }
