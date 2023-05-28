@@ -32,6 +32,7 @@ function EffectAttackModifier($cardID)
     case "rPpLwLPGaL": return 1;//Phalanx Captain
     case "k71PE3clOI": return 1;//Inspiring Call
     case "Huh1DljE0j": return 1;//Second Wind
+    case "IAkuSSnzYB": return 1;//Banner Knight
     default: return 0;
   }
 }
@@ -323,6 +324,7 @@ function IsCombatEffectActive($cardID)
     case "rPpLwLPGaL": return true;//Phalanx Captain
     case "k71PE3clOI": return IsAlly($attackID);//Inspiring Call
     case "Huh1DljE0j": return true;//Second Wind
+    case "IAkuSSnzYB": return true;//Banner Knight
     default: return false;
   }
 }
@@ -424,13 +426,13 @@ function CurrentEffectAllyEntersPlay($player, $index)
   return $levelModifier;
 }
 
-function CurrentEffectLevelModifier()
+function CurrentEffectLevelModifier($player)
 {
-  global $currentPlayer, $currentTurnEffects;
+  global $currentTurnEffects;
   $levelModifier = 0;
   for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
     $remove = false;
-    if($currentTurnEffects[$i + 1] == $currentPlayer) {
+    if($currentTurnEffects[$i + 1] == $player) {
       switch($currentTurnEffects[$i]) {
         case "MECS7RHRZ8": $levelModifier += 1; break;
         case "XLrHaYV9VB": $levelModifier += 1; break;

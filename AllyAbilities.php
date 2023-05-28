@@ -194,11 +194,15 @@ function AllyDamagePrevention($player, $index, $damage)
 //NOTE: This is for ally abilities that trigger when any ally attacks (for example miragai GRANTS an ability)
 function AllyAttackAbilities($attackID)
 {
-  global $mainPlayer, $CS_NumDragonAttacks;
+  global $mainPlayer, $combatChainState, $CCS_AttackUniqueID;
   $allies = &GetAllies($mainPlayer);
+  WriteLog($combatChainState[$CCS_AttackUniqueID]);
   for($i = 0; $i < count($allies); $i += AllyPieces()) {
     switch($allies[$i]) {
-      case "rPpLwLPGaL": if(SubtypeContains($attackID, "HUMAN", $mainPlayer)) AddCurrentTurnEffect("rPpLwLPGaL", $mainPlayer, "PLAY"); break;//Phalanx Captain
+      case "rPpLwLPGaL": if($allies[$i+5] != $combatChainState[$CCS_AttackUniqueID] && SubtypeContains($attackID, "HUMAN", $mainPlayer)) AddCurrentTurnEffect("rPpLwLPGaL", $mainPlayer, "PLAY"); break;//Phalanx Captain
+      case "IAkuSSnzYB"://Banner Knight
+        if($allies[$i+5] != $combatChainState[$CCS_AttackUniqueID] && IsClassBonusActive($mainPlayer, "WARRIOR") && CharacterLevel($mainPlayer) >= 2) AddCurrentTurnEffect("IAkuSSnzYB", $mainPlayer, "PLAY");
+        break;
       default: break;
     }
   }
