@@ -2388,6 +2388,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
       }
       break;
+    case "LRsgl92Iqa"://Mark the Target
+      DealArcane(ArcaneDamage($cardID), 2, "PLAYCARD", $cardID, resolvedTarget:$target);
+      if(IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "RANGER")) AddPreparationCounters($currentPlayer, 1);
+      break;
     default: break;
   }
 }
@@ -2460,6 +2464,7 @@ function PlayRequiresTarget($cardID)
     case "rXHo9fLU32": return 2;//Ignite the Soul
     case "SrBA7h2a1N": return 2;//Freezing Hail
     case "L9yBqoOshh": return 2;//Spark Alight
+    case "LRsgl92Iqa": return 2;//Mark the Target
     default: return -1;
   }
 }
@@ -2474,6 +2479,7 @@ function PlayRequiresTarget($cardID)
       case "rXHo9fLU32": return 1;//Ignite the Soul
       case "SrBA7h2a1N": return 2;//Freezing Hail
       case "L9yBqoOshh": return (IsClassBonusActive($currentPlayer, "MAGE") ? 3 : 2);//Spark Alight
+      case "LRsgl92Iqa": return 1;//Mark the Target
       return 0;
     }
   }
