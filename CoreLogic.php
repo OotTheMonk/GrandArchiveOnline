@@ -2291,17 +2291,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "uTBsOYf15p"://Purge in Flames
       $amount = IsClassBonusActive($currentPlayer, "MAGE") ? 3 : 2;
       DealArcane($amount, source:"uTBsOYf15p", resolvedTarget:"THEIRCHAR-0");
-      $otherPlayer = $currentPlayer == 1 ? 2 : 1;
-      $theirAllies = &GetAllies($otherPlayer);
-      for($i=count($theirAllies) - AllyPieces(); $i>=0; $i-=AllyPieces())
-      {
-        DealArcane($amount, source:"uTBsOYf15p", resolvedTarget:"THEIRALLY-$i");
-      }
-      $allies = &GetAllies($currentPlayer);
-      for($i=count($allies) - AllyPieces(); $i>=0; $i-=AllyPieces())
-      {
-        DealArcane($amount, source:"uTBsOYf15p", resolvedTarget:"MYALLY-$i");
-      }
+      DamageAllAllies($amount, "uTBsOYf15p");
       break;
     case "NwswAHojeq"://Young Beastbonder
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
@@ -2378,7 +2368,27 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "uZCyXDNJ6I"://Accepted Contract
       AddPreparationCounters($currentPlayer, 3);
       break;
+    case "wOKw0q4SZR"://Anger the Skies
+      $amount = IsClassBonusActive($currentPlayer, "MAGE") ? 4 : 3;
+      DamageAllAllies($amount, "wOKw0q4SZR");
+      break;
     default: break;
+  }
+}
+
+function DamageAllAllies($amount, $source)
+{
+  global $currentPlayer;
+  $otherPlayer = $currentPlayer == 1 ? 2 : 1;
+  $theirAllies = &GetAllies($otherPlayer);
+  for($i=count($theirAllies) - AllyPieces(); $i>=0; $i-=AllyPieces())
+  {
+    DealArcane($amount, source:$source, resolvedTarget:"THEIRALLY-$i");
+  }
+  $allies = &GetAllies($currentPlayer);
+  for($i=count($allies) - AllyPieces(); $i>=0; $i-=AllyPieces())
+  {
+    DealArcane($amount, source:$source, resolvedTarget:"MYALLY-$i");
   }
 }
 
