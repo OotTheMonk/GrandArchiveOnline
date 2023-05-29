@@ -115,13 +115,14 @@ function AddMemory($cardID, $player, $from, $facing, $counters=0)
   array_push($arsenal, GetUniqueId()); //Unique ID
 }
 
-function BanishRandomMemory($player)
+function BanishRandomMemory($player, $mod="-")
 {
   $memory = &GetMemory($player);
+  if(count($memory) == 0) return;
   $index = (GetRandom() % (count($memory)/MemoryPieces())) * MemoryPieces();
   $cardID = $memory[$index];
   RemoveMemory($player, $index);
-  BanishCardForPlayer($cardID, $player, "MEMORY", "-", "MEMORY");
+  BanishCardForPlayer($cardID, $player, "MEMORY", $mod, "MEMORY");
 }
 
 function AddArsenal($cardID, $player, $from, $facing, $counters=0)

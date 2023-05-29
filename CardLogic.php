@@ -1218,20 +1218,6 @@ function CardDiscarded($player, $discarded, $source = "")
   }
 }
 
-function Intimidate()
-{
-  global $defPlayer;
-  $hand = &GetHand($defPlayer);
-  if(count($hand) == 0) {
-    WriteLog("Intimidate did nothing because there are no cards in hand");
-    return;
-  }
-  $index = GetRandom() % count($hand);
-  BanishCardForPlayer($hand[$index], $defPlayer, "HAND", "INT");
-  RemoveHand($defPlayer, $index);
-  WriteLog("Intimidate banished a card");
-}
-
 function DestroyFrozenArsenal($player)
 {
   $arsenal = &GetArsenal($player);

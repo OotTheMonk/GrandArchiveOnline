@@ -1060,6 +1060,14 @@ function FinalizeTurn()
 
   $EffectContext = "-";
 
+  $banish = &GetBanish($mainPlayer);
+  for($i = count($banish) - BanishPieces(); $i >= 0; $i -= BanishPieces()) {
+    if($banish[$i + 1] == "INT") {
+      AddMemory($banish[$i], $mainPlayer, "BANISH", "DOWN");
+      RemoveBanish($mainPlayer, $i);
+    }
+  }
+
   LogEndTurnStats($mainPlayer);
   CurrentEffectEndTurnAbilities();
   AuraEndTurnAbilities();

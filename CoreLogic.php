@@ -255,9 +255,10 @@ function AddFloatingMemoryChoice($fromDQ=false)
 //This is always called from the decision queue
 function StartTurn()
 {
-  global $dqState, $currentPlayer, $mainPlayer;
+  global $dqState, $currentPlayer, $mainPlayer, $turn;
   $mainPlayer = $currentPlayer;
   $dqState[1] = "M";
+  $turn[0] = "M";
   $memory = &GetMemory($currentPlayer);
   for($i=count($memory)-MemoryPieces(); $i>=0; $i-=MemoryPieces())
   {
@@ -2435,8 +2436,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
           AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
         }
       }
+      break;
+    case "4K2pT3RmTJ"://Chilling Touch
+      BanishRandomMemory($currentPlayer == 1 ? 2 : 1, "INT");
+      break;
     default: break;
   }
+}
+
+function Chill($player, $amount=1)
+{
+
 }
 
 function MemoryRevealRandom($player)
