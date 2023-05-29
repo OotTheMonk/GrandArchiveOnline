@@ -2512,6 +2512,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZDESTROY", $currentPlayer, "<-", 1);
       break;
+    case "Pr48kXnasw"://Cremation Ritual
+      $allies = &GetAllies($currentPlayer);
+      if(count($allies) == 0) { WriteLog("Cannot pay cost"); return ""; }
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a card to sacrifice", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZDESTROY", $currentPlayer, "<-", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      break;
     default: break;
   }
 }
