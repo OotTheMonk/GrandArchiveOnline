@@ -1542,6 +1542,9 @@ function MaterializeCardEffect($cardID)
       if(SearchCount(SearchAllies($currentPlayer, "", "BEAST")) > 0) Draw($currentPlayer);
       if(SearchCount(SearchAllies($currentPlayer, "", "ANIMAL")) > 0) Draw($currentPlayer);
       break;
+    case "gPKTJKqvOI"://Rai, Spellcrafter
+      PlayAura("ENLIGHTEN", $currentPlayer, 2);
+      break;
     default:
       break;
   }
