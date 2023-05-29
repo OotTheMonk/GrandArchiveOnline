@@ -433,7 +433,9 @@ function CurrentEffectLevelModifier($player)
   for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
     $remove = false;
     if($currentTurnEffects[$i + 1] == $player) {
-      switch($currentTurnEffects[$i]) {
+      $arr = explode("-", $currentTurnEffects[$i]);
+      $subparam = count($arr) > 1 ? $arr[1] : 0;
+      switch($arr[0]) {
         case "MECS7RHRZ8": $levelModifier += 1; break;
         case "XLrHaYV9VB": $levelModifier += 1; break;
         case "9GWxrTMfBz": $levelModifier += 1; break;
@@ -444,6 +446,7 @@ function CurrentEffectLevelModifier($player)
         case "dmfoA7jOjy": $levelModifier += 2; break;//Crystal of Empowerment
         case "Kc5Bktw0yK": $levelModifier += 2; break;//Empowering Harmony
         case "raG5r85ieO": $levelModifier += 1; break;//Piper's Lullaby
+        case "j5iQQPd2m5": $levelModifier += $subparam; break;//Crystal of Argus
         default:
           break;
       }

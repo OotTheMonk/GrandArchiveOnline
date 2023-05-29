@@ -2134,6 +2134,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "AKA19OwaCh"://Jewel of Englightenment
       PlayAura("ENLIGHTEN", $currentPlayer);
       break;
+    case "j5iQQPd2m5"://Crystal of Argus
+      AddCurrentTurnEffect("j5iQQPd2m5-" . intval(CountAura("ENLIGHTEN", $currentPlayer)/3), $currentPlayer);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
