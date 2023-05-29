@@ -2479,6 +2479,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "hHVf5xyjob"://Blackmarket Broker
       AddPreparationCounters($currentPlayer, 1);
       break;
+    case "L9o11y7yfa"://Mind Freeze
+      $otherPlayer = $currentPlayer == 1 ? 2 : 1;
+      for($i=0; $i<CharacterLevel($currentPlayer); ++$i) BanishRandomMemory($otherPlayer, "INT");
+      break;
     default: break;
   }
 }
