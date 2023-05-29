@@ -2486,6 +2486,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "pn9gQjV3Rb"://Arcane Blast
       DealArcane(ArcaneDamage($cardID), 2, "PLAYCARD", $cardID, resolvedTarget:$target);
       break;
+    case "xipHhhsgJy"://Set the Traps
+      Mill($currentPlayer, 2);//TODO: Should be target player
+      if(IsClassBonusActive($currentPlayer, "ASSASSIN")) AddPreparationCounters($currentPlayer, 1);
+      break;
     default: break;
   }
 }
