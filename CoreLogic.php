@@ -2500,6 +2500,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "ybdj1Db9jz"://Seed of Nature
       AddCurrentTurnEffect("ybdj1Db9jz", $currentPlayer);
       break;
+    case "FhbVHkHQRb"://Disintegrate
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY&THEIRITEMS&THEIRCHAR:type=W");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a card to destroy", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZDESTROY", $currentPlayer, "<-", 1);
+      break;
     default: break;
   }
 }
