@@ -259,12 +259,17 @@ function StartTurn()
   $mainPlayer = $currentPlayer;
   $dqState[1] = "M";
   $turn[0] = "M";
-  $memory = &GetMemory($currentPlayer);
+  ReturnAllMemoryToHand($currentPlayer);
+  Draw($currentPlayer);
+}
+
+function ReturnAllMemoryToHand($player)
+{
+  $memory = &GetMemory($player);
   for($i=count($memory)-MemoryPieces(); $i>=0; $i-=MemoryPieces())
   {
-    AddHand($currentPlayer, RemoveMemory($currentPlayer, $i));
+    AddHand($player, RemoveMemory($player, $i));
   }
-  Draw($currentPlayer);
 }
 
 function StartTurnAbilities()
@@ -2461,6 +2466,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       AddCurrentTurnEffect("dxAEI20h8F", $currentPlayer);
       AddCurrentTurnEffect("dxAEI20h8F", $currentPlayer == 1 ? 2 : 1);
+      break;
+    case "gJ2dsgywEs"://Reckless Conversion
+      DrawIntoMemory($currentPlayer);
+      DrawIntoMemory($currentPlayer);
+      for($i=0; $i<4; ++$i) BanishRandomMemory($currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "MAGE")) ReturnAllMemoryToHand($currentPlayer);
       break;
     default: break;
   }
