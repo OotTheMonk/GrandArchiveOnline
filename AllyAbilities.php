@@ -295,7 +295,7 @@ function AllyBeginTurnEffects()
 function AllyBeginEndTurnEffects()
 {
   global $mainPlayer, $defPlayer;
-  //CR 2.0 4.4.3a Reset health for all allies
+  //Reset health for all allies
   $mainAllies = &GetAllies($mainPlayer);
   for($i = 0; $i < count($mainAllies); $i += AllyPieces()) {
     if($mainAllies[$i+1] != 0) {
@@ -303,6 +303,12 @@ function AllyBeginEndTurnEffects()
       $mainAllies[$i+2] = AllyHealth($mainAllies[$i], $mainPlayer) + $mainAllies[$i+7];
       $mainAllies[$i+3] = 0;
       $mainAllies[$i+8] = 1;
+    }
+    switch($mainAllies[$i])
+    {
+      case "mA4n0Z7BQz"://Mistbound Watcher
+        if(IsClassBonusActive($mainPlayer, "MAGE")) PlayAura("ENLIGHTEN", $mainPlayer);
+        break;
     }
   }
   $defAllies = &GetAllies($defPlayer);
