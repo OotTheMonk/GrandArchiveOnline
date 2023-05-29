@@ -4,7 +4,7 @@ function PlayAlly($cardID, $player, $subCards = "-")
 {
   $allies = &GetAllies($player);
   array_push($allies, $cardID);
-  array_push($allies, AllyEntersPlayState($cardID));
+  array_push($allies, AllyEntersPlayState($cardID, $player));
   array_push($allies, AllyHealth($cardID, $player));
   array_push($allies, 0); //Frozen
   array_push($allies, $subCards); //Subcards
@@ -57,14 +57,15 @@ function AllyAddGraveyard($player, $cardID, $subtype)
   }
 }
 
-function AllyEntersPlayState($cardID)
+function AllyEntersPlayState($cardID, $player)
 {
-    switch($cardID)
-    {
-      case "2Q60hBYO3i": return 1;
-      case "GXeEa0pe3B": return 1;//Rebellious Bull
-      default: return 2;
-    }
+  if(SearchCurrentTurnEffects("dxAEI20h8F", $player)) return 1;
+  switch($cardID)
+  {
+    case "2Q60hBYO3i": return 1;
+    case "GXeEa0pe3B": return 1;//Rebellious Bull
+    default: return 2;
+  }
 }
 
 function AllyEntersPlayAbilities($player)

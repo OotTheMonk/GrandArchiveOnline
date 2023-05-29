@@ -2452,6 +2452,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "6YiMaCGsfV"://Channel the Wind
       PlayAura("ENLIGHTEN", $currentPlayer);
       break;
+    case "dxAEI20h8F"://Sudden Snow
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:floatingMemoryOnly=true");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a floating memory card to banish", 1);
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+      AddDecisionQueue("MULTIBANISH", $currentPlayer, "GY,-", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      AddCurrentTurnEffect("dxAEI20h8F", $currentPlayer);
+      AddCurrentTurnEffect("dxAEI20h8F", $currentPlayer == 1 ? 2 : 1);
+      break;
     default: break;
   }
 }
