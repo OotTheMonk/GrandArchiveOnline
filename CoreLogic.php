@@ -1802,6 +1802,7 @@ function SelfCostModifier($cardID)
     case "Uxn14UqyQg": $modifier += (IsClassBonusActive($currentPlayer, "ASSASSIN") ? -2 : 0); break;//Immolation Trap
     case "rPpLwLPGaL": $modifier += (IsClassBonusActive($currentPlayer, "WARRIOR") ? -1*SearchCount(SearchAllies($currentPlayer, subtype:"HUMAN")) : 0); break;//Phalanx Captain
     case "k71PE3clOI": $modifier += GetClassState($currentPlayer, $CS_NumAttacks) > 0 ? -2 : 0; break;//Inspiring Call
+    case "wFH1kBLrWh": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? SearchBanish($currentPlayer, element:"ARCANE") : 0); break;//Arcane Elemental
     default: break;
   }
   return $modifier;

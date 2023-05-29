@@ -99,6 +99,7 @@ function AllyPride($cardID)
     case "HWFWO0TB8l": return 5;//Tempest Silverback
     case "krgjMyVHRd": return 6;//Lakeside Serpent
     case "075L8pLihO": return 5;//Arima, Gaia's Wings
+    case "wFH1kBLrWh": return 7;//Arcane Elemental
     default: return -1;
   }
 }
@@ -260,6 +261,9 @@ function SpecificAllyAttackAbilities($attackID)
     case "gKVMTAeLXQ"://Blazing Direwolf
       if(IsClassBonusActive($mainPlayer, "TAMER")) DealArcane(2, 2, "PLAYCARD", "gKVMTAeLXQ", true, $mainPlayer);
       break;
+    case "wFH1kBLrWh"://Arcane Elemental
+      AddCurrentTurnEffect("wFH1kBLrWh", $mainPlayer);
+      break;
     default: break;
   }
 }
@@ -311,7 +315,7 @@ function AllyBeginEndTurnEffects()
   global $mainPlayer, $defPlayer;
   //Reset health for all allies
   $mainAllies = &GetAllies($mainPlayer);
-  for($i = 0; $i < count($mainAllies); $i += AllyPieces()) {
+  for($i = count($mainAllies) - AllyPieces(); $i >= 0; $i -= AllyPieces()) {
     if($mainAllies[$i+1] != 0) {
       if(HasVigor($mainAllies[$i], $mainPlayer)) $mainAllies[$i+1] = 2;
       $mainAllies[$i+2] = AllyHealth($mainAllies[$i], $mainPlayer) + $mainAllies[$i+7];
@@ -323,6 +327,14 @@ function AllyBeginEndTurnEffects()
       case "mA4n0Z7BQz"://Mistbound Watcher
         if(IsClassBonusActive($mainPlayer, "MAGE")) PlayAura("ENLIGHTEN", $mainPlayer);
         break;
+      case "wFH1kBLrWh"://Arcane Elemental
+        if(SearchCurrentTurnEffects("wFH1kBLrWh", $mainPlayer))
+        {
+          RemoveAlly($mainPlayer, $i);
+          BanishCardForPlayer("wFH1kBLrWh", $mainPlayer, "PLAY");
+        }
+        break;
+      default: break;
     }
   }
   $defAllies = &GetAllies($defPlayer);
