@@ -2493,6 +2493,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "XZFXOE9sEV"://Zephyr Assistant
       PlayAura("ENLIGHTEN", $currentPlayer);
       break;
+    case "ybdj1Db9jz"://Seed of Nature
+      AddCurrentTurnEffect("ybdj1Db9jz", $currentPlayer);
+      break;
     default: break;
   }
 }

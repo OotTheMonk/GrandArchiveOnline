@@ -447,6 +447,7 @@ function CurrentEffectLevelModifier($player)
         case "Kc5Bktw0yK": $levelModifier += 2; break;//Empowering Harmony
         case "raG5r85ieO": $levelModifier += 1; break;//Piper's Lullaby
         case "j5iQQPd2m5": $levelModifier += $subparam; break;//Crystal of Argus
+        case "ybdj1Db9jz": $levelModifier += 2; break;//Seed of Nature
         default:
           break;
       }

@@ -1141,6 +1141,7 @@ function FinalizeTurn()
   //Start of turn effects
   if ($mainPlayer == 1) StatsStartTurn();
   AllyBeginTurnEffects();
+  ItemBeginTurnEffects($mainPlayer);
   StartTurnAbilities();
   $MakeStartTurnBackup = true;
 
@@ -1544,6 +1545,11 @@ function MaterializeCardEffect($cardID)
       break;
     case "gPKTJKqvOI"://Rai, Spellcrafter
       PlayAura("ENLIGHTEN", $currentPlayer, 2);
+      break;
+    case "ybdj1Db9jz"://Seed of Nature
+      AddCurrentTurnEffect("ybdj1Db9jz", $currentPlayer);
+      $items = &GetItems($currentPlayer);
+      $items[count($items)-ItemPieces()+2] = 1;
       break;
     default:
       break;

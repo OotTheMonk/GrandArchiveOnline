@@ -273,6 +273,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "WAFNy2lY5t"://Melodious Flute
     case "AKA19OwaCh"://Jewel of Englightenment
     case "j5iQQPd2m5"://Crystal of Argus
+    case "ybdj1Db9jz"://Seed of Nature
       return "I";
     default: return "";
   }
@@ -343,6 +344,11 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
   {
     $pride = AllyPride($cardID);
     if($pride >= 0 && CharacterLevel($player) < $pride) return false;
+    if(CardTypeContains($cardID, "ITEM"))
+    {
+      $items = &GetItems($player);
+      if($items[$index+2] < 2) return false;
+    }
   }
   if($phase == "M" && $from == "HAND") return true;
   if($phase == "P" && $from == "HAND") return true;

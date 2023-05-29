@@ -56,10 +56,20 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "WAFNy2lY5t"://Melodious Flute
     case "AKA19OwaCh"://Jewel of Englightenment
     case "j5iQQPd2m5"://Crystal of Argus
+    case "ybdj1Db9jz"://Seed of Nature
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
     default: break;
+  }
+}
+
+function ItemBeginTurnEffects($player)
+{
+  $items = &GetItems($player);
+  for($i=0; $i<count($items); $i+=ItemPieces())
+  {
+    if($items[$i+2] == 1) $items[$i+2] = 2;
   }
 }
 
