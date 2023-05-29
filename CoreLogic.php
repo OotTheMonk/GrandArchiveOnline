@@ -2490,6 +2490,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       Mill($currentPlayer, 2);//TODO: Should be target player
       if(IsClassBonusActive($currentPlayer, "ASSASSIN")) AddPreparationCounters($currentPlayer, 1);
       break;
+    case "XZFXOE9sEV"://Zephyr Assistant
+      PlayAura("ENLIGHTEN", $currentPlayer);
+      break;
     default: break;
   }
 }

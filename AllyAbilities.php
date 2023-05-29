@@ -30,6 +30,7 @@ function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
   if(!$skipDestroy) {
     AllyDestroyedAbility($player, $index);
   }
+  AllyLeavesPlayAbility($player, $index);
   if(IsSpecificAllyAttacking($player, $index) || (IsSpecificAllyAttackTarget($player, $index) && !$fromCombat)) {
     CloseCombatChain();
   }
@@ -113,6 +114,19 @@ function AllyHealth($cardID, $playerID="")
     default: break;
   }
   return $health;
+}
+
+function AllyLeavesPlayAbility($player, $index)
+{
+  $allies = &GetAllies($player);
+  $cardID = $allies[$index];
+  switch($cardID)
+  {
+    case "XZFXOE9sEV"://Zephyr Assistant
+      PlayAura("ENLIGHTEN", $currentPlayer);
+      break;
+    default: break;
+  }
 }
 
 function AllyDestroyedAbility($player, $index)
