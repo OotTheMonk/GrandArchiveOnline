@@ -422,10 +422,15 @@ function MainCharacterPlayCardAbilities($cardID, $from)
   global $currentPlayer, $mainPlayer, $CS_NumNonAttackCards, $CS_NumBoostPlayed;
   $character = &GetPlayerCharacter($currentPlayer);
   for($i = 0; $i < count($character); $i += CharacterPieces()) {
-    if($character[$i + 1] != 2) continue;
-    $characterID = ShiyanaCharacter($character[$i]);
+    if($character[$i+1] != 2) continue;
     switch($characterID) {
-
+      case "zdIhSL5RhK": case "g92bHLtTNl": case "6ILtLfjQEe":
+        if(ClassContains($cardID, "MAGE"))
+        {
+          PlayAura("ENLIGHTEN", $currentPlayer);
+          $character[$i+1] = 1;
+        }
+        break;
       default:
         break;
     }
