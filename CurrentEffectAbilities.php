@@ -103,6 +103,9 @@ function CurrentEffectCostModifiers($cardID, $from)
         case "6e7lRnczfL"://Horn of Beastcalling
           if(SubtypeContains($cardID, "BEAST")) { $costModifier -= 3; $remove = true; }
           break;
+        case "EBWWwvSxr3"://Channeling Stone
+          $costModifier -= 2;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);
