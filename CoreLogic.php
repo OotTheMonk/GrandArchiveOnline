@@ -2446,6 +2446,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "ENDCOMBAT", 1);
       if(IsClassBonusActive($currentPlayer, "MAGE")) PlayAura("ENLIGHTEN", $currentPlayer);
+    case "6YiMaCGsfV"://Channel the Wind
+      PlayAura("ENLIGHTEN", $currentPlayer);
+      break;
     default: break;
   }
 }
