@@ -2473,6 +2473,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       for($i=0; $i<4; ++$i) BanishRandomMemory($currentPlayer);
       if(IsClassBonusActive($currentPlayer, "MAGE")) ReturnAllMemoryToHand($currentPlayer);
       break;
+    case "hHVf5xyjob"://Blackmarket Broker
+      AddPreparationCounters($currentPlayer, 1);
+      break;
     default: break;
   }
 }

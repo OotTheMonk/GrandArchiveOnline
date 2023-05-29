@@ -157,6 +157,7 @@ function HasStealth($cardID, $player, $index)
   {
     case "aKgdkLSBza": return IsClassBonusActive($player, "TAMER");//Wilderness Harpist
     case "CvvgJR4fNa": return $allies[$index+1] == 2 && IsClassBonusActive($player, "ASSASSIN");//Patient Rogue
+    case "hHVf5xyjob": return GetClassState($player, $CS_PreparationCounters) >= 3;//Blackmarket Broker
     default: return false;
   }
 }
