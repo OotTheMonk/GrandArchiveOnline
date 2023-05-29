@@ -224,6 +224,16 @@ function MZBounce($player, $target)
   }
 }
 
+function MZEndCombat($player, $mzIndex)
+{
+  global $mainPlayer;
+  $mzArr = explode("-", $mzIndex);
+  if($mzArr[0] == "MYALLY") $controllingPlayer = $player;
+  else if($mzArr[0] == "THEIRALLY") $controllingPlayer = ($player == 1 ? 2 : 1);
+  else return;
+  if(IsSpecificAllyAttacking($controllingPlayer, $mzArr[1])) CloseCombatChain();
+}
+
 function IsFrozenMZ(&$array, $zone, $i)
 {
   $offset = FrozenOffsetMZ($zone);

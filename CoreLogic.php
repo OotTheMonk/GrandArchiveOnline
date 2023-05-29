@@ -2440,6 +2440,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "4K2pT3RmTJ"://Chilling Touch
       BanishRandomMemory($currentPlayer == 1 ? 2 : 1, "INT");
       break;
+    case "6IOxuftyVv"://Glacial Guidance
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "ENDCOMBAT", 1);
+      if(IsClassBonusActive($currentPlayer, "MAGE")) PlayAura("ENLIGHTEN", $currentPlayer);
     default: break;
   }
 }
