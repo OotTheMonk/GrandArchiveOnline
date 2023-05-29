@@ -124,6 +124,7 @@ function HasEfficiency($cardID)
     case "uTBsOYf15p": return true;//Purging Flames
     case "IyXuaLKjSA": return IsClassBonusActive($currentPlayer, "MAGE");//Frozen Nova
     case "4NkVdSx9ed": return true;//Careful Study
+    case "pn9gQjV3Rb": return true;//Arcane Blast
     default: return false;
   }
 }

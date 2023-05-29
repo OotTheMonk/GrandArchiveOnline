@@ -2483,6 +2483,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $otherPlayer = $currentPlayer == 1 ? 2 : 1;
       for($i=0; $i<CharacterLevel($currentPlayer); ++$i) BanishRandomMemory($otherPlayer, "INT");
       break;
+    case "pn9gQjV3Rb"://Arcane Blast
+      DealArcane(ArcaneDamage($cardID), 2, "PLAYCARD", $cardID, resolvedTarget:$target);
+      break;
     default: break;
   }
 }
@@ -2574,6 +2577,7 @@ function PlayRequiresTarget($cardID)
     case "SrBA7h2a1N": return 2;//Freezing Hail
     case "L9yBqoOshh": return 2;//Spark Alight
     case "LRsgl92Iqa": return 2;//Mark the Target
+    case "pn9gQjV3Rb": return 0;//Arcane Blast
     default: return -1;
   }
 }
@@ -2589,6 +2593,7 @@ function PlayRequiresTarget($cardID)
       case "SrBA7h2a1N": return 2;//Freezing Hail
       case "L9yBqoOshh": return (IsClassBonusActive($currentPlayer, "MAGE") ? 3 : 2);//Spark Alight
       case "LRsgl92Iqa": return 1;//Mark the Target
+      case "pn9gQjV3Rb": return 11;//Arcane Blast
       return 0;
     }
   }
