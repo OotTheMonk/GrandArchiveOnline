@@ -26,6 +26,9 @@ function SpecificCardLogic($player, $card, $lastResult)
   global $dqVars, $CS_DamageDealt;
   switch($card)
   {
+    case "CORHAZICOURIER":
+      if(CardElement($lastResult) == "FIRE") DealArcane(1, 2, "PLAYCARD", "YqQsXwEvv5", true, $player);
+      return $lastResult;
     case "CREATIVESHOCK":
       if(CardElement($lastResult) == "FIRE") DealArcane(2, 2, "PLAYCARD", "BqDw4Mei4C", true, $player);
       return $lastResult;

@@ -160,6 +160,7 @@ function HasStealth($cardID, $player, $index)
     case "CvvgJR4fNa": return $allies[$index+1] == 2 && IsClassBonusActive($player, "ASSASSIN");//Patient Rogue
     case "hHVf5xyjob": return GetClassState($player, $CS_PreparationCounters) >= 3;//Blackmarket Broker
     case "zPC4Yqo9Fs": return true;//Kingdom Informant
+    case "YqQsXwEvv5": return true;//Corhazi Courier
     default: return false;
   }
 }

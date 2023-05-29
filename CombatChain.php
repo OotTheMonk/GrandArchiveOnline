@@ -10,6 +10,14 @@ function ProcessHitEffect($cardID)
     case "TgYTZg6TaG"://Wind Cutter
       if(CardElement(MemoryRevealRandom($mainPlayer)) == "WIND") $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "MEMORY";
       break;
+    case "YqQsXwEvv5"://Corhazi Courier
+      if(IsClassBonusActive($mainPlayer, "ASSASSIN"))
+      {
+        Draw($mainPlayer);
+        PummelHit($mainPlayer);
+        AddDecisionQueue("SPECIFICCARD", $mainPlayer, "CORHAZICOURIER", 1);
+      }
+      break;
     default: break;
   }
 
