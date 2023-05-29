@@ -110,7 +110,13 @@ function CalculateCharacterLevel($player)
 {
   $char = &GetPlayerCharacter($player);
   if(count($char) == 0) return 0;
-  return CardLevel($char[0]) + CurrentEffectLevelModifier($player) + AllyLevelModifiers($player) + ItemLevelModifiers($player);
+  $level = CardLevel($char[0]);
+  switch($char[0])
+  {
+    case "g92bHLtTNl": $level += SearchBanish($player, element:"ARCANE"); break;//Rai, Storm Seer
+    default: break;
+  }
+  return $level + CurrentEffectLevelModifier($player) + AllyLevelModifiers($player) + ItemLevelModifiers($player);
 }
 
 function CacheCharacterLevel()
