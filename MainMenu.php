@@ -90,6 +90,7 @@ if (count($favoriteDecks) == 0) {
   echo ("<select name='decksToTry' id='decksToTry'>");
   echo ("<option value='1'>Lorraine Starter</option>");
   echo ("<option value='2'>Silvie Starter</option>");
+  echo ("<option value='3'>Rai Starter</option>");
   echo ("</select></div>");
 }
 echo ("<br>");
