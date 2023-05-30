@@ -411,55 +411,7 @@ function EquipPayAdditionalCosts($cardIndex, $from)
   $cardID = $character[$cardIndex];
   $cardID = ShiyanaCharacter($cardID);
   switch($cardID) {
-    case "WTR150": //Tunic energy counters
-      $character[$cardIndex+2] -= 3;
-      break;
-    case "CRU177": //Talishar rust counters
-      $character[$cardIndex+1] = 1;
-      ++$character[$cardIndex+2];
-      break;
-    case "WTR037": case "WTR038":
-    case "ARC003": case "ARC113": case "ARC114":
-    case "CRU024": case "CRU101":
-    case "MON029": case "MON030":
-    case "ELE173":
-    case "OUT096":
-      break; //Unlimited uses
-    case "ELE224": //Spellbound Creepers - Bind counters
-      ++$character[$cardIndex + 2];//Add a counter
-      --$character[$cardIndex + 5];
-      if($character[$cardIndex + 5] == 0) $character[$cardIndex + 1] = 1;
-      break;
-    case "UPR151": //Ghostly Touch - Haunt counters
-      $character[$cardIndex+2] -= 1;//Remove a counter
-      --$character[$cardIndex+5];
-      if($character[$cardIndex+5] == 0) $character[$cardIndex + 1] = 1;
-      break;
-    case "UPR166": //Alluvion Constellas - Energy counters
-      $character[$cardIndex+2] -= 2;
-      break;
-    case "DYN088": //Hanabi Blaster - Steam counters, once per turn
-      $character[$cardIndex+2] -= 2;
-      $character[$cardIndex+1] = 1;
-      break;
-    case "DYN492a":
-      --$character[$cardIndex+ 2];
-      BanishCardForPlayer("DYN492a", $currentPlayer, "-");
-      break;
-    case "WTR005": case "WTR042": case "WTR080": case "WTR151": case "WTR152": case "WTR153": case "WTR154":
-    case "ARC005": case "ARC042": case "ARC079": case "ARC116": case "ARC117": case "ARC151": case "ARC153": case "ARC154":
-    case "CRU006": case "CRU025": case "CRU081": case "CRU102": case "CRU122": case "CRU141":
-    case "MON061": case "MON090": case "MON108": case "MON188": case "MON230": case "MON238": case "MON239": case "MON240":
-    case "ELE116": case "ELE145": case "ELE214": case "ELE225": case "ELE233": case "ELE234": case "ELE235": case "ELE236":
-    case "EVR053": case "EVR103": case "EVR137":
-    case "DVR004": case "DVR005":
-    case "RVD004":
-    case "UPR004": case "UPR047": case "UPR085": case "UPR125": case "UPR137": case "UPR159": case "UPR167":
-    case "DYN046": case "DYN117": case "DYN118": case "DYN171": case "DYN235":
-    case "OUT011": case "OUT049": case "OUT095": case "OUT098": case "OUT140": case "OUT141": case "OUT157": case "OUT158":
-    case "OUT175": case "OUT176": case "OUT177": case "OUT178": case "OUT179": case "OUT180": case "OUT181": case "OUT182":
-      DestroyCharacter($currentPlayer, $cardIndex);
-      break;
+
     default:
       --$character[$cardIndex+5];
       if($character[$cardIndex+5] == 0) $character[$cardIndex+1] = 1; //By default, if it's used, set it to used
@@ -470,8 +422,6 @@ function EquipPayAdditionalCosts($cardIndex, $from)
 function CharacterTriggerInGraveyard($cardID)
 {
   switch($cardID) {
-    case "DYN117": case "DYN118": return true;
-    case "OUT011": return true;
     default: return false;
   }
 }
@@ -484,19 +434,7 @@ function CharacterDamageTakenAbilities($player, $damage)
   {
     if($char[$i + 1] != 2) continue;
     switch ($char[$i]) {
-      case "ROGUE015":
-        $hand = &GetHand($player);
-        for($j = 0; $j < $damage; ++$j)
-        {
-          $randomNimb = rand(1,3);
-          if($randomNimb == 1) array_unshift($hand, "WTR218");
-          else if($randomNimb == 2) array_unshift($hand, "WTR219");
-          else array_unshift($hand, "WTR220");
-        }
-        break;
-      case "ROGUE019":
-        PlayAura("CRU075", $player, 4, false, true);
-        break;
+
       default:
         break;
     }
@@ -511,23 +449,7 @@ function CharacterDealDamageAbilities($player, $damage)
   {
     if($char[$i + 1] != 2) continue;
     switch ($char[$i]) {
-      case "ROGUE023":
-        if($damage >= 4)
-        {
-          PlayAura("CRU031", $player, 1, false, true);
-        }
-        break;
-      case "ROGUE029":
-        for($j = count($char) - CharacterPieces(); $j >= 0; $j -= CharacterPieces())
-        {
-          if($char[$j] == "DYN068") $indexCounter = $j+3;
-        }
-        $char[$indexCounter] += 1;
-        if($damage >= 4)
-        {
-          $char[$indexCounter] = $char[$indexCounter] * 2;
-        }
-        break;
+
       default:
         break;
     }
