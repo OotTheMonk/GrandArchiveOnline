@@ -2031,6 +2031,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
   //WTRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
   switch($cardID)
   {
+    case "ENLIGHTEN":
+      DestroyNumThisAura($currentPlayer, "ENLIGHTEN", 3);
+      Draw($currentPlayer);
+      break;
     case "7VxRE6HgZC"://Juggle Knives
       DamageTrigger(($currentPlayer == 1 ? 2 : 1), 1, "PLAYCARD", $cardID);
       if(IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "RANGER")) Draw($currentPlayer);

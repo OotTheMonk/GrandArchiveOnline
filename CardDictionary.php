@@ -260,6 +260,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "AA";
   switch($cardID)
   {
+    case "ENLIGHTEN": return "I";//Enlighten Counters
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
@@ -354,6 +355,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
       if($items[$index+2] < 2) return false;
     }
   }
+  if(IsPlayRestricted($cardID, $restriction, $from, $index, $player)) return false;
   if($phase == "M" && $from == "HAND") return true;
   if($phase == "P" && $from == "HAND") return true;
   $cardType = CardType($cardID);
@@ -401,7 +403,7 @@ function IsPlayRestricted($cardID, &$restriction, $from = "", $index = -1, $play
   if($player == "") $player = $currentPlayer;
   $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
   switch($cardID) {
-
+    case "ENLIGHTEN": return CountAura("ENLIGHTEN", $player) < 3;
     default: return false;
   }
 }

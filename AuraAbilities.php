@@ -651,11 +651,11 @@ function NumNonTokenAura($player)
   return $count;
 }
 
-function DestroyAllThisAura($player, $cardID)
+function DestroyNumThisAura($player, $cardID, $num=1)
 {
   $auras = &GetAuras($player);
   $count = 0;
-  for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
+  for($i = count($auras) - AuraPieces(); $i >= 0 && $count < $num; $i -= AuraPieces()) {
     if($auras[$i] == $cardID) {
       DestroyAura($player, $i);
       ++$count;

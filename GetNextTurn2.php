@@ -1374,14 +1374,7 @@ function GetZoneTop($zone)
 function IsTileable($cardID)
 {
   switch ($cardID) {
-    case "WTR075":
-    case "ARC112":
-    case "CRU197":
-    case "MON186":
-    case "ELE111":
-    case "EVR195":
-    case "UPR043":
-    case "DYN243":
+    case "ENLIGHTEN":
       return true;
     default:
       return false;
@@ -1395,125 +1388,25 @@ function DisplayTiles($player)
 
   $count = 0;
   $first = -1;
-  for ($i = 0; $i < count($auras); $i += AuraPieces()) {
-    if ($auras[$i] == "WTR075") {
+  $playable = false;
+  $actionIndex = -1;
+  for($i = 0; $i < count($auras); $i += AuraPieces()) {
+    if($auras[$i] == "ENLIGHTEN") {
       if ($count == 0) $first = $i;
       ++$count;
+
+      if($player == $playerID && $first > -1) {
+        $actionIndex = $i;
+        $playable = IsPlayable($auras[$i], $turn[0], "PLAY", $i);
+      }
     }
   }
   if ($count > 0) {
+    $border = CardBorderColor("CRU197", "PLAY", $playable);
     echo ("<div style='position:relative; display: inline-block;'>");
-    echo (Card("WTR075", "concat", $cardSizeAura, 0, 1, 0, 0, ($count > 1 ? $count : 0)) . "&nbsp");
+    echo (Card("ENLIGHTEN", "concat", $cardSizeAura, $playable ? 22 : 0, 1, 0, $border, ($count > 1 ? $count : 0), strval($actionIndex)) . "&nbsp");
     DisplayPriorityGem(($player == $playerID ? $auras[$first + 7] : $auras[$first + 8]), "AURAS-" . $first, ($player != $playerID ? 1 : 0));
     echo ("</div>");
-  }
-
-  $count = 0;
-  $first = -1;
-  for ($i = 0; $i < count($auras); $i += AuraPieces()) {
-    if ($auras[$i] == "ARC112") {
-      if ($count == 0) $first = $i;
-      ++$count;
-    }
-  }
-  if ($count > 0) {
-    echo ("<div style='position:relative; display: inline-block;'>");
-    echo (Card("ARC112", "concat", $cardSizeAura, 0, 1, 0, 0, ($count > 1 ? $count : 0)) . "&nbsp");
-    DisplayPriorityGem(($player == $playerID ? $auras[$first + 7] : $auras[$first + 8]), "AURAS-" . $first, ($player != $playerID ? 1 : 0));
-    echo ("</div>");
-  }
-
-
-  $soulShackleCount = 0;
-  for ($i = 0; $i < count($auras); $i += AuraPieces()) {
-    if ($auras[$i] == "MON186") ++$soulShackleCount;
-  }
-  if ($soulShackleCount > 0) echo (Card("MON186", "concat", $cardSizeAura, 0, 1, 0, 0, ($soulShackleCount > 1 ? $soulShackleCount : 0)) . "&nbsp");
-
-  $frostbiteCount = 0;
-  $first = -1;
-  for ($i = 0; $i < count($auras); $i += AuraPieces()) {
-    if ($auras[$i] == "ELE111") {
-      if ($count == 0) $first = $i;
-      ++$frostbiteCount;
-    }
-  }
-  if ($frostbiteCount > 0) {
-    echo ("<div style='position:relative; display: inline-block;'>");
-    echo (Card("ELE111", "concat", $cardSizeAura, 0, 1, 0, 0, ($frostbiteCount > 1 ? $frostbiteCount : 0)) . "&nbsp");
-    DisplayPriorityGem(($player == $playerID ? $auras[$first + 7] : $auras[$first + 8]), "AURAS-" . $first, ($player != $playerID ? 1 : 0));
-    echo ("</div>");
-  }
-
-  $permanents = GetPermanents($player);
-  $ashCount = 0;
-  for ($i = 0; $i < count($permanents); $i += PermanentPieces()) {
-    if ($permanents[$i] == "UPR043") ++$ashCount;
-  }
-  if ($ashCount > 0) echo (Card("UPR043", "concat", $cardSizeAura, 0, 1, 0, 0, ($ashCount > 1 ? $ashCount : 0)) . "&nbsp");
-
-  DisplayPlayableTiles($player, $playerID);
-}
-
-function DisplayPlayableTiles($player, $playerID)
-{
-  global $turn, $cardSizeAura;
-
-  $items = GetItems($player);
-
-  if (CountItem("CRU197", $player) > 0) {
-    $copperCount = 0;
-    $playable = false;
-    $actionIndex = -1;
-    for ($i = 0; $i < count($items); $i += ItemPieces()) {
-      if ($items[$i] == "CRU197") {
-        ++$copperCount;
-        if ($player == $playerID && $copperCount == 1) {
-          $actionIndex = $i;
-          $playable = IsPlayable($items[$i], $turn[0], "PLAY", $i);
-        }
-      }
-    }
-    if ($copperCount > 0) {
-      $border = CardBorderColor("CRU197", "PLAY", $playable);
-      echo (Card("CRU197", "concat", $cardSizeAura, $player == $playerID && $turn[0] != "P" && $playable ? 10 : 0, 1, 0, $border, ($copperCount > 1 ? $copperCount : 0), strval($actionIndex)) . "&nbsp");
-    }
-  }
-  if (CountItem("EVR195", $player) > 0) {
-    $silverCount = 0;
-    $playable = false;
-    $actionIndex = -1;
-    for ($i = 0; $i < count($items); $i += ItemPieces()) {
-      if ($items[$i] == "EVR195") {
-        ++$silverCount;
-        if ($player == $playerID && $silverCount == 1) {
-          $actionIndex = $i;
-          $playable = IsPlayable($items[$i], $turn[0], "PLAY", $i);
-        }
-      }
-    }
-    if ($silverCount > 0) {
-      $border = CardBorderColor("EVR195", "PLAY", $playable);
-      echo (Card("EVR195", "concat", $cardSizeAura, $player == $playerID && $turn[0] != "P" && $playable ? 10 : 0, 1, 0, $border, ($silverCount > 1 ? $silverCount : 0), strval($actionIndex)) . "&nbsp");
-    }
-  }
-  if (CountItem("DYN243", $player) > 0) {
-    $goldCount = 0;
-    $playable = false;
-    $actionIndex = -1;
-    for ($i = 0; $i < count($items); $i += ItemPieces()) {
-      if ($items[$i] == "DYN243") {
-        ++$goldCount;
-        if ($player == $playerID && $goldCount == 1) {
-          $actionIndex = $i;
-          $playable = IsPlayable($items[$i], $turn[0], "PLAY", $i);
-        }
-      }
-    }
-    if ($goldCount > 0) {
-      $border = CardBorderColor("DYN243", "PLAY", $playable);
-      echo (Card("DYN243", "concat", $cardSizeAura, $player == $playerID && $turn[0] != "P" && $playable ? 10 : 0, 1, 0, $border, ($goldCount > 1 ? $goldCount : 0), strval($actionIndex)) . "&nbsp");
-    }
   }
 }
 
