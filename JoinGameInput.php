@@ -72,23 +72,15 @@ if ($decklink != "") {
   if ($playerID == 1) $p1DeckLink = $decklink;
   else if ($playerID == 2) $p2DeckLink = $decklink;
   $curl = curl_init();
-  $isFaBDB = str_contains($decklink, "fabdb");
+  $isSilvie = str_contains($decklink, "silvie");
   $isFaBMeta = str_contains($decklink, "fabmeta");
-  if ($isFaBDB) {
+  if($isSilvie) {
     $decklinkArr = explode("/", $decklink);
+    $uid = $decklinkArr[count($decklinkArr) - 2];
     $slug = $decklinkArr[count($decklinkArr) - 1];
-    $apiLink = "https://api.fabdb.net/decks/" . $slug;
-  } else if (str_contains($decklink, "fabrary")) {
-    $headers = array(
-      "x-api-key: " . $FaBraryKey,
-      "Content-Type: application/json",
-    );
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $decklinkArr = explode("/", $decklink);
-    $decklinkArr = explode("?", $decklinkArr[count($decklinkArr) - 1]);
-    $slug = $decklinkArr[0];
-    $apiLink = "https://5zvy977nw7.execute-api.us-east-2.amazonaws.com/prod/decks/" . $slug;
-    if ($matchup != "") $apiLink .= "?matchupId=" . $matchup;
+    $apiLink = "https://api.silvie.org/api/build/decks/published?";//"@OotTheMonk/Ya7CqS207754CBvuLeB7
+    $apiLink .= "id=" . $slug;
+    $apiLink .= "&user=" . $uid;
   } else {
     $decklinkArr = explode("/", $decklink);
     $slug = $decklinkArr[count($decklinkArr) - 1];
@@ -107,7 +99,8 @@ if ($decklink != "") {
     WriteGameFile();
     exit;
   }
-  $deckObj = json_decode($apiDeck);
+  //$deckObj = json_decode($apiDeck);
+  //echo($deckObj->deck->code . "<BR><BR>");exit;
   // if has message forbidden error out.
   if ($apiInfo['http_code'] == 403) {
     $_SESSION['error'] =
