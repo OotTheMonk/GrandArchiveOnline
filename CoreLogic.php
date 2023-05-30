@@ -113,7 +113,7 @@ function CalculateCharacterLevel($player)
   $level = CardLevel($char[0]);
   switch($char[0])
   {
-    case "g92bHLtTNl": $level += SearchBanish($player, element:"ARCANE"); break;//Rai, Storm Seer
+    case "g92bHLtTNl": $level += SearchCount(SearchBanish($player, element:"ARCANE")); break;//Rai, Storm Seer
     default: break;
   }
   return $level + CurrentEffectLevelModifier($player) + AllyLevelModifiers($player) + ItemLevelModifiers($player);
