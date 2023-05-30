@@ -420,10 +420,11 @@ function CharacterPlayCardAbilities($cardID, $from)
 function MainCharacterPlayCardAbilities($cardID, $from)
 {
   global $currentPlayer, $mainPlayer, $CS_NumNonAttackCards, $CS_NumBoostPlayed;
+  WriteLog($currentPlayer);
   $character = &GetPlayerCharacter($currentPlayer);
   for($i = 0; $i < count($character); $i += CharacterPieces()) {
     if($character[$i+1] != 2) continue;
-    switch($characterID) {
+    switch($character[$i]) {
       case "zdIhSL5RhK": case "g92bHLtTNl": case "6ILtLfjQEe":
         if(ClassContains($cardID, "MAGE"))
         {
