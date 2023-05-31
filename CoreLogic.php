@@ -1484,6 +1484,16 @@ function DestroyCharacter($player, $index)
   return $cardID;
 }
 
+function AddDurabilityCounters($player, $amount=1)
+{
+  AddDecisionQueue("PASSPARAMETER", $player, $amount);
+  AddDecisionQueue("SETDQVAR", $player, "0");
+  AddDecisionQueue("MULTIZONEINDICES", $player, "MYCHAR:type=WEAPON");
+  AddDecisionQueue("SETDQCONTEXT", $player, "Choose a weapon to add durability counter" . ($amount > 1 ? "s" : ""), 1);
+  AddDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
+  AddDecisionQueue("MZOP", $player, "ADDDURABILITY", 1);
+}
+
 function RemoveCombatChain($index)
 {
   global $combatChain;

@@ -351,6 +351,13 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         case "ADDHEALTH": MZAddHealth($player, $lastResult); return $lastResult;
         case "ENDCOMBAT": MZEndCombat($player, $lastResult); return $lastResult;
         case "HEALALLY": MZHealAlly($player, $lastResult); return $lastResult;
+        case "ADDDURABILITY":
+          $mzArr = explode("-", $lastResult);
+          $zone = &GetMZZone($player, $mzArr[0]);
+          switch($mzArr[0]) {
+            case "CHAR": case "MYCHAR": case "THEIRCHAR": $zone[$mzArr[1] + 2] += $dqVars[0]; return $lastResult;
+            default: return $lastResult;
+          }
         default: break;
       }
       return $lastResult;

@@ -170,6 +170,7 @@ function AllyStartTurnAbilities($player)
     switch($allies[$i]) {
       case "075L8pLihO": BuffAlly($player, $i, 3); break;
       case "CvvgJR4fNa": AddCurrentTurnEffect("CvvgJR4fNa", $player, "PLAY", $allies[$i+5]); break;//Patient Rogue
+      case "6gN5KjqRW5": AddDurabilityCounters($player, 1); break;//Weaponsmith
       default: break;
     }
   }
