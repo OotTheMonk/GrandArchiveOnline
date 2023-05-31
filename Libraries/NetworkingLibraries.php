@@ -1551,6 +1551,15 @@ function MaterializeCardEffect($cardID)
       $items = &GetItems($currentPlayer);
       $items[count($items)-ItemPieces()+2] = 1;
       break;
+    case "qyQLlDYBlr"://Ornamental Greatsword
+      if(IsClassBonusActive($currentPlayer, "GUARDIAN") || IsClassBonusActive($currentPlayer, "WARRIOR"))
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID");
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "qyQLlDYBlr,HAND");
+      }
+      break;
     default:
       break;
   }

@@ -34,6 +34,7 @@ function EffectAttackModifier($cardID)
     case "Huh1DljE0j": return 1;//Second Wind
     case "IAkuSSnzYB": return 1;//Banner Knight
     case "XMb6pSHFJg": return 2;//Embersong
+    case "qyQLlDYBlr": return 1;//Ornamental Greatsword
     default: return 0;
   }
 }
@@ -340,6 +341,7 @@ function IsCombatEffectActive($cardID)
     case "Huh1DljE0j": return true;//Second Wind
     case "IAkuSSnzYB": return true;//Banner Knight
     case "XMb6pSHFJg": return true;//Embersong
+    case "qyQLlDYBlr": return true;//Ornamental Greatsword
     default: return false;
   }
 }
@@ -356,6 +358,7 @@ function IsCombatEffectPersistent($cardID)
     case "W1vZwOXfG3": return true;//Embertail Squirrel
     case "k71PE3clOI": return true;//Inspiring Call
     case "XMb6pSHFJg": return true;//Embersong
+    case "qyQLlDYBlr": return true;//Ornamental Greatsword
     default:
       return false;
   }

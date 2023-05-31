@@ -1320,6 +1320,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       else if(CardTypeContains($cardID, "REGALIA"))
       {
         if(CardTypeContains($cardID, "ITEM")) PutItemIntoPlayForPlayer($cardID, $currentPlayer);
+        else AddCharacter($cardID, $currentPlayer);
       }
       else
       {
