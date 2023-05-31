@@ -1627,7 +1627,7 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
     } else if ($cardSubtype == "Landmark") {
       PlayLandmark($cardID, $currentPlayer);
     } else if ($definedCardType != "C" && $definedCardType != "E" && $definedCardType != "W") {
-      $goesWhere = GoesWhereAfterResolving($cardID, $from, $currentPlayer);
+      $goesWhere = GoesWhereAfterResolving($cardID, $from, $currentPlayer, resourcesPaid:$resourcesPaid);
       switch ($goesWhere) {
         case "BOTDECK":
           AddBottomDeck($cardID, $currentPlayer, $from);
