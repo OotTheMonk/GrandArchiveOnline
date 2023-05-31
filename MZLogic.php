@@ -150,6 +150,13 @@ function MZBuffAlly($player, $target)
   ++$allies[$targetArr[1]+2];//Life
 }
 
+function MZHealAlly($player, $target)
+{
+  $targetArr = explode("-", $target);
+  $allies = &GetAllies($player);
+  $allies[$targetArr[1]+2] = AllyHealth($allies[$targetArr[1]], $player);//Life
+}
+
 function MZAddHealth($player, $target)
 {
   $targetArr = explode("-", $target);

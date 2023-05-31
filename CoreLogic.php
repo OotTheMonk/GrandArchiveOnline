@@ -2535,6 +2535,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "RUqtU0Lczf"://Spellshield: Arcane
       AddCurrentTurnEffect("RUqtU0Lczf", $currentPlayer);
       break;
+    case "XeXek4dKav"://Give Bath
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose an ally to heal", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "HEALALLY", 1);
+      break;
     default: break;
   }
 }
