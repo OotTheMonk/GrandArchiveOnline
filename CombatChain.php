@@ -31,7 +31,7 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
     case "HWFWO0TB8l": return IsClassBonusActive($mainPlayer, "TAMER") ? 2 : 0;//Tempest Silverback
     case "krgjMyVHRd": return SearchDiscard($mainPlayer, element:"WATER");//Lakeside Serpent
     case "LUfgfsWTTO": return SearchDiscard($mainPlayer, element:"FIRE");//Fiery Momentum
-    case "vBetRTn3eW": if(IsClassBonusActive($mainPlayer, "WARRIOR")) { $memory = &GetMemory($mainPlayer); return count($memory) == 1 ? 2 : 0; } return 0;//Opening Cut
+    case "vBetRTn3eW": if(IsClassBonusActive($mainPlayer, "WARRIOR")) { $memory = &GetMemory($mainPlayer); return count($memory)/MemoryPieces() == 1 ? 2 : 0; } return 0;//Opening Cut
     case "TgYTZg6TaG": return (IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0);
     case "7NMFSRR5V3": return SearchCount(SearchAllies($playerID, subtype:"BEAST")) > 0 ? 1 : 0;//Fervent Beastmaster
     case "csMiEObm2l": return CharacterLevel($playerID) >= 3 && IsClassBonusActive($playerID, "WARRIOR") ? 1 :0;//Strapping Conscript
