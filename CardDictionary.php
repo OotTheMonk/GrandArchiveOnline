@@ -366,7 +366,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
 }
 
 //Preserve
-function GoesWhereAfterResolving($cardID, $resourcesPaid, $from = null, $player = "", $playedFrom="")
+function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFrom="", $resourcesPaid="")
 {
   global $currentPlayer, $mainPlayer;
   if($player == "") $player = $currentPlayer;
@@ -376,11 +376,7 @@ function GoesWhereAfterResolving($cardID, $resourcesPaid, $from = null, $player 
     case "2Ojrn7buPe": return "MATERIAL";//Tera Sight
     case "PLljzdiMmq": return "MATERIAL";//Invoke Dominance
     case "cVRIUJdTW5": return "MATERIAL";//Meadowbloom Dryad
-    case "P9Y1Q5cQ0F": 
-      if ($resourcesPaid == 2) {
-        return "BANISH";//Crux Sight
-      }
-      return "";
+    case "P9Y1Q5cQ0F": return $resourcesPaid == "2" ? "BANISH" : "GY"; //Crux Sight
     default: return "GY";
   }
 }

@@ -2555,14 +2555,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect("xWJND68I8X", $currentPlayer);
       break;
     case "P9Y1Q5cQ0F"://Crux Sight
-      if ($resourcesPaid == 2) {
+      if ($resourcesPaid == "2") {
         AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=CRUX");
         AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-        AddDecisionQueue("MZAddZone", $currentPlayer, "HAND", 1);
+        AddDecisionQueue("MZADDZONE", $currentPlayer, "MYHAND", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
         AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
         break;
+      } else {
+          AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+          break;
       }
-      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       break;
     default: break;
   }
