@@ -147,6 +147,10 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           }
           $remove = true;
           break;
+        case "xWJND68I8X"://Water Barrier
+          if($preventable) $damage = 1;
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

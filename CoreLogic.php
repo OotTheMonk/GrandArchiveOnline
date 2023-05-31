@@ -2551,6 +2551,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "XMb6pSHFJg,HAND");
       }
       break;
+    case "xWJND68I8X"://Water Barrier
+      AddCurrentTurnEffect("xWJND68I8X", $currentPlayer);
+      break;
     default: break;
   }
 }
