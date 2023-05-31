@@ -33,6 +33,8 @@ function EffectAttackModifier($cardID)
     case "k71PE3clOI": return 1;//Inspiring Call
     case "Huh1DljE0j": return 1;//Second Wind
     case "IAkuSSnzYB": return 1;//Banner Knight
+    case "XMb6pSHFJg": return 2;//Embersong
+    case "qyQLlDYBlr": return 1;//Ornamental Greatsword
     default: return 0;
   }
 }
@@ -138,9 +140,19 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
     if($currentTurnEffects[$i + 1] == $player) {
       $effects = explode("-", $currentTurnEffects[$i]);
       switch($effects[0]) {
-
-        default:
+        case "RUqtU0Lczf"://Spellshield: Arcane
+          if($preventable)
+          {
+            PlayAura("ENLIGHTEN", $player, $damage);
+            $damage = 0;
+          }
+          $remove = true;
           break;
+        case "xWJND68I8X"://Water Barrier
+          if($preventable) $damage = 1;
+          $remove = true;
+          break;
+        default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);
     }
@@ -332,6 +344,8 @@ function IsCombatEffectActive($cardID)
     case "k71PE3clOI": return IsAlly($attackID);//Inspiring Call
     case "Huh1DljE0j": return true;//Second Wind
     case "IAkuSSnzYB": return true;//Banner Knight
+    case "XMb6pSHFJg": return true;//Embersong
+    case "qyQLlDYBlr": return true;//Ornamental Greatsword
     default: return false;
   }
 }
@@ -347,6 +361,8 @@ function IsCombatEffectPersistent($cardID)
     case "CvvgJR4fNa": return true;//Patient Rogue
     case "W1vZwOXfG3": return true;//Embertail Squirrel
     case "k71PE3clOI": return true;//Inspiring Call
+    case "XMb6pSHFJg": return true;//Embersong
+    case "qyQLlDYBlr": return true;//Ornamental Greatsword
     default:
       return false;
   }

@@ -350,6 +350,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         case "WAKEUP": MZWakeUp($player, $lastResult); return $lastResult;
         case "ADDHEALTH": MZAddHealth($player, $lastResult); return $lastResult;
         case "ENDCOMBAT": MZEndCombat($player, $lastResult); return $lastResult;
+        case "HEALALLY": MZHealAlly($player, $lastResult); return $lastResult;
         default: break;
       }
       return $lastResult;
@@ -1319,6 +1320,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       else if(CardTypeContains($cardID, "REGALIA"))
       {
         if(CardTypeContains($cardID, "ITEM")) PutItemIntoPlayForPlayer($cardID, $currentPlayer);
+        else AddCharacter($cardID, $currentPlayer);
       }
       else
       {

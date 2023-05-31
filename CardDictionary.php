@@ -7,6 +7,8 @@ function CardType($cardID)
 {
   if(!$cardID) return "";
   if(CardTypeContains($cardID, "ATTACK")) return "AA";
+  else if(CardTypeContains($cardID, "CHAMPION")) return "C";
+  else if(CardTypeContains($cardID, "WEAPON")) return "W";
   return CardSpeed($cardID) == "1" ? "I" : "A";
 }
 

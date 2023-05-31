@@ -1814,6 +1814,7 @@ function SelfCostModifier($cardID)
     case "rPpLwLPGaL": $modifier += (IsClassBonusActive($currentPlayer, "WARRIOR") ? -1*SearchCount(SearchAllies($currentPlayer, subtype:"HUMAN")) : 0); break;//Phalanx Captain
     case "k71PE3clOI": $modifier += GetClassState($currentPlayer, $CS_NumAttacks) > 0 ? -2 : 0; break;//Inspiring Call
     case "wFH1kBLrWh": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? SearchBanish($currentPlayer, element:"ARCANE") : 0); break;//Arcane Elemental
+    case "RUqtU0Lczf": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? 1 : 0); break;//Spellshield: Arcane
     default: break;
   }
   return $modifier;
@@ -2531,6 +2532,28 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       break;
+    case "RUqtU0Lczf"://Spellshield: Arcane
+      AddCurrentTurnEffect("RUqtU0Lczf", $currentPlayer);
+      break;
+    case "XeXek4dKav"://Give Bath
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose an ally to heal", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "HEALALLY", 1);
+      break;
+    case "XMb6pSHFJg"://Embersong
+      DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      if(IsClassBonusActive($currentPlayer, "TAMER"))
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID");
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "XMb6pSHFJg,HAND");
+      }
+      break;
+    case "xWJND68I8X"://Water Barrier
+      AddCurrentTurnEffect("xWJND68I8X", $currentPlayer);
+      break;
     case "P9Y1Q5cQ0F"://Crux Sight
       if ($resourcesPaid == 2) {
         AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=CRUX");
@@ -2633,6 +2656,7 @@ function PlayRequiresTarget($cardID)
     case "L9yBqoOshh": return 2;//Spark Alight
     case "LRsgl92Iqa": return 2;//Mark the Target
     case "pn9gQjV3Rb": return 0;//Arcane Blast
+    case "XMb6pSHFJg": return 3;//Embersong
     default: return -1;
   }
 }
@@ -2649,6 +2673,7 @@ function PlayRequiresTarget($cardID)
       case "L9yBqoOshh": return (IsClassBonusActive($currentPlayer, "MAGE") ? 3 : 2);//Spark Alight
       case "LRsgl92Iqa": return 1;//Mark the Target
       case "pn9gQjV3Rb": return 11;//Arcane Blast
+      case "XMb6pSHFJg": return 2;//Embersong
       return 0;
     }
   }

@@ -914,8 +914,7 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
     if ($i > 0 && $inGameStatus == "0") continue;
     $atkCounters = 0;
     $counters = 0;
-    //$type = CardType($theirCharacter[$i]);
-    $type = "C";
+    $type = CardType($theirCharacter[$i]);
     $sType = CardSubType($theirCharacter[$i]);
     if ($type == "W") {
       ++$numWeapons;
@@ -1063,8 +1062,7 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
       $playable = $playerID == $currentPlayer && $myCharacter[$i + 1] == 2 && IsPlayable($myCharacter[$i], $turn[0], "CHAR", $i, $restriction);
     }
     $border = CardBorderColor($myCharacter[$i], "CHAR", $playable);
-    //$type = CardType($myCharacter[$i]);
-    $type = "C";
+    $type = CardType($myCharacter[$i]);
     $sType = CardSubType($myCharacter[$i]);
     if ($type == "W") {
       ++$numWeapons;
