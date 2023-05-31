@@ -194,7 +194,7 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
       AddDecisionQueue("PASSPARAMETER", $currentPlayer, $cost);
       AddDecisionQueue("SETDQVAR", $currentPlayer, "0");
-      AddFloatingMemoryChoice();
+      if($cost > 0) AddFloatingMemoryChoice();
       AddDecisionQueue("FINISHMATERIALIZE", $currentPlayer, $index);
       ProcessDecisionQueue();
       break;
