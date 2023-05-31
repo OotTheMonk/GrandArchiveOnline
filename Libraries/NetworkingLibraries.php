@@ -1556,8 +1556,8 @@ function MaterializeCardEffect($cardID)
       {
         AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
         AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID");
-        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "qyQLlDYBlr,HAND");
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "qyQLlDYBlr,HAND", 1);
       }
       break;
     default:
