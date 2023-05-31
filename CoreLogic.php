@@ -2541,6 +2541,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "HEALALLY", 1);
       break;
+    case "XMb6pSHFJg"://Embersong
+      DealArcane(ArcaneDamage($cardID), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      if(IsClassBonusActive($currentPlayer, "TAMER"))
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID");
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "XMb6pSHFJg,HAND");
+      }
+      break;
     default: break;
   }
 }
@@ -2633,6 +2643,7 @@ function PlayRequiresTarget($cardID)
     case "L9yBqoOshh": return 2;//Spark Alight
     case "LRsgl92Iqa": return 2;//Mark the Target
     case "pn9gQjV3Rb": return 0;//Arcane Blast
+    case "XMb6pSHFJg": return 3;//Embersong
     default: return -1;
   }
 }
@@ -2649,6 +2660,7 @@ function PlayRequiresTarget($cardID)
       case "L9yBqoOshh": return (IsClassBonusActive($currentPlayer, "MAGE") ? 3 : 2);//Spark Alight
       case "LRsgl92Iqa": return 1;//Mark the Target
       case "pn9gQjV3Rb": return 11;//Arcane Blast
+      case "XMb6pSHFJg": return 2;//Embersong
       return 0;
     }
   }
