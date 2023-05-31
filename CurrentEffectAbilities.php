@@ -138,9 +138,15 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
     if($currentTurnEffects[$i + 1] == $player) {
       $effects = explode("-", $currentTurnEffects[$i]);
       switch($effects[0]) {
-
-        default:
+        case "RUqtU0Lczf"://Spellshield: Arcane
+          if($preventable)
+          {
+            PlayAura("ENLIGHTEN", $player, $damage);
+            $damage = 0;
+          }
+          $remove = true;
           break;
+        default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);
     }
