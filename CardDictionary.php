@@ -199,12 +199,8 @@ function DynamicCost($cardID)
 {
   global $currentPlayer;
   switch($cardID) {
-    case "WTR051": case "WTR052": case "WTR053": return "2,6";
-    case "ARC009": return "0,2,4,6,8,10,12";
-    case "MON231": return "0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40";
-    case "EVR022": return "3,4,5,6,7,8,9,10,11,12";
-    case "EVR124": return GetIndices(SearchCount(SearchAura(($currentPlayer == 1 ? 2 : 1), "", "", 0)) + 1);
-    case "UPR109": return "0,2,4,6,8,10,12,14,16,18,20";
+    case "P9Y1Q5cQ0F":
+      return "0,2";
     default: return "";
   }
 }
@@ -368,7 +364,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
 }
 
 //Preserve
-function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFrom="")
+function GoesWhereAfterResolving($cardID, $resourcesPaid, $from = null, $player = "", $playedFrom="")
 {
   global $currentPlayer, $mainPlayer;
   if($player == "") $player = $currentPlayer;
@@ -378,6 +374,11 @@ function GoesWhereAfterResolving($cardID, $from = null, $player = "", $playedFro
     case "2Ojrn7buPe": return "MATERIAL";//Tera Sight
     case "PLljzdiMmq": return "MATERIAL";//Invoke Dominance
     case "cVRIUJdTW5": return "MATERIAL";//Meadowbloom Dryad
+    case "P9Y1Q5cQ0F": 
+      if ($resourcesPaid == 2) {
+        return "BANISH";//Crux Sight
+      }
+      return "";
     default: return "GY";
   }
 }
