@@ -409,7 +409,12 @@ function EquipPayAdditionalCosts($cardIndex, $from)
   global $currentPlayer;
   $character = &GetPlayerCharacter($currentPlayer);
   $cardID = $character[$cardIndex];
-  $cardID = ShiyanaCharacter($cardID);
+  if(CardTypeContains($cardID, "WEAPON", $currentPlayer))
+  {
+    --$character[$cardIndex+2];
+    if($character[$cardIndex+2] == 0) DestroyCharacter($currentPlayer, $cardIndex);
+    return;
+  }
   switch($cardID) {
 
     default:

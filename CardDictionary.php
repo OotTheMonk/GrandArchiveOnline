@@ -255,7 +255,7 @@ function HasGoAgain($cardID)
 function GetAbilityType($cardID, $index = -1, $from="-")
 {
   global $currentPlayer;
-  if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return "AA";
+  if(CardTypeContains($cardID, "ALLY", $currentPlayer) || CardTypeContains($cardID, "WEAPON", $currentPlayer)) return "AA";
   switch($cardID)
   {
     case "ENLIGHTEN": return "I";//Enlighten Counters
@@ -341,7 +341,7 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
   global $currentPlayer, $CS_NumActionsPlayed, $combatChainState, $CCS_BaseAttackDefenseMax, $CS_NumNonAttackCards, $CS_NumAttackCards;
   global $CCS_ResourceCostDefenseMin, $CCS_CardTypeDefenseRequirement, $actionPoints, $mainPlayer, $defPlayer;
   global $combatChain;
-  if($from == "ARS" || $from == "CHAR" || $from == "BANISH") return false;
+  if($from == "ARS" || $from == "BANISH") return false;
   if($player == "") $player = $currentPlayer;
   if($from == "PLAY")
   {
