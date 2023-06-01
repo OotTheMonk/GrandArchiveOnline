@@ -21,74 +21,13 @@ function CardSubType($cardID)
 
 function CharacterHealth($cardID)
 {
-  $set = CardSet($cardID);
-  if($set != "ROG" && $set != "DUM") {
-    $number = intval(substr($cardID, 3));
-    if($number < 400) return GeneratedCharacterHealth($cardID);
-  }
-  switch($cardID) {
-    case "DUMMY": return 1000;
-    case "ROGUE001": return 6;
-    case "ROGUE003": return 8;
-    case "ROGUE004": return 14;
-    case "ROGUE008": return 20;
-    case "ROGUE006": return 14;
-    case "ROGUE009": return 10;
-    case "ROGUE010": return 14;
-    case "ROGUE013": return 14;
-    case "ROGUE014": return 6;
-    case "ROGUE015": return 13;
-    case "ROGUE016": return 8;
-    case "ROGUE017": return 20;
-    case "ROGUE018": return 10;
-    case "ROGUE019": return 18;
-    case "ROGUE020": return 6;
-    case "ROGUE021": return 8;
-    case "ROGUE022": return 10;
-    case "ROGUE023": return 12;
-    case "ROGUE024": return 15;
-    case "ROGUE025": return 20;
-    case "ROGUE026": return 99;
-    case "ROGUE027": return 6;
-    case "ROGUE028": return 14;
-    case "ROGUE029": return 16;
-    case "ROGUE030": return 14;
-    case "ROGUE031": return 16;
-    default: return 20;
-  }
+  if($cardID == "DUMMY") return 1000;
+  return CardLife($cardID);
 }
 
 function CharacterIntellect($cardID)
 {
-  $cardID = ShiyanaCharacter($cardID);
   switch($cardID) {
-    case "CRU099": return 3;
-    case "ROGUE001": return 3;
-    case "ROGUE003": return 3;
-    case "ROGUE004": return 3;
-    case "ROGUE008": return 4;
-    case "ROGUE006": return 3;
-    case "ROGUE009": return 3;
-    case "ROGUE010": return 4;
-    case "ROGUE013": return 4;
-    case "ROGUE014": return 3;
-    case "ROGUE015": return 0;
-    case "ROGUE016": return 3;
-    case "ROGUE017": return 0;
-    case "ROGUE018": return 4;
-    case "ROGUE019": return 1;
-    case "ROGUE020": return 3;
-    case "ROGUE021": return 1;
-    case "ROGUE022": return 3;
-    case "ROGUE023": return 3;
-    case "ROGUE024": return 3;
-    case "ROGUE025": return 4;
-    case "ROGUE026": return 3;
-    case "ROGUE027": return 3;
-    case "ROGUE028": return 4;
-    case "ROGUE029": return 4;
-    case "ROGUE030": return 4;
-    case "ROGUE031": return 4;
     default: return 4;
   }
 }
