@@ -2573,6 +2573,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       AddDecisionQueue("DRAW", $currentPlayer, "-");
       break;
+    case "b43adsk77Y"://Refurbish
+      AddDurabilityCounters($currentPlayer, 2);
+      break;
     default: break;
   }
 }
