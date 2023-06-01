@@ -1560,6 +1560,9 @@ function MaterializeCardEffect($cardID)
         AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "qyQLlDYBlr,HAND", 1);
       }
       break;
+    case "eSAIP7mx9z"://Drawn Blade
+      Draw($currentPlayer);
+      break;
     default:
       break;
   }
