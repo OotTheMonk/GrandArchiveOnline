@@ -41,6 +41,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       if($targetArr != "THEIRALLY") return 0;
       $allies = &GetAllies($defPlayer);
       return HasStealth($allies[$targetArr[1]], $defPlayer, $targetArr[1]) ? 1 : 0;
+    case "dpu9pHGX48"://Sword of Adversity
+      if(!IsClassBonusActive($mainPlayer, "WARRIOR")) return 0;
+      $allies = &GetAllies($mainPlayer);
+      return count($allies) == 0 ? 1 : 0;
     default: return 0;
   }
 }
