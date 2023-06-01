@@ -2576,6 +2576,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "b43adsk77Y"://Refurbish
       AddDurabilityCounters($currentPlayer, 2);
       break;
+    case "vyRjDql0TR"://Tempered Steel
+      AddDurabilityCounters($currentPlayer, 1);
+      break;
     default: break;
   }
 }
