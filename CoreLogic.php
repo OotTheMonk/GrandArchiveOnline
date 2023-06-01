@@ -2575,6 +2575,8 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "b43adsk77Y"://Refurbish
       AddDurabilityCounters($currentPlayer, 2);
+      AddDecisionQueue("MZOP", $currentPlayer, "GETCARDID", 1);
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "REFURBISH", 1);
       break;
     case "vyRjDql0TR"://Tempered Steel
       AddDurabilityCounters($currentPlayer, 1);

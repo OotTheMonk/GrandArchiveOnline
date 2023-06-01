@@ -44,6 +44,8 @@ function SpecificCardLogic($player, $card, $lastResult)
       for($i = 0; $i < $count; ++$i) Draw($player);
       WriteLog(CardLink("BY0E8si926", "BY0E8si926") . " shuffled and drew " . $count . " cards");
       return "1";
+    case "REFURBISH":
+      if($lastResult == "m31WVJ9F04") WriteLog("<span style='color:DarkGreen'>There, it doesn't look like it was stuck in a dusty old rock anymore</span>");
       return $lastResult;
     default: return "";
   }
