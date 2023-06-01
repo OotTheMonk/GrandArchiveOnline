@@ -1563,6 +1563,10 @@ function MaterializeCardEffect($cardID)
     case "eSAIP7mx9z"://Drawn Blade
       Draw($currentPlayer);
       break;
+    case "dmbBXRTVIk"://Sword of Avarice
+      Draw($currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "WARRIOR")) Draw($currentPlayer);
+      break;
     default:
       break;
   }
