@@ -14,6 +14,12 @@ StatsStartTurn();
 $MakeStartTurnBackup = false;
 $MakeStartGameBackup = false;
 
+$p2Material = &GetMaterial(2);
+if(count($p2Material) == 1 && $p2Material[0] == "DUMMY")
+{
+  AddCharacter("DUMMY", 2);
+}
+
 if($p2Char[0] == "DUMMY") {
   SetCachePiece($gameName, 3, "99999999999999");
 }

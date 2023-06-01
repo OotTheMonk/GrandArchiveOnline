@@ -145,7 +145,7 @@ if ($inGameStatus == $GameStatus_Rematch) {
 }
 
 CacheCombatResult();
-//CombatDummyAI(); //Only does anything if applicable
+CombatDummyAI(); //Only does anything if applicable
 //EncounterAI();
 
 if (!IsGameOver()) {
