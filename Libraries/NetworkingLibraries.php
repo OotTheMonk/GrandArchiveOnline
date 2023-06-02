@@ -1577,7 +1577,7 @@ function MaterializeCardEffect($cardID)
       if(IsClassBonusActive($currentPlayer, "WARRIOR")) Draw($currentPlayer);
       break;
     case "DpHDGaX2Pn"://Lorraine, Wandering Warrior
-      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYMATERIAL:subtype=SWORD");
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYMATERIAL:subtype=SWORD;maxCost=0");
       AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a sword to materialize", 1);
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("SETDQVAR", $currentPlayer, "1", 1);
