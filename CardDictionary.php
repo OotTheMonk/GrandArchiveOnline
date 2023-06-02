@@ -79,6 +79,7 @@ function HasCleave($cardID)
   {
     case "4V6qKuM7xs": return true;//Hurricane Sweep
     case "FGvq4eQPbP": return true;//Flame Sweep
+    case "GuDKuPKNgh": return true;//Tidal Sweep
     default: return false;
   }
 }
