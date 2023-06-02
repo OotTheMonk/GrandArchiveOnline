@@ -74,6 +74,7 @@ function AllyAddGraveyard($player, $cardID, $subtype)
 function AllyEntersPlayState($cardID, $player)
 {
   if(SearchCurrentTurnEffects("dxAEI20h8F", $player)) return 1;
+  if(PlayerHasAlly($player == 1 ? 2 : 1, "TqCo3xlf93")) return 1;//Lunete, Frostbinder Priest
   switch($cardID)
   {
     case "2Q60hBYO3i": return 1;

@@ -205,6 +205,11 @@ function SearchDiscardForCard($player, $card1, $card2 = "", $card3 = "")
   return $cardList;
 }
 
+function PlayerHasAlly($player, $cardID)
+{
+  return SearchAlliesForCard($player, $cardID) != "";
+}
+
 function SearchAlliesForCard($player, $card1, $card2 = "", $card3 = "")
 {
   $allies = &GetAllies($player);
