@@ -230,6 +230,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "ybdj1Db9jz"://Seed of Nature
     case "EBWWwvSxr3"://Channeling Stone
     case "kk46Whz7CJ"://Surveillance Stone
+    case "1XegCUjBnY"://Life Essence Amulet
       return "I";
     default: return "";
   }

@@ -59,6 +59,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "ybdj1Db9jz"://Seed of Nature
     case "EBWWwvSxr3"://Channeling Stone
     case "kk46Whz7CJ"://Surveillance Stone
+    case "1XegCUjBnY"://Life Essence Amulet
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;

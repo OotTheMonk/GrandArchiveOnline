@@ -2159,6 +2159,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "P7hHZBVScB"://Orb of Glitter
     case "IC3OU6vCnF"://Mana Limiter
     case "kk46Whz7CJ"://Surveillance Stone
+    case "1XegCUjBnY"://Life Essence Amulet
       Draw($currentPlayer);
       break;
     case "YOjdZJpOO1"://Blissful Calling
