@@ -196,6 +196,7 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       AddDecisionQueue("SETDQVAR", $currentPlayer, "0");
       if($cost > 0) AddFloatingMemoryChoice();
       AddDecisionQueue("FINISHMATERIALIZE", $currentPlayer, $index);
+      AddDecisionQueue("STARTTURN", $currentPlayer, "-");
       ProcessDecisionQueue();
       break;
     case 16: case 18: //Decision Queue (15 and 18 deprecated)
@@ -1580,16 +1581,31 @@ function MaterializeCardEffect($cardID)
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYMATERIAL:subtype=SWORD;maxCost=0");
       AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a sword to materialize", 1);
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-      AddDecisionQueue("SETDQVAR", $currentPlayer, "1", 1);
-      AddDecisionQueue("MZOP", $currentPlayer, "GETCARDINDEX", 1);
-      AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
-      AddDecisionQueue("PASSPARAMETER", $currentPlayer, "{1}", 1);
-      AddDecisionQueue("MZOP", $currentPlayer, "GETMEMORYCOST", 1);
-      AddDecisionQueue("FINISHMATERIALIZE", $currentPlayer, "{0}", 1);
+      AddDQFinishMaterialize($currentPlayer);
       break;
     default:
       break;
   }
+}
+
+function AddDQFinishMaterialize($player, $skipCosts=false)
+{
+  AddDecisionQueue("SETDQVAR", $player, "0", 1);
+  AddDecisionQueue("MZOP", $player, "GETCARDINDEX", 1);
+  AddDecisionQueue("SETDQVAR", $player, "1", 1);
+  if($skipCosts)
+  {
+    AddDecisionQueue("PASSPARAMETER", $player, "0", 1);
+    AddDecisionQueue("SETDQVAR", $player, "0", 1);
+  }
+  else
+  {
+    //TODO: Add floating memory
+    AddDecisionQueue("PASSPARAMETER", $player, "{0}", 1);
+    AddDecisionQueue("MZOP", $player, "GETMEMORYCOST", 1);
+    AddDecisionQueue("SETDQVAR", $player, "0", 1);
+  }
+  AddDecisionQueue("FINISHMATERIALIZE", $player, "{1}", 1);
 }
 
 function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $additionalCosts = "-", $uniqueID = "-1", $layerIndex = -1)

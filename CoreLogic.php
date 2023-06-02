@@ -2570,6 +2570,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "DqtlaMGMvd"://Erratic Bolt
       DealArcane(CharacterLevel($currentPlayer), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "em6eEh9q8y"://Dungeon Guide
+      $memory = &GetMemory($currentPlayer);
+      if(count($memory)/MemoryPieces() < 2) break;
+      AddDecisionQueue("YESNO", $currentPlayer, "if_you_want_to_banish_two_cards_from_your_memory");
+      AddDecisionQueue("BANISHRANDOMMEMORY", $currentPlayer, "-", 1);
+      AddDecisionQueue("BANISHRANDOMMEMORY", $currentPlayer, "-", 1);
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYMATERIAL:type=CHAMPION", 1);
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose your next level", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDQFinishMaterialize($currentPlayer, true);
+      break;
     default: break;
   }
 }

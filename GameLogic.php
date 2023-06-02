@@ -1256,6 +1256,9 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $params = explode(",", $parameter);
       if(CardType($params[0]) == "AA" || GetResolvedAbilityType($params[0], $params[1]) == "AA") GetTargetOfAttack($params[0]);
       return $lastResult;
+    case "BANISHRANDOMMEMORY":
+      BanishRandomMemory($currentPlayer);
+      return $lastResult;
     case "FINISHMATERIALIZE":
       $cost = $dqVars[0];
       $index = $parameter;
@@ -1280,8 +1283,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         AddHand($currentPlayer, $cardID);
       }
       MaterializeCardEffect($cardID);
-      StartTurn();
       return $cardID;
+    case "STARTTURN":
+      StartTurn();
+      return $lastResult;
     default:
       return "NOTSTATIC";
   }
