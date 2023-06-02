@@ -21,7 +21,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
   global $currentPlayer, $combatChain, $defPlayer;
   global $combatChainState;
   global $defCharacter, $CS_NumCharged, $otherPlayer;
-  global $CS_NumFusedEarth, $CS_NumFusedIce, $CS_NumFusedLightning, $CS_NextNAACardGoAgain, $CCS_AttackTarget;
+  global $CS_NextNAACardGoAgain, $CCS_AttackTarget, $CS_NumLeveledUp;
   global $CS_LayerTarget, $dqVars, $mainPlayer, $lastPlayed, $dqState, $CS_AbilityIndex, $CS_CharacterIndex;
   global $CS_AdditionalCosts, $CS_AlluvionUsed, $CS_MaxQuellUsed, $CS_DamageDealt, $CS_ArcaneTargetsSelected, $inGameStatus;
   global $CS_ArcaneDamageDealt, $MakeStartTurnBackup, $CCS_AttackTargetUID, $chainLinkSummary, $chainLinks, $MakeStartGameBackup;
@@ -765,25 +765,6 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $parameters = explode("-", $parameter);
       AppendClassState($player, $parameters[0], $parameters[1]);
       return $lastResult;
-    case "AFTERFUSE":
-      $params = explode("-", $parameter);
-      $card = $params[0];
-      $elements = $params[1];
-      $elementArray = explode(",", $elements);
-      for($i = 0; $i < count($elementArray); ++$i) {
-        $element = $elementArray[$i];
-        switch($element) {
-          case "EARTH": IncrementClassState($player, $CS_NumFusedEarth); break;
-          case "ICE": IncrementClassState($player, $CS_NumFusedIce); break;
-          case "LIGHTNING": IncrementClassState($player, $CS_NumFusedLightning); break;
-          default: break;
-        }
-        AppendClassState($player, $CS_AdditionalCosts, $elements);
-        CurrentTurnFuseEffects($player, $element);
-        AuraFuseEffects($player, $element);
-        $lastPlayed[3] = (GetClassState($player, $CS_AdditionalCosts) == HasFusion($card) || IsAndOrFuse($card) ? "FUSED" : "UNFUSED");
-      }
-      return $lastResult;
     case "SUBPITCHVALUE":
       return $parameter - PitchValue($lastResult);
     case "BUFFARCANE":
@@ -1271,6 +1252,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         else {
           $char[0] = $cardID;
           $char[1] = 2;
+          IncrementClassState($currentPlayer, $CS_NumLeveledUp);
         }
       }
       else if(CardTypeContains($cardID, "REGALIA"))

@@ -25,7 +25,7 @@ function ProcessHitEffect($cardID)
 
 function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive = -1)
 {
-  global $mainPlayer, $defPlayer, $combatChain, $combatChainState;
+  global $mainPlayer, $defPlayer, $combatChain, $combatChainState, $CS_NumLeveledUp;
   if($repriseActive == -1) $repriseActive = RepriseActive();
   switch($cardID) {
     case "HWFWO0TB8l": return IsClassBonusActive($mainPlayer, "TAMER") ? 2 : 0;//Tempest Silverback
@@ -49,6 +49,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0;
     case "FGvq4eQPbP"://Flame Sweep
       return IsClassBonusActive($mainPlayer, "WARRIOR") && CharacterLevel($mainPlayer) >= 2 ? 1 : 0;
+    case "W1g0hNzXAC"://Invigorated Slash
+      return GetClassState($mainPlayer, $CS_NumLeveledUp) > 0 ? 2 : 0;
     default: return 0;
   }
 }
