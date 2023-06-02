@@ -35,6 +35,7 @@ function EffectAttackModifier($cardID)
     case "IAkuSSnzYB": return 1;//Banner Knight
     case "XMb6pSHFJg": return 2;//Embersong
     case "qyQLlDYBlr": return 1;//Ornamental Greatsword
+    case "OofVX5hX8X": return 2;//Poisoned Coating Oil
     default: return 0;
   }
 }
@@ -343,6 +344,7 @@ function IsCombatEffectActive($cardID)
     case "IAkuSSnzYB": return true;//Banner Knight
     case "XMb6pSHFJg": return true;//Embersong
     case "qyQLlDYBlr": return true;//Ornamental Greatsword
+    case "OofVX5hX8X": return true;//Poisoned Coating Oil
     default: return false;
   }
 }
