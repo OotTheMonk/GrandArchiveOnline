@@ -51,6 +51,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return IsClassBonusActive($mainPlayer, "WARRIOR") && CharacterLevel($mainPlayer) >= 2 ? 1 : 0;
     case "W1g0hNzXAC"://Invigorated Slash
       return GetClassState($mainPlayer, $CS_NumLeveledUp) > 0 ? 2 : 0;
+    case "mDN1CI9IEe"://Sealed Blade
+      return IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0;
     default: return 0;
   }
 }
