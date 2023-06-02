@@ -78,6 +78,7 @@ function AllyEntersPlayState($cardID, $player)
   {
     case "2Q60hBYO3i": return 1;
     case "GXeEa0pe3B": return 1;//Rebellious Bull
+    case "G5E0PIUd0W": return 1;//Artificer's Opus
     default: return 2;
   }
 }

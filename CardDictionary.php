@@ -69,6 +69,7 @@ function HasEfficiency($cardID)
     case "pn9gQjV3Rb": return true;//Arcane Blast
     case "FhbVHkHQRb": return true;//Disintegrate
     case "4V6qKuM7xs": return true;//Hurricane Sweep
+    case "G5E0PIUd0W": return IsClassBonusActive($currentPlayer, "TAMER");//Artificer's Opus
     default: return false;
   }
 }
@@ -80,6 +81,7 @@ function HasCleave($cardID)
     case "4V6qKuM7xs": return true;//Hurricane Sweep
     case "FGvq4eQPbP": return true;//Flame Sweep
     case "GuDKuPKNgh": return true;//Tidal Sweep
+    case "G5E0PIUd0W": return true;//Artificer's Opus
     default: return false;
   }
 }
