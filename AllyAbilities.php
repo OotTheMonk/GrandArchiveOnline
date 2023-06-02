@@ -18,6 +18,19 @@ function PlayAlly($cardID, $player, $subCards = "-")
   return $index;
 }
 
+function DealAllyDamage($targetPlayer, $index, $damage)
+{
+  $allies = &GetAllies($targetPlayer);
+  if($allies[$index+6] > 0) {
+    $damage -= 3;
+    if($damage < 0) $damage = 0;
+    --$allies[$index+6];
+  }
+  $allies[$index+2] -= $damage;
+  if($damage > 0) AllyDamageTakenAbilities($targetPlayer, $index);
+  if($allies[$index+2] <= 0) DestroyAlly($targetPlayer, $index);
+}
+
 function RemoveAlly($player, $index)
 {
   return DestroyAlly($player, $index, $true);

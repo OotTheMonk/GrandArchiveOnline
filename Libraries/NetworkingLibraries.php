@@ -1325,7 +1325,7 @@ function PlayCardSkipCosts($cardID, $from)
 {
   global $currentPlayer, $layers, $turn;
   $cardType = CardType($cardID);
-  if (($turn[0] == "M" || $turn[0] == "ATTACKWITHIT") && $cardType == "AA") GetTargetOfAttack();
+  if (($turn[0] == "M" || $turn[0] == "ATTACKWITHIT") && $cardType == "AA") GetTargetOfAttack($cardID);
   if ($turn[0] != "B" || (count($layers) > 0 && $layers[0] != "")) {
     if (HasBoost($cardID)) Boost();
     GetLayerTarget($cardID);
@@ -1468,10 +1468,15 @@ function AddPrePitchDecisionQueue($cardID, $from, $index = -1)
   }
 }
 
-function GetTargetOfAttack()
+function GetTargetOfAttack($attackID)
 {
   global $mainPlayer, $combatChainState, $CCS_AttackTarget;
   $defPlayer = $mainPlayer == 1 ? 2 : 1;
+  if(HasCleave($attackID))
+  {
+    $combatChainState[$CCS_AttackTarget] = "THEIRCHAR-0";
+    return;
+  }
   $numTargets = 1;
   $targets = "THEIRCHAR-0";
   //Conceal + Shroud in Mist

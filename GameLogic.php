@@ -663,15 +663,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $source = $parameters[1];
       $type = $parameters[2];
       if($target[0] == "THEIRALLY" || $target[0] == "MYALLY") {
-        $allies = &GetAllies($targetPlayer);
-        if($allies[$target[1]+6] > 0) {
-          $damage -= 3;
-          if($damage < 0) $damage = 0;
-          --$allies[$target[1]+6];
-        }
-        $allies[$target[1]+2] -= $damage;
-        if($damage > 0) AllyDamageTakenAbilities($targetPlayer, $target[1]);
-        if($allies[$target[1]+2] <= 0) DestroyAlly($targetPlayer, $target[1]);
+        DealAllyDamage($targetPlayer, $target[1], $damage);
         return $damage;
       } else {
         PrependDecisionQueue("TAKEDAMAGE", $targetPlayer, $parameter);
@@ -1308,7 +1300,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       return $lastResult;
     case "GETTARGETOFATTACK":
       $params = explode(",", $parameter);
-      if(CardType($params[0]) == "AA" || GetResolvedAbilityType($params[0], $params[1]) == "AA") GetTargetOfAttack();
+      if(CardType($params[0]) == "AA" || GetResolvedAbilityType($params[0], $params[1]) == "AA") GetTargetOfAttack($params[0]);
       return $lastResult;
     case "FINISHMATERIALIZE":
       $cost = $dqVars[0];

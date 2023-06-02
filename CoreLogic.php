@@ -556,34 +556,21 @@ function FinalizeDamage($player, $damage, $damageThreatened, $type, $source)
     if($source != "NA")
     {
       $damage += CurrentEffectDamageModifiers($player, $source, $type);
-      $otherCharacter = &GetPlayerCharacter($otherPlayer);
-      $characterID = ShiyanaCharacter($otherCharacter[0]);
-      if(($characterID == "ELE062" || $characterID == "ELE063") && $type == "ARCANE" && $otherCharacter[1] == "2" && CardType($source) == "AA" && !SearchAuras("ELE109", $otherPlayer)) {
-        PlayAura("ELE109", $otherPlayer);
+      if($type == "COMBAT" && HasCleave($source))
+      {
+        DamagePlayerAllies($player, $damage, $source, $type);
       }
-      if(($source == "ELE067" || $source == "ELE068" || $source == "ELE069") && $combatChainState[$CCS_AttackFused]) AddCurrentTurnEffect($source, $mainPlayer);
-      if($source == "DYN173" && SearchCurrentTurnEffects("DYN173", $mainPlayer, true)) {
-        WriteLog("Player " . $mainPlayer . " drew a card and Player " . $otherPlayer . " must discard a card");
-        Draw($mainPlayer);
-        PummelHit();
-      }
-      if($source == "DYN612") GainHealth($damage, $mainPlayer);
     }
 
     AuraDamageTakenAbilities($player, $damage);
     ItemDamageTakenAbilities($player, $damage);
     CharacterDamageTakenAbilities($player, $damage);
     CharacterDealDamageAbilities($otherPlayer, $damage);
-    // The second condition after the OR is for when Merciful is destroyed, the target is lost for some reason
-    if(SearchAuras("MON013", $otherPlayer) && (IsHeroAttackTarget() || !IsAllyAttackTarget() && $source == "MON012")) { LoseHealth(CountAura("MON013", $otherPlayer), $player); WriteLog("Lost 1 health from Ode to Wrath."); }
     $classState[$CS_DamageTaken] += $damage;
     if($player == $defPlayer && $type == "COMBAT" || $type == "ATTACKHIT") $combatChainState[$CCS_AttackTotalDamage] += $damage;
-    if($source == "MON229") AddNextTurnEffect("MON229", $player);
     if($type == "ARCANE") $classState[$CS_ArcaneDamageTaken] += $damage;
     CurrentEffectDamageEffects($player, $source, $type, $damage);
   }
-  if($damage > 0 && ($type == "COMBAT" || $type == "ATTACKHIT") && SearchCurrentTurnEffects("ELE037-2", $otherPlayer) && IsHeroAttackTarget())
-  { for($i=0; $i<$damage; ++$i) PlayAura("ELE111", $player); }
   PlayerLoseHealth($player, $damage);
   LogDamageStats($player, $damageThreatened, $damage);
   return $damage;
@@ -2597,6 +2584,15 @@ function MemoryRevealRandom($player)
   $toReveal = $memory[$rand*MemoryPieces()];
   $wasRevealed = RevealCards($toReveal);
   return $wasRevealed ? $toReveal : "";
+}
+
+function DamagePlayerAllies($player, $damage, $source, $type)
+{
+  $allies = &GetAllies($player);
+  for($i=0; $i<count($allies); $i+=AllyPieces())
+  {
+    DealAllyDamage($player, $i, $damage);
+  }
 }
 
 function DamageAllAllies($amount, $source, $alsoRest=false, $alsoFreeze=false)

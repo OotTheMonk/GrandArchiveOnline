@@ -68,6 +68,16 @@ function HasEfficiency($cardID)
     case "4NkVdSx9ed": return true;//Careful Study
     case "pn9gQjV3Rb": return true;//Arcane Blast
     case "FhbVHkHQRb": return true;//Disintegrate
+    case "4V6qKuM7xs": return true;//Hurricane Sweep
+    default: return false;
+  }
+}
+
+function HasCleave($cardID)
+{
+  switch($cardID)
+  {
+    case "4V6qKuM7xs": return true;//Hurricane Sweep
     default: return false;
   }
 }
