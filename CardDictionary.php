@@ -78,6 +78,7 @@ function HasCleave($cardID)
   switch($cardID)
   {
     case "4V6qKuM7xs": return true;//Hurricane Sweep
+    case "FGvq4eQPbP": return true;//Flame Sweep
     default: return false;
   }
 }

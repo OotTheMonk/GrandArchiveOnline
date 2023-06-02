@@ -47,6 +47,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return count($allies) == 0 ? 1 : 0;
     case "jF1VuIR7a6"://Warrior's Longsword
       return IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0;
+    case "FGvq4eQPbP"://Flame Sweep
+      return IsClassBonusActive($mainPlayer, "WARRIOR") && CharacterLevel($mainPlayer) >= 2 ? 1 : 0;
     default: return 0;
   }
 }
