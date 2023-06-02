@@ -2587,6 +2587,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDQFinishMaterialize($currentPlayer, true);
       break;
+    case "ErH0lIBq4z"://Spurn to Ash
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYITEMS:type=REGALIA;maxCost=1&THEIRITEMS:type=REGALIA;maxCost=1&MYCHAR:type=REGALIA;maxCost=1&THEIRCHAR:type=REGALIA;maxCost=1");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a regalia to destroy", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
+      break;
     default: break;
   }
 }
