@@ -2158,6 +2158,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "yDARN8eV6B"://Tome of Knowledge
     case "P7hHZBVScB"://Orb of Glitter
     case "IC3OU6vCnF"://Mana Limiter
+    case "kk46Whz7CJ"://Surveillance Stone
       Draw($currentPlayer);
       break;
     case "YOjdZJpOO1"://Blissful Calling
