@@ -41,19 +41,6 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           $rv = GetDamagePreventionIndices($player);
           break;
         case "DAMAGEPREVENTIONTARGET": $rv = GetDamagePreventionTargetIndices(); break;
-        case "WTR083":
-          $rv = SearchDeckForCard($player, "WTR081");
-          if($rv != "") $rv = count(explode(",", $rv)) . "-" . $rv;
-          break;
-        case "WTR081":
-          $rv = LordOfWindIndices($player);
-          if($rv != "") $rv = count(explode(",", $rv)) . "-" . $rv;
-          break;
-        case "ARC079":
-          $rv = CombineSearches(SearchDiscard($player, "AA", "", -1, -1, "RUNEBLADE"), SearchDiscard($player, "A", "", -1, -1, "RUNEBLADE"));
-          break;
-        case "ARC121": $rv = SearchDeck($player, "", "", $lastResult, -1, "WIZARD"); break;
-        case "CRU143": $rv = SearchDiscard($player, "AA", "", -1, -1, "RUNEBLADE"); break;
         case "DECK": $rv = SearchDeck($player); break;
         case "TOPDECK":
           $deck = &GetDeck($player);
@@ -107,14 +94,9 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         case "CCDEFLESSX": $rv = SearchCombatChainLink($player, "", "", -1, -1, "", "", false, false, -1, false, -1, $subparam); break;
         case "HANDAAMAXCOST": $rv = SearchHand($player, "AA", "", $subparam); break;
         case "MYHANDAA": $rv = SearchHand($player, "AA"); break;
-        case "MYHANDARROW": $rv = SearchHand($player, "", "Arrow"); break;
-        case "MYDISCARDARROW": $rv = SearchDiscard($player, "", "Arrow"); break;
         case "MAINHAND":
           $hand = &GetHand($mainPlayer);
           $rv = GetIndices(count($hand)); break;
-        case "HANDEARTH": $rv = SearchHand($player, "", "", -1, -1, "", "EARTH"); break;
-        case "HANDICE": $rv = SearchHand($player, "", "", -1, -1, "", "ICE"); break;
-        case "HANDLIGHTNING": $rv = SearchHand($player, "", "", -1, -1, "", "LIGHTNING"); break;
         case "BANISHTYPE": $rv = SearchBanish($player, $subparam); break;
         case "GY":
           $discard = &GetDiscard($player);
@@ -127,42 +109,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         case "GYCLASSNAA": $rv = SearchDiscard($player, "A", "", -1, -1, $subparam); break;
         case "GYCARD": $rv = SearchDiscardForCard($player, $subparam); break;
         case "WEAPON": $rv = WeaponIndices($player, $player, $subparam); break;
-        case "MON020": case "MON021": case "MON022": $rv = SearchDiscard($player, "", "", -1, -1, "", "", false, true); break;
-        case "MON033-1":
-          $soul = &GetSoul($player);
-          $rv = GetIndices(count($soul), 1);
-          break;
-        case "MON033-2": $rv = CombineSearches(SearchDeck($player, "A", "", $lastResult), SearchDeck($player, "AA", "", $lastResult)); break;
-        case "MON125": $rv = SearchDeck($player, "", "", -1, -1, "", "", true); break;
-        case "MON156": $rv = SearchHand($player, "", "", -1, -1, "", "", true); break;
-        case "MON158": $rv = InvertExistenceIndices($player); break;
-        case "MON159": case "MON160": case "MON161": $rv = SearchDiscard($player, "A", "", -1, -1, "", "", true); break;
-        case "MON212": $rv = SearchBanish($player, "AA", "", $subparam); break;
-        case "MON266-1": $rv = SearchHand($player, "AA", "", -1, -1, "", "", false, false, -1, false, 3); break;
-        case "MON266-2": $rv = SearchDeckForCard($player, "MON296", "MON297", "MON298"); break;
-        case "MON303": $rv =  SearchDiscard($player, "AA", "", 2); break;
-        case "MON304": $rv = SearchDiscard($player, "AA", "", 1); break;
-        case "MON305": $rv = SearchDiscard($player, "AA", "", 0); break;
-        case "ELE006": $rv = SearchDeck($player, "AA", "", CountAura("WTR075", $player), -1, "GUARDIAN"); break;
-        case "ELE113": $rv = PulseOfCandleholdIndices($player); break;
-        case "ELE116": $rv = PlumeOfEvergrowthIndices($player); break;
-        case "ELE125": case "ELE126": case "ELE127": $rv = SummerwoodShelterIndices($player); break;
-        case "ELE140": case "ELE141": case "ELE142": $rv = SowTomorrowIndices($player, $parameter); break;
-        case "EVR178": $rv = SearchDeckForCard($player, "MON281", "MON282", "MON283"); break;
         case "HEAVE": $rv = HeaveIndices(); break;
-        case "BRAVOSTARSHOW": $rv = BravoStarOfTheShowIndices(); break;
         case "AURACLASS": $rv = SearchAura($player, "", "", -1, -1, $subparam); break;
         case "DECKAURAMAXCOST": $rv = SearchDeck($player, "", "Aura", $subparam); break;
-        case "CROWNOFREFLECTION": $rv = SearchHand($player, "", "Aura", -1, -1, "ILLUSIONIST"); break;
-        case "LIFEOFPARTY": $rv = LifeOfThePartyIndices(); break;
-        case "COALESCENTMIRAGE": $rv = SearchHand($player, "", "Aura", -1, 0, "ILLUSIONIST"); break;
-        case "MASKPOUNCINGLYNX": $rv = SearchDeck($player, "AA", "", -1, -1, "", "", false, false, -1, false, 2); break;
-        case "SHATTER": $rv = ShatterIndices($player, $subparam); break;
-        case "KNICKKNACK": $rv = KnickKnackIndices($player); break;
-        case "CASHOUT": $rv = CashOutIndices($player); break;
-        case "UPR086": $rv = ThawIndices($player); break;
         case "QUELL": $rv = QuellIndices($player); break;
-        case "SOUL": $rv = SearchSoul($player, talent:"LIGHT"); break;
         default: $rv = ""; break;
       }
       return ($rv == "" ? "PASS" : $rv);
@@ -358,6 +308,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
             case "CHAR": case "MYCHAR": case "THEIRCHAR": $zone[$mzArr[1] + 2] += $dqVars[0]; return $lastResult;
             default: return $lastResult;
           }
+        case "GETMEMORYCOST":
+          $mzArr = explode("-", $lastResult);
+          $zone = &GetMZZone($player, $mzArr[0]);
+          return CardMemoryCost($zone[$mzArr[1]]);
         default: break;
       }
       return $lastResult;

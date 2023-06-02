@@ -89,10 +89,10 @@ function SearchLandmarks($player, $type = "", $subtype = "", $maxCost = -1, $min
   return SearchInner($landmarks, $player, "LANDMARK", LandmarkPieces(), $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
 }
 
-function SearchSoul($player, $type = "", $subtype = "", $maxCost = -1, $minCost = -1, $class = "", $element = "", $floatingMemoryOnly = false, $phantasmOnly = false, $pitch = -1, $specOnly = false, $maxAttack = -1, $maxDef = -1, $frozenOnly = false, $hasNegCounters = false, $hasEnergyCounters = false, $comboOnly = false, $minAttack = false)
+function SearchMaterial($player, $type = "", $subtype = "", $maxCost = -1, $minCost = -1, $class = "", $element = "", $floatingMemoryOnly = false, $phantasmOnly = false, $pitch = -1, $specOnly = false, $maxAttack = -1, $maxDef = -1, $frozenOnly = false, $hasNegCounters = false, $hasEnergyCounters = false, $comboOnly = false, $minAttack = false)
 {
-  $soul = &GetSoul($player);
-  return SearchInner($soul, $player, "SOUL", SoulPieces(), $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
+  $material = &GetMaterial($player);
+  return SearchInner($material, $player, "MATERIAL", MaterialPieces(), $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
 }
 
 
@@ -910,6 +910,9 @@ function SearchMultizone($player, $searches)
           break;
         case "MYPITCH": case "THEIRPITCH":
           $searchResult = SearchPitch($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
+          break;
+        case "MYMATERIAL": case "THEIRMATERIAL":
+          $searchResult = SearchMaterial($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
           break;
         case "COMBATCHAINLINK":
           $searchResult = SearchCombatChainLink($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
