@@ -556,10 +556,7 @@ function FinalizeDamage($player, $damage, $damageThreatened, $type, $source)
     if($source != "NA")
     {
       $damage += CurrentEffectDamageModifiers($player, $source, $type);
-      if($type == "COMBAT" && HasCleave($source))
-      {
-        DamagePlayerAllies($player, $damage, $source, $type);
-      }
+      if($type == "COMBAT" && HasCleave($source)) DamagePlayerAllies($player, $damage, $source, $type);
     }
 
     AuraDamageTakenAbilities($player, $damage);
@@ -2568,6 +2565,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "vyRjDql0TR"://Tempered Steel
       AddDurabilityCounters($currentPlayer, 1);
       break;
+    case "DqtlaMGMvd"://Erratic Bolt
+      DealArcane(CharacterLevel($currentPlayer), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -2670,6 +2670,7 @@ function PlayRequiresTarget($cardID)
     case "LRsgl92Iqa": return 2;//Mark the Target
     case "pn9gQjV3Rb": return 0;//Arcane Blast
     case "XMb6pSHFJg": return 3;//Embersong
+    case "DqtlaMGMvd": return 2;//Erratic Bolt
     default: return -1;
   }
 }
