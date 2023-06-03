@@ -2596,6 +2596,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
       break;
+    case "XQKyUqsMUg"://Seer's Sword
+      if($from == "EQUIP") PlayerOpt($currentPlayer, 2);
+      break;
     default: break;
   }
 }
