@@ -505,4 +505,25 @@ function CurrentEffectGrantsAllStealth($player)
   return $stealthActive;
 }
 
+function CurrentEffectGrantsTrueSight($player, $uniqueID="")
+{
+  global $currentTurnEffects;
+  $grantsTrueSight = false;
+  for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
+    $remove = false;
+    if($currentTurnEffects[$i + 1] == $player) {
+      $arr = explode("-", $currentTurnEffects[$i]);
+      $subparam = count($arr) > 1 ? $arr[1] : 0;
+      switch($arr[0]) {
+        case "iiZtKTulPg": if($uniqueID != "" && $currentTurnEffects[$i + 2] == $uniqueID) $grantsTrueSight = true; break;//Eye of Argus
+        default:
+          break;
+      }
+    }
+    if($remove) RemoveCurrentTurnEffect($i);
+  }
+  $currentTurnEffects = array_values($currentTurnEffects);
+  return $grantsTrueSight;
+}
+
 ?>

@@ -2883,18 +2883,14 @@ function Draw($player, $mainPhase = true, $fromCardEffect = true)
 
 function IsTrueSightActive($attackID)
 {
-  global $combatChainState, $CCS_WeaponIndex, $mainPlayer;
-  if(HasTrueSight($attackID, $mainPlayer, -1)) return true;
-  /*
-  $index = $combatChainState[$CCS_WeaponIndex];
-  if($index != -1)
+  global $CS_PlayIndex, $mainPlayer;
+  $index = GetClassState($mainPlayer, $CS_PlayIndex);
+  if(HasTrueSight($attackID, $mainPlayer, $index)) return true;
+  if(IsAlly($attackID))
   {
-    if(IsAlly($attackID))
-    {
-      $allies = &GetAllies($mainPlayer);
-      $uniqueID = $allies[$index+5];
-    }
+    $allies = &GetAllies($mainPlayer);
+    $uniqueID = $allies[$index+5];
+    if(CurrentEffectGrantsTrueSight($mainPlayer, $uniqueID)) return true;
   }
-  */
   return false;
 }
