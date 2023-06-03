@@ -110,6 +110,9 @@ function CurrentEffectCostModifiers($cardID, $from)
         case "EBWWwvSxr3"://Channeling Stone
           $costModifier -= 2;
           break;
+        case "llQe0cg4xJ"://Orb of Choking Fumes
+          $costModifier += 1;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

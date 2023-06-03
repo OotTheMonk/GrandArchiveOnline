@@ -2151,6 +2151,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "j5iQQPd2m5"://Crystal of Argus
       AddCurrentTurnEffect("j5iQQPd2m5-" . intval(CountAura("ENLIGHTEN", $currentPlayer)/3), $currentPlayer);
       break;
+    case "llQe0cg4xJ"://Orb of Choking Fumes
+      AddCurrentTurnEffect("llQe0cg4xJ", ($currentPlayer == 1 ? 2 : 1));
+      if(IsClassBonusActive($currentPlayer, "ASSASSIN")) Draw($currentPlayer);
+      break;
     case "OofVX5hX8X"://Poisoned Coating Oil
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
