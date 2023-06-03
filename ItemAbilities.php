@@ -65,6 +65,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "qYH9PJP7uM"://Blinding Orb
     case "iiZtKTulPg"://Eye of Argus
     case "llQe0cg4xJ"://Orb of Choking Fumes
+    case "ScGcOmkoQt"://Smoke Bombs
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;

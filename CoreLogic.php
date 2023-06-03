@@ -2177,6 +2177,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       HandIntoMemory($otherPlayer);
       if(IsClassBonusActive($currentPlayer, "ASSASSIN")) Draw($currentPlayer);
       break;
+      case "g7uDOmUf2u":
+    case "ScGcOmkoQt"://Smoke Bombs
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
+      AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "ScGcOmkoQt,HAND", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-");
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble

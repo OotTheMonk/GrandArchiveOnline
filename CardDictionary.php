@@ -111,6 +111,7 @@ function HasTrueSight($cardID, $player, $index)
 function HasStealth($cardID, $player, $index)
 {
   $allies = &GetAllies($player);
+  if(CurrentEffectGrantsStealth($player, $allies[$index+5])) return true;
   switch($cardID)
   {
     case "aKgdkLSBza": return IsClassBonusActive($player, "TAMER");//Wilderness Harpist
@@ -222,6 +223,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "qYH9PJP7uM"://Blinding Orb
     case "iiZtKTulPg"://Eye of Argus
     case "llQe0cg4xJ"://Orb of Choking Fumes
+    case "ScGcOmkoQt"://Smoke Bombs
       return "I";
     default: return "";
   }

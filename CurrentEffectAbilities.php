@@ -508,6 +508,28 @@ function CurrentEffectGrantsAllStealth($player)
   return $stealthActive;
 }
 
+
+function CurrentEffectGrantsStealth($player, $uniqueID="")
+{
+  global $currentTurnEffects;
+  $grantsStealth = false;
+  for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
+    $remove = false;
+    if($currentTurnEffects[$i + 1] == $player) {
+      $arr = explode("-", $currentTurnEffects[$i]);
+      $subparam = count($arr) > 1 ? $arr[1] : 0;
+      switch($arr[0]) {
+        case "ScGcOmkoQt": if($uniqueID != "" && $currentTurnEffects[$i + 2] == $uniqueID) $grantsStealth = true; break;//Smoke Bombs
+        default:
+          break;
+      }
+    }
+    if($remove) RemoveCurrentTurnEffect($i);
+  }
+  $currentTurnEffects = array_values($currentTurnEffects);
+  return $grantsStealth;
+}
+
 function CurrentEffectGrantsTrueSight($player, $uniqueID="")
 {
   global $currentTurnEffects;
