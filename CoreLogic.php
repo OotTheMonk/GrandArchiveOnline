@@ -2191,6 +2191,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "ScGcOmkoQt,HAND", 1);
       AddDecisionQueue("DRAW", $currentPlayer, "-");
       break;
+    case "2bzajcZZRD"://Map of Hidden Passage
+      AddCurrentTurnEffect("2bzajcZZRD", $currentPlayer);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
