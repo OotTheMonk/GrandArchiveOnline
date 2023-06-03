@@ -2616,6 +2616,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "XQKyUqsMUg"://Seer's Sword
       if($from == "EQUIP") PlayerOpt($currentPlayer, 2);
       break;
+    case "rpOaAjgtue"://Frostsword Paladin
+      AddFloatingMemoryChoice();
+      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      $allies = &GetAllies($currentPlayer);
+      AddDecisionQueue("PASSPARAMETER", $currentPlayer, count($allies)-AllyPieces(), 1);
+      AddDecisionQueue("PREPENDLASTRESULT", $currentPlayer, "MYALLY-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
+      break;
     default: break;
   }
 }
