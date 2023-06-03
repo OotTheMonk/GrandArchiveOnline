@@ -267,6 +267,7 @@ function StartTurn()
   $turn[0] = "M";
   ReturnAllMemoryToHand($currentPlayer);
   Draw($currentPlayer);
+  AllyStartTurnAbilities($mainPlayer);
 }
 
 function ReturnAllMemoryToHand($player)
@@ -281,7 +282,6 @@ function ReturnAllMemoryToHand($player)
 function StartTurnAbilities()
 {
   global $mainPlayer, $defPlayer;
-  AllyStartTurnAbilities($mainPlayer);
   MZStartTurnMayAbilities();
 }
 

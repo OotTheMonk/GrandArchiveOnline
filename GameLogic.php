@@ -1241,6 +1241,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       BanishRandomMemory($currentPlayer);
       return $lastResult;
     case "FINISHMATERIALIZE":
+      global $CS_NumMaterializations;
       $cost = $dqVars[0];
       $index = $parameter;
       $cardID = RemoveMaterial($currentPlayer, $index);
@@ -1265,6 +1266,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         AddHand($currentPlayer, $cardID);
       }
       MaterializeCardEffect($cardID);
+      IncrementClassState($currentPlayer, $CS_NumMaterializations);
       return $cardID;
     case "STARTTURN":
       StartTurn();
