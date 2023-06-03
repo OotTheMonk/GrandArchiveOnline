@@ -483,4 +483,26 @@ function CurrentEffectLevelModifier($player)
   return $levelModifier;
 }
 
+function CurrentEffectGrantsAllStealth($player)
+{
+  global $currentTurnEffects;
+  $stealthActive = false;
+  for($i = count($currentTurnEffects) - CurrentTurnPieces(); $i >= 0; $i -= CurrentTurnPieces()) {
+    $remove = false;
+    if($currentTurnEffects[$i + 1] == $player) {
+      $arr = explode("-", $currentTurnEffects[$i]);
+      $subparam = count($arr) > 1 ? $arr[1] : 0;
+      switch($arr[0]) {
+        case "8nbmykyXcw": $stealthActive = true; break;//Conceal
+        case "DBJ4DuLABr": $stealthActive = true; break;//Shroud in Mist
+        default:
+          break;
+      }
+    }
+    if($remove) RemoveCurrentTurnEffect($i);
+  }
+  $currentTurnEffects = array_values($currentTurnEffects);
+  return $stealthActive;
+}
+
 ?>

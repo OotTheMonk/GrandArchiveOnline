@@ -98,7 +98,7 @@ function HasVigor($cardID, $player)
   }
 }
 
-function HasTrueSight($cardID, $player)
+function HasTrueSight($cardID, $player, $index)
 {
   switch($cardID)
   {
@@ -220,6 +220,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "OofVX5hX8X"://Poisoned Coating Oil
     case "Tx6iJQNSA6"://Majestic Spirit's Crest
     case "qYH9PJP7uM"://Blinding Orb
+    case "iiZtKTulPg"://Eye of Argus
       return "I";
     default: return "";
   }

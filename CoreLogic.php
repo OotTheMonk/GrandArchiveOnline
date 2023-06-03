@@ -2154,8 +2154,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "OofVX5hX8X"://Poisoned Coating Oil
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-      AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID");
-      AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "OofVX5hX8X,HAND");
+      AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
+      AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "OofVX5hX8X,HAND", 1);
+      break;
+    case "iiZtKTulPg"://Eye of Argus
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
+      AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "iiZtKTulPg,HAND", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-");
       break;
     case "Tx6iJQNSA6"://Majestic Spirit's Crest
       AddCurrentTurnEffect("Tx6iJQNSA6", $currentPlayer);
@@ -2872,4 +2879,22 @@ function Draw($player, $mainPhase = true, $fromCardEffect = true)
   PermanentDrawCardAbilities($player);
   $hand = array_values($hand);
   return $hand[count($hand) - 1];
+}
+
+function IsTrueSightActive($attackID)
+{
+  global $combatChainState, $CCS_WeaponIndex, $mainPlayer;
+  if(HasTrueSight($attackID, $mainPlayer, -1)) return true;
+  /*
+  $index = $combatChainState[$CCS_WeaponIndex];
+  if($index != -1)
+  {
+    if(IsAlly($attackID))
+    {
+      $allies = &GetAllies($mainPlayer);
+      $uniqueID = $allies[$index+5];
+    }
+  }
+  */
+  return false;
 }

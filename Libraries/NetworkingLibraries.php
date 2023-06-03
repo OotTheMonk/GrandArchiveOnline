@@ -1480,13 +1480,16 @@ function GetTargetOfAttack($attackID)
   }
   $numTargets = 1;
   $targets = "THEIRCHAR-0";
-  //Conceal + Shroud in Mist
-  if(!SearchCurrentTurnEffects("8nbmykyXcw", $defPlayer) && !SearchCurrentTurnEffects("DBJ4DuLABr", $defPlayer))
+  $isTrueSightActive = IsTrueSightActive($attackID);
+  if($isTrueSightActive || !CurrentEffectGrantsAllStealth($defPlayer))
   {
     $allies = &GetAllies($defPlayer);
     for($i = 0; $i < count($allies); $i += AllyPieces()) {
-      $targets .= ",THEIRALLY-" . $i;
-      ++$numTargets;
+      if($isTrueSightActive || !HasStealth($allies[$i], $defPlayer, $i))
+      {
+        $targets .= ",THEIRALLY-" . $i;
+        ++$numTargets;
+      }
     }
   }
   if($numTargets > 1) {
