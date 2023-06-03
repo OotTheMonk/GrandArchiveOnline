@@ -3,10 +3,18 @@
 function ProcessHitEffect($cardID)
 {
   WriteLog("Processing hit effect for " . CardLink($cardID, $cardID));
-  global $mainPlayer, $combatChainState, $CCS_GoesWhereAfterLinkResolves;
+  global $mainPlayer, $combatChainState, $CCS_GoesWhereAfterLinkResolves, $defPlayer;
   if(HitEffectsArePrevented()) return;
   switch($cardID)
   {
+    case "bA3tRrJr2T"://Caliburn of Silencing
+      if(IsHeroAttackTarget())
+      {
+        $char = &GetPlayerCharacter($defPlayer);
+        $char[1] = 1;//Inactive
+        $char[8] = 1;//Freeze
+      }
+      break;
     case "TgYTZg6TaG"://Wind Cutter
       if(CardElement(MemoryRevealRandom($mainPlayer)) == "WIND") $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "MEMORY";
       break;
