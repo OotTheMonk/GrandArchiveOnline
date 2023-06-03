@@ -36,6 +36,7 @@ function EffectAttackModifier($cardID)
     case "XMb6pSHFJg": return 2;//Embersong
     case "qyQLlDYBlr": return 1;//Ornamental Greatsword
     case "OofVX5hX8X": return 2;//Poisoned Coating Oil
+    case "TJTeWcZnsQ": return 2;//Lorraine, Blademaster
     default: return 0;
   }
 }
@@ -345,6 +346,7 @@ function IsCombatEffectActive($cardID)
     case "XMb6pSHFJg": return true;//Embersong
     case "qyQLlDYBlr": return true;//Ornamental Greatsword
     case "OofVX5hX8X": return true;//Poisoned Coating Oil
+    case "TJTeWcZnsQ": return !IsAlly($attackID);//Lorraine, Blademaster
     default: return false;
   }
 }

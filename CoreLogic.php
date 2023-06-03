@@ -2614,9 +2614,9 @@ function MemoryRevealRandom($player)
 function DamagePlayerAllies($player, $damage, $source, $type)
 {
   $allies = &GetAllies($player);
-  for($i=0; $i<count($allies); $i+=AllyPieces())
+  for($i=count($allies)-AllyPieces(); $i>=0; $i-=AllyPieces())
   {
-    DealAllyDamage($player, $i, $damage);
+    DealAllyDamage($player, $i, $damage, $type);
   }
 }
 

@@ -18,7 +18,7 @@ function PlayAlly($cardID, $player, $subCards = "-")
   return $index;
 }
 
-function DealAllyDamage($targetPlayer, $index, $damage)
+function DealAllyDamage($targetPlayer, $index, $damage, $type="")
 {
   $allies = &GetAllies($targetPlayer);
   if($allies[$index+6] > 0) {
@@ -28,7 +28,7 @@ function DealAllyDamage($targetPlayer, $index, $damage)
   }
   $allies[$index+2] -= $damage;
   if($damage > 0) AllyDamageTakenAbilities($targetPlayer, $index);
-  if($allies[$index+2] <= 0) DestroyAlly($targetPlayer, $index);
+  if($allies[$index+2] <= 0) DestroyAlly($targetPlayer, $index, fromCombat:($type == "COMBAT" ? true : false));
 }
 
 function RemoveAlly($player, $index)
@@ -52,6 +52,8 @@ function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
   else AddGraveyard($cardID, $player, "PLAY");
   for($j = $index + AllyPieces() - 1; $j >= $index; --$j) unset($allies[$j]);
   $allies = array_values($allies);
+  //On Kill abilities
+  if($fromCombat && SearchCurrentTurnEffects("TJTeWcZnsQ", $mainPlayer)) Draw($mainPlayer);//Lorraine, Blademaster
   return $cardID;
 }
 

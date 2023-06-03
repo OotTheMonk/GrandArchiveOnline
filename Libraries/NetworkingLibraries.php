@@ -1583,6 +1583,9 @@ function MaterializeCardEffect($cardID)
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDQFinishMaterialize($currentPlayer);
       break;
+    case "TJTeWcZnsQ"://Lorraine, Blademaster
+      AddCurrentTurnEffect("TJTeWcZnsQ", $currentPlayer);
+      break;
     default:
       break;
   }
