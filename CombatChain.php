@@ -53,6 +53,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return GetClassState($mainPlayer, $CS_NumLeveledUp) > 0 ? 2 : 0;
     case "mDN1CI9IEe"://Sealed Blade
       return IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0;
+    case "JAs9SmLqUS"://Gildas, Chronicler of Aesa
+      $memory = &GetMemory($mainPlayer);
+      $hand = &GetHand($mainPlayer);
+      return (count($memory)/MemoryPieces() == count($hand)/HandPieces() ? 3 : 0);
     default: return 0;
   }
 }
