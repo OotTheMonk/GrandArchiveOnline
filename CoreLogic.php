@@ -2641,6 +2641,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("PREPENDLASTRESULT", $currentPlayer, "MYALLY-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
       break;
+    case "iohZMWh5v5"://Blazing Throw
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYCHAR:type=WEAPON");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a weapon to sacrifice", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
+      DealArcane(ArcaneDamage("iohZMWh5v5"), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -2744,6 +2751,7 @@ function PlayRequiresTarget($cardID)
     case "pn9gQjV3Rb": return 0;//Arcane Blast
     case "XMb6pSHFJg": return 3;//Embersong
     case "DqtlaMGMvd": return 2;//Erratic Bolt
+    case "iohZMWh5v5": return 2;//BLazing Throw
     default: return -1;
   }
 }
@@ -2761,6 +2769,7 @@ function PlayRequiresTarget($cardID)
       case "LRsgl92Iqa": return 1;//Mark the Target
       case "pn9gQjV3Rb": return 11;//Arcane Blast
       case "XMb6pSHFJg": return 2;//Embersong
+      case "iohZMWh5v5": return 4;//BLazing Throw
       return 0;
     }
   }
