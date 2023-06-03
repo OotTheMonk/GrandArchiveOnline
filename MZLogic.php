@@ -94,6 +94,7 @@ function MZAddZone($player, $parameter, $lastResult)
       case "MYTOPDECK": AddTopDeck($cardIDs[$i], $player, "-"); break;
       case "MYBOTDECK": AddBottomDeck($cardIDs[$i], $player, "-"); break;
       case "THEIRBOTDECK": AddBottomDeck($cardIDs[$i], $otherPlayer, "-"); break;
+      case "MYMEMORY": AddMemory($cardIDs[$i], $player, $params[1], $params[2]);
       default: break;
     }
   }

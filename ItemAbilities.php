@@ -62,6 +62,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "1XegCUjBnY"://Life Essence Amulet
     case "OofVX5hX8X"://Poisoned Coating Oil
     case "Tx6iJQNSA6"://Majestic Spirit's Crest
+    case "qYH9PJP7uM"://Blinding Orb
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;

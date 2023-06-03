@@ -2160,6 +2160,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "Tx6iJQNSA6"://Majestic Spirit's Crest
       AddCurrentTurnEffect("Tx6iJQNSA6", $currentPlayer);
       break;
+    case "qYH9PJP7uM"://Blinding Orb
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      HandIntoMemory($otherPlayer);
+      HandIntoMemory($otherPlayer);
+      if(IsClassBonusActive($currentPlayer, "ASSASSIN")) Draw($currentPlayer);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
@@ -2843,6 +2849,15 @@ function CountPitch(&$pitch, $min = 0, $max = 9999)
     if($cost >= $min && $cost <= $max) ++$pitchCount;
   }
   return $pitchCount;
+}
+
+function HandIntoMemory($player)
+{
+  AddDecisionQueue("MULTIZONEINDICES", $player, "MYHAND");
+  AddDecisionQueue("SETDQCONTEXT", $player, "Choose a card to put into memory", 1);
+  AddDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
+  AddDecisionQueue("MZADDZONE", $player, "MYMEMORY,HAND,DOWN", 1);
+  AddDecisionQueue("MZREMOVE", $player, "-", 1);
 }
 
 function Draw($player, $mainPhase = true, $fromCardEffect = true)

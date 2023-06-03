@@ -219,6 +219,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "1XegCUjBnY"://Life Essence Amulet
     case "OofVX5hX8X"://Poisoned Coating Oil
     case "Tx6iJQNSA6"://Majestic Spirit's Crest
+    case "qYH9PJP7uM"://Blinding Orb
       return "I";
     default: return "";
   }
