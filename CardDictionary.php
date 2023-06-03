@@ -104,6 +104,7 @@ function HasTrueSight($cardID, $player, $index)
   {
     case "3TfIePpuZO": return true;//Trained Hawk
     case "LNSRQ5xW6E": return true;//Stillwater Patrol
+    case "Dz8I0eJzaf": return IsClassBonusActive($player, "WARRIOR");//Sword of Seeking
     default: return false;
   }
 }
