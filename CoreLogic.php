@@ -2161,6 +2161,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
       AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "OofVX5hX8X,HAND", 1);
       break;
+    case "F1t18omUlx"://Beastbond Paws
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY:subtype=ANIMAL&MYALLY:subtype=BEAST");
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
+      AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "F1t18omUlx,HAND", 1);
+      break;
     case "iiZtKTulPg"://Eye of Argus
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);

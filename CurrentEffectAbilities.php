@@ -37,6 +37,7 @@ function EffectAttackModifier($cardID)
     case "qyQLlDYBlr": return 1;//Ornamental Greatsword
     case "OofVX5hX8X": return 2;//Poisoned Coating Oil
     case "TJTeWcZnsQ": return 2;//Lorraine, Blademaster
+    case "F1t18omUlx": return 1;//Beastbond Paws
     default: return 0;
   }
 }
@@ -352,6 +353,7 @@ function IsCombatEffectActive($cardID)
     case "qyQLlDYBlr": return true;//Ornamental Greatsword
     case "OofVX5hX8X": return true;//Poisoned Coating Oil
     case "TJTeWcZnsQ": return !IsAlly($attackID);//Lorraine, Blademaster
+    case "F1t18omUlx": return true;//Beastbond Paws
     default: return false;
   }
 }
@@ -369,6 +371,7 @@ function IsCombatEffectPersistent($cardID)
     case "k71PE3clOI": return true;//Inspiring Call
     case "XMb6pSHFJg": return true;//Embersong
     case "qyQLlDYBlr": return true;//Ornamental Greatsword
+    case "F1t18omUlx": return true;//Beastbond Paws
     default:
       return false;
   }
@@ -541,6 +544,7 @@ function CurrentEffectGrantsTrueSight($player, $uniqueID="")
       $subparam = count($arr) > 1 ? $arr[1] : 0;
       switch($arr[0]) {
         case "iiZtKTulPg": if($uniqueID != "" && $currentTurnEffects[$i + 2] == $uniqueID) $grantsTrueSight = true; break;//Eye of Argus
+        case "F1t18omUlx": if($uniqueID != "" && $currentTurnEffects[$i + 2] == $uniqueID) $grantsTrueSight = true; break;//Beastbond Paws
         default:
           break;
       }
