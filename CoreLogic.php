@@ -2654,6 +2654,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("SPECIFICCARD", $currentPlayer, "DEFLECTINGEDGE", 1);
       break;
+    case "fMv7tIOZwL"://Aqueous Enchanting
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a mode", 1);
+      AddDecisionQueue("BUTTONINPUT", $currentPlayer, "+1_Health,+1_Attack", 1);
+      AddDecisionQueue("SHOWMODES", $currentPlayer, $cardID, 1);
+      AddDecisionQueue("MODAL", $currentPlayer, "AQUEOUSENCHANTING", 1);
+      break;
     default: break;
   }
 }

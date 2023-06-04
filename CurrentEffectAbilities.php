@@ -38,6 +38,7 @@ function EffectAttackModifier($cardID)
     case "OofVX5hX8X": return 2;//Poisoned Coating Oil
     case "TJTeWcZnsQ": return 2;//Lorraine, Blademaster
     case "F1t18omUlx": return 1;//Beastbond Paws
+    case "fMv7tIOZwLAttack": return 1;//Aqueous Enchanting
     default: return 0;
   }
 }
@@ -354,6 +355,7 @@ function IsCombatEffectActive($cardID)
     case "OofVX5hX8X": return true;//Poisoned Coating Oil
     case "TJTeWcZnsQ": return !IsAlly($attackID);//Lorraine, Blademaster
     case "F1t18omUlx": return true;//Beastbond Paws
+    case "fMv7tIOZwLAttack": return IsAlly($attackID);//Aqueous Enchanting
     default: return false;
   }
 }
@@ -372,6 +374,7 @@ function IsCombatEffectPersistent($cardID)
     case "XMb6pSHFJg": return true;//Embersong
     case "qyQLlDYBlr": return true;//Ornamental Greatsword
     case "F1t18omUlx": return true;//Beastbond Paws
+    case "fMv7tIOZwLAttack": return true;//Aqueous Enchanting
     default:
       return false;
   }
