@@ -1589,6 +1589,27 @@ function MaterializeCardEffect($cardID)
     case "TJTeWcZnsQ"://Lorraine, Blademaster
       AddCurrentTurnEffect("TJTeWcZnsQ", $currentPlayer);
       break;
+    case "FxYwR2azTt"://Prismatic Edge
+      if(IsClassBonusActive($currentPlayer, "WARRIOR"))
+      {
+        $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+        if(SearchMemory($currentPlayer, element:"FIRE") != "" || SearchMemory($otherPlayer, element:"FIRE") != "")
+        {
+          WriteLog("Dealt 3 damage because a fire card was revealed");
+          DealArcane(3, 2, "PLAYCARD", "FxYwR2azTt");
+        }
+        if(SearchMemory($currentPlayer, element:"WATER") != "" || SearchMemory($otherPlayer, element:"WATER") != "")
+        {
+          WriteLog("Drew a card because a water card was revealed");
+          Draw($currentPlayer);
+        }
+        if(SearchMemory($currentPlayer, element:"WIND") != "" || SearchMemory($otherPlayer, element:"WIND") != "")
+        {
+          WriteLog("Banished a card because a wind card was revealed");
+          BanishRandomMemory($otherPlayer);
+        }
+      }
+      break;
     default:
       break;
   }
