@@ -47,6 +47,16 @@ function SpecificCardLogic($player, $card, $lastResult)
     case "REFURBISH":
       if($lastResult == "m31WVJ9F04") WriteLog("<span style='color:DarkGreen'>There, it doesn't look like it was stuck in a dusty old rock anymore</span>");
       return $lastResult;
+    case "DEFLECTINGEDGE":
+      global $CS_DamagePrevention;
+      if($lastResult == "MYCHAR-0") IncrementClassState($player, $CS_DamagePrevention, 3);
+      else
+      {
+        $allies = &GetAllies($player);
+        $mzArr = explode("-", $lastResult);
+        $allies[$mzArr[1]+6] += 3;
+      }
+      return $lastResult;
     default: return "";
   }
 }

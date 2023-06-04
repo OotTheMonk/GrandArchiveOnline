@@ -223,18 +223,18 @@ function AllyEnduranceCounters($cardID)
 function AllyDamagePrevention($player, $index, $damage)
 {
   $allies = &GetAllies($player);
-  $cardID = $allies[$index];
   $canBePrevented = CanDamageBePrevented($player, $damage, "");
-  switch($cardID) {
-    case "UPR417":
-      if($allies[$index + 6] > 0) {
-        if($damage > 0) --$allies[$index + 6];
-        if($canBePrevented) $damage -= 3;
-        if($damage < 0) $damage = 0;
-      }
-      return $damage;
-    default: return $damage;
+  if($damage > $allies[$index+6])
+  {
+    if($canBePrevented) $damage -= $allies[$index+6];
+    $allies[$index+6] = 0;
   }
+  else
+  {
+    $allies[$index+6] -= $damage;
+    if($canBePrevented) $damage = 0;
+  }
+  return $damage;
 }
 
 //NOTE: This is for ally abilities that trigger when any ally attacks (for example miragai GRANTS an ability)

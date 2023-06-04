@@ -1809,6 +1809,7 @@ function SelfCostModifier($cardID)
     case "k71PE3clOI": $modifier += GetClassState($currentPlayer, $CS_NumAttacks) > 0 ? -2 : 0; break;//Inspiring Call
     case "wFH1kBLrWh": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? SearchBanish($currentPlayer, element:"ARCANE") : 0); break;//Arcane Elemental
     case "RUqtU0Lczf": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? 1 : 0); break;//Spellshield: Arcane
+    case "g7uDOmUf2u": $modifier += (SearchCount(SearchCharacter($currentPlayer, subtype:"SWORD")) > 0 ? -1 : 0); break;//Deflecting Edge
     default: break;
   }
   return $modifier;
@@ -2183,7 +2184,6 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       HandIntoMemory($otherPlayer);
       if(IsClassBonusActive($currentPlayer, "ASSASSIN")) Draw($currentPlayer);
       break;
-      case "g7uDOmUf2u":
     case "ScGcOmkoQt"://Smoke Bombs
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
@@ -2647,6 +2647,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
       DealArcane(ArcaneDamage("iohZMWh5v5"), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
+    case "g7uDOmUf2u"://Deflecting Edge
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYCHAR:type=CHAMPION&MYALLY");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a unit to prevent 3 damage for", 1);
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "DEFLECTINGEDGE", 1);
       break;
     default: break;
   }
