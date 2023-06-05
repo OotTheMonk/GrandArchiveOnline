@@ -2200,6 +2200,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       WriteLog("Manually enforce spellshround");
       AddCurrentTurnEffect("xjuCkODVRx", $currentPlayer);
       break;
+    case "yj2rJBREH8"://Safeguard Amulet
+      AddCurrentTurnEffect("yj2rJBREH8", $currentPlayer);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble

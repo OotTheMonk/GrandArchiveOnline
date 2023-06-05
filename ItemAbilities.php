@@ -70,6 +70,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "2bzajcZZRD"://Map of Hidden Passage
     case "usb5FgKvZX"://Sharpening Stone
     case "xjuCkODVRx"://Beastbond Boots
+    case "yj2rJBREH8"://Safeguard Amulet
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
