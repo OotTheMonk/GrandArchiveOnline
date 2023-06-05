@@ -239,6 +239,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "F1t18omUlx"://Beastbond Paws
     case "2bzajcZZRD"://Map of Hidden Passage
     case "usb5FgKvZX"://Sharpening Stone
+    case "xjuCkODVRx"://Beastbond Boots
       return "I";
     default: return "";
   }

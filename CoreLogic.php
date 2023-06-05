@@ -2195,6 +2195,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "2bzajcZZRD"://Map of Hidden Passage
       AddCurrentTurnEffect("2bzajcZZRD", $currentPlayer);
       break;
+    case "xjuCkODVRx"://Beastbond Boots
+      WriteLog("Manually enforce spellshround");
+      AddCurrentTurnEffect("xjuCkODVRx", $currentPlayer);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble
