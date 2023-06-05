@@ -2114,7 +2114,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "F9POfB5Nah"://Scry the Skies
       PlayerOpt($currentPlayer, CharacterLevel($currentPlayer));
-      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SCRYTHESKIES", 1);
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SCRYTHESKIES");
       break;
     case "6e7lRnczfL"://Horn of Beastcalling
       AddCurrentTurnEffect("6e7lRnczfL", $currentPlayer);
