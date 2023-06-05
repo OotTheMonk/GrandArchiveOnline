@@ -39,6 +39,7 @@ function EffectAttackModifier($cardID)
     case "TJTeWcZnsQ": return 2;//Lorraine, Blademaster
     case "F1t18omUlx": return 1;//Beastbond Paws
     case "fMv7tIOZwLAttack": return 1;//Aqueous Enchanting
+    case "GRkBQ1Uvir": return 2;//Ignited Strike
     default: return 0;
   }
 }
@@ -356,6 +357,7 @@ function IsCombatEffectActive($cardID)
     case "TJTeWcZnsQ": return !IsAlly($attackID);//Lorraine, Blademaster
     case "F1t18omUlx": return true;//Beastbond Paws
     case "fMv7tIOZwLAttack": return IsAlly($attackID);//Aqueous Enchanting
+    case "GRkBQ1Uvir": return true;//Ignited Strike
     default: return false;
   }
 }

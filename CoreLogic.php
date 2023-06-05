@@ -2678,6 +2678,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("SPECIFICCARD", $currentPlayer, "POWEROVERWHELMING");
       }
       break;
+    case "GRkBQ1Uvir"://Ignited Stab
+      if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("GRkBQ1Uvir", $currentPlayer);
+      break;
     default: break;
   }
 }

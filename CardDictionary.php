@@ -129,6 +129,7 @@ function PrepareAmount($cardID)
   switch($cardID)
   {
     case "5X5W2Uda5a": return 1;//Planted Explosives
+    case "GRkBQ1Uvir": return 1;//Ignited Stab
     default: return 0;
   }
 }
