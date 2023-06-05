@@ -2660,6 +2660,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("SHOWMODES", $currentPlayer, $cardID, 1);
       AddDecisionQueue("MODAL", $currentPlayer, "AQUEOUSENCHANTING", 1);
       break;
+    case "dBAdWMoPEz"://Erupting Rhapsody
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "ERUPTINGRHAPSODY");
+      if(IsHarmonizeActive($currentPlayer)) AddDecisionQueue("SPECIFICCARD", $currentPlayer, "ERUPTINGRHAPSODYHARMONIZE");
+      break;
     default: break;
   }
 }

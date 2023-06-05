@@ -61,6 +61,17 @@ function SpecificCardLogic($player, $card, $lastResult)
         $allies[$mzArr[1]+6] += 3;
       }
       return $lastResult;
+    case "ERUPTINGRHAPSODY":
+      PrependDecisionQueue("SPECIFICCARD", $player, "ERUPTINGRHAPSODY", 1);
+      PrependDecisionQueue("ADDCURRENTEFFECT", $player, "dBAdWMoPEz", 1);
+      PrependDecisionQueue("MZREMOVE", $player, "-", 1);
+      PrependDecisionQueue("MZADDZONE", $player, "MYBANISH,DECK,TT", 1);
+      PrependDecisionQueue("MAYCHOOSEMULTIZONE", $player, "<-", 1);
+      PrependDecisionQueue("MULTIZONEINDICES", $player, "MYDISCARD:element=FIRE");
+      return $lastResult;
+    case "ERUPTINGRHAPSODYHARMONIZE":
+      for($i=0; $i<CharacterLevel($player); ++$i) DealArcane(1, 2, "PLAYCARD", "dBAdWMoPEz");
+      return $lastResult;
     default: return "";
   }
 }
