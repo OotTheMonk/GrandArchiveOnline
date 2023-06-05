@@ -8,7 +8,10 @@ function EffectHitEffect($cardID)
   global $CID_BloodRotPox, $CID_Frailty, $CID_Inertia;
   $attackID = $combatChain[0];
   switch($cardID) {
-
+    case "mj3WSrghUH"://Poised Strike
+      $char = &GetPlayerCharacter($mainPlayer);
+      $char[1] = 2;
+      break;
     default:
       break;
   }
@@ -358,6 +361,7 @@ function IsCombatEffectActive($cardID)
     case "F1t18omUlx": return true;//Beastbond Paws
     case "fMv7tIOZwLAttack": return IsAlly($attackID);//Aqueous Enchanting
     case "GRkBQ1Uvir": return true;//Ignited Strike
+    case "mj3WSrghUH": return true;//Poised Strike
     default: return false;
   }
 }

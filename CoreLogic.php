@@ -2681,6 +2681,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "GRkBQ1Uvir"://Ignited Stab
       if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("GRkBQ1Uvir", $currentPlayer);
       break;
+    case "mj3WSrghUH"://Poised Strike
+      if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("mj3WSrghUH", $currentPlayer);
+      break;
     default: break;
   }
 }
