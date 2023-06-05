@@ -261,12 +261,13 @@ function AddFloatingMemoryChoice($fromDQ=false)
 //This is always called from the decision queue
 function StartTurn()
 {
-  global $dqState, $currentPlayer, $mainPlayer, $turn;
+  global $dqState, $currentPlayer, $mainPlayer, $turn, $firstPlayer, $currentTurn;
   $mainPlayer = $currentPlayer;
   $dqState[1] = "M";
   $turn[0] = "M";
   ReturnAllMemoryToHand($currentPlayer);
-  Draw($currentPlayer);
+  WriteLog($mainPlayer . " " . $firstPlayer . " " . $currentTurn);
+  if($mainPlayer != $firstPlayer || $currentTurn > 1) Draw($currentPlayer);
   AllyStartTurnAbilities($mainPlayer);
 }
 
