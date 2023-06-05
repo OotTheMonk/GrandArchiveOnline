@@ -2684,6 +2684,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "mj3WSrghUH"://Poised Strike
       if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("mj3WSrghUH", $currentPlayer);
       break;
+    case "QQaOgurnjX"://Imbue in Frost
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "WEAPON");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose_target_weapon");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("ADDMZBUFF", $currentPlayer, $cardID, 1);
+      break;
     default: break;
   }
 }

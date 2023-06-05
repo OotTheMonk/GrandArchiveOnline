@@ -285,7 +285,7 @@ function MainCharacterAttackModifiers($index = -1, $onlyBuffs = false)
   for($i = 0; $i < count($mainCharacterEffects); $i += CharacterEffectPieces()) {
     if($mainCharacterEffects[$i] == $index) {
       switch($mainCharacterEffects[$i + 1]) {
-
+        case "QQaOgurnjX": $modifier += 2; break;//Imbue in Frost
         default:
           break;
       }
