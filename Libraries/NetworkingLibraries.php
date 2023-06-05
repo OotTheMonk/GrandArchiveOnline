@@ -1619,6 +1619,10 @@ function MaterializeCardEffect($cardID)
         }
       }
       break;
+    case "T3CIBknts0"://Zander, Prepared Scout
+      AddPreparationCounters($currentPlayer, 1);
+      PlayerOpt($currentPlayer, 2);
+      break;
     default:
       break;
   }
