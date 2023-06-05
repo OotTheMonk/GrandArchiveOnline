@@ -124,6 +124,15 @@ function HasStealth($cardID, $player, $index)
   }
 }
 
+function PrepareAmount($cardID)
+{
+  switch($cardID)
+  {
+    case "5X5W2Uda5a": return 1;//Planted Explosives
+    default: return 0;
+  }
+}
+
 //Minimum cost of the card
 function CardCost($cardID)
 {

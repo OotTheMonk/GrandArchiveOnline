@@ -2665,6 +2665,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("SPECIFICCARD", $currentPlayer, "ERUPTINGRHAPSODY");
       if(IsHarmonizeActive($currentPlayer)) AddDecisionQueue("SPECIFICCARD", $currentPlayer, "ERUPTINGRHAPSODYHARMONIZE");
       break;
+    case "5X5W2Uda5a"://Planted Explosives
+      $damage = (DelimStringContains($additionalCosts, "PREPARE") ? 4 : 2);
+      DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -2769,6 +2773,7 @@ function PlayRequiresTarget($cardID)
     case "XMb6pSHFJg": return 3;//Embersong
     case "DqtlaMGMvd": return 2;//Erratic Bolt
     case "iohZMWh5v5": return 2;//BLazing Throw
+    case "5X5W2Uda5a": return 2;//Planted Explosives
     default: return -1;
   }
 }

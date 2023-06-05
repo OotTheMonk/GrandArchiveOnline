@@ -341,6 +341,11 @@ function IncrementClassState($player, $piece, $amount = 1)
   SetClassState($player, $piece, (GetClassState($player, $piece) + $amount));
 }
 
+function DecrementClassState($player, $piece, $amount = 1)
+{
+  SetClassState($player, $piece, (GetClassState($player, $piece) - $amount));
+}
+
 function AppendClassState($player, $piece, $value)
 {
   $currentState = GetClassState($player, $piece);

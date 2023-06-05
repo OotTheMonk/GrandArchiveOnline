@@ -1520,10 +1520,19 @@ function PayAbilityAdditionalCosts($cardID)
 
 function PayAdditionalCosts($cardID, $from)
 {
-  global $currentPlayer, $CS_AdditionalCosts, $CS_CharacterIndex, $CS_PlayIndex;
+  global $currentPlayer, $CS_AdditionalCosts, $CS_CharacterIndex, $CS_PlayIndex, $CS_PreparationCounters;
   if($from == "PLAY" && CardTypeContains($cardID, "ITEM")) {
     PayItemAbilityAdditionalCosts($cardID, $from);
     return;
+  }
+  $prepareAmount = PrepareAmount($cardID);
+  if($prepareAmount > 0 && GetClassState($currentPlayer, $CS_PreparationCounters) >= $prepareAmount)
+  {
+    AddDecisionQueue("YESNO", $currentPlayer, "do_you_want_to_prepare_" . $prepareAmount . "?");
+    AddDecisionQueue("NOPASS", $currentPlayer, "-", 1);
+    AddDecisionQueue("SUBTRACTCLASSSTATE", $currentPlayer, $CS_PreparationCounters . "-" . $prepareAmount, 1);
+    AddDecisionQueue("PASSPARAMETER", $currentPlayer, "PREPARE", 1);
+    AddDecisionQueue("SETCLASSSTATE", $currentPlayer, $CS_AdditionalCosts, 1);
   }
   if(RequiresDiscard($cardID)) {
     $discarded = DiscardRandom($currentPlayer, $cardID);

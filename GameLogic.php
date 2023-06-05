@@ -602,13 +602,6 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       WriteLog($amount);
       $combatChain[5] += $amount;
       return $parameter;
-    case "CHARGE":
-      DQCharge();
-      return "1";
-    case "FINISHCHARGE":
-      WriteLog("This card was charged: " . CardLink($lastResult, $lastResult));
-      IncrementClassState($player, $CS_NumCharged);
-      return $lastResult;
     case "DEALDAMAGE":
       $target = (is_array($lastResult) ? $lastResult : explode("-", $lastResult));
       $targetPlayer = ($target[0] == "MYCHAR" || $target[0] == "MYALLY" ? $player : ($player == 1 ? 1 : 2));
@@ -761,6 +754,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $parameters = explode("-", $parameter);
       IncrementClassState($player, $parameters[0], $parameters[1]);
       return 1;
+    case "SUBTRACTCLASSSTATE":
+      $parameters = explode("-", $parameter);
+      DecrementClassState($player, $parameters[0], $parameters[1]);
+      return $lastResult;
     case "APPENDCLASSSTATE":
       $parameters = explode("-", $parameter);
       AppendClassState($player, $parameters[0], $parameters[1]);
