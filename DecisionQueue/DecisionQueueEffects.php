@@ -72,6 +72,13 @@ function SpecificCardLogic($player, $card, $lastResult)
     case "ERUPTINGRHAPSODYHARMONIZE":
       for($i=0; $i<CharacterLevel($player); ++$i) DealArcane(1, 2, "PLAYCARD", "dBAdWMoPEz");
       return $lastResult;
+    case "POWEROVERWHELMING":
+      if($lastResult > 0)
+      {
+        AddCurrentTurnEffect("AnEPyfFfHj-" . $lastResult, $player);
+        for($i=0; $i<$lastResult; ++$i) DestroyAura($player, SearchAurasForCard("ENLIGHTEN", $player, true));
+      }
+      return $lastResult;
     default: return "";
   }
 }

@@ -2669,6 +2669,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $damage = (DelimStringContains($additionalCosts, "PREPARE") ? 4 : 2);
       DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "AnEPyfFfHj"://Power Overwhelming
+      $numEnlighten = SearchCount(SearchAurasForCard("ENLIGHTEN", $currentPlayer));
+      if($numEnlighten > 0)
+      {
+        AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose how many englighten counters to remove");
+        AddDecisionQueue("BUTTONINPUT", $currentPlayer, GetIndices($numEnlighten+1));
+        AddDecisionQueue("SPECIFICCARD", $currentPlayer, "POWEROVERWHELMING");
+      }
+      break;
     default: break;
   }
 }

@@ -483,6 +483,7 @@ function CurrentEffectLevelModifier($player)
         case "j5iQQPd2m5": $levelModifier += $subparam; break;//Crystal of Argus
         case "ybdj1Db9jz": $levelModifier += 2; break;//Seed of Nature
         case "dBAdWMoPEz": $levelModifier += 1; break;//Erupting Rhapsody
+        case "AnEPyfFfHj": $levelModifier += $subparam;//Power Overwhelming
         default:
           break;
       }

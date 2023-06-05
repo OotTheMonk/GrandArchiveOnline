@@ -518,12 +518,13 @@ function SearchAuras($cardID, $player)
   return false;
 }
 
-function SearchAurasForCard($cardID, $player)
+function SearchAurasForCard($cardID, $player, $justFirst=false)
 {
   $auras = &GetAuras($player);
   $indices = "";
   for ($i = 0; $i < count($auras); $i += AuraPieces()) {
     if ($auras[$i] == $cardID) {
+      if($justFirst) return $i;
       if ($indices != "") $indices .= ",";
       $indices .= $i;
     }
