@@ -131,6 +131,7 @@ function PrepareAmount($cardID)
     case "5X5W2Uda5a": return 1;//Planted Explosives
     case "GRkBQ1Uvir": return 1;//Ignited Stab
     case "mj3WSrghUH": return 1;//Poised Strike
+    case "XLbCBxla8K": return 1;//Thousand Refractions
     default: return 0;
   }
 }

@@ -2713,6 +2713,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $theirAllies = &GetAllies($otherPlayer);
       for($i=count($theirAllies)-AllyPieces(); $i>=0; $i-=AllyPieces()) MZBounce($otherPlayer, "MYALLY-" . $i);
       break;
+    case "XLbCBxla8K"://Thousand Refractions
+      if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("XLbCBxla8K", $currentPlayer);
+      break;
     default: break;
   }
 }
@@ -2983,6 +2986,12 @@ function Draw($player, $mainPhase = true, $fromCardEffect = true)
   PermanentDrawCardAbilities($player);
   $hand = array_values($hand);
   return $hand[count($hand) - 1];
+}
+
+function WakeUpChampion($player)
+{
+  $char = &GetPlayerCharacter($player);
+  $char[1] = 2;
 }
 
 function IsTrueSightActive($attackID)

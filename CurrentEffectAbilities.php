@@ -5,12 +5,15 @@
 function EffectHitEffect($cardID)
 {
   global $combatChainState, $CCS_GoesWhereAfterLinkResolves, $defPlayer, $mainPlayer, $CCS_WeaponIndex, $combatChain, $CCS_DamageDealt;
-  global $CID_BloodRotPox, $CID_Frailty, $CID_Inertia;
   $attackID = $combatChain[0];
   switch($cardID) {
     case "mj3WSrghUH"://Poised Strike
       $char = &GetPlayerCharacter($mainPlayer);
       $char[1] = 2;
+      break;
+    case "XLbCBxla8K"://Thousand Refractions
+      WakeUpChampion($mainPlayer);
+      $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "HAND";
       break;
     default:
       break;
@@ -369,6 +372,7 @@ function IsCombatEffectActive($cardID)
     case "fMv7tIOZwLAttack": return IsAlly($attackID);//Aqueous Enchanting
     case "GRkBQ1Uvir": return true;//Ignited Strike
     case "mj3WSrghUH": return true;//Poised Strike
+    case "XLbCBxla8K": return true;//Thousand Refractions
     default: return false;
   }
 }
