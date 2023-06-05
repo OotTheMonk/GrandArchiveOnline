@@ -286,6 +286,7 @@ function MainCharacterAttackModifiers($index = -1, $onlyBuffs = false)
     if($mainCharacterEffects[$i] == $index) {
       switch($mainCharacterEffects[$i + 1]) {
         case "QQaOgurnjX": $modifier += 2; break;//Imbue in Frost
+        case "usb5FgKvZX": $modifier += 1; break;//Sharpening Stone
         default:
           break;
       }

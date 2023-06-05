@@ -2691,6 +2691,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("ADDMZBUFF", $currentPlayer, $cardID, 1);
       break;
+    case "usb5FgKvZX"://Sharpening Stone
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "WEAPON");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose_target_weapon");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("ADDMZBUFF", $currentPlayer, $cardID, 1);
+      break;
     default: break;
   }
 }
