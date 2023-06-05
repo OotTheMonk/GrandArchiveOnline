@@ -542,7 +542,7 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       include_once "./includes/dbh.inc.php";
       include_once "./includes/functions.inc.php";
       $conceded = true;
-      if(!IsGameOver()) PlayerLoseHealth($playerID, GetHealth($playerID));
+      if(!IsGameOver()) PlayerLoseHealth($playerID, 999);
       break;
     case 100003: //Report Bug
       if($isSimulation) return;
