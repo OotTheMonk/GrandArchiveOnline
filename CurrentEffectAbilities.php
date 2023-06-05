@@ -119,6 +119,10 @@ function CurrentEffectCostModifiers($cardID, $from)
         case "llQe0cg4xJ"://Orb of Choking Fumes
           $costModifier += 1;
           break;
+        case "wPKxvzTmqq"://Ensnaring Fumes
+          $costModifier -= 5;
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

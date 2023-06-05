@@ -332,6 +332,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
             }
           }
           return implode(",", $cards);
+        case "REMOVEPREPARATION":
+          global $CS_PreparationCounters;
+          DecrementClassState($player, $CS_PreparationCounters, $lastResult);
+          return $lastResult;
         default: return $lastResult;
       }
     case "FILTER":

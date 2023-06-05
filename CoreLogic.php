@@ -1811,6 +1811,7 @@ function SelfCostModifier($cardID)
     case "wFH1kBLrWh": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? SearchBanish($currentPlayer, element:"ARCANE") : 0); break;//Arcane Elemental
     case "RUqtU0Lczf": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? 1 : 0); break;//Spellshield: Arcane
     case "g7uDOmUf2u": $modifier += (SearchCount(SearchCharacter($currentPlayer, subtype:"SWORD")) > 0 ? -1 : 0); break;//Deflecting Edge
+    case "wPKxvzTmqq": $modifier += (DelimStringContains($additionalCosts, "PREPARE") ? -5 : 0); //Ensnaring Fumes
     default: break;
   }
   return $modifier;
@@ -2701,6 +2702,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose_target_weapon");
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("ADDMZBUFF", $currentPlayer, $cardID, 1);
+      break;
+    case "wPKxvzTmqq"://Ensnaring Fumes
+      $allies = &GetAllies($currentPlayer);
+      for($i=count($allies)-AllyPieces(); $i>=0; $i-=AllyPieces()) MZBounce($currentPlayer, "MYALLY-" . $i);
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      $theirAllies = &GetAllies($otherPlayer);
+      for($i=count($theirAllies)-AllyPieces(); $i>=0; $i-=AllyPieces()) MZBounce($otherPlayer, "MYALLY-" . $i);
       break;
     default: break;
   }

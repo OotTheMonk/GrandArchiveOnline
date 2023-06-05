@@ -1396,7 +1396,7 @@ function GetLayerTarget($cardID)
 
 function AddPrePitchDecisionQueue($cardID, $from, $index = -1)
 {
-  global $currentPlayer;
+  global $currentPlayer, $CS_PreparationCounters;
   if (IsStaticType(CardType($cardID), $from, $cardID)) {
     $names = GetAbilityNames($cardID, $index);
     if ($names != "") {
@@ -1406,63 +1406,15 @@ function AddPrePitchDecisionQueue($cardID, $from, $index = -1)
     }
   }
   switch ($cardID) {
-    case "WTR081":
-      if (ComboActive($cardID)) {
-        AddDecisionQueue("FINDINDICES", $currentPlayer, $cardID);
-        AddDecisionQueue("MULTICHOOSEDISCARD", $currentPlayer, "<-", 1);
-        AddDecisionQueue("MULTIREMOVEDISCARD", $currentPlayer, "-", 1);
-        AddDecisionQueue("MULTIADDDECK", $currentPlayer, "-", 1);
-        AddDecisionQueue("LORDOFWIND", $currentPlayer, "-", 1);
-        AddDecisionQueue("SHUFFLEDECK", $currentPlayer, "-", 1);
+    case "wPKxvzTmqq"://Ensnaring Fumes
+      if(GetClassState($currentPlayer, $CS_PreparationCounters) >= 3)
+      {
+        AddDecisionQueue("YESNO", $currentPlayer, "if you want to pay 3 preparation counters");
+        AddDecisionQueue("NOPASS", $currentPlayer, "-", 1);
+        AddDecisionQueue("PASSPARAMETER", $currentPlayer, "3", 1);
+        AddDecisionQueue("OP", $currentPlayer, "REMOVEPREPARATION", 1);
+        AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "wPKxvzTmqq", 1);
       }
-      break;
-    case "ARC185": case "ARC186": case "ARC187":
-      HandToTopDeck($currentPlayer);
-      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "ARC185", 1);
-      break;
-    case "CRU188":
-      AddDecisionQueue("COUNTITEM", $currentPlayer, "CRU197"); //Copper
-      AddDecisionQueue("LESSTHANPASS", $currentPlayer, "4");
-      AddDecisionQueue("YESNO", $currentPlayer, "if_you_want_to_pay_4_" . CardLink("CRU197", "CRU197"), 1);
-      AddDecisionQueue("NOPASS", $currentPlayer, "-", 1);
-      AddDecisionQueue("FINDANDDESTROYITEM", $currentPlayer, "CRU197-4", 1);
-      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "CRU188", 1);
-      AddDecisionQueue("WRITELOG", $currentPlayer, "Copper_alternative_cost_was_paid.", 1);
-
-      AddDecisionQueue("COUNTITEM", $currentPlayer, "EVR195"); //Silver
-      AddDecisionQueue("LESSTHANPASS", $currentPlayer, "2");
-      AddDecisionQueue("FINDCURRENTEFFECTPASS", $currentPlayer, "CRU188");
-      AddDecisionQueue("YESNO", $currentPlayer, "if_you_want_to_pay_2_" . CardLink("EVR195", "EVR195"), 1);
-      AddDecisionQueue("NOPASS", $currentPlayer, "-", 1);
-      AddDecisionQueue("FINDANDDESTROYITEM", $currentPlayer, "EVR195-2", 1);
-      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "CRU188", 1);
-      AddDecisionQueue("WRITELOG", $currentPlayer, "Silver_alternative_cost_was_paid.", 1);
-
-      AddDecisionQueue("COUNTITEM", $currentPlayer, "DYN243"); //Gold
-      AddDecisionQueue("LESSTHANPASS", $currentPlayer, "1");
-      AddDecisionQueue("FINDCURRENTEFFECTPASS", $currentPlayer, "CRU188");
-      AddDecisionQueue("YESNO", $currentPlayer, "if_you_want_to_pay_1_" . CardLink("DYN243", "DYN243"), 1);
-      AddDecisionQueue("NOPASS", $currentPlayer, "-", 1);
-      AddDecisionQueue("FINDANDDESTROYITEM", $currentPlayer, "DYN243-1", 1);
-      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "CRU188", 1);
-      AddDecisionQueue("WRITELOG", $currentPlayer, "Gold_alternative_cost_was_paid.", 1);
-      break;
-    case "MON199":
-      AddDecisionQueue("FINDINDICES", $currentPlayer, "MULTIHAND");
-      AddDecisionQueue("MULTICHOOSEHAND", $currentPlayer, "<-", 1);
-      AddDecisionQueue("MULTIREMOVEHAND", $currentPlayer, "-", 1);
-      AddDecisionQueue("MULTIBANISH", $currentPlayer, "HAND,NA", 1);
-      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SOULREAPING", 1);
-      break;
-    case "MON257": case "MON258": case "MON259":
-      HandToTopDeck($currentPlayer);
-      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "MON257", 1);
-      break;
-    case "EVR161": case "EVR162": case "EVR163":
-      AddDecisionQueue("FINDINDICES", $currentPlayer, "LIFEOFPARTY");
-      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-      AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
-      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "EVR161", 1);
       break;
     default:
       break;
