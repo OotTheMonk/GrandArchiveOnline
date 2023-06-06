@@ -173,6 +173,9 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
         case "yj2rJBREH8"://Safeguard Amulet
           if($preventable && $type != "COMBAT") $damage -= 4;
           break;
+        case "KoF3AMSlUe"://Veiling Breeze
+          if($preventable) $damage -= $effects[1];
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

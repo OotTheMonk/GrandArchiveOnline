@@ -2725,6 +2725,25 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "XLbCBxla8K"://Thousand Refractions
       if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("XLbCBxla8K", $currentPlayer);
       break;
+    case "KoF3AMSlUe"://Veiling Breeze
+      $memory = &GetMemory($currentPlayer);
+      $toReveal = "";
+      $numWind = 0;
+      for($i=0; $i<count($memory); $i+=MemoryPieces())
+      {
+        if(CardElement($memory[$i]) == "WIND")
+        {
+          if($toReveal != "") $toReveal .= ",";
+          $toReveal .= $memory[$i];
+          ++$numWind;
+        }
+      }
+      if(RevealCards($toReveal))
+      {
+        AddCurrentTurnEffect("KoF3AMSlUe-" . $numWind, $currentPlayer);
+        WriteLog("Veiling Breeze prevents " . $numWind . " damage.");
+      }
+      break;
     default: break;
   }
 }
