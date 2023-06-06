@@ -2559,7 +2559,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       if(IsClassBonusActive($currentPlayer, "ASSASSIN")) AddPreparationCounters($currentPlayer, 1);
       break;
     case "XZFXOE9sEV"://Zephyr Assistant
-      PlayAura("ENLIGHTEN", $currentPlayer);
+      if($from != "PLAY") PlayAura("ENLIGHTEN", $currentPlayer);
       break;
     case "ybdj1Db9jz"://Seed of Nature
       AddCurrentTurnEffect("ybdj1Db9jz", $currentPlayer);
