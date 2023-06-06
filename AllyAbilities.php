@@ -149,7 +149,7 @@ function AllyLeavesPlayAbility($player, $index)
   switch($cardID)
   {
     case "XZFXOE9sEV"://Zephyr Assistant
-      PlayAura("ENLIGHTEN", $currentPlayer);
+      PlayAura("ENLIGHTEN", $player);
       break;
     default: break;
   }
