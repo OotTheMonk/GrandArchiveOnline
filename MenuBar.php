@@ -24,7 +24,7 @@ $isMobile = IsMobile();
 
 <head>
   <title>Clarent</title>
-  <!--<link rel="shortcut icon" type="image/png" href="Images/TeenyCoin.png" />-->
+  <link rel="shortcut icon" type="image/png" href="Images/clarentTiny.png" />
   <link rel="stylesheet" href="./css/menuStyles2.css">
   <style>
     body {
