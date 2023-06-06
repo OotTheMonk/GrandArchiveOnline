@@ -115,12 +115,7 @@ echo ("<br>");
 echo ("<label for='format' class='SelectDeckInput'>Format: </label>");
 echo ("<select name='format' id='format'>");
 if ($canSeeQueue) {
-  echo ("<option value='blitz' " . ($defaultFormat == 2 ? " selected" : "") . ">Blitz</option>");
-  echo ("<option value='compblitz' " . ($defaultFormat == 3 ? " selected" : "") . ">Competitive Blitz</option>");
-  echo ("<option value='cc' " . ($defaultFormat == 0 ? " selected" : "") . ">Classic Constructed</option>");
-  echo ("<option value='compcc'" . ($defaultFormat == 1 ? " selected" : "") . ">Competitive CC</option>");
-  echo ("<option value='commoner'" . ($defaultFormat == 5 ? " selected" : "") . ">Commoner</option>");
-  echo ("<option value='clash'" . ($defaultFormat == 6 ? " selected" : "") . ">Clash</option>");
+  echo ("<option value='cc' " . ($defaultFormat == 0 ? " selected" : "") . ">Standard Constructed</option>");
 }
 echo ("<option value='livinglegendscc'" . ($defaultFormat == 4 ? " selected" : "") . ">Open Format</option>");
 echo ("</select>");
