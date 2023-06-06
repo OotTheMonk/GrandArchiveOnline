@@ -2621,6 +2621,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "DqtlaMGMvd"://Erratic Bolt
       DealArcane(CharacterLevel($currentPlayer), 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      if(IsClassBonusActive($currentPlayer, "MAGE"))
+      {
+        AddDecisionQueue("YESNO", $currentPlayer, "if you want to banish two cards from your memory");
+        AddDecisionQueue("NOPASS", $currentPlayer, "-");
+        AddDecisionQueue("BANISHRANDOMMEMORY", $currentPlayer, "-", 1);
+        AddDecisionQueue("BANISHRANDOMMEMORY", $currentPlayer, "-", 1);
+        AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+        AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      }
       break;
     case "em6eEh9q8y"://Dungeon Guide
       $memory = &GetMemory($currentPlayer);
