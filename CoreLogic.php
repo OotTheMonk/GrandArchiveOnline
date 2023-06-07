@@ -266,7 +266,6 @@ function StartTurn()
   $dqState[1] = "M";
   $turn[0] = "M";
   ReturnAllMemoryToHand($currentPlayer);
-  WriteLog($mainPlayer . " " . $firstPlayer . " " . $currentTurn);
   if($mainPlayer != $firstPlayer || $currentTurn > 1) Draw($currentPlayer);
   AllyStartTurnAbilities($mainPlayer);
 }
@@ -2804,6 +2803,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "uwnHTLG3fL"://Luxem Sight
       Draw($currentPlayer);
+      break;
+    case "UVAb8CmjtL"://Dream Fairy
+      WriteLog("Enforce play restriction manually");
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY");
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
       break;
     default: break;
   }

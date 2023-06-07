@@ -120,6 +120,7 @@ function HasStealth($cardID, $player, $index)
     case "hHVf5xyjob": return GetClassState($player, $CS_PreparationCounters) >= 3;//Blackmarket Broker
     case "zPC4Yqo9Fs": return true;//Kingdom Informant
     case "YqQsXwEvv5": return true;//Corhazi Courier
+    case "UVAb8CmjtL": return true;//Dream Fairy
     default: return false;
   }
 }
