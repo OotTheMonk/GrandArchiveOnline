@@ -116,6 +116,7 @@ function CriticalAmount($cardID)
   switch($cardID)
   {
     case "kT8CeTFj82": return IsClassBonusActive($mainPlayer, "ASSASSIN") ? 1 : 0;//Bushwhack Bandit
+    case "5qWWpkgQLl": return SearchCurrentTurnEffects("5qWWpkgQLl", $mainPlayer) ? 4 : 0;//Coup de Grace
     default: return 0;
   }
 }
@@ -157,6 +158,7 @@ function PrepareAmount($cardID)
     case "mj3WSrghUH": return 1;//Poised Strike
     case "XLbCBxla8K": return 1;//Thousand Refractions
     case "uoQGe5xGDQ": return 1;//Arrow Trap
+    case "5qWWpkgQLl": return 4;//Coup de Grace
     default: return 0;
   }
 }

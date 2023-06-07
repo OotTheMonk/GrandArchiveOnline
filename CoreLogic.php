@@ -2895,6 +2895,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       Draw($currentPlayer);
       if(IsClassBonusActive($currentPlayer, "ASSASSIN")) AddPreparationCounters($currentPlayer, 2);
       break;
+    case "5qWWpkgQLl"://Coup de Grace
+      if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("5qWWpkgQLl", $currentPlayer);
+      break;
     default: break;
   }
 }
