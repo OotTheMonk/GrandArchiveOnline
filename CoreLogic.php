@@ -266,6 +266,7 @@ function StartTurn()
   $dqState[1] = "M";
   $turn[0] = "M";
   CharacterStartTurnAbility(0);
+  ProcessDecisionQueue();
   ReturnAllMemoryToHand($currentPlayer);
   if($mainPlayer != $firstPlayer || $currentTurn > 1) Draw($currentPlayer);
   AllyStartTurnAbilities($mainPlayer);
@@ -1379,6 +1380,9 @@ function OnRevealEffect($player, $cardID)
     case "uwnHTLG3fL"://Luxem Sight
       WriteLog("Player $player recovered 3 from revealing Luxem Sight");
       Recover($player, 3);
+      break;
+    case "zxB4tzy9iy"://Lightweaver's Assault
+      if(IsClassBonusActive($player, "ASSASSIN")) DealArcane(2, 2, "TRIGGER", $cardID, fromQueue:true, player:$player);
       break;
     default: break;
   }
@@ -2839,6 +2843,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY");
       AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
+      break;
+    case "zxB4tzy9iy"://Lightweaver's Assault
+      if(RevealMemory($currentPlayer))
+      {
+        $numReveal = SearchCount(SearchMemory($currentPlayer));
+        for($i=0; $i<$numReveal; ++$i) DealArcane(1, 2, "TRIGGER", $cardID, player:$currentPlayer);
+      }
       break;
     default: break;
   }
