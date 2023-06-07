@@ -46,6 +46,7 @@ function EffectAttackModifier($cardID)
     case "F1t18omUlx": return 1;//Beastbond Paws
     case "fMv7tIOZwLAttack": return 1;//Aqueous Enchanting
     case "GRkBQ1Uvir": return 2;//Ignited Strike
+    case "qufoIF014c": return 2;//Gleaming Cut
     default: return 0;
   }
 }
@@ -376,6 +377,7 @@ function IsCombatEffectActive($cardID)
     case "GRkBQ1Uvir": return true;//Ignited Strike
     case "mj3WSrghUH": return true;//Poised Strike
     case "XLbCBxla8K": return true;//Thousand Refractions
+    case "qufoIF014c": return true;//Gleaming Cut
     default: return false;
   }
 }

@@ -45,6 +45,8 @@ function MZRemove($player, $lastResult)
       case "MYHAND": $lastResult = RemoveHand($player, $mzIndex[1]); break;
       case "THEIRHAND": $lastResult = RemoveHand($otherPlayer, $mzIndex[1]); break;
       case "THEIRAURAS": RemoveAura($otherPlayer, $mzIndex[1]); break;
+      case "MYMEMORY": RemoveMemory($player, $mzIndex[1]); break;
+      case "THEIRMEMORY": RemoveMemory($otherPlayer, $mzIndex[1]); break;
       case "MYDECK":
         $deck = new Deck($player);
         return $deck->Remove($mzIndex[1]);

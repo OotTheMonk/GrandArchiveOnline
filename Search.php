@@ -920,6 +920,9 @@ function SearchMultizone($player, $searches)
         case "MYMATERIAL": case "THEIRMATERIAL":
           $searchResult = SearchMaterial($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
           break;
+        case "MYMEMORY": case "THEIRMEMORY":
+          $searchResult = SearchMemory($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
+          break;
         case "COMBATCHAINLINK":
           $searchResult = SearchCombatChainLink($searchPlayer, $type, $subtype, $maxCost, $minCost, $class, $element, $floatingMemoryOnly, $phantasmOnly, $pitch, $specOnly, $maxAttack, $maxDef, $frozenOnly, $hasNegCounters, $hasEnergyCounters, $comboOnly, $minAttack);
           break;

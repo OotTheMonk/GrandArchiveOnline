@@ -577,10 +577,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         if(!SubtypeContains($cards[$i], $parameter)) return "PASS";
       }
       return $lastResult;
-    case "ALLCARDTALENTORPASS":
+    case "ALLCARDELEMENTORPASS":
       $cards = explode(",", $lastResult);
       for($i = 0; $i < count($cards); ++$i) {
-        if(!TalentContains($cards[$i], $parameter, $player)) return "PASS";
+        if(CardElement($cards[$i]) != $parameter) return "PASS";
       }
       return $lastResult;
     case "ALLCARDSCOMBOORPASS":

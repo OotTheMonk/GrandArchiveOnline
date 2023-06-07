@@ -16,6 +16,7 @@ function &GetMZZone($player, $zone)
   else if ($zone == "BANISH" || $zone == "MYBANISH" || $zone == "THEIRBANISH") $rv = &GetBanish($player);
   else if ($zone == "DECK" || $zone == "MYDECK" || $zone == "THEIRDECK") $rv = &GetDeck($player);
   else if ($zone == "MATERIAL" || $zone == "MYMATERIAL" || $zone == "THEIRMATERIAL") $rv = &GetMaterial($player);
+  else if ($zone == "MEMORY" || $zone == "MYMEMORY" || $zone == "THEIRMEMORY") $rv = &GetMemory($player);
   else if ($zone == "LAYER") return $layers;
   else if ($zone == "CC") return $combatChain;
   return $rv;

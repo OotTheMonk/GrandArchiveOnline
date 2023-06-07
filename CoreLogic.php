@@ -1360,12 +1360,12 @@ function RevealCards($cards, $player="", $from="HAND")
   if(!CanRevealCards($player)) return false;
   $cardArray = explode(",", $cards);
   $string = "";
-  for($i=0; $i<count($cardArray); ++$i)
+  for($i=count($cardArray)-1; $i>=0; --$i)
   {
     if($string != "") $string .= ", ";
     $string .= CardLink($cardArray[$i], $cardArray[$i]);
     AddEvent("REVEAL", $cardArray[$i]);
-    OnRevealEffect($player, $cardArray[$i]);
+    OnRevealEffect($player, $cardArray[$i], $from, $i);
   }
   $string .= (count($cardArray) == 1 ? " is" : " are");
   $string .= " revealed.";
@@ -1373,16 +1373,28 @@ function RevealCards($cards, $player="", $from="HAND")
   return true;
 }
 
-function OnRevealEffect($player, $cardID)
+function OnRevealEffect($player, $cardID, $from, $index)
 {
   switch($cardID)
   {
     case "uwnHTLG3fL"://Luxem Sight
+      if($from != "MEMORY") break;
       WriteLog("Player $player recovered 3 from revealing Luxem Sight");
       Recover($player, 3);
       break;
     case "zxB4tzy9iy"://Lightweaver's Assault
+      if($from != "MEMORY") break;
       if(IsClassBonusActive($player, "ASSASSIN")) DealArcane(2, 2, "TRIGGER", $cardID, fromQueue:true, player:$player);
+      break;
+    case "qufoIF014c"://Gleaming Cut
+      if($from != "MEMORY" || !IsClassBonusActive($player, "ASSASSIN")) break;
+      AddDecisionQueue("YESNO", $player, "if you want to banish gleaming cut");
+      AddDecisionQueue("NOPASS", $player, "-");
+      AddDecisionQueue("PASSPARAMETER", $player, "MYMEMORY-" . ($index * MemoryPieces()), 1);
+      AddDecisionQueue("MZBANISH", $player, "MEMORY,-," . $player, 1);
+      AddDecisionQueue("MZREMOVE", $player, "-", 1);
+      AddDecisionQueue("DRAW", $player, "-", 1);
+      AddDecisionQueue("DRAW", $player, "-", 1);
       break;
     default: break;
   }
@@ -1734,7 +1746,7 @@ function RevealMemory($player)
     if($toReveal != "") $toReveal .= ",";
     $toReveal .= $memory[$i];
   }
-  return RevealCards($toReveal);
+  return RevealCards($toReveal, $player, "MEMORY");
 }
 
   function CanRevealCards($player)
@@ -2850,6 +2862,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         $numReveal = SearchCount(SearchMemory($currentPlayer));
         for($i=0; $i<$numReveal; ++$i) DealArcane(1, 2, "TRIGGER", $cardID, player:$currentPlayer);
       }
+      break;
+    case "qufoIF014c"://Gleaming Cut
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYMEMORY");
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "GETCARDID", 1);
+      AddDecisionQueue("ALLCARDELEMENTORPASS", $currentPlayer, "LUXEM", 1);
+      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "qufoIF014c", 1);
       break;
     default: break;
   }
