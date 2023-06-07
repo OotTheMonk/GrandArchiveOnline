@@ -1396,6 +1396,17 @@ function OnRevealEffect($player, $cardID, $from, $index)
       AddDecisionQueue("DRAW", $player, "-", 1);
       AddDecisionQueue("DRAW", $player, "-", 1);
       break;
+    case "VAFTR5taNG"://Corhazi Infiltrator
+      if($from != "MEMORY" || !IsClassBonusActive($player, "ASSASSIN")) break;
+      AddDecisionQueue("YESNO", $player, "if you want to put Corhazi Infiltrator into play");
+      AddDecisionQueue("NOPASS", $player, "-");
+      AddDecisionQueue("PASSPARAMETER", $player, "MYMEMORY-" . ($index * MemoryPieces()), 1);
+      AddDecisionQueue("SETDQVAR", $player, "0", 1);
+      AddDecisionQueue("MZOP", $player, "GETCARDID", 1);
+      AddDecisionQueue("PUTPLAY", $player, "-", 1);
+      AddDecisionQueue("PASSPARAMETER", $player, "{0}", 1);
+      AddDecisionQueue("MZREMOVE", $player, "-", 1);
+      break;
     default: break;
   }
 }

@@ -121,6 +121,7 @@ function HasStealth($cardID, $player, $index)
     case "zPC4Yqo9Fs": return true;//Kingdom Informant
     case "YqQsXwEvv5": return true;//Corhazi Courier
     case "UVAb8CmjtL": return true;//Dream Fairy
+    case "VAFTR5taNG": return true;//Corhazi Infiltrator
     default: return false;
   }
 }
