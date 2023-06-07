@@ -521,6 +521,13 @@ function ResetCharacterEffects()
   $defCharacterEffects = [];
 }
 
+function SetAttackTarget($mzTarget)
+{
+  global $combatChainState, $CCS_AttackTarget, $CCS_AttackTargetUID, $defPlayer;
+  $mzArr = explode("-", $mzTarget);
+  $combatChainState[$CCS_AttackTarget] = "THEIRALLY-" . $mzTarget[1];
+  $combatChainState[$CCS_AttackTargetUID] = MZGetUniqueID($mzTarget, $defPlayer);
+}
 
 function GetAttackTarget()
 {

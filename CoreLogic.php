@@ -2744,6 +2744,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         WriteLog("Veiling Breeze prevents " . $numWind . " damage.");
       }
       break;
+    case "nIKhHFa0rK"://Cry for Help
+      if(IsHeroAttackTarget())
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "CHANGEATTACKTARGET", 1);
+        if(IsClassBonusActive($currentPlayer, "TAMER")) AddDecisionQueue("MZOP", $currentPlayer, "ADDHEALTH", 1);
+      }
     default: break;
   }
 }

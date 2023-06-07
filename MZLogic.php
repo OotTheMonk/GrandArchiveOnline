@@ -55,6 +55,17 @@ function MZRemove($player, $lastResult)
   return $lastResult;
 }
 
+function MZGetUniqueID($mzIndex, $player)
+{
+  $mzArr = explode("-", $mzIndex);
+  $zone = &GetMZZone($player, $mzArr[0]);
+  switch($mzArr[0]) {
+    case "ALLY": case "MYALLY": case "THEIRALLY": return $zone[$mzArr[1] + 5];
+    case "BANISH": case "MYBANISH": case "THEIRBANISH": return $zone[$mzArr[1] + 2];
+    default: return "-1";
+  }
+}
+
 function MZDiscard($player, $parameter, $lastResult)
 {
   $lastResultArr = explode(",", $lastResult);
