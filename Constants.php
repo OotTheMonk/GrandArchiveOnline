@@ -523,7 +523,8 @@ function ResetCharacterEffects()
 
 function SetAttackTarget($mzTarget)
 {
-  global $combatChainState, $CCS_AttackTarget, $CCS_AttackTargetUID, $defPlayer;
+  global $combatChainState, $CCS_AttackTarget, $CCS_AttackTargetUID, $defPlayer, $combatChain;
+  if(count($combatChain) == 0 || $mzTarget == "") return;
   $mzArr = explode("-", $mzTarget);
   $combatChainState[$CCS_AttackTarget] = "THEIRALLY-" . $mzTarget[1];
   $combatChainState[$CCS_AttackTargetUID] = MZGetUniqueID($mzTarget, $defPlayer);

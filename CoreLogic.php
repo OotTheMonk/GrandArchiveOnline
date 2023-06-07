@@ -2048,9 +2048,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
       break;
     case "heq49UQGvQ"://Aesan Protector
-      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
-      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-      AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
+      if($from != "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE", 1);
+      }
       break;
     case "LZ8JpWj27h"://Clumsy Apprentice
       if($from != "PLAY")
@@ -2752,6 +2755,20 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("MZOP", $currentPlayer, "CHANGEATTACKTARGET", 1);
         if(IsClassBonusActive($currentPlayer, "TAMER")) AddDecisionQueue("MZOP", $currentPlayer, "ADDHEALTH", 1);
       }
+      break;
+    case "okDVkV1l76"://Hymn of Gaia's Grace
+      PlayerOpt($currentPlayer, 3);
+      AddDecisionQueue("DRAW", $currentPlayer, "-");
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYHAND:subtype=BEAST&MYHAND:subtype=ANIMAL");
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "GETCARDID", 1);
+      AddDecisionQueue("PUTPLAY", $currentPlayer, "-", 1);
+      AddDecisionQueue("PASSPARAMETER", $currentPlayer, "{0}", 1);
+      AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+      AddDecisionQueue("OP", $currentPlayer, "GETLASTALLYMZ", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "CHANGEATTACKTARGET", 1);
+      break;
     default: break;
   }
 }

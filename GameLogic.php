@@ -121,10 +121,15 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       return ($rv == "" ? "PASS" : $rv);
     case "PUTPLAY":
       $subtype = CardSubType($lastResult);
-      if ($subtype == "Item") {
+      if($subtype == "Item") {
         PutItemIntoPlayForPlayer($lastResult, $player, ($parameter != "-" ? $parameter : 0));
-      } else if (DelimStringContains($subtype, "Aura")) {
+      } else if(DelimStringContains($subtype, "Aura")) {
         PlayAura($lastResult, $player);
+        PlayAbility($lastResult, "-", 0);
+      }
+      else if(IsAlly($lastResult))
+      {
+        PlayAlly($lastResult, $player);
         PlayAbility($lastResult, "-", 0);
       }
       return $lastResult;
@@ -337,6 +342,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           global $CS_PreparationCounters;
           DecrementClassState($player, $CS_PreparationCounters, $lastResult);
           return $lastResult;
+        case "GETLASTALLYMZ":
+          $allies = &GetAllies($player);
+          if(count($allies) == 0) return "";
+          return "MYALLY-" . count($allies)-AllyPieces();
         default: return $lastResult;
       }
     case "FILTER":
