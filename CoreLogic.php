@@ -2890,6 +2890,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
       }
       break;
+    case "4zkTRt8qXn"://Uncover the Plot
+      RevealMemory($currentPlayer);
+      Draw($currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "ASSASSIN")) AddPreparationCounters($currentPlayer, 2);
+      break;
     default: break;
   }
 }
