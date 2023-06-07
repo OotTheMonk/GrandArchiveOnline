@@ -20,11 +20,20 @@ function PutItemIntoPlayForPlayer($item, $player, $steamCounterModifier = 0, $nu
     $steamCounters = SteamCounterLogic($item, $player, $uniqueID) + $steamCounterModifier;
     array_push($items, $item);
     array_push($items, $steamCounters);
-    array_push($items, 2);
+    array_push($items, ItemEntersPlayState($item));
     array_push($items, ItemUses($item));
     array_push($items, $uniqueID);
     array_push($items, $myHoldState);
     array_push($items, $theirHoldState);
+  }
+}
+
+function ItemEntersPlayState($cardID)
+{
+  switch($cardID)
+  {
+    case "s23UHXgcZq": return 1;//Luxera's Map
+    default: return 2;
   }
 }
 
@@ -71,6 +80,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "usb5FgKvZX"://Sharpening Stone
     case "xjuCkODVRx"://Beastbond Boots
     case "yj2rJBREH8"://Safeguard Amulet
+    case "s23UHXgcZq"://Luxera's Map
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;

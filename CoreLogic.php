@@ -266,7 +266,7 @@ function StartTurn()
   $dqState[1] = "M";
   $turn[0] = "M";
   CharacterStartTurnAbility(0);
-  ProcessDecisionQueue();
+  if(!IsDecisionQueueActive()) ProcessDecisionQueue();
   ReturnAllMemoryToHand($currentPlayer);
   if($mainPlayer != $firstPlayer || $currentTurn > 1) Draw($currentPlayer);
   AllyStartTurnAbilities($mainPlayer);
@@ -2880,6 +2880,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZOP", $currentPlayer, "GETCARDID", 1);
       AddDecisionQueue("ALLCARDELEMENTORPASS", $currentPlayer, "LUXEM", 1);
       AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "qufoIF014c", 1);
+      break;
+    case "s23UHXgcZq"://Luxera's Map
+      if($from == "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDECK");
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZADDZONE", $currentPlayer, "MYMEMORY,HAND,DOWN", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+      }
       break;
     default: break;
   }

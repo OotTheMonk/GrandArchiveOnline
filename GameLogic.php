@@ -317,7 +317,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         case "GETMEMORYCOST":
           $mzArr = explode("-", $lastResult);
           $zone = &GetMZZone($player, $mzArr[0]);
-          return CardMemoryCost($zone[$mzArr[1]]);
+          return MemoryCost($zone[$mzArr[1]], $player);
         default: break;
       }
       return $lastResult;

@@ -126,6 +126,17 @@ function HasStealth($cardID, $player, $index)
   }
 }
 
+function MemoryCost($cardID, $player)
+{
+  $cost = CardMemoryCost($cardID);
+  switch($cardID)
+  {
+    case "s23UHXgcZq": if(IsClassBonusActive($player, "ASSASSIN")) --$cost; break;//Luxera's Map
+    default: break;
+  }
+  return $cost;
+}
+
 function PrepareAmount($cardID)
 {
   switch($cardID)
@@ -213,6 +224,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
   if(CardTypeContains($cardID, "ALLY", $currentPlayer) || CardTypeContains($cardID, "WEAPON", $currentPlayer)) return "AA";
   switch($cardID)
   {
+    case "s23UHXgcZq": return "A";//Luxera's Map
     case "ENLIGHTEN": return "I";//Enlighten Counters
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring

@@ -188,7 +188,7 @@ function ProcessInput($playerID, $mode, $buttonInput, $cardID, $chkCount, $chkIn
       $index = $cardID;
       $material = &GetMaterial($currentPlayer);
       $cardID = $material[$index];
-      $cost = CardMemoryCost($cardID);
+      $cost = MemoryCost($cardID, $currentPlayer);
       $memory = &GetMemory($currentPlayer);
       if($cost > (count($memory) + SearchCount(SearchDiscard($currentPlayer, floatingMemoryOnly:true)))) { WriteLog("Not enough memory"); break; }
       WriteLog("Player $currentPlayer materialized " . CardLink($cardID, $cardID));
