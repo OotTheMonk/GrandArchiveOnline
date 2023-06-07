@@ -1654,6 +1654,23 @@ function NumEquipBlock()
     return $combatChainState[$CCS_WeaponIndex];
   }
 
+  function IsAttackTargetRested()
+  {
+    global $defPlayer;
+    $target = GetAttackTarget();
+    $mzArr = explode("-", $target);
+    if($mzArr[0] == "ALLY" || $mzArr[0] == "MYALLY" || $mzArr[0] == "THEIRALLY")
+    {
+      $allies = &GetAllies($defPlayer);
+      return $allies[$mzArr[1]+1] == 1;
+    }
+    else
+    {
+      $char = &GetPlayerCharacter($defPlayer);
+      return $char[1] == 1;
+    }
+  }
+
   function IsSpecificAllyAttackTarget($player, $index)
   {
     $mzTarget = GetAttackTarget();

@@ -65,6 +65,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $memory = &GetMemory($mainPlayer);
       $hand = &GetHand($mainPlayer);
       return (count($memory)/MemoryPieces() == count($hand)/HandPieces() ? 3 : 0);
+    case "sxg6WefxIe"://Backstab
+      return IsAttackTargetRested() ? 2 : 0;
     default: return 0;
   }
 }
