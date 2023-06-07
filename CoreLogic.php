@@ -1672,6 +1672,13 @@ function NumEquipBlock()
     return true;
   }
 
+  function AttackerMZID($player)
+  {
+    global $combatChainState, $CCS_WeaponIndex, $mainPlayer;
+    if($player == $mainPlayer) return "MYALLY-" . $combatChainState[$CCS_WeaponIndex];
+    else return "THEIRALLY-" . $combatChainState[$CCS_WeaponIndex];
+  }
+
 function IsSpecificAuraAttacking($player, $index)
 {
   global $combatChain, $combatChainState, $CCS_WeaponIndex, $mainPlayer;
@@ -2770,10 +2777,18 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZOP", $currentPlayer, "CHANGEATTACKTARGET", 1);
       break;
     case "qtRBz9azeZ"://Excalibur, Cleansing Light
-      if(IsClassBonusActive($currentPlayer, "WARRIOR")) WriteLog("Manually enforce element restriction")
+      if(IsClassBonusActive($currentPlayer, "WARRIOR")) WriteLog("Manually enforce element restriction");
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRITEM&THEIRCHARACTER:type=WEAPON&THEIRALLY");
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
+    case "uoQGe5xGDQ"://Arrow Trap
+      if(IsAllyAttacking())
+      {
+        AddDecisionQueue("PASSPARAMETER", $currentPlayer, AttackerMZID($currentPlayer));
+        if(DelimStringContains($additionalCosts, "PREPARE") && (IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "RANGER"))) AddDecisionQueue("MZDESTROY", $currentPlayer, "-");
+        else AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE");
+      }
+      break;
     default: break;
   }
 }
