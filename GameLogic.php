@@ -641,6 +641,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       if($type == "COMBAT")
       {
         if($source == "soO3hjaVfN" && SearchCurrentTurnEffects("soO3hjaVfN", $mainPlayer, true)) $damage *= 2;
+        if(CriticalAmount($source) > 0) $damage *= 2;
         $dqState[6] = $damage;
       }
       $damage = DealDamageAsync($player, $damage, $type, $source);

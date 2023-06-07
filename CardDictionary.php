@@ -109,6 +109,17 @@ function HasTrueSight($cardID, $player, $index)
   }
 }
 
+//Critical only applies to combat damage, so you can assume player/attacker
+function CriticalAmount($cardID)
+{
+  global $mainPlayer;
+  switch($cardID)
+  {
+    case "kT8CeTFj82": return IsClassBonusActive($mainPlayer, "ASSASSIN") ? 1 : 0;//Bushwhack Bandit
+    default: return 0;
+  }
+}
+
 function HasStealth($cardID, $player, $index)
 {
   $allies = &GetAllies($player);
