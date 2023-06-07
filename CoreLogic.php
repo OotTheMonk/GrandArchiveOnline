@@ -265,6 +265,7 @@ function StartTurn()
   $mainPlayer = $currentPlayer;
   $dqState[1] = "M";
   $turn[0] = "M";
+  CharacterStartTurnAbility(0);
   ReturnAllMemoryToHand($currentPlayer);
   if($mainPlayer != $firstPlayer || $currentTurn > 1) Draw($currentPlayer);
   AllyStartTurnAbilities($mainPlayer);
