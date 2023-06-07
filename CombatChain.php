@@ -67,6 +67,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return (count($memory)/MemoryPieces() == count($hand)/HandPieces() ? 3 : 0);
     case "sxg6WefxIe"://Backstab
       return IsClassBonusActive($mainPlayer, "ASSASSIN") && IsAttackTargetRested() ? 2 : 0;
+    case "gSNyXOQ4Iw": case "tOK1Gr0N8f": case "UAF6Nr7GUE"://Zander, Always Watching
+      return IsAttackTargetRested() ? 1 : 0;
     default: return 0;
   }
 }
