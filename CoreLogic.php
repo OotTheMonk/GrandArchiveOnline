@@ -2769,6 +2769,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("OP", $currentPlayer, "GETLASTALLYMZ", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "CHANGEATTACKTARGET", 1);
       break;
+    case "qtRBz9azeZ"://Excalibur, Cleansing Light
+      if(IsClassBonusActive($currentPlayer, "WARRIOR")) WriteLog("Manually enforce element restriction")
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRITEM&THEIRCHARACTER:type=WEAPON&THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
     default: break;
   }
 }
