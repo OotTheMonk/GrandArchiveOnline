@@ -2898,6 +2898,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "5qWWpkgQLl"://Coup de Grace
       if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("5qWWpkgQLl", $currentPlayer);
       break;
+    case "2Ch1Gp3jEL"://Corhazi Lightblade
+      if($from == "PLAY" && IsClassBonusActive($currentPlayer, "ASSASSIN"))
+      {
+        if(CardElement(MemoryRevealRandom($currentPlayer)) == "LUXEM") AddCurrentTurnEffect("2Ch1Gp3jEL", $currentPlayer, "PLAY");
+      }
+      break;
     default: break;
   }
 }

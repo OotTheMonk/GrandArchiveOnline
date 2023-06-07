@@ -379,6 +379,7 @@ function IsCombatEffectActive($cardID)
     case "XLbCBxla8K": return true;//Thousand Refractions
     case "qufoIF014c": return true;//Gleaming Cut
     case "5qWWpkgQLl": return true;//Coup de Grace
+    case "2Ch1Gp3jEL": return true;//Corhazi Lightblade
     default: return false;
   }
 }

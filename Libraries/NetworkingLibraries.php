@@ -845,6 +845,7 @@ function ResolveChainLink()
     if($combatChain[0] == "soO3hjaVfN" && SearchCurrentTurnEffects("soO3hjaVfN", $mainPlayer, true)) $totalAttack *= 2;
     if($index < count($allies))
     {
+      if(CriticalAmount($combatChain[0]) > 0) $totalAttack *= 2;
       $allies[$index + 2] = intval($allies[$index+2]) - $totalAttack;
       if ($totalAttack > 0) AllyDamageTakenAbilities($defPlayer, $index);
       if ($allies[$index + 2] <= 0) DestroyAlly($defPlayer, $index, false, true);

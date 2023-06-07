@@ -624,6 +624,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $source = $parameters[1];
       $type = $parameters[2];
       if($target[0] == "THEIRALLY" || $target[0] == "MYALLY") {
+        if($type == "COMBAT" && CriticalAmount($source) > 0) $damage *= 2;
         DealAllyDamage($targetPlayer, $target[1], $damage);
         return $damage;
       } else {

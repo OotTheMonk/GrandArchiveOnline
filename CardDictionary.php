@@ -117,6 +117,7 @@ function CriticalAmount($cardID)
   {
     case "kT8CeTFj82": return IsClassBonusActive($mainPlayer, "ASSASSIN") ? 1 : 0;//Bushwhack Bandit
     case "5qWWpkgQLl": return SearchCurrentTurnEffects("5qWWpkgQLl", $mainPlayer) ? 4 : 0;//Coup de Grace
+    case "2Ch1Gp3jEL": return SearchCurrentTurnEffects("2Ch1Gp3jEL", $mainPlayer) ? 1 : 0;//Corhazi Lightblade
     default: return 0;
   }
 }
