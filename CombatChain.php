@@ -69,6 +69,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return IsClassBonusActive($mainPlayer, "ASSASSIN") && IsAttackTargetRested() ? 2 : 0;
     case "gSNyXOQ4Iw": case "tOK1Gr0N8f": case "UAF6Nr7GUE"://Zander, Always Watching
       return IsAttackTargetRested() ? 1 : 0;
+    case "Q2ugqVm04E"://Curved Dagger
+      return IsAllyAttackTarget() && IsClassBonusActive($mainPlayer, "ASSASSIN") ? 1 : 0;
     default: return 0;
   }
 }
