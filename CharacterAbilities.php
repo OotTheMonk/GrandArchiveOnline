@@ -106,95 +106,18 @@ function CharacterTakeDamageAbility($player, $index, $damage, $preventable)
 
 function CharacterStartTurnAbility($index)
 {
-  global $mainPlayer;
+  global $mainPlayer, $defPlayer;
   $otherPlayer = $mainPlayer == 1 ? 2 : 1;
   $char = new Character($mainPlayer, $index);
   if($char->status == 0 && !CharacterTriggerInGraveyard($char->cardID)) return;
   if($char->status == 1) return;
   switch($char->cardID) {
-    case "WTR150":
-      if($char->numCounters < 3) ++$char->numCounters;
-      $char->Finished();
-      break;
-    case "CRU097":
-      AddLayer("TRIGGER", $mainPlayer, $char->cardID);
-      break;
-    case "MON187":
-      if(GetHealth($mainPlayer) <= 13) {
-        $char->status = 0;
-        BanishCardForPlayer($char->cardID, $mainPlayer, "EQUIP", "NA");
-        WriteLog(CardLink($char->cardID, $char->cardID) . " got banished for having 13 or less health");
-        $char->Finished();
-      }
-      break;
-    case "EVR017":
-      AddDecisionQueue("SETDQCONTEXT", $mainPlayer, "You may reveal an Earth, Ice, and Lightning card for Bravo, Star of the Show.");
-      AddDecisionQueue("FINDINDICES", $mainPlayer, "BRAVOSTARSHOW");
-      AddDecisionQueue("MULTICHOOSEHAND", $mainPlayer, "<-", 1);
-      AddDecisionQueue("BRAVOSTARSHOW", $mainPlayer, "-", 1);
-      break;
-    case "EVR019":
-      if(CountAura("WTR075", $mainPlayer) >= 3) {
-        WriteLog(CardLink($char->cardID, $char->cardID) . " gives Crush attacks Dominate this turn");
-        AddCurrentTurnEffect("EVR019", $mainPlayer);
-      }
-      break;
-    case "DYN117": case "DYN118": case "OUT011":
-      $discardIndex = SearchDiscardForCard($mainPlayer, $char->cardID);
-      if(CountItem("EVR195", $mainPlayer) >= 2 && $discardIndex != "") {
-        AddDecisionQueue("COUNTITEM", $mainPlayer, "EVR195");
-        AddDecisionQueue("LESSTHANPASS", $mainPlayer, "2");
-        AddDecisionQueue("SETDQCONTEXT", $mainPlayer, "Do you want to pay 2 silver to equip " . CardLink($char->cardID, $char->cardID) . "?", 1);
-        AddDecisionQueue("YESNO", $mainPlayer, "if_you_want_to_pay_and_equip_" . CardLink($char->cardID, $char->cardID), 1);
-        AddDecisionQueue("NOPASS", $mainPlayer, "-", 1);
-        AddDecisionQueue("PASSPARAMETER", $mainPlayer, "EVR195-2", 1);
-        AddDecisionQueue("FINDANDDESTROYITEM", $mainPlayer, "<-", 1);
-        AddDecisionQueue("PASSPARAMETER", $mainPlayer, "MYCHAR-" . $index, 1);
-        AddDecisionQueue("MZUNDESTROY", $mainPlayer, "-", 1);
-        AddDecisionQueue("PASSPARAMETER", $mainPlayer, "MYDISCARD-" . $discardIndex, 1);
-        AddDecisionQueue("MZREMOVE", $mainPlayer, "-", 1);
-      }
-      break;
-    case "ROGUE015":
-      $hand = &GetHand($mainPlayer);
-      array_unshift($hand, "DYN065");
-      break;
-    case "ROGUE017":
-      $hand = &GetHand($mainPlayer);
-      array_unshift($hand, "CRU181");
-      Draw($mainPlayer);
-      break;
-    case "ROGUE018":
-      AddCurrentTurnEffect("ROGUE018", $mainPlayer);
-      break;
-    case "ROGUE010":
-      PlayAura("ARC112", $mainPlayer);
-      PlayAura("ARC112", $mainPlayer);
-      break;
-    case "ROGUE021":
-      $hand = &GetHand($mainPlayer);
-      array_unshift($hand, "MON226");
-      $resources = &GetResources($mainPlayer);
-      $resources[0] += 2;
-      break;
-    case "ROGUE022":
-      $defBanish = &GetBanish($otherPlayer);
-      $health = &GetHealth($mainPlayer);
-      $totalBD = 0;
-      for($i = 0; $i < count($defBanish); $i += BanishPieces())
+    case "UAF6Nr7GUE"://Zander, Blinding Steel
+      if(RevealMemory($mainPlayer))
       {
-        if(HasBloodDebt($defBanish[$i])) ++$totalBD;
+        $numLuxem = SearchCount(SearchMemory($mainPlayer, element:"LUXEM"));
+        for($i=0; $i<$numLuxem; ++$i) HandIntoMemory($defPlayer);
       }
-      $health += $totalBD;
-      array_push($defBanish, "MON203");
-      array_push($defBanish, "");
-      array_push($defBanish, GetUniqueId());
-      break;
-    case "ROGUE024":
-      AddCurrentTurnEffect("ROGUE024", $otherPlayer);
-      break;
-    case "ROGUE028":
-      PlayAura("MON104", $mainPlayer);
       break;
     default: break;
   }
@@ -207,19 +130,7 @@ function DefCharacterStartTurnAbilities()
   for($i = 0; $i < count($character); $i += CharacterPieces()) {
     if($character[$i + 1] == 0 || $character[$i + 1] == 1) continue; //Do not process ability if it is destroyed
     switch($character[$i]) {
-      case "EVR086":
-        if (PlayerHasLessHealth($mainPlayer)) {
-          AddDecisionQueue("CHARREADYORPASS", $defPlayer, $i);
-          AddDecisionQueue("YESNO", $mainPlayer, "if_you_want_to_draw_a_card_and_give_your_opponent_a_silver.", 1);
-          AddDecisionQueue("NOPASS", $mainPlayer, "-", 1);
-          AddDecisionQueue("DRAW", $mainPlayer, "-", 1);
-          AddDecisionQueue("PASSPARAMETER", $defPlayer, "EVR195", 1);
-          AddDecisionQueue("PUTPLAY", $defPlayer, "0", 1);
-        }
-        break;
-      case "ROGUE018":
-        AddCurrentTurnEffect("ROGUE018", $mainPlayer);
-        break;
+
       default:
         break;
     }
@@ -229,17 +140,7 @@ function DefCharacterStartTurnAbilities()
 function CharacterDestroyEffect($cardID, $player)
 {
   switch($cardID) {
-    case "ELE213":
-      WriteLog("New Horizon destroys your arsenal");
-      DestroyArsenal($player);
-      break;
-    case "DYN214":
-      AddLayer("TRIGGER", $player, "DYN214", "-", "-");
-      break;
-    case "DYN492b":
-      $weaponIndex = FindCharacterIndex($player, "DYN492a");
-      if(intval($weaponIndex) != -1) DestroyCharacter($player, $weaponIndex);
-      break;
+
     default:
       break;
   }

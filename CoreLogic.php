@@ -1720,6 +1720,18 @@ function IsSpecificAuraAttacking($player, $index)
   return true;
 }
 
+function RevealMemory($player)
+{
+  $memory = &GetMemory($player);
+  $toReveal = "";
+  for($i=0; $i<count($memory); $i += MemoryPieces())
+  {
+    if($toReveal != "") $toReveal .= ",";
+    $toReveal .= $memory[$i];
+  }
+  return RevealCards($toReveal);
+}
+
   function CanRevealCards($player)
   {
     return true;
