@@ -1364,11 +1364,24 @@ function RevealCards($cards, $player="", $from="HAND")
     if($string != "") $string .= ", ";
     $string .= CardLink($cardArray[$i], $cardArray[$i]);
     AddEvent("REVEAL", $cardArray[$i]);
+    OnRevealEffect($player, $cardArray[$i]);
   }
   $string .= (count($cardArray) == 1 ? " is" : " are");
   $string .= " revealed.";
   WriteLog($string);
   return true;
+}
+
+function OnRevealEffect($player, $cardID)
+{
+  switch($cardID)
+  {
+    case "uwnHTLG3fL"://Luxem Sight
+      WriteLog("Player $player recovered 3 from revealing Luxem Sight");
+      Recover($player, 3);
+      break;
+    default: break;
+  }
 }
 
 function DoesAttackHaveGoAgain()
@@ -2788,6 +2801,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         if(DelimStringContains($additionalCosts, "PREPARE") && (IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "RANGER"))) AddDecisionQueue("MZDESTROY", $currentPlayer, "-");
         else AddDecisionQueue("MZOP", $currentPlayer, "BOUNCE");
       }
+      break;
+    case "uwnHTLG3fL"://Luxem Sight
+      Draw($currentPlayer);
       break;
     default: break;
   }
