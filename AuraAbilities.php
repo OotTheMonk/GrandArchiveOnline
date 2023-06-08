@@ -117,18 +117,6 @@ function AuraLeavesPlay($player, $index)
   $otherPlayer = ($player == 1 ? 2 : 1);
   switch($cardID)
   {
-    case "DYN221": case "DYN222": case "DYN223":
-      $theirBanish = &GetBanish($otherPlayer);
-      $banishIndex = -1;
-      for($i=0; $i<count($theirBanish); $i+=BanishPieces()) {
-        if($theirBanish[$i+1] == "DYN221-" . $uniqueID) $banishIndex = $i;
-      }
-      if($banishIndex > -1) {
-        $banishCard = $theirBanish[$banishIndex];
-        RemoveBanish($otherPlayer, $banishIndex);
-        PlayAura($banishCard, $otherPlayer);
-      }
-      break;
     default: break;
   }
 }
@@ -136,11 +124,6 @@ function AuraLeavesPlay($player, $index)
 function AuraPlayCounters($cardID)
 {
   switch ($cardID) {
-    case "CRU075": return 1;
-    case "EVR107": return 3;
-    case "EVR108": return 2;
-    case "EVR109": return 1;
-    case "UPR140": return 3;
     default: return 0;
   }
 }
@@ -168,12 +151,6 @@ function AuraDestroyAbility($player, $index, $isToken)
   $cardID = $auras[$index];
   switch($cardID)
   {
-    case "EVR141":
-      if(!$isToken && $auras[$index + 5] > 0 && ClassContains($cardID, "ILLUSIONIST", $player)) {
-        --$auras[$index + 5];
-        PlayAura("MON104", $player);
-      }
-      break;
     default: break;
   }
 }
@@ -202,19 +179,14 @@ function AuraCostModifier()
   $modifier = 0;
   for($i = count($myAuras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     switch($myAuras[$i]) {
-      case "ELE111":
-        $modifier += 1;
-        AddLayer("TRIGGER", $currentPlayer, "ELE111", "-", "-", $myAuras[$i + 6]);
-        break;
+
       default: break;
     }
   }
 
   for($i = count($theirAuras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     switch($theirAuras[$i]) {
-      case "ELE146":
-        $modifier += 1;
-        break;
+
       default:
         break;
     }
@@ -319,17 +291,7 @@ function AuraDamagePreventionAmount($player, $index)
   $auras = &GetAuras($player);
   switch($auras[$index])
   {
-    case "ARC112": return (CountAura("CRU144", $player) > 0 ? 1 : 0);
-    case "ARC167": return 4;
-    case "ARC168": return 3;
-    case "ARC169": return 2;
-    case "MON104": return 1;
-    case "UPR218": return 4;
-    case "UPR219": return 3;
-    case "UPR220": return 2;
-    case "DYN217": return 1;
-    case "DYN218": case "DYN219": case "DYN220": return 1;
-    case "DYN221": case "DYN222": case "DYN223": return 1;
+
     default: break;
   }
 }
@@ -356,18 +318,7 @@ function AuraTakeDamageAbilities($player, $damage, $type)
       break;
     }
     switch($auras[$i]) {
-      case "CRU075":
-        if($preventable) $damage -= 1;
-        break;
-      case "EVR131":
-        if($type == "ARCANE" && $preventable) $damage -= 3;
-        break;
-      case "EVR132":
-        if($type == "ARCANE" && $preventable) $damage -= 2;
-        break;
-      case "EVR133":
-        if($type == "ARCANE" && $preventable) $damage -= 1;
-        break;
+
       default: break;
     }
   }
@@ -381,8 +332,7 @@ function AuraDamageTakenAbilities($player, $damage)
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = 0;
     switch($auras[$i]) {
-      case "ARC106": case "ARC107": case "ARC108": $remove = 1; break;
-      case "EVR023": $remove = 1; break;
+
       default: break;
     }
     if($remove) DestroyAura($mainPlayer, $i);
@@ -429,36 +379,7 @@ function AuraAttackAbilities($attackID)
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = 0;
     switch($auras[$i]) {
-      case "ELE110":
-        if($attackType == "AA") {
-          WriteLog(CardLink($auras[$i], $auras[$i]) . " grants go again.");
-          GiveAttackGoAgain();
-          $remove = 1;
-        }
-        break;
-      case "ELE226":
-        if($attackType == "AA") DealArcane(1, 0, "PLAYCARD", $combatChain[0]);
-        break;
-      case "EVR140":
-        if($auras[$i + 5] > 0 && DelimStringContains(CardSubtype($attackID), "Aura") && ClassContains($attackID, "ILLUSIONIST", $mainPlayer)) {
-          WriteLog(CardLink($auras[$i], $auras[$i]) . " puts a +1 counter.");
-          --$auras[$i + 5];
-          ++$auras[GetClassState($mainPlayer, $CS_PlayIndex) + 3];
-        }
-        break;
-      case "EVR142":
-        if($auras[$i + 5] > 0 && ClassContains($attackID, "ILLUSIONIST", $mainPlayer) && GetClassState($mainPlayer, $CS_NumIllusionistAttacks) <= 1) {
-          WriteLog(CardLink($auras[$i], $auras[$i]) . " makes your first illusionist attack each turn lose Phantasm.");
-          --$auras[$i + 5];
-          AddCurrentTurnEffect("EVR142", $mainPlayer, true);
-        }
-        break;
-      case "UPR005":
-        if($auras[$i + 5] > 0 && DelimStringContains(CardSubType($attackID), "Dragon")) {
-          --$auras[$i + 5];
-          DealArcane(1, 1, "STATIC", $attackID, false, $mainPlayer);
-        }
-        break;
+
       default: break;
     }
     if($remove == 1) DestroyAura($mainPlayer, $i);
@@ -474,16 +395,7 @@ function AuraHitEffects($attackID)
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $remove = 0;
     switch($auras[$i]) {
-      case "ARC106": case "ARC107": case "ARC108":
-        if($auras[$i] == "ARC106") $amount = 3;
-        else if($auras[$i] == "ARC107") $amount = 2;
-        else $amount = 1;
-        if($attackType == "AA") {
-          WriteLog(CardLink($auras[$i], $auras[$i]) . " created $amount runechants");
-          PlayAura("ARC112", $mainPlayer, $amount);
-          $remove = 1;
-        }
-        break;
+
       default: break;
     }
     if($remove == 1) DestroyAura($mainPlayer, $i);
@@ -500,21 +412,14 @@ function AuraAttackModifiers($index)
   $controlAuras = &GetAuras($player);
   for($i = 0; $i < count($controlAuras); $i += AuraPieces()) {
     switch($controlAuras[$i]) {
-      case "ELE117":
-        if(CardType($combatChain[$index]) == "AA") $modifier += 3;
-        break;
-      case $CID_Frailty:
-        if(IsWeaponAttack() || $combatChainState[$CCS_AttackPlayedFrom] == "ARS") $modifier -= 1;
-        break;
+
       default: break;
     }
   }
   $otherAuras = &GetAuras($otherPlayer);
   for($i = 0; $i < count($otherAuras); $i += AuraPieces()) {
     switch($otherAuras[$i]) {
-      case "MON011":
-        if(CardType($combatChain[$index]) == "AA") $modifier -= 1;
-        break;
+
       default: break;
     }
   }
