@@ -160,6 +160,7 @@ function PrepareAmount($cardID)
     case "XLbCBxla8K": return 1;//Thousand Refractions
     case "uoQGe5xGDQ": return 1;//Arrow Trap
     case "5qWWpkgQLl": return 4;//Coup de Grace
+    case "RRx0KK6g6D": return 2;//Fishing Accident
     default: return 0;
   }
 }

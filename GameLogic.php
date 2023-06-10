@@ -316,6 +316,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           }
         case "BUFFALLY": MZBuffAlly($player, $lastResult); return $lastResult;
         case "BOUNCE": MZBounce($player, $lastResult); return $lastResult;
+        case "SINK": MZSink($player, $lastResult); return $lastResult;
         case "REST": MZRest($player, $lastResult); return $lastResult;
         case "WAKEUP": MZWakeUp($player, $lastResult); return $lastResult;
         case "ADDHEALTH": MZAddHealth($player, $lastResult); return $lastResult;
