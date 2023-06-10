@@ -79,6 +79,15 @@ function SpecificCardLogic($player, $card, $lastResult)
         for($i=0; $i<$lastResult; ++$i) DestroyAura($player, SearchAurasForCard("ENLIGHTEN", $player, true));
       }
       return $lastResult;
+    case "SPIRITBLADEDISPERSION":
+      $char = &GetPlayerCharacter($player);
+      $mzArr = explode("-", $lastResult);
+      $counters = $char[$mzArr[1]+2];
+      $cardID = MZRemove($player, $lastResult);
+      BanishCardForPlayer($cardID, $player, "PLAY", "-", $player);
+      for($i=0; $i<$counters; ++$i) DealArcane(1, 2, "TRIGGER", "7Rsid05Cf6", fromQueue:true, player:$player);
+      SpiritBladeDispersion($player);
+      return $lastResult;
     default: return "";
   }
 }

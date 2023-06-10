@@ -1515,7 +1515,7 @@ function RemoveCharacter($player, $index)
   $cardID = $char[$index];
   for($i=$index+CharacterPieces()-1; $i>=$index; --$i)
   {
-    unset($char[$index]);
+    unset($char[$i]);
   }
   $char = array_values($char);
   return $cardID;
@@ -2940,7 +2940,26 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       if(DelimStringContains($additionalCosts, "PREPARE")) AddDecisionQueue("MZOP", $currentPlayer, "SINK", 1);
       else AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
       break;
+    case "7Rsid05Cf6"://Spirit Blade: Dispersion
+      AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SPIRITBLADEDISPERSION");
+      break;
     default: break;
+  }
+}
+
+function SpiritBladeDispersion($player)
+{
+  if(IsDecisionQueueActive())
+  {
+    PrependDecisionQueue("SPECIFICCARD", $player, "SPIRITBLADEDISPERSION", 1);
+    PrependDecisionQueue("MAYCHOOSEMULTIZONE", $player, "<-", 1);
+    PrependDecisionQueue("MULTIZONEINDICES", $player, "MYCHAR:type=WEAPON");
+  }
+  else
+  {
+    AddDecisionQueue("MULTIZONEINDICES", $player, "MYCHAR:type=WEAPON");
+    AddDecisionQueue("MAYCHOOSEMULTIZONE", $player, "<-", 1);
+    AddDecisionQueue("SPECIFICCARD", $player, "SPIRITBLADEDISPERSION", 1);
   }
 }
 
