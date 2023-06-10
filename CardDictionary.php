@@ -88,6 +88,8 @@ function HasCleave($cardID)
 
 function HasVigor($cardID, $player)
 {
+  $isAlly = IsAlly($cardID);
+  if($isAlly && SearchCurrentTurnEffects("rxxwQT054x", $player)) return true;
   switch($cardID)
   {
     case "JEOxGQppTE"://Windrider Vanguard

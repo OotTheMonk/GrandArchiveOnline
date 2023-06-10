@@ -1886,7 +1886,7 @@ function SameWeaponEquippedTwice()
 
 function SelfCostModifier($cardID)
 {
-  global $currentPlayer, $CS_NumAttacks;
+  global $currentPlayer, $CS_NumAttacks, $CS_LastAttack;
   $modifier = HasEfficiency($cardID) ? -1 * CharacterLevel($currentPlayer) : 0;
   switch($cardID) {
     case "145y6KBhxe": $modifier += (IsClassBonusActive($currentPlayer, "MAGE") ? -1 : 0); break;//Focused Flames
@@ -1900,6 +1900,7 @@ function SelfCostModifier($cardID)
     case "RUqtU0Lczf": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? 1 : 0); break;//Spellshield: Arcane
     case "g7uDOmUf2u": $modifier += (SearchCount(SearchCharacter($currentPlayer, subtype:"SWORD")) > 0 ? -1 : 0); break;//Deflecting Edge
     case "wPKxvzTmqq": $modifier += (DelimStringContains($additionalCosts, "PREPARE") ? -5 : 0); //Ensnaring Fumes
+    case "rxxwQT054x": $modifier += (GetClassState($currentPlayer, $CS_LastAttack) == "NA" ? -2 : 0);//Command the Hunt
     default: break;
   }
   return $modifier;
@@ -2948,6 +2949,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY");
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
+      break;
+    case "rxxwQT054x"://Command the Hunt
+      AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
     default: break;
   }

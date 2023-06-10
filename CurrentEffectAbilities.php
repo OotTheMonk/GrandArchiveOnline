@@ -47,6 +47,7 @@ function EffectAttackModifier($cardID)
     case "fMv7tIOZwLAttack": return 1;//Aqueous Enchanting
     case "GRkBQ1Uvir": return 2;//Ignited Strike
     case "qufoIF014c": return 2;//Gleaming Cut
+    case "rxxwQT054x": return 2;//Command the Hunt
     default: return 0;
   }
 }
@@ -380,6 +381,7 @@ function IsCombatEffectActive($cardID)
     case "qufoIF014c": return true;//Gleaming Cut
     case "5qWWpkgQLl": return true;//Coup de Grace
     case "2Ch1Gp3jEL": return true;//Corhazi Lightblade
+    case "rxxwQT054x": return true;//Command the Hunt
     default: return false;
   }
 }
@@ -399,6 +401,7 @@ function IsCombatEffectPersistent($cardID)
     case "qyQLlDYBlr": return true;//Ornamental Greatsword
     case "F1t18omUlx": return true;//Beastbond Paws
     case "fMv7tIOZwLAttack": return true;//Aqueous Enchanting
+    case "rxxwQT054x": return true;//Command the Hunt
     default:
       return false;
   }
