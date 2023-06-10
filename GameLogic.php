@@ -54,6 +54,21 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
             $rv .= $i;
           }
           break;
+        case "STORMTYRANTSEYE":
+          $deck = &GetDeck($player);
+          $toReveal = "";
+          $found = false;
+          for($i=0; $i<count($deck) && !$found; ++$i)
+          {
+            if($toReveal != "") $toReveal .= ",";
+            $toReveal .= $deck[$i];
+            if($rv != "") $rv .= ",";
+            $rv .= $i;
+            if(CardElement($deck[$i]) == "ARCANE") $found = true;
+          }
+          RevealCards($toReveal);
+          LoseHealth(SearchCount($rv), $player);
+          break;
         case "DECKTOPXREMOVE":
           $deck = new Deck($player);
           $rv = $deck->Top(true, $subparam);

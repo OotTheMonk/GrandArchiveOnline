@@ -2282,6 +2282,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "yj2rJBREH8"://Safeguard Amulet
       AddCurrentTurnEffect("yj2rJBREH8", $currentPlayer);
       break;
+    case "EQZZsiUDyl"://Storm Tyrant's Eye
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "STORMTYRANTSEYE");
+      AddDecisionQueue("CHOOSEDECK", $currentPlayer, "<-", 1);
+      AddDecisionQueue("ADDHAND", $currentPlayer, "DECK", 1);
+      AddDecisionQueue("SHUFFLEDECK", $currentPlayer, "-", 1);
+      break;
     case "LROrzTmh55"://Fire Resonance Bauble
     case "2gv7DC0KID"://Grand Crusader's Ring
     case "bHGUNMFLg9"://Wind Resonance Bauble

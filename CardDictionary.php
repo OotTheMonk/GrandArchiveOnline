@@ -271,6 +271,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "usb5FgKvZX"://Sharpening Stone
     case "xjuCkODVRx"://Beastbond Boots
     case "yj2rJBREH8"://Safeguard Amulet
+    case "EQZZsiUDyl"://Storm Tyrant's Eye
       return "I";
     default: return "";
   }
