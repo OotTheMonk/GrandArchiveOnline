@@ -1230,6 +1230,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       return $lastResult;
     case "FINISHMATERIALIZE":
       global $CS_NumMaterializations;
+      if(SearchCharacterForCard($currentPlayer, "4sm14RaEkg")) LoseHealth(2, $currentPlayer);
       $cost = $dqVars[0];
       $index = $parameter;
       $cardID = RemoveMaterial($currentPlayer, $index);
@@ -1246,8 +1247,9 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       }
       else if(CardTypeContains($cardID, "REGALIA"))
       {
-        if(CardTypeContains($cardID, "ITEM")) PutItemIntoPlayForPlayer($cardID, $currentPlayer);
-        else AddCharacter($cardID, $currentPlayer);
+        $player = ($cardID == "4sm14RaEkg" ? ($currentPlayer == 1 ? 2 : 1) : $currentPlayer);//Excalibur
+        if(CardTypeContains($cardID, "ITEM")) PutItemIntoPlayForPlayer($cardID, $player);
+        else AddCharacter($cardID, $player);
       }
       else
       {
