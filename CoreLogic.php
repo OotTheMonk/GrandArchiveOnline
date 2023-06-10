@@ -2953,6 +2953,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "rxxwQT054x"://Command the Hunt
       AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
+    case "WdkZU2wwnw"://Extortion Scheme
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
+      if(IsClassBonusActive($currentPlayer, "ASSASSIN")) AddPreparationCounters($currentPlayer, 1);
+      break;
     default: break;
   }
 }

@@ -261,6 +261,20 @@ function MZSink($player, $target)
   }
 }
 
+function MZSuppress($player, $target)
+{
+  $pieces = explode("-", $target);
+  $player = (substr($pieces[0], 0, 2) == "MY" ? $player : ($player == 1 ? 2 : 1));
+  $zone = &GetMZZone($player, $pieces[0]);
+  switch($pieces[0]) {
+    case "THEIRALLY": case "MYALLY":
+      $cardID = RemoveAlly($player, $pieces[1]);
+      BanishCardForPlayer($cardID, $player, "PLAY", "SUPPRESS", $player);
+      break;
+    default: break;
+  }
+}
+
 function MZEndCombat($player, $mzIndex)
 {
   global $mainPlayer;

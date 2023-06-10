@@ -1021,6 +1021,17 @@ function BeginTurnPass()
   ProcessDecisionQueue("");
 }
 
+function PlayerSuppress($player)
+{
+  $banish = &GetBanish($player);
+  for($i = count($banish) - BanishPieces(); $i >= 0; $i -= BanishPieces()) {
+    if($banish[$i + 1] == "SUPPRESS") {
+      PlayAlly($banish[$i], $player);
+      RemoveBanish($player, $i);
+    }
+  }
+}
+
 function EndStep()
 {
   global $mainPlayer, $turn;
@@ -1028,6 +1039,8 @@ function EndStep()
   AddLayer("ENDSTEP", $mainPlayer, "-");
   AuraBeginEndPhaseTriggers();
   BeginEndPhaseEffectTriggers();
+  PlayerSuppress(1);
+  PlayerSuppress(2);
 }
 
 //CR 2.0 4.4.2. - Beginning of the end phase
