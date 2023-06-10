@@ -2923,13 +2923,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       break;
     case "SkAe1hsw5H"://Ghosts of Pendragon
-      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYITEMS:type=REGALIA&MYCHAR:type=REGALIA");
-      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a regalia to return", 1);
-      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
-      AddDecisionQueue("MZADDZONE", $currentPlayer, "MYMATERIAL", 1);
-      AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
-      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
-      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      if($from != "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYITEMS:type=REGALIA&MYCHAR:type=REGALIA");
+        AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a regalia to return", 1);
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZADDZONE", $currentPlayer, "MYMATERIAL", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+        AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+        AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      }
       break;
     case "RRx0KK6g6D"://Fishing Accident
       AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY&MYALLY");
