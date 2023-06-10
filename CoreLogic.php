@@ -1509,6 +1509,18 @@ function DestroyCharacter($player, $index)
   return $cardID;
 }
 
+function RemoveCharacter($player, $index)
+{
+  $char = &GetPlayerCharacter($player);
+  $cardID = $char[$index];
+  for($i=$index+CharacterPieces()-1; $i>=$index; --$i)
+  {
+    unset($char[$index]);
+  }
+  $char = array_values($char);
+  return $cardID;
+}
+
 function AddDurabilityCounters($player, $amount=1)
 {
   AddDecisionQueue("PASSPARAMETER", $player, $amount);
@@ -2909,6 +2921,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       {
         if(CardElement(MemoryRevealRandom($currentPlayer)) == "LUXEM") AddCurrentTurnEffect("2Ch1Gp3jEL", $currentPlayer, "PLAY");
       }
+      break;
+    case "SkAe1hsw5H"://Ghosts of Pendragon
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYITEMS:type=REGALIA&MYCHAR:type=REGALIA");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a regalia to return", 1);
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZADDZONE", $currentPlayer, "MYMATERIAL", 1);
+      AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+      AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       break;
     default: break;
   }

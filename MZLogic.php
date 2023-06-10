@@ -34,6 +34,8 @@ function MZRemove($player, $lastResult)
   for($i = 0; $i < count($lastResultArr); ++$i) {
     $mzIndex = explode("-", $lastResultArr[$i]);
     switch($mzIndex[0]) {
+      case "MYCHAR": $lastResult = RemoveCharacter($player, $mzIndex[1]); break;
+      case "MYITEMS": $lastResult = DestroyItemForPlayer($player, $mzIndex[1], true); break;
       case "MYDISCARD": $lastResult = RemoveGraveyard($player, $mzIndex[1]); break;
       case "THEIRDISCARD": $lastResult = RemoveGraveyard($otherPlayer, $mzIndex[1]); break;
       case "MYBANISH": RemoveBanish($player, $mzIndex[1]); break;
