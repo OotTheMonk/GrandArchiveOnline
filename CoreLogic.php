@@ -2943,6 +2943,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "7Rsid05Cf6"://Spirit Blade: Dispersion
       AddDecisionQueue("SPECIFICCARD", $currentPlayer, "SPIRITBLADEDISPERSION");
       break;
+    case "4s0c9XgLg7"://Snow Fairy
+      WriteLog("Snow Fairy is a partially manual card, enforce the persistent rest mechanic manually");
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
+      break;
     default: break;
   }
 }
