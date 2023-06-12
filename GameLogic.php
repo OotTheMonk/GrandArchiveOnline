@@ -138,14 +138,14 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       $subtype = CardSubType($lastResult);
       if($subtype == "Item") {
         PutItemIntoPlayForPlayer($lastResult, $player, ($parameter != "-" ? $parameter : 0));
-      } else if(DelimStringContains($subtype, "Aura")) {
-        PlayAura($lastResult, $player);
-        PlayAbility($lastResult, "-", 0);
       }
       else if(IsAlly($lastResult))
       {
         PlayAlly($lastResult, $player);
         PlayAbility($lastResult, "-", 0);
+      }
+      else {
+        PlayAura($lastResult, $player);
       }
       return $lastResult;
     case "DRAW":

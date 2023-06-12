@@ -138,6 +138,7 @@ function HasStealth($cardID, $player, $index)
     case "UVAb8CmjtL": return true;//Dream Fairy
     case "VAFTR5taNG": return true;//Corhazi Infiltrator
     case "4s0c9XgLg7": return true;//Snow Fairy
+    case "ZfCtSldRIy": return true;//Windrider Mage
     default: return false;
   }
 }

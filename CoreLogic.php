@@ -266,10 +266,10 @@ function StartTurn()
   $dqState[1] = "M";
   $turn[0] = "M";
   CharacterStartTurnAbility(0);
+  AllyStartTurnAbilities($mainPlayer);
   if(!IsDecisionQueueActive()) ProcessDecisionQueue();
   ReturnAllMemoryToHand($currentPlayer);
   if($mainPlayer != $firstPlayer || $currentTurn > 1) Draw($currentPlayer);
-  AllyStartTurnAbilities($mainPlayer);
 }
 
 function ReturnAllMemoryToHand($player)
