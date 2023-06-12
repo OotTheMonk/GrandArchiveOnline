@@ -1645,6 +1645,11 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
       $combatChainState[$CCS_AttackUniqueID] = $uniqueID;
       if ($definedCardType == "AA" && $attackValue < 3) IncrementClassState($currentPlayer, $CS_NumLess3PowAAPlayed);
       $openedChain = true;
+      if($definedCardType == "AA" || $definedCardType == "W")
+      {
+        $char = &GetPlayerCharacter($currentPlayer);
+        $char[1] = 1;
+      }
       if ($definedCardType != "AA") $combatChainState[$CCS_WeaponIndex] = GetClassState($currentPlayer, $CS_PlayIndex);
       // If you attacked an aura with Spectra
       if (!$chainClosed && ($definedCardType == "AA" || $definedCardType == "W")) {

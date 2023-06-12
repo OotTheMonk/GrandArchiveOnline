@@ -354,9 +354,14 @@ function IsPlayable($cardID, $phase, $from, $index = -1, &$restriction = null, $
     }
   }
   if(IsPlayRestricted($cardID, $restriction, $from, $index, $player)) return false;
+  $cardType = CardType($cardID);
+  if($cardType == "W" || $cardType == "AA")
+  {
+    $char = &GetPlayerCharacter($player);
+    if($char[1] != 2) return false;//Can't attack if rested
+  }
   if($phase == "M" && $from == "HAND") return true;
   if($phase == "P" && $from == "HAND") return true;
-  $cardType = CardType($cardID);
   $isStaticType = IsStaticType($cardType, $from, $cardID);
   if($isStaticType) $cardType = GetAbilityType($cardID, $index, $from);
   if($phase == "M" && ($cardType == "A" || $cardType == "AA" || $cardType == "I")) return true;
