@@ -2973,6 +2973,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
       break;
+    case "FWnxKjSeB1"://Spark Fairy
+      if($from != "PLAY")
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY&THEIRITEMS:type=REGALIA&THEIRCHAR:type=REGALIA");
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "GETCARDID", 1);
+        AddDecisionQueue("SETDQVAR", $currentPlayer, "0", 1);
+        AddDecisionQueue("WRITELOG", $currentPlayer, "Each turn you will be asked if <0> is still alive", 1);
+      }
+      break;
     default: break;
   }
 }

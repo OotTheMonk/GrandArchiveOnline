@@ -208,6 +208,9 @@ function AllyStartTurnAbilities($player)
         AddDecisionQueue("PASSPARAMETER", $player, "ENLIGHTEN", 1);
         AddDecisionQueue("PUTPLAY", $player, "-", 1);
         break;
+      case "FWnxKjSeB1"://Spark Fairy
+
+        break;
       default: break;
     }
   }
