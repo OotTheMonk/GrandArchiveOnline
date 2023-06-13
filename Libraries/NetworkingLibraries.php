@@ -1026,7 +1026,10 @@ function PlayerSuppress($player)
   $banish = &GetBanish($player);
   for($i = count($banish) - BanishPieces(); $i >= 0; $i -= BanishPieces()) {
     if($banish[$i + 1] == "SUPPRESS") {
-      PlayAlly($banish[$i], $player);
+      $cardID = $banish[$i];
+      if(IsAlly($cardID)) PlayAlly($cardID, $player);
+      else if(CardTypeContains($cardID, "ITEM")) PutItemIntoPlayForPlayer($cardID, $player);
+      else if(CardTypeContains($cardID, "WEAPON")) AddCharacter($cardID, $player);
       RemoveBanish($player, $i);
     }
   }

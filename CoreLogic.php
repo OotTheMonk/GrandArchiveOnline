@@ -2968,6 +2968,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
       if(IsClassBonusActive($currentPlayer, "MAGE")) PlayAura("ENLIGHTEN", $currentPlayer);
       break;
+    case "idaRe7y3In"://Zephyr
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY&THEIRITEMS:type=REGALIA&THEIRCHAR:type=REGALIA");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
+      break;
     default: break;
   }
 }

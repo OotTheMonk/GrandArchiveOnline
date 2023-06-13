@@ -271,6 +271,14 @@ function MZSuppress($player, $target)
       $cardID = RemoveAlly($player, $pieces[1]);
       BanishCardForPlayer($cardID, $player, "PLAY", "SUPPRESS", $player);
       break;
+    case "THEIRITEMS": case "MYITEMS":
+      $cardID = DestroyItemForPlayer($player, $pieces[1], true);
+      BanishCardForPlayer($cardID, $player, "PLAY", "SUPPRESS", $player);
+      break;
+    case "THEIRCHAR": case "MYCHAR":
+      $cardID = RemoveCharacter($player, $pieces[1]);
+      BanishCardForPlayer($cardID, $player, "PLAY", "SUPPRESS", $player);
+      break;
     default: break;
   }
 }
