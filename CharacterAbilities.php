@@ -178,7 +178,7 @@ function MainCharacterHitAbilities()
 
 function MainCharacterAttackModifiers($index = -1, $onlyBuffs = false)
 {
-  global $combatChainState, $CCS_WeaponIndex, $mainPlayer, $CS_NumAttacks;
+  global $combatChainState, $CCS_WeaponIndex, $mainPlayer, $CS_NumAttacks, $combatChain;
   $modifier = 0;
   $mainCharacterEffects = &GetMainCharacterEffects($mainPlayer);
   $mainCharacter = &GetPlayerCharacter($mainPlayer);
@@ -197,9 +197,8 @@ function MainCharacterAttackModifiers($index = -1, $onlyBuffs = false)
 
   $mainCharacter = &GetPlayerCharacter($mainPlayer);
   for($i = 0; $i < count($mainCharacter); $i += CharacterPieces()) {
-    if(!IsEquipUsable($mainPlayer, $i)) continue;
-    switch($characterID) {
-
+    switch($mainCharacter[$i]) {
+      case "NfbZ0nouSQ": if(!IsAlly($combatChain[0])) $modifier += SearchCount(SearchBanish($mainPlayer,type:"WEAPON")); break;
       default: break;
     }
   }
