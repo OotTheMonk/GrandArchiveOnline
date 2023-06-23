@@ -209,7 +209,9 @@ function AllyStartTurnAbilities($player)
         AddDecisionQueue("PUTPLAY", $player, "-", 1);
         break;
       case "FWnxKjSeB1"://Spark Fairy
-
+        AddDecisionQueue("YESNO", $player, "if the chosen object is still alive");
+        AddDecisionQueue("NOPASS", $player, "-", 1);
+        DamageTrigger(($player == 1 ? 2 : 1), 1, "DAMAGE", "FWnxKjSeB1");
         break;
       default: break;
     }
