@@ -1513,7 +1513,13 @@ function PayAdditionalCosts($cardID, $from)
     SetClassState($currentPlayer, $CS_AdditionalCosts, $discarded);
   }
   switch($cardID) {
-
+    case "qaA3sXFRFY"://Spirit's Blessing
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYITEMS:type=REGALIA&MYCHAR:type=REGALIA");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a regalia to return", 1);
+      AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZADDZONE", $currentPlayer, "MYMATERIAL", 1);
+      AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+      break;
     default:
       break;
   }

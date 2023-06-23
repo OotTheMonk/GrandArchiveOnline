@@ -2983,6 +2983,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("WRITELOG", $currentPlayer, "Each turn you will be asked if <0> is still alive", 1);
       }
       break;
+    case "qaA3sXFRFY"://Spirit's Blessing
+      $char = &GetPlayerCharacter($currentPlayer);
+      $char[1] = 2;
+      Draw($currentPlayer);
+      break;
     default: break;
   }
 }
