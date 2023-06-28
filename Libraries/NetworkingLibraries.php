@@ -1598,6 +1598,19 @@ function MaterializeCardEffect($cardID)
       AddPreparationCounters($currentPlayer, 1);
       PlayerOpt($currentPlayer, 2);
       break;
+    case "ZR8tnLruR6"://Silvie, Earth's Tune
+      $deck = &GetDeck($currentPlayer);
+      $toReveal = "";
+      for($i=0; $i<count($deck); ++$i)
+      {
+        $card = array_shift($deck);
+        if($toReveal != "") $toReveal .= ",";
+        $toReveal .= $card;
+        if(CardElement($card) == "TERA" && (SubtypeContains($card, "BEAST", $currentPlayer) || SubtypeContains($card, "ANIMAL", $currentPlayer))) { AddHand($currentPlayer, $card); break; }
+        else array_push($deck, $card);
+      }
+      RevealCards($toReveal, $currentPlayer);
+      break;
     default:
       break;
   }

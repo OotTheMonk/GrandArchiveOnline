@@ -161,7 +161,6 @@ if ($canSeeQueue) {
         Freeze Stiff<BR>
         Intrepid Highwayman<BR>
         Flute of Taming<BR>
-        Silvie, Earth's Tune<BR>
         Advent of the Stormcaller<BR>
         Intangible Geist<BR>
         Discordia, Harp of Malice<BR>
