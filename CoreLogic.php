@@ -1901,6 +1901,7 @@ function SelfCostModifier($cardID)
     case "g7uDOmUf2u": $modifier += (SearchCount(SearchCharacter($currentPlayer, subtype:"SWORD")) > 0 ? -1 : 0); break;//Deflecting Edge
     case "wPKxvzTmqq": $modifier += (DelimStringContains($additionalCosts, "PREPARE") ? -5 : 0); //Ensnaring Fumes
     case "rxxwQT054x": $modifier += (GetClassState($currentPlayer, $CS_LastAttack) == "NA" ? -2 : 0);//Command the Hunt
+    case "CgyJxpEgzk": $modifier += (GetClassState($currentPlayer, $CS_AtksWWeapon) > 0 || GetClassState($currentPlayer, $CS_NumAttackCards) > 0 ? -2 : 0);
     default: break;
   }
   return $modifier;
