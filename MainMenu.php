@@ -148,7 +148,53 @@ if ($canSeeQueue) {
   <h1>News</h1>
   <div style="position: relative;">
     <div style='vertical-align:middle; text-align:center;'>
-      <h3>Welcome to Clarent!</h3>
+      <h3>All cards supported except:</h3>
+        Poisoned Dagger<BR>
+        Bubble Mage<BR>
+        Galatine, Sword of Sunlight<BR>
+        Conduit of the Mad Mage<BR>
+        Assassin's Ripper<BR>
+        Mistbound Cutthroat<BR>
+        Spirit Blade: Infusion<BR>
+        Spirit Blade: Ensoul<BR>
+        Arthur, Young Heir<BR>
+        Spirit Blade: Ascension<BR>
+        Nia, Mistveiled Scout<BR>
+        Freeze Stiff<BR>
+        Spirit Blade: Ghost Strike<BR>
+        Intrepid Highwayman<BR>
+        Flute of Taming<BR>
+        Silvie, Earth's Tune<BR>
+        Advent of the Stormcaller<BR>
+        Intangible Geist<BR>
+        Discordia, Harp of Malice<BR>
+        Rai, Mana Weaver<BR>
+        Beseech the Winds<BR>
+        Avalon, Cursed Isle<BR>
+        Carnwennan, Shrouded Edge<BR>
+        Arcanist's Prism<BR>
+        Galahad, Court Knight<BR>
+        Harness Mana<BR>
+        Silvie, Loved by All<BR>
+        Zander, Corhazi's Chosen<BR>
+        Bestial Frenzy<BR>
+        Mist Resonance<BR>
+        Triskit, Guidance Angel<BR>
+        Varuck, Smoldering Spire<BR>
+        Tristan, Grim Stalker<BR>
+        Nimue, Cursed Touch<BR>
+        Clarent, Sword of Peace<BR>
+        Call the Pack<BR>
+        Tome of Sacred Lightning<BR>
+        Lorraine, Spirit Ruler<BR>
+        Camelot, Impenetrable<BR>
+        Endura, Scepter of Ignition<BR>
+        Merlin, Memory Thief<BR>
+        Nullifying Lantern<BR>
+        Mordred, Flawless Blade<BR>
+        Barrier Servant<BR>
+        Gaia's Blessing<BR>
+        Allen, Beast Beckoner<BR>
     </div>
   </div>
   <?php
