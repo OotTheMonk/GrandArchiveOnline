@@ -188,6 +188,7 @@ function MainCharacterAttackModifiers($index = -1, $onlyBuffs = false)
       switch($mainCharacterEffects[$i + 1]) {
         case "QQaOgurnjX": $modifier += 2; break;//Imbue in Frost
         case "usb5FgKvZX": $modifier += 1; break;//Sharpening Stone
+        case "CgyJxpEgzk": $modifier += 3; break;//Spirit Blade: Infusion
         default:
           break;
       }
@@ -213,7 +214,9 @@ function MainCharacterHitEffects()
   for($i = 0; $i < count($mainCharacterEffects); $i += 2) {
     if($mainCharacterEffects[$i] == $combatChainState[$CCS_WeaponIndex]) {
       switch($mainCharacterEffects[$i + 1]) {
-
+        case "CgyJxpEgzk"://Spirit Blade: Infusion
+          Draw($mainPlayer);
+          break;
         default: break;
       }
     }

@@ -155,7 +155,6 @@ if ($canSeeQueue) {
         Conduit of the Mad Mage<BR>
         Assassin's Ripper<BR>
         Mistbound Cutthroat<BR>
-        Spirit Blade: Infusion<BR>
         Spirit Blade: Ensoul<BR>
         Arthur, Young Heir<BR>
         Spirit Blade: Ascension<BR>

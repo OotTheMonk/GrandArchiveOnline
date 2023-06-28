@@ -2988,6 +2988,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $char[1] = 2;
       Draw($currentPlayer);
       break;
+    case "CgyJxpEgzk"://Spirit Blade: Infusion
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "WEAPON");
+      AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose_target_weapon");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("ADDMZBUFF", $currentPlayer, $cardID, 1);
+      break;
     default: break;
   }
 }
