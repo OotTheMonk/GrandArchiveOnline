@@ -154,7 +154,6 @@ if ($canSeeQueue) {
         Galatine, Sword of Sunlight<BR>
         Conduit of the Mad Mage<BR>
         Assassin's Ripper<BR>
-        Mistbound Cutthroat<BR>
         Spirit Blade: Ensoul<BR>
         Arthur, Young Heir<BR>
         Spirit Blade: Ascension<BR>

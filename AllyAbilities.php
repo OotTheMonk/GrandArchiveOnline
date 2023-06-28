@@ -1,10 +1,10 @@
 <?php
 
-function PlayAlly($cardID, $player, $subCards = "-")
+function PlayAlly($cardID, $player, $subCards = "-", $from="-")
 {
   $allies = &GetAllies($player);
   array_push($allies, $cardID);
-  array_push($allies, AllyEntersPlayState($cardID, $player));
+  array_push($allies, AllyEntersPlayState($cardID, $player, $from));
   array_push($allies, AllyHealth($cardID, $player));
   array_push($allies, 0); //Frozen
   array_push($allies, $subCards); //Subcards
@@ -81,7 +81,7 @@ function AllyAddGraveyard($player, $cardID, $subtype)
   }
 }
 
-function AllyEntersPlayState($cardID, $player)
+function AllyEntersPlayState($cardID, $player, $from="-")
 {
   if(SearchCurrentTurnEffects("dxAEI20h8F", $player)) return 1;
   if(PlayerHasAlly($player == 1 ? 2 : 1, "TqCo3xlf93")) return 1;//Lunete, Frostbinder Priest
@@ -90,6 +90,7 @@ function AllyEntersPlayState($cardID, $player)
     case "2Q60hBYO3i": return 1;
     case "GXeEa0pe3B": return 1;//Rebellious Bull
     case "G5E0PIUd0W": return 1;//Artificer's Opus
+    case "C7zFV2K7bL": return $from == "GY" ? 1 : 2;//Mistbound Cutthroat
     default: return 2;
   }
 }

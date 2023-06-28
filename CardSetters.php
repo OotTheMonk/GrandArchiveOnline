@@ -400,11 +400,11 @@ function AddGraveyard($cardID, $player, $from)
   global $myStateBuiltFor, $CS_CardsEnteredGY;
   IncrementClassState($player, $CS_CardsEnteredGY);
   if ($mainPlayerGamestateStillBuilt) {
-    if ($player == $mainPlayer) AddSpecificGraveyard($cardID, $mainDiscard, $from);
-    else AddSpecificGraveyard($cardID, $defDiscard, $from);
+    if ($player == $mainPlayer) AddSpecificGraveyard($cardID, $mainDiscard, $from, $player);
+    else AddSpecificGraveyard($cardID, $defDiscard, $from, $player);
   } else {
-    if ($player == $myStateBuiltFor) AddSpecificGraveyard($cardID, $myDiscard, $from);
-    else AddSpecificGraveyard($cardID, $theirDiscard, $from);
+    if ($player == $myStateBuiltFor) AddSpecificGraveyard($cardID, $myDiscard, $from, $player);
+    else AddSpecificGraveyard($cardID, $theirDiscard, $from, $player);
   }
 }
 
@@ -451,8 +451,18 @@ function RemoveCharacterEffects($player, $index, $effect)
   return false;
 }
 
-function AddSpecificGraveyard($cardID, &$graveyard, $from)
+function AddSpecificGraveyard($cardID, &$graveyard, $from, $player)
 {
+  if($from == "DECK" && CharacterLevel($player) >= 3 && IsAlly($cardID))//Mistbound Cutthroat
+  {
+    $indices = explode(",", SearchDiscardForCard($player, "C7zFV2K7bL"));
+    for($i=count($indices)-1; $i>=0; --$i)
+    {
+      unset($graveyard[$indices[$i]]);
+      PlayAlly("C7zFV2K7bL", $player, from:"GY");
+    }
+    $graveyard = array_values($graveyard);
+  }
   array_push($graveyard, $cardID);
 }
 
