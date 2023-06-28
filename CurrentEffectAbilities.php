@@ -48,6 +48,7 @@ function EffectAttackModifier($cardID)
     case "GRkBQ1Uvir": return 2;//Ignited Strike
     case "qufoIF014c": return 2;//Gleaming Cut
     case "rxxwQT054x": return 2;//Command the Hunt
+    case "vcZSHNHvKX": return IsAlly($cardID) ? 0 : 1;//Spirit Blade: Ghost Strike
     default: return 0;
   }
 }
@@ -382,6 +383,7 @@ function IsCombatEffectActive($cardID)
     case "5qWWpkgQLl": return true;//Coup de Grace
     case "2Ch1Gp3jEL": return true;//Corhazi Lightblade
     case "rxxwQT054x": return true;//Command the Hunt
+    case "vcZSHNHvKX": return true;//Spirit Blade: Ghost Strike
     default: return false;
   }
 }
@@ -402,6 +404,7 @@ function IsCombatEffectPersistent($cardID)
     case "F1t18omUlx": return true;//Beastbond Paws
     case "fMv7tIOZwLAttack": return true;//Aqueous Enchanting
     case "rxxwQT054x": return true;//Command the Hunt
+    case "vcZSHNHvKX": return true;//Spirit Blade: Ghost Strike
     default:
       return false;
   }

@@ -2996,6 +2996,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("ADDMZBUFF", $currentPlayer, $cardID, 1);
       break;
+    case "vcZSHNHvKX"://Spirit Blade: Ghost Strike
+      MZMoveCard($currentPlayer, "MYMATERIAL", "MYBANISH,MATERIAL,-");
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      break;
     default: break;
   }
 }

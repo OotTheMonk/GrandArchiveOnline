@@ -159,7 +159,6 @@ if ($canSeeQueue) {
         Spirit Blade: Ascension<BR>
         Nia, Mistveiled Scout<BR>
         Freeze Stiff<BR>
-        Spirit Blade: Ghost Strike<BR>
         Intrepid Highwayman<BR>
         Flute of Taming<BR>
         Silvie, Earth's Tune<BR>
