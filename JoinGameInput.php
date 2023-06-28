@@ -92,10 +92,6 @@ if ($decklink != "") {
     $apiLink = "https://api.silvie.org/api/build/decks/published?";//"@OotTheMonk/Ya7CqS207754CBvuLeB7
     $apiLink .= "id=" . $slug;
     $apiLink .= "&user=" . $uid;
-  } else {
-    $decklinkArr = explode("/", $decklink);
-    $slug = $decklinkArr[count($decklinkArr) - 1];
-    $apiLink = "https://api.fabmeta.net/deck/" . $slug;
   }
 
   curl_setopt($curl, CURLOPT_URL, $apiLink);
@@ -137,7 +133,7 @@ if ($decklink != "") {
   $totalCards = 0;
 
   foreach($cards as $key => $value) {
-    //TODO: Sideboard
+    if(str_contains($key, "-s")) continue;//TODO: Sideboard
     if(CardTypeContains($key, "REGALIA") || CardTypeContains($key, "CHAMPION"))
     {
       if($materialCards != "") $materialCards .= " ";
@@ -164,11 +160,13 @@ if ($decklink != "") {
   if (isset($_SESSION["userid"])) {
     include_once './includes/functions.inc.php';
     include_once "./includes/dbh.inc.php";
+    /*
     $deckbuilderID = GetDeckBuilderId($_SESSION["userid"], $decklink);
     if ($deckbuilderID != "") {
       if ($playerID == 1) $p1deckbuilderID = $deckbuilderID;
       else $p2deckbuilderID = $deckbuilderID;
     }
+    */
   }
 
   if ($favoriteDeck == "on" && isset($_SESSION["userid"])) {
@@ -240,98 +238,6 @@ if ($matchup == "") {
 
 session_write_close();
 header("Location: " . $redirectPath . "/GameLobby.php?gameName=$gameName&playerID=$playerID");
-
-
-function ParseDraftFab($deck, $filename)
-{
-  $character = "DYN001";
-  $deckCards = "";
-  $headSideboard = "";
-  $chestSideboard = "";
-  $armsSideboard = "";
-  $legsSideboard = "";
-  $offhandSideboard = "";
-  $quiverSideboard = "";
-  $weaponSideboard = "";
-  $sideboardCards = "";
-
-  $cards = explode(",", $deck);
-  for ($i = 0; $i < count($cards); ++$i) {
-    $card = explode(":", $cards[$i]);
-    $cardID = GetAltCardID($card[0]);
-    $quantity = $card[2];
-    $type = CardType($cardID);
-    switch ($type) {
-      case "T":
-        break;
-      case "C":
-        $character = $cardID;
-        break;
-      case "W":
-        if ($weaponSideboard != "") $weaponSideboard .= " ";
-        $weaponSideboard .= $cardID;
-        break;
-      case "E":
-        $subType = CardSubType($cardID);
-        switch ($subType) {
-          case "Head":
-            if ($headSideboard != "") $headSideboard .= " ";
-            $headSideboard .= $cardID;
-            break;
-          case "Chest":
-            if ($chestSideboard != "") $chestSideboard .= " ";
-            $chestSideboard .= $cardID;
-            break;
-          case "Arms":
-            if ($armsSideboard != "") $armsSideboard .= " ";
-            $armsSideboard .= $cardID;
-            break;
-          case "Legs":
-            if ($legsSideboard != "") $legsSideboard .= " ";
-            $legsSideboard .= $cardID;
-            break;
-          case "Off-Hand":
-            if ($offhandSideboard != "") $offhandSideboard .= " ";
-            $offhandSideboard .= $cardID;
-            break;
-          case "Quiver":
-            if ($quiverSideboard != "") $quiverSideboard .= " ";
-            $quiverSideboard .= $cardID;
-            break;
-          default:
-            break;
-        }
-        break;
-      default:
-        for ($j = 0; $j < $quantity; ++$j) {
-          if ($card[1] == "S") {
-            if ($sideboardCards != "") $sideboardCards .= " ";
-            $sideboardCards .= GetAltCardID($cardID);
-          } else {
-            if ($deckCards != "") $deckCards .= " ";
-            $deckCards .= GetAltCardID($cardID);
-          }
-        }
-        break;
-    }
-  }
-
-
-  $deckFile = fopen($filename, "w");
-  $charString = $character;
-
-  fwrite($deckFile, $charString . "\r\n");
-  fwrite($deckFile, $deckCards . "\r\n");
-  fwrite($deckFile, $headSideboard . "\r\n");
-  fwrite($deckFile, $chestSideboard . "\r\n");
-  fwrite($deckFile, $armsSideboard . "\r\n");
-  fwrite($deckFile, $legsSideboard . "\r\n");
-  fwrite($deckFile, $offhandSideboard . "\r\n");
-  fwrite($deckFile, $weaponSideboard . "\r\n");
-  fwrite($deckFile, $sideboardCards . "\r\n");
-  fwrite($deckFile, $quiverSideboard);
-  fclose($deckFile);
-}
 
 function GetAltCardID($cardID)
 {
