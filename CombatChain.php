@@ -71,6 +71,11 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return IsAttackTargetRested() ? 1 : 0;
     case "Q2ugqVm04E"://Curved Dagger
       return IsAllyAttackTarget() && IsClassBonusActive($mainPlayer, "ASSASSIN") ? 1 : 0;
+    case "3traenEA8M"://Galatine, Sword of Sunlight
+      if(!IsClassBonusActive($mainPlayer, "WARRIOR")) return 0;
+      $index = FindCharacterIndex($mainPlayer, "3traenEA8M");
+      $char = &GetPlayerCharacter($mainPlayer);
+      return $index == -1 ? 0 : floor($char[$index+2]/3);
     default: return 0;
   }
 }
