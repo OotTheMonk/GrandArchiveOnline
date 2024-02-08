@@ -170,7 +170,7 @@ function RemoveAura($player, $index)
   return $cardID;
 }
 
-function AuraCostModifier()
+function AuraCostModifier($cardID)
 {
   global $currentPlayer;
   $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
@@ -179,14 +179,18 @@ function AuraCostModifier()
   $modifier = 0;
   for($i = count($myAuras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     switch($myAuras[$i]) {
-
+      case "4coy34bro8"://Dawn of Ashes
+        if(CardElement($cardID) != "NORM") $modifier += 1;
+        break;
       default: break;
     }
   }
 
   for($i = count($theirAuras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     switch($theirAuras[$i]) {
-
+      case "4coy34bro8"://Dawn of Ashes
+        if(CardElement($cardID) != "NORM") $modifier += 1;
+        break;
       default:
         break;
     }
@@ -202,8 +206,15 @@ function AuraStartTurnAbilities()
   $auras = &GetAuras($mainPlayer);
   for($i = count($auras) - AuraPieces(); $i >= 0; $i -= AuraPieces()) {
     $EffectContext = $auras[$i];
-    switch ($auras[$i]) {
-
+    switch($auras[$i]) {
+      case "4coy34bro8"://Dawn of Ashes
+        WriteLog("Dawn of Ashes triggers");
+        $memory = &GetMemory($mainPlayer);
+        if(count($memory) == 0) break;
+        $index = rand(0, (count($memory)/MemoryPieces()) - 1) * MemoryPieces();
+        RevealCards($memory[$index], $mainPlayer);
+        if(CardElement($memory[$index]) != "NORM") DestroyAuraUniqueID($mainPlayer, $auras[$i + 6]);
+        break;
       default:
         break;
     }

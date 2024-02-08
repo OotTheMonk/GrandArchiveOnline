@@ -285,6 +285,7 @@ function StartTurnAbilities()
 {
   global $mainPlayer, $defPlayer;
   MZStartTurnMayAbilities();
+  AuraStartTurnAbilities();
 }
 
 function MZStartTurnMayAbilities()
