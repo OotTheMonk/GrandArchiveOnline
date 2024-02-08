@@ -166,6 +166,7 @@ function PrepareAmount($cardID)
     case "uoQGe5xGDQ": return 1;//Arrow Trap
     case "5qWWpkgQLl": return 4;//Coup de Grace
     case "RRx0KK6g6D": return 2;//Fishing Accident
+    case "7t9m4muq2r": return 1;//Thieving Cut
     default: return 0;
   }
 }

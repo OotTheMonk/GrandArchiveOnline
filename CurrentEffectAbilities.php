@@ -15,6 +15,9 @@ function EffectHitEffect($cardID)
       WakeUpChampion($mainPlayer);
       $combatChainState[$CCS_GoesWhereAfterLinkResolves] = "HAND";
       break;
+    case "7t9m4muq2r"://Thieving Cut
+      Draw($mainPlayer);
+      break;
     default:
       break;
   }
@@ -384,6 +387,7 @@ function IsCombatEffectActive($cardID)
     case "2Ch1Gp3jEL": return true;//Corhazi Lightblade
     case "rxxwQT054x": return true;//Command the Hunt
     case "vcZSHNHvKX": return true;//Spirit Blade: Ghost Strike
+    case "7t9m4muq2r": return true;//Thieving Cut
     default: return false;
   }
 }

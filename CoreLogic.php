@@ -3032,6 +3032,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $numObjects += count($auras)/AuraPieces();
       if($numObjects >= 8) DrawIntoMemory($currentPlayer);
       break;
+    case "7t9m4muq2r"://Thieving Cut
+      if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("7t9m4muq2r", $currentPlayer);
+      break;
     default: break;
   }
 }
