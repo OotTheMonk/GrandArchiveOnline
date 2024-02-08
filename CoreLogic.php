@@ -3038,6 +3038,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "8jypwc8tuh"://Navigate the Streets
       PlayerOpt($currentPlayer, 1+SearchCount(SearchAura($currentPlayer, "DOMAIN")));
       break;
+    case "ddv1au7t9m"://Gentle Respite
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      if(PlayerInfluence($otherPlayer) > PlayerInfluence($currentPlayer)) DrawIntoMemory($currentPlayer);
+      break;
     default: break;
   }
 }
