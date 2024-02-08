@@ -3017,9 +3017,20 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $damage = PlayerInfluence($target) - PlayerInfluence($currentPlayer);
       DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
-    case "3oda2ha4dk":
+    case "3oda2ha4dk"://Fast Cure
       $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
       if(PlayerInfluence($otherPlayer) > PlayerInfluence($currentPlayer)) Recover($currentPlayer, 4);
+      break;
+    case "4n1n3gygoj"://Neos Sight
+      Draw($currentPlayer);
+      $numObjects = 1;//Character?
+      $allies = &GetAllies($currentPlayer);
+      $items = &GetItems($currentPlayer);
+      $auras = &GetAuras($currentPlayer);
+      $numObjects += count($allies)/AllyPieces();
+      $numObjects += count($items)/ItemPieces();
+      $numObjects += count($auras)/AuraPieces();
+      if($numObjects >= 8) DrawIntoMemory($currentPlayer);
       break;
     default: break;
   }
