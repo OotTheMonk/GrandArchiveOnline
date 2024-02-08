@@ -14,6 +14,7 @@ include "Classes/Deck.php";
 include "DecisionQueue/DecisionQueueEffects.php";
 include "CurrentEffectAbilities.php";
 include "CombatChain.php";
+include "GameMechanics.php";
 
 function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
 {

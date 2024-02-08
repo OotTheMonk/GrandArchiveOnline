@@ -3011,6 +3011,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("REVEALCARDS", $target, "-", 1);
       DrawIntoMemory($currentPlayer);
       break;
+    case "0ymvddv1au"://Illuminate Secrets
+      $target = ($currentPlayer == 1 ? 2 : 1);
+      $damage = PlayerInfluence($target) - PlayerInfluence($currentPlayer);
+      DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -3132,6 +3137,7 @@ function PlayRequiresTarget($cardID)
     case "DqtlaMGMvd": return 2;//Erratic Bolt
     case "iohZMWh5v5": return 2;//BLazing Throw
     case "5X5W2Uda5a": return 2;//Planted Explosives
+    case "0ymvddv1au": return 2;//Illuminate Secrets
     default: return -1;
   }
 }
