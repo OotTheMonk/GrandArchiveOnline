@@ -215,6 +215,15 @@ function AuraStartTurnAbilities()
         RevealCards($memory[$index], $mainPlayer);
         if(CardElement($memory[$index]) != "NORM") DestroyAuraUniqueID($mainPlayer, $auras[$i + 6]);
         break;
+      case "9w0ejcyuvu"://Prismatic Sanctuary
+        WriteLog("Prismatic Sanctuary triggers");
+        $memory = &GetMemory($mainPlayer);
+        if(count($memory) == 0) break;
+        $index = rand(0, (count($memory)/MemoryPieces()) - 1) * MemoryPieces();
+        RevealCards($memory[$index], $mainPlayer);
+        $element = CardElement($memory[$index]);
+        if($element != "FIRE" && $element != "WATER" && $element != "WIND") DestroyAuraUniqueID($mainPlayer, $auras[$i + 6]);
+        break;
       default:
         break;
     }
