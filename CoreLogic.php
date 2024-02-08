@@ -3016,6 +3016,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $damage = PlayerInfluence($target) - PlayerInfluence($currentPlayer);
       DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "3oda2ha4dk":
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      if(PlayerInfluence($otherPlayer) > PlayerInfluence($currentPlayer)) Recover($currentPlayer, 4);
+      break;
     default: break;
   }
 }
