@@ -3035,6 +3035,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "7t9m4muq2r"://Thieving Cut
       if(DelimStringContains($additionalCosts, "PREPARE")) AddCurrentTurnEffect("7t9m4muq2r", $currentPlayer);
       break;
+    case "8jypwc8tuh"://Navigate the Streets
+      PlayerOpt($currentPlayer, 1+SearchCount(SearchAura($currentPlayer, "DOMAIN")));
+      break;
     default: break;
   }
 }
