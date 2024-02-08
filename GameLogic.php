@@ -82,6 +82,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           $hand = &GetHand($player);
           $rv = GetIndices(count($hand));
           break;
+        case "MATERIAL":
+          $material = &GetMaterial($player);
+          $rv = GetIndices(count($material));
+          break;
         //This one requires CHOOSEMULTIZONECANCEL
         case "HANDPITCH": $rv = SearchHand($player, "", "", -1, -1, "", "", false, false, $subparam); break;
         case "HANDACTIONMAXCOST": $rv = CombineSearches(SearchHand($player, "A", "", $subparam), SearchHand($player, "AA", "", $subparam)); break;
@@ -478,6 +482,17 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         if(count($deck) <= $i) continue;
         if($rv != "") $rv .= ",";
         $rv .= $deck[$i];
+      }
+      return ($rv == "" ? "PASS" : $rv);
+    case "MATERIALCARDS":
+      $indices = $parameter;
+      if(!is_array($indices)) $indices = explode(",", $parameter);
+      $material = &GetMaterial($player);
+      $rv = "";
+      for($i = 0; $i < count($indices); ++$i) {
+         if(count($material) <= $i) continue;
+         if($rv != "") $rv .= ",";
+        $rv .= $material[$i];
       }
       return ($rv == "" ? "PASS" : $rv);
     case "SHOWMODES":

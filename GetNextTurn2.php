@@ -733,7 +733,7 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
     echo CreatePopup("PITCH", [], 0, 1, "Choose a card from your Pitch Zone to add to the bottom of your deck", 1, $content);
   }
 
-  if (($turn[0] == "MULTICHOOSETHEIRDISCARD" || $turn[0] == "MULTICHOOSEDISCARD" || $turn[0] == "MULTICHOOSEHAND" || $turn[0] == "MAYMULTICHOOSEHAND" || $turn[0] == "MULTICHOOSEDECK" || $turn[0] == "MULTICHOOSETEXT" || $turn[0] == "MAYMULTICHOOSETEXT" || $turn[0] == "MULTICHOOSETHEIRDECK") && $currentPlayer == $playerID) {
+  if (($turn[0] == "MULTICHOOSETHEIRDISCARD" || $turn[0] == "MULTICHOOSEDISCARD" || $turn[0] == "MULTICHOOSEHAND" || $turn[0] == "MAYMULTICHOOSEHAND" || $turn[0] == "MULTICHOOSEMATERIAL" || $turn[0] == "MULTICHOOSEDECK" || $turn[0] == "MULTICHOOSETEXT" || $turn[0] == "MAYMULTICHOOSETEXT" || $turn[0] == "MULTICHOOSETHEIRDECK") && $currentPlayer == $playerID) {
     $content = "";
     echo ("<div 'display:inline; width: 100%;'>");
     $params = explode("-", $turn[2]);
@@ -754,6 +754,7 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
       if ($turn[0] == "MULTICHOOSEDISCARD") $content .= "<label class='multichoose' for=chk" . $i . ">" . Card($myDiscard[$options[$i]], "concat", $cardSize, 0, 1) . "</label>";
       else if ($turn[0] == "MULTICHOOSETHEIRDISCARD") $content .= "<label class='multichoose' for=chk" . $i . ">" . Card($theirDiscard[$options[$i]], "concat", $cardSize, 0, 1) . "</label>";
       else if ($turn[0] == "MULTICHOOSEHAND" || $turn[0] == "MAYMULTICHOOSEHAND") $content .= "<label class='multichoose' for=chk" . $i . ">" . Card($myHand[$options[$i]], "concat", $cardSize, 0, 1) . "</label>";
+      else if ($turn[0] == "MULTICHOOSEMATERIAL") $content .= "<label class='multichoose' for=chk" . $i . ">" . Card($myMaterial[$options[$i]], "concat", $cardSize, 0, 1) . "</label>";
       else if ($turn[0] == "MULTICHOOSEDECK") $content .= "<label class='multichoose' for=chk" . $i . ">" . Card($myDeck[$options[$i]], "concat", $cardSize, 0, 1) . "</label>";
       else if ($turn[0] == "MULTICHOOSETHEIRDECK") $content .= "<label class='multichoose' for=chk" . $i . ">" . Card($theirDeck[$options[$i]], "concat", $cardSize, 0, 1) . "</label>";
       else if ($turn[0] == "MULTICHOOSETEXT" || $turn[0] == "MAYMULTICHOOSETEXT") $content .= implode(" ", explode("_", strval($options[$i])));
@@ -965,7 +966,7 @@ if ($lastUpdate != 0 && $cacheVal <= $lastUpdate) {
 
   $restriction = "";
   $actionType = $turn[0] == "ARS" ? 4 : 27;
-  if (strpos($turn[0], "CHOOSEHAND") !== false && ($turn[0] != "MULTICHOOSEHAND" || $turn[0] != "MAYMULTICHOOSEHAND")) $actionType = 16;
+  if (strpos($turn[0], "CHOOSEHAND") !== false && ($turn[0] != "" || $turn[0] != "MAYMULTICHOOSEHAND")) $actionType = 16;
   $handLeft = "calc(50% - " . ((count($myHand) * ($cardWidth + 15)) / 2) . "px)";
   echo ("<div id='myHand' style='display:none; position:fixed; left:" . $handLeft . "; bottom: 5px;'>"); //Hand div
   $handContents = "";

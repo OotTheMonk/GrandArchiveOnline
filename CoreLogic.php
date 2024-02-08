@@ -1621,6 +1621,7 @@ function NumEquipBlock()
       case "CHOOSEARSENAL": return 0;
       case "CHOOSEDISCARD": return 0;
       case "MULTICHOOSEHAND": return 0;
+      case "MULTICHOOSEMATERIAL": return 0;
       case "CHOOSEMULTIZONE": return 0;
       case "CHOOSEBANISH": return 0;
       case "BUTTONINPUTNOPASS": return 0;
@@ -2115,7 +2116,6 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     if($targetArr[0] == "LAYERUID") { $targetArr[0] = "LAYER"; $targetArr[1] = SearchLayersForUniqueID($targetArr[1]); }
     $target = $targetArr[0] . "-" . $targetArr[1];
   }
-  //WTRPlayAbility($cardID, $from, $resourcesPaid, $target, $additionalCosts);
   switch($cardID)
   {
     case "ENLIGHTEN":
@@ -2999,6 +2999,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "vcZSHNHvKX"://Spirit Blade: Ghost Strike
       MZMoveCard($currentPlayer, "MYMATERIAL", "MYBANISH,MATERIAL,-");
       AddCurrentTurnEffect($cardID, $currentPlayer);
+      break;
+    case "0ye3aebjvw"://Study the Fables
+      $target = ($currentPlayer == 1 ? 2 : 1);
+      AddDecisionQueue("FINDINDICES", $target, "MATERIAL");
+      AddDecisionQueue("PREPENDLASTRESULT", $target, 6 . "-", 1);
+      AddDecisionQueue("APPENDLASTRESULT", $target, "-" . 6, 1);
+      AddDecisionQueue("SETDQCONTEXT", $target, "Choose " . 6 . " card" . (6 > 1 ? "s" : ""), 1);
+      AddDecisionQueue("MULTICHOOSEMATERIAL", $target, "<-", 1);
+      AddDecisionQueue("MATERIALCARDS", $target, "<-", 1);
+      AddDecisionQueue("REVEALCARDS", $target, "-", 1);
+      DrawIntoMemory($currentPlayer);
       break;
     default: break;
   }
