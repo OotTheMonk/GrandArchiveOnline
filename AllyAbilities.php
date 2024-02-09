@@ -185,6 +185,11 @@ function OnKillAbility()
   switch($combatChain[0])
   {
     case "71i7d3JB9A": if(CharacterLevel($mainPlayer) >= 2) { WriteLog("Drew from Clean Cut"); Draw($mainPlayer); } break;
+    case "1tzgcxyky2"://Riptide Slash
+      AddDecisionQueue("YESNO", $mainPlayer, "if you want to mill a card");
+      AddDecisionQueue("NOPASS", $mainPlayer, "-", 1);
+      AddDecisionQueue("MILL", $mainPlayer, 1, 1);
+      break;
     default: break;
   }
 }

@@ -3042,6 +3042,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
       if(PlayerInfluence($otherPlayer) > PlayerInfluence($currentPlayer)) DrawIntoMemory($currentPlayer);
       break;
+    case "1tzgcxyky2"://Riptide Slash
+      if(IsClassBonusActive($currentPlayer, "WARRIOR")) PlayerOpt($currentPlayer, 2);
+      break;
     default: break;
   }
 }

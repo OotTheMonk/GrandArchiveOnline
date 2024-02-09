@@ -1278,6 +1278,9 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
     case "STARTTURN":
       StartTurn();
       return $lastResult;
+    case "MILL":
+      Mill($player, $parameter);
+      return "";
     default:
       return "NOTSTATIC";
   }
