@@ -111,6 +111,16 @@ function HasTrueSight($cardID, $player, $index)
   }
 }
 
+function HasReservable($cardID, $player, $index)
+{
+  switch($cardID)
+  {
+    case "1d47o7eanl": return true;
+    default: return false;
+  }
+}
+
+
 //Critical only applies to combat damage, so you can assume player/attacker
 function CriticalAmount($cardID)
 {

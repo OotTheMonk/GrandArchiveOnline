@@ -77,6 +77,8 @@ function TypeToPlay($phase)
       return "cards from hand";
     case "MAYMULTICHOOSEHAND":
       return "cards from hand";
+    case "MAYMULTICHOOSEAURAS":
+      return "cards from play";
     case "MULTICHOOSEDECK":
       return "cards from deck";
     case "MULTICHOOSEMATERIAL":

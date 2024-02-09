@@ -973,3 +973,17 @@ function SearchSpellvoidIndices($player)
 
   return $indices;
 }
+
+function ReservableIndices($player)
+{
+  $indices = "";
+  $auras = &GetAuras($player);
+  for($i = 0; $i < count($auras); $i += AuraPieces())
+  {
+    if($auras[$i+1] == 2 && HasReservable($auras[$i], $player, $i)) {
+      if($indices != "") $indices .= ",";
+      $indices .= $i;
+    }
+  }
+  return $indices;
+}

@@ -725,7 +725,7 @@ function PassInput($autopass = true)
   {
     StartTurn();
   }
-  else if($turn[0] == "END" || $turn[0] == "MAYMULTICHOOSETEXT" || $turn[0] == "MAYCHOOSECOMBATCHAIN" || $turn[0] == "MAYCHOOSEMULTIZONE" ||$turn[0] == "MAYMULTICHOOSEHAND" || $turn[0] == "MAYCHOOSEHAND" || $turn[0] == "MAYCHOOSEDISCARD" || $turn[0] == "MAYCHOOSEARSENAL" || $turn[0] == "MAYCHOOSEPERMANENT" || $turn[0] == "MAYCHOOSEDECK" || $turn[0] == "MAYCHOOSEMYSOUL" || $turn[0] == "INSTANT" || $turn[0] == "OK") {
+  else if($turn[0] == "END" || $turn[0] == "MAYMULTICHOOSETEXT" || $turn[0] == "MAYCHOOSECOMBATCHAIN" || $turn[0] == "MAYCHOOSEMULTIZONE" || $turn[0] == "MAYMULTICHOOSEAURAS" ||$turn[0] == "MAYMULTICHOOSEHAND" || $turn[0] == "MAYCHOOSEHAND" || $turn[0] == "MAYCHOOSEDISCARD" || $turn[0] == "MAYCHOOSEARSENAL" || $turn[0] == "MAYCHOOSEPERMANENT" || $turn[0] == "MAYCHOOSEDECK" || $turn[0] == "MAYCHOOSEMYSOUL" || $turn[0] == "INSTANT" || $turn[0] == "OK") {
     ContinueDecisionQueue("PASS");
   } else {
     if($autopass == true) WriteLog("Player " . $currentPlayer . " auto-passed.");
@@ -1221,6 +1221,11 @@ function PlayCard($cardID, $from, $dynCostResolved = -1, $index = -1, $uniqueID 
         AddDecisionQueue("DYNPITCH", $currentPlayer, $dynCost);
         AddDecisionQueue("SETCLASSSTATE", $currentPlayer, $CS_LastDynCost);
       }
+      $reservableIndices = ReservableIndices($currentPlayer);
+      if($reservableIndices != "") {
+        AddDecisionQueue("MAYMULTICHOOSEAURAS", $currentPlayer, SearchCount($reservableIndices) . "-" . $reservableIndices . "-" . 0);
+        AddDecisionQueue("RESERVABLE", $currentPlayer, "-", 1);
+      }
 
       //CR 5.1.4. Declare Modes and Targets
       //CR 5.1.4a Declare targets for resolution abilities
@@ -1678,6 +1683,8 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
       PlayAura($cardID, $currentPlayer);
     } else if (DelimStringContains($cardSubtype, "Item")) {
       PutItemIntoPlay($cardID);
+    } else if (DelimStringContains($cardTypes, "PHANTASIA")) {
+      PlayAura($cardID, $currentPlayer);
     } else if ($cardSubtype == "Landmark") {
       PlayLandmark($cardID, $currentPlayer);
     } else if ($definedCardType != "C" && $definedCardType != "E" && $definedCardType != "W") {

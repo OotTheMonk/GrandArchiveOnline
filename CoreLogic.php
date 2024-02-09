@@ -3045,6 +3045,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "1tzgcxyky2"://Riptide Slash
       if(IsClassBonusActive($currentPlayer, "WARRIOR")) PlayerOpt($currentPlayer, 2);
       break;
+    case "1d47o7eanl"://Explosive Fractal
+      $memory = &GetMemory($currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "CLERIC") && (count($memory)/MemoryPieces() >= 4)) DealArcane(2, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }

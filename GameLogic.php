@@ -1281,6 +1281,14 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
     case "MILL":
       Mill($player, $parameter);
       return "";
+    case "RESERVABLE":
+      $resources = &GetResources($player);
+      $resources[0] += count($lastResult);
+      $auras = &GetAuras($player);
+      for($i = 0; $i < count($lastResult); ++$i) {
+        $auras[$lastResult[$i] + 1] = 1;
+      }
+      return "";
     default:
       return "NOTSTATIC";
   }
