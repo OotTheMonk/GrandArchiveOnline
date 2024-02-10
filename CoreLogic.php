@@ -3070,6 +3070,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "0pw0y6isxy"://Foraging Servant
       Gather($currentPlayer, 1);
       break;
+    case "1lw9n0wpbh"://Protective Fractal
+      if($from == "PLAY") AddCurrentTurnEffect("1lw9n0wpbh", $currentPlayer);
+      break;
     default: break;
   }
 }

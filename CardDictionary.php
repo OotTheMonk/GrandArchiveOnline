@@ -115,7 +115,8 @@ function HasReservable($cardID, $player, $index)
 {
   switch($cardID)
   {
-    case "1d47o7eanl": return true;
+    case "1d47o7eanl": return true;//Explosive Fractal
+    case "1lw9n0wpbh": return true;//Protective Fractal
     default: return false;
   }
 }
@@ -296,6 +297,8 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "soporhlq2k"://Fraysia (4)
     case "jnltv5klry"://Razorvine (5)
     case "69iq4d5vet"://Springleaf (6)
+      return "I";
+    case "1lw9n0wpbh"://Protective Fractal
       return "I";
     default: return "";
   }

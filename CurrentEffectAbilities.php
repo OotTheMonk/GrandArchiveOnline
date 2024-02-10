@@ -182,6 +182,10 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
         case "KoF3AMSlUe"://Veiling Breeze
           if($preventable) $damage -= $effects[1];
           break;
+        case "1lw9n0wpbh"://Protective Fractal
+          if($preventable) $damage -= 1;
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);
