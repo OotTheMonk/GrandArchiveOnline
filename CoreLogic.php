@@ -3058,6 +3058,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "bd7ozuj68m"://Silvershine (3)
       if($from == "PLAY") Recover($currentPlayer, 1);
       break;
+    case "jnltv5klry"://Razorvine (5)
+      if($from == "PLAY") BottomDeck($currentPlayer, false, shouldDraw:true);
+      break;
     case "69iq4d5vet"://Springleaf (6)
       if($from == "PLAY") BottomDeck($currentPlayer, false, shouldDraw:true);
       break;
