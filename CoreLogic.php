@@ -3067,6 +3067,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "69iq4d5vet"://Springleaf (6)
       if($from == "PLAY") BottomDeck($currentPlayer, false, shouldDraw:true);
       break;
+    case "0pw0y6isxy"://Foraging Servant
+      Gather($currentPlayer, 1);
+      break;
     default: break;
   }
 }
