@@ -1679,7 +1679,6 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
   } else if ($from != "PLAY") {
     $cardSubtype = CardSubType($cardID);
     $cardTypes = CardTypes($cardID);
-    WriteLog($cardTypes);
     if (DelimStringContains($cardTypes, "DOMAIN")) {
       PlayAura($cardID, $currentPlayer);
     } else if (DelimStringContains($cardTypes, "ITEM")) {

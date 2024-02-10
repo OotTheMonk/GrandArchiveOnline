@@ -290,6 +290,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "yj2rJBREH8"://Safeguard Amulet
     case "EQZZsiUDyl"://Storm Tyrant's Eye
       return "I";
+    case "i0a5uhjxhk"://Blightroot (1)
     case "5joh300z2s"://Mana Root (2)
     case "bd7ozuj68m"://Silvershine (3)
     case "69iq4d5vet"://Springleaf (6)
