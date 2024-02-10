@@ -518,6 +518,7 @@ function CurrentEffectLevelModifier($player)
         case "ybdj1Db9jz": $levelModifier += 2; break;//Seed of Nature
         case "dBAdWMoPEz": $levelModifier += 1; break;//Erupting Rhapsody
         case "AnEPyfFfHj": $levelModifier += $subparam;//Power Overwhelming
+        case "5joh300z2s": $levelModifier += 1; break;//Mana Root (2)
         default:
           break;
       }

@@ -85,6 +85,9 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
+    case "5joh300z2s"://Mana Root (2)
+      DestroyItemForPlayer($currentPlayer, $index);
+      break;
     default: break;
   }
 }

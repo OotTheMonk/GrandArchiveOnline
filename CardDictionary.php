@@ -290,6 +290,8 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "yj2rJBREH8"://Safeguard Amulet
     case "EQZZsiUDyl"://Storm Tyrant's Eye
       return "I";
+    case "5joh300z2s"://Mana Root (2)
+      return "I";
     default: return "";
   }
 }

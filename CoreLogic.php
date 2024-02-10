@@ -3049,6 +3049,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $memory = &GetMemory($currentPlayer);
       if(IsClassBonusActive($currentPlayer, "CLERIC") && (count($memory)/MemoryPieces() >= 4)) DealArcane(2, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "5joh300z2s"://Mana Root (2)
+       AddCurrentTurnEffect("5joh300z2s", $currentPlayer);
+       break;
     default: break;
   }
 }
