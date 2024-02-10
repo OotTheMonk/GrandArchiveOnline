@@ -86,6 +86,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
     case "5joh300z2s"://Mana Root (2)
+    case "bd7ozuj68m"://Silvershine (3)
     case "69iq4d5vet"://Springleaf (6)
       DestroyItemForPlayer($currentPlayer, $index);
       break;

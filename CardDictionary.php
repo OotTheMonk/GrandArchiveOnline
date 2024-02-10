@@ -291,6 +291,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "EQZZsiUDyl"://Storm Tyrant's Eye
       return "I";
     case "5joh300z2s"://Mana Root (2)
+    case "bd7ozuj68m"://Silvershine (3)
     case "69iq4d5vet"://Springleaf (6)
       return "I";
     default: return "";
