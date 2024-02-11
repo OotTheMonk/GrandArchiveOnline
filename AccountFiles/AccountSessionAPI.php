@@ -17,6 +17,30 @@
     return $_SESSION["useruid"];
   }
 
+  function IsLoggedInUserPatron()
+  {
+    return (isset($_SESSION["isPatron"]) ? "1" : "0");
+  }
+
+  function SessionLastGameName()
+  {
+    CheckSession();
+    if(!isset($_SESSION["lastGameName"])) return "";
+    return $_SESSION["lastGameName"];
+  }
+
+  function SessionLastGamePlayerID()
+  {
+    CheckSession();
+    return $_SESSION["lastPlayerId"];
+  }
+
+  function SessionLastAuthKey()
+  {
+    CheckSession();
+    return $_SESSION["lastAuthKey"];
+  }
+
   function ClearLoginSession()
   {
     //First clear the session
