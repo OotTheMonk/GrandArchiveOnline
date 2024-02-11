@@ -186,6 +186,10 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           if($preventable) $damage -= 1;
           $remove = true;
           break;
+        case "2ha4dk88zq"://Cloak of Stillwater
+          if($preventable) $damage -= 3;
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

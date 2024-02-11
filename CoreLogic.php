@@ -3073,6 +3073,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "1lw9n0wpbh"://Protective Fractal
       if($from == "PLAY") AddCurrentTurnEffect("1lw9n0wpbh", $currentPlayer);
       break;
+    case "2ha4dk88zq"://Cloak of Stillwater
+      if($from == "PLAY") {
+        AddFloatingMemoryChoice();
+        AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "2ha4dk88zq", 1);
+      }
+      else if(IsClassBonusActive($currentPlayer, "ASSASSIN")) Draw($currentPlayer);
+      break;
     default: break;
   }
 }

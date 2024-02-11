@@ -300,6 +300,8 @@ function GetAbilityType($cardID, $index = -1, $from="-")
       return "I";
     case "1lw9n0wpbh"://Protective Fractal
       return "I";
+    case "2ha4dk88zq"://Cloak of Stillwater
+      return "I";
     default: return "";
   }
 }

@@ -93,6 +93,10 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "69iq4d5vet"://Springleaf (6)
       DestroyItemForPlayer($currentPlayer, $index);
       break;
+    case "2ha4dk88zq"://Cloak of Stillwater
+      $items = &GetItems($currentPlayer);
+      $items[$index+2] = 1;
+      break;
     default: break;
   }
 }
