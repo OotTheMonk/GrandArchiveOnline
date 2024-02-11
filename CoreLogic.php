@@ -3080,6 +3080,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       else if(IsClassBonusActive($currentPlayer, "ASSASSIN")) Draw($currentPlayer);
       break;
+    case "6ffqsuo6gb"://Refracting Missile
+      $fractalCount = SearchCount(SearchAura($currentPlayer, subtype:"FRACTAL"));
+      DealArcane(1 + $fractalCount, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -3202,6 +3206,7 @@ function PlayRequiresTarget($cardID)
     case "iohZMWh5v5": return 2;//BLazing Throw
     case "5X5W2Uda5a": return 2;//Planted Explosives
     case "0ymvddv1au": return 2;//Illuminate Secrets
+    case "6ffqsuo6gb": return 2;//Refracting Missile
     default: return -1;
   }
 }
