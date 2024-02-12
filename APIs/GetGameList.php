@@ -71,7 +71,7 @@ if ($handle = opendir($path)) {
           $gameInProgress->secondsSinceLastUpdate = intval(($currentTime - $lastGamestateUpdate) / 1000);
           $gameInProgress->gameName = $gameToken;
           $gameInProgress->format = GetCachePiece($gameToken, 13);
-          if($gameInProgress->p2Hero != "DUMMY" && $gameInProgress->p2Hero != "") array_push($response->gamesInProgress, $gameInProgress);
+          if(true) array_push($response->gamesInProgress, $gameInProgress);
         }
       }
       else if ($currentTime - $lastGamestateUpdate > 300000) //~5 minutes?
@@ -90,7 +90,7 @@ if ($handle = opendir($path)) {
     $status = -1;
     if (file_exists($gf)) {
       $lastRefresh = intval(GetCachePiece($gameName, 2)); //Player 1 last connection time
-      if ($lastRefresh != "" && $currentTime - $lastRefresh < 500) {
+      if ($lastRefresh != "" && $currentTime - $lastRefresh < 900000) { //Last Hour
         include 'APIParseGamefile.php';
         $status = $gameStatus;
         UnlockGamefile();
@@ -99,25 +99,15 @@ if ($handle = opendir($path)) {
         deleteDirectory($folder);
         DeleteCache($gameToken);
       }
-      if($status == 0 && $visibility == "public" && intval(GetCachePiece($gameName, 11)) < 3) {
+      if(true) {
         $openGame = new stdClass();
-        if($format != "compcc" && $format != "compblitz") $openGame->p1Hero = GetCachePiece($gameName, 7);
         $formatName = "";
-        if($format == "commoner") $formatName = "Commoner ";
-        else if($format == "livinglegendscc") $formatName = "Open Format";
-        else if($format == "clash") $formatName = "Clash";
-        else if($format == "llcc") $formatName = "Living Legend CC";
-        else if($format == "llblitz") $formatName = "Living Legend Blitz";
         $description = ($gameDescription == "" ? "Game #" . $gameName : $gameDescription);
         $openGame->format = $format;
         $openGame->formatName = $formatName;
         $openGame->description = $description;
         $openGame->gameName = $gameToken;
-        if($isShadowBanned) {
-          if($format == "shadowblitz" || $format == "shadowcc") array_push($response->openGames, $openGame);
-        } else {
-          if($format != "shadowblitz" && $format != "shadowcc") array_push($response->openGames, $openGame);
-        }
+        array_push($response->openGames, $openGame);
       }
     }
   }

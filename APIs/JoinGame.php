@@ -1,11 +1,24 @@
 <?php
 
+
 include_once "../WriteLog.php";
 include_once "../Libraries/HTTPLibraries.php";
 include_once "../Libraries/SHMOPLibraries.php";
 include_once "../APIKeys/APIKeys.php";
 include_once '../includes/functions.inc.php';
 include_once '../includes/dbh.inc.php';
+include_once '../CoreLogic.php';
+include_once '../Libraries/CoreLibraries.php';
+
+include_once '../LZCompressor/LZContext.php';
+include_once '../LZCompressor/LZData.php';
+include_once '../LZCompressor/LZReverseDictionary.php';
+include_once '../LZCompressor/LZString.php';
+include_once '../LZCompressor/LZUtil.php';
+include_once '../LZCompressor/LZUtil16.php';
+
+use LZCompressor\LZString as LZString;
+
 
 if (!function_exists("DelimStringContains")) {
   function DelimStringContains($str, $find, $partial=false)
@@ -71,23 +84,29 @@ if ($matchup == "" && GetCachePiece($gameName, $playerID + 6) != "") {
 }
 if ($decklink == "" && $deck == "" && $favoriteDeckLink == "0") {
   $starterDeck = true;
-  switch ($decksToTry) {
-    case '1':
-      $decklink = "https://fabrary.net/decks/01GJG7Z4WGWSZ95FY74KX4M557";
-      break;
-    default:
-      $decklink = "https://fabrary.net/decks/01GJG7Z4WGWSZ95FY74KX4M557";
-      break;
+    switch ($decksToTry) {
+        case '1':
+            $deck = "../lorraineStarter.txt";
+            break;
+        case '2':
+            $deck = "../silvieStarter.txt";
+            break;
+        case '3':
+            $deck = "../raiStarter.txt";
+            break;
+        default:
+            $deck = "../lorraineStarter.txt";
+            break;
   }
 }
 
 if ($favoriteDeckLink != "0" && $decklink == "") $decklink = $favoriteDeckLink;
 
-if ($deck == "" && !IsDeckLinkValid($decklink)) {
-  $response->error = "Deck URL is not valid: " . $decklink;
-  echo (json_encode($response));
-  exit;
-}
+//if ($deck == "" && !IsDeckLinkValid($decklink)) {
+//  $response->error = "Deck URL is not valid: " . $decklink;
+//  echo (json_encode($response));
+//  exit;
+//}
 
 include "../HostFiles/Redirector.php";
 include "../CardDictionary.php";
@@ -116,345 +135,105 @@ if(substr($decklink, 0, 9) == "DRAFTFAB-")
 }
 
 if ($decklink != "") {
-  if ($playerID == 1) $p1DeckLink = $decklink;
-  else if ($playerID == 2) $p2DeckLink = $decklink;
-  $curl = curl_init();
-  $isFaBDB = str_contains($decklink, "fabdb");
-  $isFaBMeta = str_contains($decklink, "fabmeta");
-  if ($isFaBDB) {
-    $decklinkArr = explode("/", $decklink);
-    $slug = $decklinkArr[count($decklinkArr) - 1];
-    $apiLink = "https://api.fabdb.net/decks/" . $slug;
-  } else if (str_contains($decklink, "fabrary")) {
-    $headers = array(
-      "x-api-key: " . $FaBraryKey,
-      "Content-Type: application/json",
-    );
-    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-    $decklinkArr = explode("/", $decklink);
-    $decklinkArr = explode("?", $decklinkArr[count($decklinkArr) - 1]);
-    $slug = $decklinkArr[0];
-    $apiLink = "https://atofkpq0x8.execute-api.us-east-2.amazonaws.com/prod/v1/decks/" . $slug;
-    if ($matchup != "") $apiLink .= "?matchupId=" . $matchup;
-  } else {
-    $decklinkArr = explode("/", $decklink);
-    $slug = $decklinkArr[count($decklinkArr) - 1];
-    $apiLink = "https://api.fabmeta.net/deck/" . $slug;
-  }
-  $response->apiLink = $apiLink;
-  curl_setopt($curl, CURLOPT_URL, $apiLink);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-  $apiDeck = curl_exec($curl);
-  $apiInfo = curl_getinfo($curl);
-  curl_close($curl);
+    if ($playerID == 1) $p1DeckLink = $decklink;
+    else if ($playerID == 2) $p2DeckLink = $decklink;
+    $curl = curl_init();
+    $isSilvie = str_contains($decklink, "silvie");
+    $isFaBMeta = str_contains($decklink, "fabmeta");
+    if($isSilvie) {
+        $decklinkArr = explode("/", $decklink);
+        $uid = $decklinkArr[count($decklinkArr) - 2];
+        $slug = $decklinkArr[count($decklinkArr) - 1];
+        $apiLink = "https://api.silvie.org/api/build/decks/published?";//"@OotTheMonk/Ya7CqS207754CBvuLeB7
+        $apiLink .= "id=" . $slug;
+        $apiLink .= "&user=" . $uid;
+    }
 
-  if ($apiDeck === FALSE) {
-    WriteGameFile();
-    if(is_array($decklink)) $response->error = "Deckbuilder API for this deck returns no data: " . implode("/", $decklink);
-    else $response->error = "Deckbuilder API for this deck returns no data: " . $decklink;
-    echo (json_encode($response));
-    exit;
-  }
-  $deckObj = json_decode($apiDeck);
-  // if has message forbidden error out.
-  if ($apiInfo['http_code'] == 403) {
-    $response->error = "API FORBIDDEN! Invalid or missing token to access API: " . $apiLink . " The response from the deck hosting service was: " . $apiDeck;
-    echo (json_encode($response));
-    die();
-  }
-  if ($deckObj == null) {
-    $response->error = 'Deck object is null. Failed to retrieve deck from API.';
-    echo (json_encode($response));
-    exit;
-  }
-  if(!isset($deckObj->{'name'}))
-  {
-    $response->error = 'Deck is invalid. Failed to retrieve deck from API.';
-    echo (json_encode($response));
-    exit;
-  }
-  $deckName = $deckObj->{'name'};
-  if (isset($deckObj->{'matchups'})) {
-    if ($playerID == 1) $p1Matchups = $deckObj->{'matchups'};
-    else if ($playerID == 2) $p2Matchups = $deckObj->{'matchups'};
-  }
-  $deckFormat = (isset($deckObj->{'format'}) ? $deckObj->{'format'} : "");
-  $cards = $deckObj->{'cards'};
-  $deckCards = "";
-  $sideboardCards = "";
-  $headSideboard = "";
-  $chestSideboard = "";
-  $armsSideboard = "";
-  $legsSideboard = "";
-  $offhandSideboard = "";
-  $quiverSideboard = "";
-  $unsupportedCards = "";
-  $bannedCard = "";
-  $character = "";
-  $head = "";
-  $chest = "";
-  $arms = "";
-  $legs = "";
-  $offhand = "";
-  $quiver = "";
-  $weapon1 = "";
-  $weapon2 = "";
-  $weaponSideboard = "";
-  $totalCards = 0;
-  $orderedSets = ["WTR", "ARC", "CRU", "MON", "ELE", "EVR", "UPR", "DYN", "OUT", "DTD", "TCC", "EVO", "HVY"];
-  if (is_countable($cards)) {
-    for ($i = 0; $i < count($cards); ++$i) {
-      $count = $cards[$i]->{'total'};
-      $numSideboard = (isset($cards[$i]->{'sideboardTotal'}) ? $cards[$i]->{'sideboardTotal'} : 0);
-      $id = "";
-      if ($isFaBDB) {
-        $printings = $cards[$i]->{'printings'};
-        $printing = $printings[0];
-        $sku = $printing->{'sku'};
-        $id = $sku->{'sku'};
-        $id = explode("-", $id)[0];
-      } else if ($isFaBMeta) {
-        $id = $cards[$i]->{'identifier'};
-      } else if(isset($cards[$i]->{'setIdentifiers'})) {
-        $earliest = -1;
-        foreach($cards[$i]->{'setIdentifiers'} as $setCard) {
-          $set = substr($setCard, 0, 3);
-          for($j=0; $j<count($orderedSets); ++$j) {
-            if($orderedSets[$j] == $set && ($earliest == -1 || $j < $earliest)) {
-              $earliest = $j;
-              $id = $setCard;
-              break;
-            }
-          }
-        }
-      }
-      if($id == "" && isset($cards[$i]->{'cardIdentifier'})) {
-        $id = $cards[$i]->{'cardIdentifier'};
-      }
-      if ($id == "") continue;
-      $id = GetAltCardID($id);
-      $cardType = CardType($id);
-      $cardSet = substr($id, 0, 3);
+    curl_setopt($curl, CURLOPT_URL, $apiLink);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    $apiDeck = curl_exec($curl);
+    $apiInfo = curl_getinfo($curl);
+    curl_close($curl);
 
-      if (IsCardBanned($id, $format)) {
-        if ($bannedCard != "") $bannedCard .= ", ";
-        $bannedCard .= CardName($id);
-      }
+    if ($apiDeck === FALSE) {
+        if(is_array($decklink)) echo  '<b>' . "⚠️ Deckbuilder API for this deck returns no data: " . implode("/", $decklink) . '</b>';
+        else echo  '<b>' . "⚠️ Deckbuilder API for this deck returns no data: " . $decklink . '</b>';
+        WriteGameFile();
+        exit;
+    }
+    $deckObj = json_decode($apiDeck);
+    // if has message forbidden error out.
+    if ($apiInfo['http_code'] == 403) {
+        $_SESSION['error'] =
+            "API FORBIDDEN! Invalid or missing token to access API: " . $apiLink . " The response from the deck hosting service was: " . $apiDeck;
+        header("Location: MainMenu.php");
+        die();
+    }
+    if($deckObj == null)
+    {
+        echo 'Deck object is null. Failed to retrieve deck from API.';
+        exit;
+    }
+    $cards = json_decode(LZString::decompressFromEncodedURIComponent($deckObj->deck->code));
+    $deckName = $cards->{'name'};
+    if (isset($deckObj->{'matchups'})) {
+        if ($playerID == 1) $p1Matchups = $deckObj->{'matchups'};
+        else if ($playerID == 2) $p2Matchups = $deckObj->{'matchups'};
+    }
+    $deckFormat = (isset($deckObj->{'format'}) ? $deckObj->{'format'} : "");
+    //$cards = $deckObj->{'cards'};
+    $deckCards = "";
+    $sideboardCards = "";
+    $materialCards = "";
+    $totalCards = 0;
 
-      if ($cardType == "") //Card not supported, error
-      {
-        if ($unsupportedCards != "") $unsupportedCards .= " ";
-        $unsupportedCards .= $id;
-      }
-      else if($id == "EVO013") {
-        ++$totalCards;
-        $numMainBoard = ($isFaBDB ? $count - $numSideboard : $count);
-        $count = $numMainBoard + $numSideboard;
-        for($j=0; $j<$count; ++$j) {
-          if ($legsSideboard != "") $legsSideboard .= " ";
-          $legsSideboard .= $id;
+    foreach($cards as $key => $value) {
+        if(str_contains($key, "-s")) continue;//TODO: Sideboard
+        if(CardTypeContains($key, "REGALIA") || CardTypeContains($key, "CHAMPION"))
+        {
+            if($materialCards != "") $materialCards .= " ";
+            $materialCards .= $key;
         }
-      }
-      else if (TypeContains($id, "C")) {
-        $character = $id;
-      } else if (TypeContains($id, "W")) {
-        ++$totalCards;
-        $numMainBoard = ($isFaBDB ? $count - $numSideboard : $count);
-        for ($j = 0; $j < $numMainBoard; ++$j) {
-          if($j > 0) $id = ReverseArt($id);
-          if ($weapon1 == "") $weapon1 = $id;
-          else if ($weapon2 == "") $weapon2 = $id;
-          else {
-            if ($weaponSideboard != "") $weaponSideboard .= " ";
-            $weaponSideboard .= $id;
-          }
-        }
-        for ($j = 0; $j < $numSideboard; ++$j) {
-          if($numMainBoard > 0 || $j > 0) $id = ReverseArt($id);
-          if ($weaponSideboard != "") $weaponSideboard .= " ";
-          $weaponSideboard .= $id;
-        }
-      } else if (TypeContains($id, "E")) {
-        if ($numSideboard == 0) {
-          ++$totalCards;
-          if (SubtypeContains($id, "Head")) {
-            if ($head == "") $head = $id;
-            else {
-              if ($headSideboard != "") $headSideboard .= " ";
-              $headSideboard .= $id;
-            }
-          } else if (SubtypeContains($id, "Chest")) {
-            if ($chest == "") $chest = $id;
-            else {
-              if ($chestSideboard != "") $chestSideboard .= " ";
-              $chestSideboard .= $id;
-            }
-          } else if (SubtypeContains($id, "Arms")) {
-            if ($arms == "") $arms = $id;
-            else {
-              $armsSideboard .= " ";
-              $armsSideboard .= $id;
-            }
-          } else if (SubtypeContains($id, "Legs")) {
-            if ($legs == "") $legs = $id;
-            else
+        else
+        {
+            if(is_int($value) && $value > 0 && $value <= 4) for($i=0; $i<$value; ++$i)
             {
-              $legsSideboard .= " ";
-              $legsSideboard .= $id;
+                if($deckCards != "") $deckCards .= " ";
+                $deckCards .= $key;
             }
-          } else if (SubtypeContains($id, "Off-Hand")) {
-            if ($offhand == "") $offhand = $id;
-            else {
-              if ($offhandSideboard != "") $offhandSideboard .= " ";
-              $offhandSideboard .= $id;
-            }
-          } else if (SubtypeContains($id, "Quiver")) {
-            if ($quiver == "") $quiver = $id;
-            else {
-              if ($quiverSideboard != "") $quiverSideboard .= " ";
-              $quiverSideboard .= $id;
-            }
-          }
-        } else {
-          ++$totalCards;
-          if (SubtypeContains($id, "Head")) {
-            if ($headSideboard != "") $headSideboard .= " ";
-            $headSideboard .= $id;
-          } else if (SubtypeContains($id, "Chest")) {
-            if ($chestSideboard != "") $chestSideboard .= " ";
-            $chestSideboard .= $id;
-          } else if (SubtypeContains($id, "Arms")) {
-            if ($armsSideboard != "") $armsSideboard .= " ";
-            $armsSideboard .= $id;
-          } else if (SubtypeContains($id, "Legs")) {
-            if ($legsSideboard != "") $legsSideboard .= " ";
-            $legsSideboard .= $id;
-          } else if (SubtypeContains($id, "Off-Hand")) {
-            if ($offhandSideboard != "") $offhandSideboard .= " ";
-            $offhandSideboard .= $id;
-          } else if (SubtypeContains($id, "Quiver")) {
-            if ($quiverSideboard != "") $quiverSideboard .= " ";
-            $quiverSideboard .= $id;
-          }
         }
-      } else {
-        $numMainBoard = ($isFaBDB ? $count - $numSideboard : $count);
-        for ($j = 0; $j < $numMainBoard; ++$j) {
-          if ($deckCards != "") $deckCards .= " ";
-          $deckCards .= $id;
-        }
-        for ($j = 0; $j < $numSideboard; ++$j) {
-          if ($sideboardCards != "") $sideboardCards .= " ";
-          $sideboardCards .= $id;
-        }
-        $totalCards += $numMainBoard + $numSideboard;
-      }
     }
-    $deckLoaded = true;
-  }
-  if(!$deckLoaded) {
-    $response->error = "⚠️ Error retrieving deck. Decklist link invalid.";
-    echo(json_encode($response));
-    exit;
-  }
 
-  if($unsupportedCards != "") {
-    $response->error = "⚠️ The following cards are not yet supported: " . $unsupportedCards;
-    echo (json_encode($response));
-    exit;
-  }
+    //We have the decklist, now write to file
+    $filename = "../Games/" . $gameName . "/p" . $playerID . "Deck.txt";
+    $deckFile = fopen($filename, "w");
+    fwrite($deckFile, $materialCards . "\r\n");
+    fwrite($deckFile, $deckCards . "\r\n");
+    fclose($deckFile);
+    copy($filename, "../Games/" . $gameName . "/p" . $playerID . "DeckOrig.txt");
 
-  if(($format == "sealed" || $format == "draft") && substr($decklink, 0, 9) != "DRAFTFAB-")
-  {
-    //Currently must use draft fab for sealed/draft
-    $response->error = "You must use a DraftFaB deck for " . $format . ".";
-    echo json_encode($response);
-    exit;
-  }
-
-  if (CharacterHealth($character) < 30 && ($format == "cc" || $format == "compcc")) {
-    $response->error = "⚠️ Young heroes are not legal in Classic Constructed: Young - " . CardName($character);
-    echo (json_encode($response));
-    exit;
-  }
-
-  if (CharacterHealth($character) >= 30 && ($format == "blitz" || $format == "compblitz")) {
-    $response->error = "⚠️ Adult heroes are not legal in Blitz: Adult - " . CardName($character);
-    echo (json_encode($response));
-    exit;
-  }
-
-  if ($bannedCard != "") {
-    $response->error = "⚠️ The following cards are not legal in the " . $format . " format: " . $bannedCard;
-    echo (json_encode($response));
-    exit;
-  }
-
-  if ($totalCards < 60  && ($format == "cc" || $format == "compcc")) {
-    $response->error = "⚠️ The deck link you have entered has too few cards (" . $totalCards . ") and is likely for the blitz/commoner format. Please double-check your decklist link and try again.";
-    echo (json_encode($response));
-    exit;
-  }
-
-  if (($totalCards < 40 || $totalCards > 52) && ($format == "blitz" || $format == "compblitz" || $format == "commoner")) {
-    $response->error = "⚠️ The deck link you have entered does not have 40 cards (" . $totalCards . ") and is likely for CC. Please double-check your decklist link and try again.";
-    echo (json_encode($response));
-    exit;
-  }
-
-  if ($totalCards > 80  && ($format == "cc" || $format == "compcc")) {
-    $response->error = "⚠️ The deck link you have entered has too many cards (" . $totalCards . "). Please double-check your decklist link and try again.";
-    echo (json_encode($response));
-    exit;
-  }
-
-  //We have the decklist, now write to file
-  $filename = "../Games/" . $gameName . "/p" . $playerID . "Deck.txt";
-  $deckFile = fopen($filename, "w");
-  $charString = $character;
-  if ($weapon1 != "") $charString .= " " . $weapon1;
-  if ($weapon2 != "") $charString .= " " . $weapon2;
-  if ($offhand != "") $charString .= " " . $offhand;
-  if ($quiver != "") $charString .= " " . $quiver;
-  if ($head != "") $charString .= " " . $head;
-  if ($chest != "") $charString .= " " . $chest;
-  if ($arms != "") $charString .= " " . $arms;
-  if ($legs != "") $charString .= " " . $legs;
-  fwrite($deckFile, $charString . "\r\n");
-  fwrite($deckFile, $deckCards . "\r\n");
-  fwrite($deckFile, $headSideboard . "\r\n");
-  fwrite($deckFile, $chestSideboard . "\r\n");
-  fwrite($deckFile, $armsSideboard . "\r\n");
-  fwrite($deckFile, $legsSideboard . "\r\n");
-  fwrite($deckFile, $offhandSideboard . "\r\n");
-  fwrite($deckFile, $weaponSideboard . "\r\n");
-  fwrite($deckFile, $sideboardCards . "\r\n");
-  fwrite($deckFile, $quiverSideboard);
-  fclose($deckFile);
-  copy($filename, "../Games/" . $gameName . "/p" . $playerID . "DeckOrig.txt");
-
-  if (isset($_SESSION["userid"])) {
-    include_once '../includes/functions.inc.php';
-    include_once "../includes/dbh.inc.php";
-    $deckbuilderID = GetDeckBuilderId($_SESSION["userid"], $decklink);
-    if ($deckbuilderID != "") {
-      if ($playerID == 1) $p1deckbuilderID = $deckbuilderID;
-      else $p2deckbuilderID = $deckbuilderID;
+    if (isset($_SESSION["userid"])) {
+        include_once '../includes/functions.inc.php';
+        include_once "../includes/dbh.inc.php";
+        /*
+        $deckbuilderID = GetDeckBuilderId($_SESSION["userid"], $decklink);
+        if ($deckbuilderID != "") {
+          if ($playerID == 1) $p1deckbuilderID = $deckbuilderID;
+          else $p2deckbuilderID = $deckbuilderID;
+        }
+        */
     }
-  }
 
-  if ($favoriteDeck && isset($_SESSION["userid"])) {
-    //Save deck
-    include_once '../includes/functions.inc.php';
-    include_once "../includes/dbh.inc.php";
-    addFavoriteDeck($_SESSION["userid"], $decklink, $deckName, $character, $deckFormat);
-  }
-}
-
-if (!isset($character) || $character == "") {
-  $response->error = "There is no character. Something went wrong with parsing your deck.";
-  echo (json_encode($response));
-  exit;
+    if ($favoriteDeck == "on" && isset($_SESSION["userid"])) {
+        //Save deck
+        include_once '../includes/functions.inc.php';
+        include_once "../includes/dbh.inc.php";
+        addFavoriteDeck($_SESSION["userid"], $decklink, $deckName, $character, $deckFormat);
+    }
+} else {
+    $deckFile = $deck;
+    copy($deckFile, "../Games/" . $gameName . "/p" . $playerID . "Deck.txt");
+    copy($deckFile, "../Games/" . $gameName . "/p" . $playerID . "DeckOrig.txt");
 }
 
 if ($matchup == "") {

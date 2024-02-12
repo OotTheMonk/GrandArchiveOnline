@@ -2,6 +2,7 @@
 
 include "Constants.php";
 include "GeneratedCode/GeneratedCardDictionaries.php";
+include_once "CoreLogic.php";
 
 function CardType($cardID)
 {

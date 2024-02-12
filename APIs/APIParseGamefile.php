@@ -47,7 +47,7 @@ $p2DeckLink = trim(fgets($gameFileHandler));
 $p1IsChallengeActive = trim(fgets($gameFileHandler));
 $p2IsChallengeActive = trim(fgets($gameFileHandler));
 $joinerIP = trim(fgets($gameFileHandler));
-$deprecated = trim(fgets($gameFileHandler)); //Deprecated
+$deprecated = trim(fgets($gameFileHandler));//Deprecated
 $p1Matchups = json_decode(trim(fgets($gameFileHandler)));
 $p2Matchups = json_decode(trim(fgets($gameFileHandler)));
 $p1deckbuilderID = trim(fgets($gameFileHandler));
@@ -58,8 +58,6 @@ $p1ContentCreatorID = trim(fgets($gameFileHandler));
 $p2ContentCreatorID = trim(fgets($gameFileHandler));
 $p1SideboardSubmitted = trim(fgets($gameFileHandler));
 $p2SideboardSubmitted = trim(fgets($gameFileHandler));
-$p1IsAI = trim(fgets($gameFileHandler));
-$p2IsAI = trim(fgets($gameFileHandler));
 
 $MGS_Initial = 0;
 $MGS_Player2Joined = 1;
@@ -67,10 +65,10 @@ $MGS_ChooseFirstPlayer = 2;
 $MGS_P2Sideboard = 3;
 $MGS_ReadyToStart = 4;
 $MGS_GameStarted = 5;
-$MGS_GameOver = 99;
 
 $FORMAT_CompCC = 1;
 $FORMAT_CompBlitz = 3;
+
 
 if (!function_exists("UnlockGamefile")) {
   function UnlockGamefile()

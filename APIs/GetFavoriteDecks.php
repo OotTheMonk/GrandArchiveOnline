@@ -43,6 +43,7 @@ if (IsUserLoggedIn()) {
       $deck->link = $favoriteDecks[$i];
       array_push($response->favoriteDecks, $deck);
     }
+
   }
 
   //Load other settings
