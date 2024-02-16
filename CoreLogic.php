@@ -3084,6 +3084,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $fractalCount = SearchCount(SearchAura($currentPlayer, subtype:"FRACTAL"));
       DealArcane(1 + $fractalCount, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "1bqry41lw9"://Explosive Rune
+      $damage = 1;
+      if(IsClassBonusActive($currentPlayer, "MAGE") && AttackerMZID($currentPlayer) == $target) $damage += 1;
+      DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -3207,6 +3212,7 @@ function PlayRequiresTarget($cardID)
     case "5X5W2Uda5a": return 2;//Planted Explosives
     case "0ymvddv1au": return 2;//Illuminate Secrets
     case "6ffqsuo6gb": return 2;//Refracting Missile
+    case "1bqry41lw9": return 2;//Explosive Rune
     default: return -1;
   }
 }

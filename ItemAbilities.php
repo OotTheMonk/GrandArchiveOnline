@@ -82,6 +82,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "yj2rJBREH8"://Safeguard Amulet
     case "s23UHXgcZq"://Luxera's Map
     case "EQZZsiUDyl"://Storm Tyrant's Eye
+    case "1bqry41lw9"://Explosive Rune
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
