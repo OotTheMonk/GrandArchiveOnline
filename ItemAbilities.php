@@ -200,15 +200,45 @@ function ItemTakeDamageAbilities($player, $damage, $type)
   return $damage;
 }
 
-function ItemStartTurnAbility($index)
+function ItemStartTurnAbilities()
 {
   global $mainPlayer;
   $mainItems = &GetItems($mainPlayer);
-  switch($mainItems[$index]) {
-    case "P7hHZBVScB"://Orb of Glitter
-      PlayerOpt($mainPlayer, 1);
-      break;
-    default: break;
+  for($i=0; $i<count($mainItems); $i+=ItemPieces()) {
+    switch($mainItems[$i]) {
+      case "P7hHZBVScB"://Orb of Glitter
+        PlayerOpt($mainPlayer, 1);
+        break;
+      default: break;
+    }
+  }
+}
+
+function ItemBeginRecollectionAbilities() {
+  global $mainPlayer, $defPlayer, $CS_NumMaterializations;
+  $mainItems = &GetItems($mainPlayer);
+  for($i=0; $i<count($mainItems); $i+=ItemPieces()) {
+    switch($mainItems[$i]) {
+      case "6gvnta6qse"://Fatal Timepiece
+        if(GetClassState($mainPlayer, $CS_NumMaterializations) == 0) {
+          WriteLog("Fatal Timepiece deals 2 damage to player " . $mainPlayer . " for not having any materializations");
+          DealDamageAsync($mainPlayer, 2, "TRIGGER", $mainItems[$i]);
+        }
+        break;
+      default: break;
+    }
+  }
+  $defItems = &GetItems($defPlayer);
+  for($i=0; $i<count($defItems); $i+=ItemPieces()) {
+    switch($defItems[$i]) {
+      case "6gvnta6qse"://Fatal Timepiece
+        if(GetClassState($mainPlayer, $CS_NumMaterializations) == 0) {
+          WriteLog("Fatal Timepiece deals 2 damage to player " . $mainPlayer . " for not having any materializations");
+          DealDamageAsync($mainPlayer, 2, "TRIGGER", $defItems[$i]);
+        }
+        break;
+      default: break;
+    }
   }
 }
 

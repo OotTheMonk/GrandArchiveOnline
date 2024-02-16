@@ -272,13 +272,16 @@ function StartTurn()
   if($mainPlayer != $firstPlayer || $currentTurn > 1) Draw($currentPlayer);
 }
 
+//Recollection
 function ReturnAllMemoryToHand($player)
 {
+  ItemBeginRecollectionAbilities();
   $memory = &GetMemory($player);
   for($i=count($memory)-MemoryPieces(); $i>=0; $i-=MemoryPieces())
   {
     AddHand($player, RemoveMemory($player, $i));
   }
+  if(!IsDecisionQueueActive()) ProcessDecisionQueue();
 }
 
 function StartTurnAbilities()
@@ -286,6 +289,7 @@ function StartTurnAbilities()
   global $mainPlayer, $defPlayer;
   MZStartTurnMayAbilities();
   AuraStartTurnAbilities();
+  ItemStartTurnAbilities();
 }
 
 function MZStartTurnMayAbilities()
