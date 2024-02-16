@@ -3093,6 +3093,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       if(IsClassBonusActive($currentPlayer, "MAGE") && AttackerMZID($currentPlayer) == $target) $damage += 1;
       DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       break;
+    case "6i0iqmyn2r"://Raze the Land
+      MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=DOMAIN", may:false);
+      break;
     default: break;
   }
 }

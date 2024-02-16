@@ -373,3 +373,11 @@ function MZMoveCard($player, $search, $where, $may=false, $isReveal=false, $sile
   else if($isReveal) AddDecisionQueue("REVEALCARDS", $player, "-", 1);
   else AddDecisionQueue("WRITELOG", $player, "Card chosen: <0>", 1);
 }
+
+function MZChooseAndDestroy($player, $search, $may=false)
+{
+  AddDecisionQueue("MULTIZONEINDICES", $player, $search);
+  if($may) AddDecisionQueue("MAYCHOOSEMULTIZONE", $player, "<-", 1);
+  else AddDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
+  AddDecisionQueue("MZDESTROY", $player, "-", 1);
+}
