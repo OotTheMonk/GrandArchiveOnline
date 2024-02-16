@@ -3096,6 +3096,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "6i0iqmyn2r"://Raze the Land
       MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=DOMAIN", may:false);
       break;
+    case "96yd609g44"://Unearth Revelations
+      Draw($currentPlayer);
+      Draw($currentPlayer);
+      BottomDeck($currentPlayer);
+      BottomDeck($currentPlayer);
+      break;
     default: break;
   }
 }
