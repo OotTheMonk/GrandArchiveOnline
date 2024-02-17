@@ -3119,6 +3119,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       break;
     case "2ugmnmp5af"://Take Cover
+      $type = GetMZType($target);
+      if($type == "ALLY") {
+        $ally = new Ally($target);
+        AddCurrentTurnEffect($cardID, $currentPlayer, "PLAYCARD", $ally->UniqueID());
+        $ally->SetDistant();
+      }
+      else {
+        AddCurrentTurnEffect($cardID, $currentPlayer, "PLAYCARD");
+        $char = new Character($currentPlayer, 0);
+        $char->SetDistant();
+      }
       break;
     default: break;
   }
@@ -3245,6 +3256,7 @@ function PlayRequiresTarget($cardID)
     case "6ffqsuo6gb": return 2;//Refracting Missile
     case "1bqry41lw9": return 2;//Explosive Rune
     case "1n3gygojwk": return 2;//Evasive Maneuvers
+    case "2ugmnmp5af": return 2;//Take Cover
     default: return -1;
   }
 }
