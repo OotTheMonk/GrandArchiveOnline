@@ -3138,6 +3138,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ATTACKEROP", $currentPlayer, "SETDISTANT", 1);
       }
       break;
+    case "2tsn0ye3ae"://Allied Warpriestess
+      if($from == "PLAY") {
+        $memory = &GetMemory($currentPlayer);
+        if(count($memory)/MemoryPieces() >= 4) Recover($currentPlayer, 2);
+      }
+      break;
     default: break;
   }
 }
