@@ -719,6 +719,8 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           if($damage < 0) $damage = 0;
           --$allies[$target[1]+6];
         }
+        $damage = CurrentEffectDamagePrevention($player, $type, $damage, $source, true, $allies[$target[1]+5]);
+        if($damage < 0) $damage = 0;
         $allies[$target[1]+2] -= $damage;
         if($damage > 0) AllyDamageTakenAbilities($targetPlayer, $target[1]);
         if($allies[$target[1]+2] <= 0) {

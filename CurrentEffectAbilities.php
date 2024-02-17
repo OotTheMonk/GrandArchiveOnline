@@ -156,12 +156,13 @@ function CurrentEffectPreventDamagePrevention($player, $type, $damage, $source)
   return $damage;
 }
 
-function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preventable)
+function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preventable, $uniqueID=-1)
 {
   global $currentPlayer, $currentTurnEffects;
   for($i = count($currentTurnEffects) - CurrentTurnEffectPieces(); $i >= 0 && $damage > 0; $i -= CurrentTurnEffectPieces()) {
+    if($uniqueID != -1 && $currentTurnEffects[$i + 2] != $uniqueID) continue;
     $remove = false;
-    if($currentTurnEffects[$i + 1] == $player) {
+    if($currentTurnEffects[$i + 1] == $player || $uniqueID != -1) {
       $effects = explode("-", $currentTurnEffects[$i]);
       switch($effects[0]) {
         case "RUqtU0Lczf"://Spellshield: Arcane
@@ -188,6 +189,10 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           break;
         case "2ha4dk88zq"://Cloak of Stillwater
           if($preventable) $damage -= 3;
+          $remove = true;
+          break;
+        case "1n3gygojwk"://Evasive Maneuvers
+          if($preventable) $damage -= 2;
           $remove = true;
           break;
         default: break;
