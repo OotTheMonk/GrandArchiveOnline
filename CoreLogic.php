@@ -3102,6 +3102,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       BottomDeck($currentPlayer);
       BottomDeck($currentPlayer);
       break;
+    case "1n3gygojwk"://Evasive Maneuvers
+      $ally = new Ally($target);
+      AddCurrentTurnEffect($cardID, $currentPlayer, "PLAYCARD", $ally->UniqueID());
+      if(ClassContains($ally->CardID(), "RANGER", $currentPlayer)) $ally->SetDistant();
+      break;
     default: break;
   }
 }
@@ -3226,6 +3231,7 @@ function PlayRequiresTarget($cardID)
     case "0ymvddv1au": return 2;//Illuminate Secrets
     case "6ffqsuo6gb": return 2;//Refracting Missile
     case "1bqry41lw9": return 2;//Explosive Rune
+    case "1n3gygojwk": return 2;//Evasive Maneuvers
     default: return -1;
   }
 }
