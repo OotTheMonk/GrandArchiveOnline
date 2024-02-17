@@ -151,9 +151,7 @@ function PermanentStartTurnAbilities()
       case "ROGUE504":
         for($j = 0; $j < count($character)-1; ++$j)
         {
-          //if(CardType($character[$j]) == "W") WriteLog("Found " . $character[$j]);
           if(CardType($character[$j]) == "W") $character[$j + 3] += 1;
-          //WriteLog("character[" . $j . "] = " . $character[$j]);
         }
         break;
       case "ROGUE505":

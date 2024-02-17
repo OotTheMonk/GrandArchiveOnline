@@ -358,6 +358,13 @@ function AllyBeginTurnEffects()
     if($mainAllies[$i+1] != 0) {
       if($mainAllies[$i+3] != 1) $mainAllies[$i+1] = 2;
     }
+    $ally = new Ally("MYALLY-" . $i);
+    switch($ally->CardID()) {
+      case "22tk3ir1o0"://Novice Mechanist
+        if($ally->OnFoster()) PlayAlly("mu6gvnta6q", $mainPlayer);//Automaton Drone
+        break;
+      default: break;
+    }
   }
 }
 
@@ -372,6 +379,8 @@ function AllyBeginEndTurnEffects()
       $mainAllies[$i+2] = AllyHealth($mainAllies[$i], $mainPlayer) + $mainAllies[$i+7];
       $mainAllies[$i+3] = 0;
       $mainAllies[$i+8] = 1;
+      $mainAllies[$i+9] = 0;//Reset distant -> normal
+      if($mainAllies[$i+10] == 1) $mainAllies[$i+10] = 0;//Reset damage taken for foster mechanic
     }
     switch($mainAllies[$i])
     {

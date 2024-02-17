@@ -123,7 +123,7 @@ function MemoryPieces() { return ArsenalPieces(); }
 //7 - Health Counters
 //8 - Ability/effect Uses
 //9 - Position (0 = normal, 1 = distant)
-//10 - Fostered (0 = no, 1 = yes)
+//10 - Fostered (0 = no, 1 = dealt damage, 2 = yes)
 function AllyPieces()
 {
   return 11;

@@ -104,6 +104,7 @@ function AddCharacter($cardID, $player)
   array_push($char, 0);
   array_push($char, 0);
   array_push($char, 2);
+  array_push($char, 0);
 }
 
 function AddMemory($cardID, $player, $from, $facing, $counters=0)
