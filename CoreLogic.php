@@ -1908,6 +1908,7 @@ function SelfCostModifier($cardID)
     case "wPKxvzTmqq": $modifier += (DelimStringContains($additionalCosts, "PREPARE") ? -5 : 0); //Ensnaring Fumes
     case "rxxwQT054x": $modifier += (GetClassState($currentPlayer, $CS_LastAttack) == "NA" ? -2 : 0);//Command the Hunt
     case "CgyJxpEgzk": $modifier += (GetClassState($currentPlayer, $CS_AtksWWeapon) > 0 || GetClassState($currentPlayer, $CS_NumAttackCards) > 0 ? -2 : 0);
+    case "2ugmnmp5af": $modifier += (IsClassBonusActive($currentPlayer, "RANGER") ? -1 : 0); break;//Take Cover
     default: break;
   }
   return $modifier;
@@ -3103,9 +3104,21 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       BottomDeck($currentPlayer);
       break;
     case "1n3gygojwk"://Evasive Maneuvers
-      $ally = new Ally($target);
-      AddCurrentTurnEffect($cardID, $currentPlayer, "PLAYCARD", $ally->UniqueID());
-      if(ClassContains($ally->CardID(), "RANGER", $currentPlayer)) $ally->SetDistant();
+      $type = GetMZType($target);
+      if($type == "ALLY") {
+        $ally = new Ally($target);
+        AddCurrentTurnEffect($cardID, $currentPlayer, "PLAYCARD", $ally->UniqueID());
+        if(ClassContains($ally->CardID(), "RANGER", $currentPlayer)) $ally->SetDistant();
+      }
+      else {
+        AddCurrentTurnEffect($cardID, $currentPlayer, "PLAYCARD");
+        if(IsClassBonusActive($currentPlayer, "RANGER")) {
+          $char = new Character($currentPlayer, 0);
+          $char->SetDistant();
+        }
+      }
+      break;
+    case "2ugmnmp5af"://Take Cover
       break;
     default: break;
   }

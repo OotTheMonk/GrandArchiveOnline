@@ -381,3 +381,10 @@ function MZChooseAndDestroy($player, $search, $may=false)
   else AddDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
   AddDecisionQueue("MZDESTROY", $player, "-", 1);
 }
+
+function GetMZType($mzIndex) {
+  $mzArr = explode("-", $mzIndex);
+  if($mzArr[0] == "MYALLY" || $mzArr[0] == "THEIRALLY") return "ALLY";
+  else if($mzArr[0] == "MYCHAR" || $mzArr[0] == "THEIRCHAR") return "CHAR";
+  return "";
+}
