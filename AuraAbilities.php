@@ -224,6 +224,13 @@ function AuraStartTurnAbilities()
         $element = CardElement($memory[$index]);
         if($element != "FIRE" && $element != "WATER" && $element != "WIND") DestroyAuraUniqueID($mainPlayer, $auras[$i + 6]);
         break;
+      case "8bls6g7xgw"://Fertile Grounds
+        AddDecisionQueue("MULTIZONEINDICES", $mainPlayer, "MYITEMS:subtype=HERB");
+        AddDecisionQueue("SETDQCONTEXT", $mainPlayer, "Choose an herb to copy");
+        AddDecisionQueue("CHOOSEMULTIZONE", $mainPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $mainPlayer, "GETCARDID", 1);
+        AddDecisionQueue("PUTPLAY", $mainPlayer, "-", 1);
+        break;
       default:
         break;
     }
