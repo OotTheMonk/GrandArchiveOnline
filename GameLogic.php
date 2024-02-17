@@ -305,6 +305,19 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         default: break;
       }
       return $lastResult;
+    case "ATTACKEROP":
+      $mzID = AttackerMZID($currentPlayer);
+      $type = GetMZType($mzID);
+      switch($parameter) {
+        case "SETDISTANT":
+          if($type == "ALLY") {
+            $ally = new Ally($mzID);
+            $ally->SetDistant();
+          }
+          break;
+        default: break;
+      }
+      return $lastResult;
     case "MZOP":
       switch ($parameter)
       {

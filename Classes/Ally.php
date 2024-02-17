@@ -31,6 +31,10 @@ class Ally {
     $this->allies[$this->index+9] = 1;
   }
 
+  function IsDistant() {
+    return $this->allies[$this->index+9] == 1 ? true : false;
+  }
+
 }
 
 ?>

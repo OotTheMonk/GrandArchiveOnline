@@ -76,6 +76,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $index = FindCharacterIndex($mainPlayer, "3traenEA8M");
       $char = &GetPlayerCharacter($mainPlayer);
       return $index == -1 ? 0 : floor($char[$index+2]/3);
+    case "3p6i0iqmyn"://Krustallan Archer
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 3 : 0;
     default: return 0;
   }
 }

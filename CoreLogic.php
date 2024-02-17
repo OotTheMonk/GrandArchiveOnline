@@ -2756,7 +2756,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "XQKyUqsMUg"://Seer's Sword
       if($from == "EQUIP") PlayerOpt($currentPlayer, 2);
       break;
-    case "rpOaAjgtue"://Frostsword Paladin
+    case "rpOaAjgtue"://Frostsworn Paladin
       AddFloatingMemoryChoice();
       AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
       $allies = &GetAllies($currentPlayer);
@@ -3129,6 +3129,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddCurrentTurnEffect($cardID, $currentPlayer, "PLAYCARD");
         $char = new Character($currentPlayer, 0);
         $char->SetDistant();
+      }
+      break;
+    case "3p6i0iqmyn"://Krustallan Archer
+      if($from == "PLAY") {
+        AddFloatingMemoryChoice();
+        AddDecisionQueue("DRAW", $currentPlayer, "-", 1);
+        AddDecisionQueue("ATTACKEROP", $currentPlayer, "SETDISTANT", 1);
       }
       break;
     default: break;
