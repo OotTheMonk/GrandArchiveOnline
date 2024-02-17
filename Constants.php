@@ -121,9 +121,11 @@ function MemoryPieces() { return ArsenalPieces(); }
 //6 - Endurance Counters
 //7 - Health Counters
 //8 - Ability/effect Uses
+//9 - Position (0 = normal, 1 = distant)
+//10 - Fostered (0 = no, 1 = yes)
 function AllyPieces()
 {
-  return 9;
+  return 11;
 }
 
 //Card ID

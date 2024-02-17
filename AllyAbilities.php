@@ -12,6 +12,8 @@ function PlayAlly($cardID, $player, $subCards = "-", $from="-")
   array_push($allies, AllyEnduranceCounters($cardID)); //Endurance Counters
   array_push($allies, 0); //Buff Counters
   array_push($allies, 1); //Ability/effect uses
+  array_push($allies, 0); //Position
+  array_push($allies, 0); //Fostered
   $index = count($allies) - AllyPieces();
   CurrentEffectAllyEntersPlay($player, $index);
   AllyEntersPlayAbilities($player);
