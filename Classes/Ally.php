@@ -35,6 +35,11 @@ class Ally {
     return $this->allies[$this->index+9] == 1 ? true : false;
   }
 
+  function AddBuffCounter() {
+    ++$this->allies[$this->index+2];
+    ++$this->allies[$this->index+7];
+  }
+
 }
 
 ?>

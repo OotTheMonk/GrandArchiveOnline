@@ -1909,6 +1909,7 @@ function SelfCostModifier($cardID)
     case "rxxwQT054x": $modifier += (GetClassState($currentPlayer, $CS_LastAttack) == "NA" ? -2 : 0);//Command the Hunt
     case "CgyJxpEgzk": $modifier += (GetClassState($currentPlayer, $CS_AtksWWeapon) > 0 || GetClassState($currentPlayer, $CS_NumAttackCards) > 0 ? -2 : 0);
     case "2ugmnmp5af": $modifier += (IsClassBonusActive($currentPlayer, "RANGER") ? -1 : 0); break;//Take Cover
+    case "5tlzsmw3rr": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? SearchCount(SearchAura($currentPlayer, "DOMAIN")) : 0); break;//Summon Sentinels
     default: break;
   }
   return $modifier;
@@ -3143,6 +3144,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         $memory = &GetMemory($currentPlayer);
         if(count($memory)/MemoryPieces() >= 4) Recover($currentPlayer, 2);
       }
+      break;
+    case "5tlzsmw3rr"://Summon Sentinels
+      $index = PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
+      $ally = new Ally("MYALLY-" . $index);
+      $ally->AddBuffCounter();
+      $index = PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
+      $ally = new Ally("MYALLY-" . $index);
+      $ally->AddBuffCounter();
       break;
     default: break;
   }
