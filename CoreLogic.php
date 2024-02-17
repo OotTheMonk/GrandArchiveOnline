@@ -3153,6 +3153,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $ally = new Ally("MYALLY-" . $index);
       $ally->AddBuffCounter();
       break;
+    case "17fzcyfrzr"://Imperial Rifleman
+      if(IsClassBonusActive($currentPlayer, "RANGER")) {
+        $ally = new Ally("MYALLY-" . LastAllyIndex($currentPlayer));
+        $ally->SetDistant();
+      }
+      break;
     default: break;
   }
 }

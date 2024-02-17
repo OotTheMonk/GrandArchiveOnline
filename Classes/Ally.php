@@ -42,4 +42,9 @@ class Ally {
 
 }
 
+function LastAllyIndex($player) {
+  $allies = &GetAllies($player);
+  return count($allies) - AllyPieces();
+}
+
 ?>

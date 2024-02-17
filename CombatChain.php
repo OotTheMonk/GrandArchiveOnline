@@ -82,6 +82,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return IsClassBonusActive($mainPlayer, "RANGER") && $ally->IsDistant() ? 3 : 0;
     case "2tsn0ye3ae"://Allied Warpriestess
       return IsClassBonusActive($mainPlayer, "CLERIC") || IsClassBonusActive($mainPlayer, "GUARDIAN") ? 1 : 0;
+    case "17fzcyfrzr"://Imperial Rifleman
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 2 : 0;
     default: return 0;
   }
 }
