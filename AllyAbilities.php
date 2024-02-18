@@ -350,6 +350,7 @@ function AllyTakeDamageAbilities($player, $index, $damage, $preventable)
   return $damage;
 }
 
+//Ally Recollection
 function AllyBeginTurnEffects()
 {
   global $mainPlayer;
@@ -362,6 +363,12 @@ function AllyBeginTurnEffects()
     switch($ally->CardID()) {
       case "22tk3ir1o0"://Novice Mechanist
         if($ally->OnFoster()) PlayAlly("mu6gvnta6q", $mainPlayer);//Automaton Drone
+        break;
+      case "7dedg616r0"://Freydis, Master Tactician
+        if(IsClassBonusActive($mainPlayer, "RANGER")) {
+          $amount = $ally->ModifyNamedCounters("TACTIC", 1);
+          PlayerOpt($mainPlayer, $amount);
+        }
         break;
       default: break;
     }

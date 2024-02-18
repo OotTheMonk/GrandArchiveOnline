@@ -32,6 +32,7 @@ class Ally {
   }
 
   function IsDistant() {
+    if(SearchCurrentTurnEffects("7dedg616r0", $this->playerID)) return true;
     return $this->allies[$this->index+9] == 1 ? true : false;
   }
 
@@ -44,6 +45,11 @@ class Ally {
   function AddBuffCounter() {
     ++$this->allies[$this->index+2];
     ++$this->allies[$this->index+7];
+  }
+
+  function ModifyNamedCounters($type, $amount = 1) {
+    $this->allies[$this->index+6] += $amount;
+    return $this->allies[$this->index+6];//Return the amount of that type of counter
   }
 
 }

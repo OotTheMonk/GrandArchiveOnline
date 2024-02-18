@@ -2113,7 +2113,7 @@ function IsClassBonusActive($player, $class)
 
 function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalCosts = "-")
 {
-  global $currentPlayer, $layers, $CS_NumAttacks;
+  global $currentPlayer, $layers, $CS_NumAttacks, $CS_PlayIndex;
   $cardID = ShiyanaCharacter($cardID);
   $set = CardSet($cardID);
   $class = CardClass($cardID);
@@ -3157,6 +3157,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       if(IsClassBonusActive($currentPlayer, "RANGER")) {
         $ally = new Ally("MYALLY-" . LastAllyIndex($currentPlayer));
         $ally->SetDistant();
+      }
+      break;
+    case "7dedg616r0"://Freydis, Master Tactician
+      if(GetResolvedAbilityType($cardID) == "A") {
+        AddCurrentTurnEffect($cardID, $currentPlayer);
+        AddNextTurnEffect($cardID, $currentPlayer);
+        $ally = new Ally("MYALLY-" . GetClassState($currentPlayer, $CS_PlayIndex));
+        $ally->ModifyNamedCounters("TACTIC", -3);
       }
       break;
     default: break;

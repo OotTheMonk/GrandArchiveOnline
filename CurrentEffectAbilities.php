@@ -427,13 +427,24 @@ function IsCombatEffectPersistent($cardID)
   }
 }
 
+function IsEffectPersistent($cardID)
+{
+  global $currentPlayer;
+  $effectArr = explode(",", $cardID);
+  switch($cardID) {
+    case "7dedg616r0": return true;//Freydis, Master Tactician
+    default:
+      return false;
+  }
+}
+
 function BeginEndPhaseEffects()
 {
   global $currentTurnEffects, $mainPlayer, $EffectContext;
   for($i = 0; $i < count($currentTurnEffects); $i += CurrentTurnPieces()) {
     $EffectContext = $currentTurnEffects[$i];
+    if(IsEffectPersistent($EffectContext)) AddNextTurnEffect($EffectContext, $currentTurnEffects[$i+1]);
     switch($currentTurnEffects[$i]) {
-
       default:
         break;
     }

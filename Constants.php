@@ -119,8 +119,8 @@ function MemoryPieces() { return ArsenalPieces(); }
 //3 - Frozen - 0 = no, 1 = yes
 //4 - Subcards , delimited
 //5 - Unique ID
-//6 - Endurance Counters
-//7 - Health Counters
+//6 - Counters
+//7 - Buff Counters
 //8 - Ability/effect Uses
 //9 - Position (0 = normal, 1 = distant)
 //10 - Fostered (0 = no, 1 = dealt damage, 2 = yes)
