@@ -1321,6 +1321,12 @@ function SubtypeContains($cardID, $subtype, $player="")
   return DelimStringContains($cardSubtype, $subtype);
 }
 
+function ElementContains($cardID, $element, $player="")
+{
+  $cardElement = CardElement($cardID);
+  return DelimStringContains($cardElement, $element);
+}
+
 function CardNameContains($cardID, $name, $player="")
 {
   $cardName = NameOverride($cardID, $player);
@@ -3165,6 +3171,23 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddNextTurnEffect($cardID, $currentPlayer);
         $ally = new Ally("MYALLY-" . GetClassState($currentPlayer, $CS_PlayIndex));
         $ally->ModifyNamedCounters("TACTIC", -3);
+      }
+      break;
+    case "7xgwve1d47"://Dahlia, Idyllic Dreamer
+      if($from == "PLAY" && IsClassBonusActive($currentPlayer, "RANGER")) {
+        $deck = new Deck($currentPlayer);
+        AddDecisionQueue("PASSPARAMETER", $currentPlayer, $deck->Top());
+        AddDecisionQueue("SETDQVAR", $currentPlayer, "0");
+        if(ElementContains($deck->Top(), "WATER", $currentPlayer)) {
+          AddDecisionQueue("YESNO", $currentPlayer, "if you want to put <0> in your discard");
+          AddDecisionQueue("NOPASS", $currentPlayer, "-");
+          AddDecisionQueue("FINDINDICES", $currentPlayer, "DECKTOPXREMOVE,1", 1);
+          AddDecisionQueue("ADDDISCARD", $currentPlayer, "DECK", 1);
+        }
+        else {
+          AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "The top card of your deck is <0>");
+          AddDecisionQueue("OK", $currentPlayer, "-");
+        }
       }
       break;
     default: break;
