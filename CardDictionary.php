@@ -191,6 +191,13 @@ function CardCost($cardID)
 function AbilityCost($cardID)
 {
   global $currentPlayer;
+  switch($cardID) {
+    case "5swaf8urrq"://Whirlwind Vizier
+      $abilityType = GetResolvedAbilityType($cardID);
+      if($abilityType == "A") return 3;
+      break;
+    default: break;
+  }
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return 0;
   return 0;
 }
@@ -312,6 +319,8 @@ function GetAbilityTypes($cardID)
   switch($cardID) {
     case "7dedg616r0"://Freydis, Master Tactician
       return "A,AA";
+    case "5swaf8urrq"://Whirlwind Vizier
+      return "A,AA";
     default: return "";
   }
 }
@@ -322,6 +331,8 @@ function GetAbilityNames($cardID, $index = -1)
   switch ($cardID) {
     case "7dedg616r0"://Freydis, Master Tactician
       return "Remove Counters,Attack";
+    case "5swaf8urrq"://Whirlwind Vizier
+      return "Sacrifice,Attack";
     default: return "";
   }
 }

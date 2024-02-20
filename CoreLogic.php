@@ -3190,6 +3190,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         }
       }
       break;
+    case "5swaf8urrq"://Whirlwind Vizier
+      if(GetResolvedAbilityType($cardID) == "A") {
+        DestroyAlly($currentPlayer, GetClassState($currentPlayer, $CS_PlayIndex), skipDestroy:true);
+        MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=PHANTASIA", may:true);
+      }
+      break;
     default: break;
   }
 }
