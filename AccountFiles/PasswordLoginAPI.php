@@ -27,14 +27,15 @@ $password = $_POST["password"];
 $rememberMe = isset($_POST["rememberMe"]);
 
 try {
-  PasswordLogin($username, $password, $rememberMe, true);
+  PasswordLogin($username, $password, $rememberMe);
 } catch (\Exception $e) {
 }
 
 $response->isUserLoggedIn = IsUserLoggedIn();
-if ($response->isUserLoggedIn) {
+if($response->isUserLoggedIn) {
   $response->loggedInUserID = LoggedInUser();
   $response->loggedInUserName = LoggedInUserName();
+  $response->isPatron = IsLoggedInUserPatron();
 }
 
 echo (json_encode($response));
