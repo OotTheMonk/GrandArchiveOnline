@@ -3196,6 +3196,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=PHANTASIA", may:true);
       }
       break;
+    case "0z2snsdwmx"://Scale of Souls
+      if($from == "PLAY") {
+        MZMoveCard($currentPlayer, "MYMEMORY", "MYHAND", silent:true);
+      }
+      break;
     default: break;
   }
 }

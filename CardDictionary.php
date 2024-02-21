@@ -192,6 +192,8 @@ function AbilityCost($cardID)
 {
   global $currentPlayer;
   switch($cardID) {
+    case "0z2snsdwmx"://Scale of Souls
+      return 2;
     case "5swaf8urrq"://Whirlwind Vizier
       $abilityType = GetResolvedAbilityType($cardID);
       if($abilityType == "A") return 3;
@@ -308,6 +310,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
       return "I";
     case "1lw9n0wpbh"://Protective Fractal
       return "I";
+    case "0z2snsdwmx"://Scale of Souls
     case "2ha4dk88zq"://Cloak of Stillwater
       return "I";
     default: return "";

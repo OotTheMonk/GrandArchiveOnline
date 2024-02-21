@@ -94,6 +94,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "69iq4d5vet"://Springleaf (6)
       DestroyItemForPlayer($currentPlayer, $index);
       break;
+    case "0z2snsdwmx"://Scale of Souls
     case "2ha4dk88zq"://Cloak of Stillwater
       $items = &GetItems($currentPlayer);
       $items[$index+2] = 1;
@@ -223,6 +224,14 @@ function ItemBeginRecollectionAbilities() {
         if(GetClassState($mainPlayer, $CS_NumMaterializations) == 0) {
           WriteLog("Fatal Timepiece deals 2 damage to player " . $mainPlayer . " for not having any materializations");
           DealDamageAsync($mainPlayer, 2, "TRIGGER", $mainItems[$i]);
+        }
+        break;
+      case "0z2snsdwmx"://Scale of Souls
+        $hand = &GetHand($mainPlayer);
+        $memory = &GetMemory($mainPlayer);
+        if(count($hand)/HandPieces() == count($memory)/MemoryPieces()) {
+          WriteLog("Scale of Souls recovers 2 health for player " . $mainPlayer);
+          Recover($mainPlayer, 2);
         }
         break;
       default: break;
