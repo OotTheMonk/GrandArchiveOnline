@@ -3218,6 +3218,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         }
       }
       break;
+    case "5kt3q2svd5"://Amorphous Strike
+      MZMoveCard($currentPlayer, "MYDISCARD:type=ATTACK", "MYBANISH,GY,-", may:true);
+      AddDecisionQueue("OP", $currentPlayer, "GETATTACK", 1);
+      AddDecisionQueue("PREPENDLASTRESULT", $currentPlayer, "5kt3q2svd5-", 1);
+      AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "<-", 1);
+      break;
     default: break;
   }
 }

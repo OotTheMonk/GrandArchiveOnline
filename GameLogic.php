@@ -382,6 +382,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
           $allies = &GetAllies($player);
           if(count($allies) == 0) return "";
           return "MYALLY-" . count($allies)-AllyPieces();
+        case "GETATTACK": return AttackValue($lastResult);
         default: return $lastResult;
       }
     case "FILTER":

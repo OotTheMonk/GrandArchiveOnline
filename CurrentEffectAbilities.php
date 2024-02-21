@@ -52,6 +52,7 @@ function EffectAttackModifier($cardID)
     case "qufoIF014c": return 2;//Gleaming Cut
     case "rxxwQT054x": return 2;//Command the Hunt
     case "vcZSHNHvKX": return IsAlly($cardID) ? 0 : 1;//Spirit Blade: Ghost Strike
+    case "5kt3q2svd5": return $subparam;//Amorphous Strike
     default: return 0;
   }
 }
@@ -374,6 +375,8 @@ function IsCombatEffectActive($cardID)
   global $combatChain, $currentPlayer;
   if(count($combatChain) == 0) return;
   $attackID = $combatChain[0];
+  $effectArr = explode("-", $cardID);
+  $cardID = $effectArr[0];
   switch($cardID)
   {
     case "dZ960Hnkzv": return IsAlly($attackID);
@@ -401,6 +404,7 @@ function IsCombatEffectActive($cardID)
     case "rxxwQT054x": return true;//Command the Hunt
     case "vcZSHNHvKX": return true;//Spirit Blade: Ghost Strike
     case "7t9m4muq2r": return true;//Thieving Cut
+    case "5kt3q2svd5": return true;//Amorphous Strike
     default: return false;
   }
 }

@@ -38,7 +38,10 @@ function ProcessMacros()
           }
         }
       }
-      else if(AutopassPhaseWithOneOption($turn[0]) && SearchCount($turn[2]) == 1) { $somethingChanged = true; ContinueDecisionQueue($turn[2]); }
+      else if(AutopassPhaseWithOneOption($turn[0]) && SearchCount($turn[2]) == 1) {
+        $somethingChanged = true;
+        ContinueDecisionQueue($turn[2]);
+      }
       if($turn[0] == "B" || $turn[0] == "D")
       {
         $threshold = ShortcutAttackThreshold($currentPlayer);
