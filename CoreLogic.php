@@ -3201,6 +3201,23 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         MZMoveCard($currentPlayer, "MYMEMORY", "MYHAND", silent:true);
       }
       break;
+    case "4xippor7ch"://Repelling Palmblast
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      $allies = &GetAllies($currentPlayer);
+      for($i=count($allies)-AllyPieces(); $i>=0; $i-=AllyPieces()) {
+        if(AttackValue($allies[$i]) <= 2) {
+          $ally = DestroyAlly($currentPlayer, $i, skipDestroy:true);
+          AddMemory($ally, $currentPlayer, "PLAY", "DOWN");
+        }
+      }
+      $theirAllies = &GetAllies($otherPlayer);
+      for($i=count($theirAllies)-AllyPieces(); $i>=0; $i-=AllyPieces()) {
+        if(AttackValue($theirAllies[$i]) <= 2) {
+          $ally = DestroyAlly($otherPlayer, $i, skipDestroy:true);
+          AddMemory($ally, $otherPlayer, "PLAY", "DOWN");
+        }
+      }
+      break;
     default: break;
   }
 }
