@@ -26,6 +26,17 @@ function ProcessHitEffect($cardID)
         AddDecisionQueue("SPECIFICCARD", $mainPlayer, "CORHAZICOURIER", 1);
       }
       break;
+    case "8lrj52215u": //Vaporjet Shieldbearer
+      if(IsClassBonusActive($mainPlayer, "GUARDIAN"))
+      {
+        AddDecisionQueue("DECKCARDS", $mainPlayer, "0");
+        AddDecisionQueue("SETDQVAR", $mainPlayer, "0", 1);
+        AddDecisionQueue("SETDQCONTEXT", $mainPlayer, "Do you want to mill <0>", 1);
+        AddDecisionQueue("YESNO", $mainPlayer, "-", 1);
+        AddDecisionQueue("NOPASS", $mainPlayer, "-", 1);
+        AddDecisionQueue("MILL", $mainPlayer, 1, 1);
+      }
+      break;
     default: break;
   }
 

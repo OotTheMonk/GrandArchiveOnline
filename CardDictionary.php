@@ -155,6 +155,15 @@ function HasStealth($cardID, $player, $index)
   }
 }
 
+function HasSteadfast($cardID, $player, $index)
+{
+  switch($cardID)
+  {
+    case "8lrj52215u": return true;//Vaporjet Shieldbearer
+    default: return false;
+  }
+}
+
 function MemoryCost($cardID, $player)
 {
   $cost = CardMemoryCost($cardID);
