@@ -101,6 +101,9 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $mzID = AttackerMZID($mainPlayer);
       $ally = new Ally($mzID);
       return $ally->IsDistant() ? SearchCount(SearchDiscard($mainPlayer, element:"WATER")) : 0;
+    case "bcizm6h38l"://Subjugating Lash
+      $health = &GetHealth($mainPlayer);
+      return ($health >= 12 ? 2 : 0);
     default: return 0;
   }
 }
