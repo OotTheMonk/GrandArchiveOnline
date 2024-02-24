@@ -104,6 +104,11 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
     case "bcizm6h38l"://Subjugating Lash
       $health = &GetHealth($mainPlayer);
       return ($health >= 12 ? 2 : 0);
+    case "66pv4n1n3g"://Airship Engineer
+      if(!IsClassBonusActive($mainPlayer, "RANGER")) return 0;
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 2 : 0;
     default: return 0;
   }
 }

@@ -3230,8 +3230,19 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect($cardID, $currentPlayer);
       AddNextTurnEffect($cardID, $currentPlayer);
       break;
+    case "66pv4n1n3g"://Airship Engineer
+      if(HasDistantUnit($currentPlayer)) DrawIntoMemory($currentPlayer);
+      break;
     default: break;
   }
+}
+
+function HasDistantUnit($player) {
+  $allies = &GetAllies($player);
+  for($i=0; $i<count($allies); $i+=AllyPieces()) {
+    if($allies[$i+9] == 1) return true;
+  }
+  return false;
 }
 
 function SpiritBladeDispersion($player)
