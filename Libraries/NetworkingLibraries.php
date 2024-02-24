@@ -1566,6 +1566,9 @@ function MaterializeCardEffect($cardID)
       }
       RevealCards($toReveal, $currentPlayer);
       break;
+    case "b31x97n2jn"://Arisanna, Herbalist Prodigy
+      Gather($currentPlayer, 2);
+      break;
     default:
       break;
   }
