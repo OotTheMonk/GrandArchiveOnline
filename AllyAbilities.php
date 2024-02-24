@@ -363,10 +363,8 @@ function AllyBeginTurnEffects()
       if($mainAllies[$i+3] != 1) $mainAllies[$i+1] = 2;
     }
     $ally = new Ally("MYALLY-" . $i);
+    $ally->OnFoster();
     switch($ally->CardID()) {
-      case "22tk3ir1o0"://Novice Mechanist
-        if($ally->OnFoster()) PlayAlly("mu6gvnta6q", $mainPlayer);//Automaton Drone
-        break;
       case "7dedg616r0"://Freydis, Master Tactician
         if(IsClassBonusActive($mainPlayer, "RANGER")) {
           $amount = $ally->ModifyNamedCounters("TACTIC", 1);

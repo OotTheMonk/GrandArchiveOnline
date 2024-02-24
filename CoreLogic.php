@@ -3282,6 +3282,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddFloatingMemoryChoice();
       MZMoveCard($currentPlayer, "THEIRMEMORY", "THEIRDISCARD,MEMORY", isSubsequent:true);
       break;
+    case "ch2bbmoqk2"://Organize the Alliance
+      $type = GetMZType($target);
+      if($type == "ALLY") {
+        $ally = new Ally($target);
+        $ally->OnFoster();
+      }
+      break;
     default: break;
   }
 }
@@ -3417,6 +3424,7 @@ function PlayRequiresTarget($cardID)
     case "1n3gygojwk": return 2;//Evasive Maneuvers
     case "2ugmnmp5af": return 2;//Take Cover
     case "bro89w0ejc": return 2;//Displace
+    case "ch2bbmoqk2": return 2;//Organize the Alliance
     default: return -1;
   }
 }

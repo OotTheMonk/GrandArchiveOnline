@@ -39,6 +39,13 @@ class Ally {
   function OnFoster() {
     $fosterActive = $this->allies[$this->index+10] == 0;
     $this->allies[$this->index+10] = 2;
+    if($fosterActive) {
+      switch($this->allies[$this->index]) {
+        case "22tk3ir1o0"://Novice Mechanist
+          PlayAlly("mu6gvnta6q", $this->playerID);
+          break;
+      }
+    }
     return $fosterActive;
   }
 
