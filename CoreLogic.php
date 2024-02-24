@@ -3293,6 +3293,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
       MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
       break;
+    case "fp66pv4n1n"://Rusted Warshield
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      DrawIntoMemory($currentPlayer);
+      break;
     default: break;
   }
 }

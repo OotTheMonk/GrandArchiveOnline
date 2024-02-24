@@ -208,6 +208,10 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           }
           $remove = true;
           break;
+        case "fp66pv4n1n"://Rusted Warshield
+          if($preventable) $damage -= 2;
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);
