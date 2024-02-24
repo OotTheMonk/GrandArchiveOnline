@@ -117,6 +117,7 @@ function HasReservable($cardID, $player, $index)
   {
     case "1d47o7eanl": return true;//Explosive Fractal
     case "1lw9n0wpbh": return true;//Protective Fractal
+    case "cfpwakb1k0": return true;//Fractal of Intrusion
     default: return false;
   }
 }

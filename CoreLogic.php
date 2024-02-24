@@ -3278,6 +3278,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         PlayAura("ENLIGHTEN", $currentPlayer);
       }
       break;
+    case "cfpwakb1k0"://Fractal of Intrusion
+      AddFloatingMemoryChoice();
+      MZMoveCard($currentPlayer, "THEIRMEMORY", "THEIRDISCARD,MEMORY", isSubsequent:true);
+      break;
     default: break;
   }
 }
