@@ -3247,6 +3247,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "99sx6q3p6i"://Spellshield: Wind
       AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
+    case "098kmoi0a5"://Take Point
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      AddNextTurnEffect($cardID, $currentPlayer);
+      break;
     default: break;
   }
 }

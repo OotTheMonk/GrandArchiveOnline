@@ -167,6 +167,9 @@ function HasSteadfast($cardID, $player, $index)
 
 function HasTaunt($cardID, $player, $index)
 {
+  if(CardTypeContains($cardID, "CHAMPION")) {
+    if(SearchCurrentTurnEffects("098kmoi0a5", $player)) return true;//Take Point
+  }
   switch($cardID)
   {
     case "23yfzk96yd": return SearchCurrentTurnEffects($cardID, $player);//Veteran Blazebearer
