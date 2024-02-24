@@ -177,6 +177,15 @@ function HasTaunt($cardID, $player, $index)
   }
 }
 
+function HasIntercept($cardID, $player, $index)
+{
+  switch($cardID)
+  {
+    case "c9p4lpnvx7": return SearchCount(SearchAuras($player, type:"PHANTASIA"));//Awakened Deacon
+    default: return false;
+  }
+}
+
 function MemoryCost($cardID, $player)
 {
   $cost = CardMemoryCost($cardID);
