@@ -3297,6 +3297,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect($cardID, $currentPlayer);
       DrawIntoMemory($currentPlayer);
       break;
+    case "hjdu50pces"://Deep Sea Fractal
+      Mill(1, 1);
+      Mill(2, 1);
+      break;
     default: break;
   }
 }

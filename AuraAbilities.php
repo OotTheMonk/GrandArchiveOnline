@@ -16,7 +16,7 @@ function PlayAura($cardID, $player, $number = 1, $isToken = false, $rogueHeronSp
   if($theirHoldState == 0 && HoldPrioritySetting($otherPlayer) == 1) $theirHoldState = 1;
   for($i = 0; $i < $number; ++$i) {
     array_push($auras, $cardID);
-    array_push($auras, 2); //Status
+    array_push($auras, AuraEntersPlayState($cardID)); //Status
     if($rogueHeronSpecial) array_push($auras, 0); //Only happens on the damage effect of the Heron Master in the Roguelike Gamemode
     else array_push($auras, AuraPlayCounters($cardID)); //Miscellaneous Counters
     array_push($auras, 0); //Attack counters
@@ -28,6 +28,15 @@ function PlayAura($cardID, $player, $number = 1, $isToken = false, $rogueHeronSp
   }
   if(DelimStringContains(CardSubType($cardID), "Affliction")) IncrementClassState($otherPlayer, $CS_NumAuras, $number);
   else if($cardID != "ELE111") IncrementClassState($player, $CS_NumAuras, $number);
+}
+
+function AuraEntersPlayState($cardID)
+{
+  switch($cardID)
+  {
+    case "hjdu50pces": return 1;//Deep Sea Fractal
+    default: return 2;
+  }
 }
 
 function AuraNumUses($cardID)
