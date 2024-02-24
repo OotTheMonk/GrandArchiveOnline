@@ -53,6 +53,7 @@ function EffectAttackModifier($cardID)
     case "rxxwQT054x": return 2;//Command the Hunt
     case "vcZSHNHvKX": return IsAlly($cardID) ? 0 : 1;//Spirit Blade: Ghost Strike
     case "5kt3q2svd5": return $subparam;//Amorphous Strike
+    case "659ytyj2s3": return $subparam;//Imperious Highlander
     default: return 0;
   }
 }
@@ -416,6 +417,7 @@ function IsCombatEffectActive($cardID)
     case "vcZSHNHvKX": return true;//Spirit Blade: Ghost Strike
     case "7t9m4muq2r": return true;//Thieving Cut
     case "5kt3q2svd5": return true;//Amorphous Strike
+    case "659ytyj2s3": return true;//Imperious Highlander
     default: return false;
   }
 }

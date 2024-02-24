@@ -3251,6 +3251,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect($cardID, $currentPlayer);
       AddNextTurnEffect($cardID, $currentPlayer);
       break;
+    case "659ytyj2s3"://Imperious Highlander
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      $myAllies = &GetAllies($currentPlayer);
+      $theirAllies = &GetAllies($otherPlayer);
+      $bonus = (count($theirAllies) - count($myAllies)) / AllyPieces();
+      if($bonus > 0) AddCurrentTurnEffect($cardID . "-" . $bonus, $currentPlayer);
+      break;
     default: break;
   }
 }
