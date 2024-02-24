@@ -3262,6 +3262,22 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "b1k0zi5h8a"://Dematerialize
       MZMoveCard($currentPlayer, "THEIRITEMS:type=REGALIA&THEIRCHAR:type=REGALIA", "THEIRMATERIAL,PLAY");
       break;
+    case "bro89w0ejc"://Displace
+      $mzArr = explode("-", $target);
+      if($mzArr[0] != "MYALLY" && $mzArr[0] != "THEIRALLY") {
+        WriteLog("Invalid target for Displace");
+        break;
+      }
+      $player = $mzArr[0] == "MYALLY" ? $currentPlayer : ($currentPlayer == 1 ? 2 : 1);
+      $cardID = RemoveAlly($player, $mzArr[1]);
+      $index = BanishCardForPlayer($cardID, $player, "PLAY", "-", $currentPlayer);
+      RemoveBanish($player, $index);
+      PlayAlly($cardID, $player, from:"BANISH");
+      PlayAbility($cardID, "BANISH", 0);
+      if(IsClassBonusActive($currentPlayer, "CLERIC") || IsClassBonusActive($currentPlayer, "MAGE")) {
+        PlayAura("ENLIGHTEN", $currentPlayer);
+      }
+      break;
     default: break;
   }
 }
@@ -3396,6 +3412,7 @@ function PlayRequiresTarget($cardID)
     case "1bqry41lw9": return 2;//Explosive Rune
     case "1n3gygojwk": return 2;//Evasive Maneuvers
     case "2ugmnmp5af": return 2;//Take Cover
+    case "bro89w0ejc": return 2;//Displace
     default: return -1;
   }
 }

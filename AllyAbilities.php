@@ -35,7 +35,7 @@ function DealAllyDamage($targetPlayer, $index, $damage, $type="")
 
 function RemoveAlly($player, $index)
 {
-  return DestroyAlly($player, $index, $true);
+  return DestroyAlly($player, $index, true);
 }
 
 function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
@@ -50,8 +50,10 @@ function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
     CloseCombatChain();
   }
   $cardID = $allies[$index];
-  if($cardID == "075L8pLihO") AddMemory($cardID, $player, "PLAY", "DOWN");
-  else AddGraveyard($cardID, $player, "PLAY");
+  if(!$skipDestroy) {
+    if($cardID == "075L8pLihO") AddMemory($cardID, $player, "PLAY", "DOWN");
+    else AddGraveyard($cardID, $player, "PLAY");
+  }
   for($j = $index + AllyPieces() - 1; $j >= $index; --$j) unset($allies[$j]);
   $allies = array_values($allies);
   //On Kill abilities
