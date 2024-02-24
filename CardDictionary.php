@@ -174,6 +174,7 @@ function HasTaunt($cardID, $player, $index)
   switch($cardID)
   {
     case "23yfzk96yd": return SearchCurrentTurnEffects($cardID, $player);//Veteran Blazebearer
+    case "eifnz0fgm3": return true;//Stalwart Shieldmate
     default: return false;
   }
 }
