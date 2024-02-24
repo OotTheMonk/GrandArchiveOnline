@@ -3289,6 +3289,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         $ally->OnFoster();
       }
       break;
+    case "fdt8ptrz1b"://Scavenging Raccoon
+      MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
+      MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
+      break;
     default: break;
   }
 }
