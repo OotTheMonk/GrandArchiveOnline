@@ -1306,6 +1306,9 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         $auras[$lastResult[$i] + 1] = 1;
       }
       return "";
+    case "NEGATE":
+      NegateLayer($parameter);
+      return "";
     default:
       return "NOTSTATIC";
   }

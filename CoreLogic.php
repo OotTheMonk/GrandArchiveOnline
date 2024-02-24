@@ -1916,6 +1916,7 @@ function SelfCostModifier($cardID)
     case "CgyJxpEgzk": $modifier += (GetClassState($currentPlayer, $CS_AtksWWeapon) > 0 || GetClassState($currentPlayer, $CS_NumAttackCards) > 0 ? -2 : 0);
     case "2ugmnmp5af": $modifier += (IsClassBonusActive($currentPlayer, "RANGER") ? -1 : 0); break;//Take Cover
     case "5tlzsmw3rr": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? SearchCount(SearchAura($currentPlayer, "DOMAIN")) : 0); break;//Summon Sentinels
+    case "215upufyoz": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 2 : 0); break;//Tether in Flames
     default: break;
   }
   return $modifier;
@@ -3232,6 +3233,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "66pv4n1n3g"://Airship Engineer
       if(HasDistantUnit($currentPlayer)) DrawIntoMemory($currentPlayer);
+      break;
+    case "215upufyoz"://Tether in Flames
+      $damage = CharacterLevel($currentPlayer) + 1;
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      AddDecisionQueue("YESNO", $otherPlayer, "if you want to take " . $damage . " damage to prevent negation");
+      AddDecisionQueue("NOPASS", $otherPlayer, "-");
+      AddDecisionQueue("DEALARCANE", $currentPlayer, $damage . "-" . $cardID . "-PLAY", 1);
+      AddDecisionQueue("ELSE", $otherPlayer, "-");
+      AddDecisionQueue("NEGATE", $otherPlayer, $target, 1);
       break;
     default: break;
   }
