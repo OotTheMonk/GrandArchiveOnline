@@ -196,6 +196,17 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           if($preventable) $damage -= 2;
           $remove = true;
           break;
+        case "99sx6q3p6i"://Spellshield: Wind
+          if($preventable) {
+            if($damage >= 3) {
+              AddDecisionQueue("MULTIZONEINDICES", $player, "MYALLY");
+              AddDecisionQueue("CHOOSEMULTIZONE", $player, "<-", 1);
+              AddDecisionQueue("MZOP", $player, "BUFFALLY", 1);
+            }
+            $damage -= 3;
+          }
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

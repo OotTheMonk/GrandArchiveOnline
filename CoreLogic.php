@@ -1917,6 +1917,7 @@ function SelfCostModifier($cardID)
     case "2ugmnmp5af": $modifier += (IsClassBonusActive($currentPlayer, "RANGER") ? -1 : 0); break;//Take Cover
     case "5tlzsmw3rr": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? SearchCount(SearchAura($currentPlayer, "DOMAIN")) : 0); break;//Summon Sentinels
     case "215upufyoz": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 2 : 0); break;//Tether in Flames
+    case "99sx6q3p6i": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Spellshield: Wind
     default: break;
   }
   return $modifier;
@@ -3242,6 +3243,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("DEALARCANE", $currentPlayer, $damage . "-" . $cardID . "-PLAY", 1);
       AddDecisionQueue("ELSE", $otherPlayer, "-");
       AddDecisionQueue("NEGATE", $otherPlayer, $target, 1);
+      break;
+    case "99sx6q3p6i"://Spellshield: Wind
+      AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
     default: break;
   }
