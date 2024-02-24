@@ -38,6 +38,7 @@ function MZRemove($player, $lastResult)
       case "MYITEMS": $lastResult = DestroyItemForPlayer($player, $mzIndex[1], true); break;
       case "MYDISCARD": $lastResult = RemoveGraveyard($player, $mzIndex[1]); break;
       case "THEIRDISCARD": $lastResult = RemoveGraveyard($otherPlayer, $mzIndex[1]); break;
+      case "THEIRITEMS": $lastResult = DestroyItemForPlayer($otherPlayer, $mzIndex[1], true); break;
       case "MYBANISH": RemoveBanish($player, $mzIndex[1]); break;
       case "THEIRBANISH": RemoveBanish($otherPlayer, $mzIndex[1]); break;
       case "MYARS": $lastResult = RemoveArsenal($player, $mzIndex[1]); break;
@@ -110,6 +111,7 @@ function MZAddZone($player, $parameter, $lastResult)
       case "MYBOTDECK": AddBottomDeck($cardIDs[$i], $player, "-"); break;
       case "THEIRBOTDECK": AddBottomDeck($cardIDs[$i], $otherPlayer, "-"); break;
       case "MYMEMORY": AddMemory($cardIDs[$i], $player, $params[1], $params[2]);
+      case "THEIRMATERIAL": AddMaterial($cardIDs[$i], $otherPlayer, $params[1]);
       default: break;
     }
   }

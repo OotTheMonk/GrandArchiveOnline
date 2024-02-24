@@ -3259,6 +3259,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $bonus = (count($theirAllies) - count($myAllies)) / AllyPieces();
       if($bonus > 0) AddCurrentTurnEffect($cardID . "-" . $bonus, $currentPlayer);
       break;
+    case "b1k0zi5h8a"://Dematerialize
+      MZMoveCard($currentPlayer, "THEIRITEMS:type=REGALIA&THEIRCHAR:type=REGALIA", "THEIRMATERIAL,PLAY");
+      break;
     default: break;
   }
 }
