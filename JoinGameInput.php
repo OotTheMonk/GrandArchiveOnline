@@ -83,13 +83,22 @@ if ($decklink != "") {
   if ($playerID == 1) $p1DeckLink = $decklink;
   else if ($playerID == 2) $p2DeckLink = $decklink;
   $curl = curl_init();
-  $isSilvie = str_contains($decklink, "silvie");
-  $isFaBMeta = str_contains($decklink, "fabmeta");
-  if($isSilvie) {
+  $isSilvie2 = false; $isSilvie = false;
+  if(str_contains($decklink, "build-v2.silvie")) $isSilvie2 = true;
+  else if(str_contains($decklink, "silvie")) $isSilvie = true;
+  if($isSilvie2) {
     $decklinkArr = explode("/", $decklink);
     $uid = $decklinkArr[count($decklinkArr) - 2];
     $slug = $decklinkArr[count($decklinkArr) - 1];
-    $apiLink = "https://api.silvie.org/api/build/decks/published?";//"@OotTheMonk/Ya7CqS207754CBvuLeB7
+    $apiLink = "https://api.silvie.org/api/build/v2/export/json?";//"@OotTheMonk/Ya7CqS207754CBvuLeB7
+    $apiLink .= "id=" . $slug;
+    $apiLink .= "&user=" . $uid;
+  }
+  else if($isSilvie) {
+    $decklinkArr = explode("/", $decklink);
+    $uid = $decklinkArr[count($decklinkArr) - 2];
+    $slug = $decklinkArr[count($decklinkArr) - 1];
+    $apiLink = "https://api.silvie.org/api/build/tts?format=json&";//"@OotTheMonk/Ya7CqS207754CBvuLeB7
     $apiLink .= "id=" . $slug;
     $apiLink .= "&user=" . $uid;
   }
@@ -106,6 +115,7 @@ if ($decklink != "") {
     WriteGameFile();
     exit;
   }
+
   $deckObj = json_decode($apiDeck);
   // if has message forbidden error out.
   if ($apiInfo['http_code'] == 403) {
@@ -119,34 +129,31 @@ if ($decklink != "") {
     echo 'Deck object is null. Failed to retrieve deck from API.';
     exit;
   }
-  $cards = json_decode(LZString::decompressFromEncodedURIComponent($deckObj->deck->code));
-  $deckName = $cards->{'name'};
   if (isset($deckObj->{'matchups'})) {
     if ($playerID == 1) $p1Matchups = $deckObj->{'matchups'};
     else if ($playerID == 2) $p2Matchups = $deckObj->{'matchups'};
   }
+  $deckName = $deckObj->{'name'};
   $deckFormat = (isset($deckObj->{'format'}) ? $deckObj->{'format'} : "");
-  //$cards = $deckObj->{'cards'};
   $deckCards = "";
   $sideboardCards = "";
   $materialCards = "";
   $totalCards = 0;
+  //TODO: Sideboard
+  foreach($deckObj->{'cards'}->{'main'} as $key => $value) {
+    $cardID = $value->{'uuid'};
+    $quantity = $value->{'quantity'};
+    for($i=0; $i<$quantity; ++$i)
+    {
+      if($deckCards != "") $deckCards .= " ";
+      $deckCards .= $cardID;
+    }
+  }
 
-  foreach($cards as $key => $value) {
-    if(str_contains($key, "-s")) continue;//TODO: Sideboard
-    if(CardTypeContains($key, "REGALIA") || CardTypeContains($key, "CHAMPION"))
-    {
-      if($materialCards != "") $materialCards .= " ";
-      $materialCards .= $key;
-    }
-    else
-    {
-      if(is_int($value) && $value > 0 && $value <= 4) for($i=0; $i<$value; ++$i)
-      {
-        if($deckCards != "") $deckCards .= " ";
-        $deckCards .= $key;
-      }
-    }
+  foreach($deckObj->{'cards'}->{'material'} as $key => $value) {
+    $cardID = $value->{'uuid'};
+    if($materialCards != "") $materialCards .= " ";
+    $materialCards .= $cardID;
   }
 
   //We have the decklist, now write to file
