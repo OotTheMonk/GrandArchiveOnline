@@ -231,6 +231,9 @@ function AuraStartTurnAbilities()
         AddDecisionQueue("MZOP", $mainPlayer, "GETCARDID", 1);
         AddDecisionQueue("PUTPLAY", $mainPlayer, "-", 1);
         break;
+      case "ao8bls6g7x"://Healing Aura
+        Recover($mainPlayer, 1);
+        break;
       default:
         break;
     }

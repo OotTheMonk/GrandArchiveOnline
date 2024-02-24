@@ -1918,6 +1918,7 @@ function SelfCostModifier($cardID)
     case "5tlzsmw3rr": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? SearchCount(SearchAura($currentPlayer, "DOMAIN")) : 0); break;//Summon Sentinels
     case "215upufyoz": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 2 : 0); break;//Tether in Flames
     case "99sx6q3p6i": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Spellshield: Wind
+    case "ao8bls6g7x": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Healing Aura
     default: break;
   }
   return $modifier;
