@@ -160,6 +160,16 @@ function HasSteadfast($cardID, $player, $index)
   switch($cardID)
   {
     case "8lrj52215u": return true;//Vaporjet Shieldbearer
+    case "23yfzk96yd": return IsClassBonusActive($player, "GUARDIAN");//Veteran Blazebearer
+    default: return false;
+  }
+}
+
+function HasTaunt($cardID, $player, $index)
+{
+  switch($cardID)
+  {
+    case "23yfzk96yd": return SearchCurrentTurnEffects($cardID, $player);//Veteran Blazebearer
     default: return false;
   }
 }

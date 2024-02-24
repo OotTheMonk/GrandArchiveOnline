@@ -3226,6 +3226,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ADDCURRENTEFFECT", $currentPlayer, "<-", 1);
       }
       break;
+    case "23yfzk96yd"://Veteran Blazebearer
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      AddNextTurnEffect($cardID, $currentPlayer);
+      break;
     default: break;
   }
 }
