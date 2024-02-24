@@ -234,6 +234,9 @@ function AuraStartTurnAbilities()
       case "ao8bls6g7x"://Healing Aura
         Recover($mainPlayer, 1);
         break;
+      case "c7wklzjmwu"://Palatial Concourse
+        Opt($mainPlayer, 1);
+        break;
       default:
         break;
     }
