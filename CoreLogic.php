@@ -3301,6 +3301,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       Mill(1, 1);
       Mill(2, 1);
       break;
+    case "i1f0ht2tsn"://Strategic Warfare
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      if(CharacterLevel($currentPlayer) >= 2) {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY");
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "i1f0ht2tsn-TRUE,HAND", 1);
+      }
+      break;
     default: break;
   }
 }

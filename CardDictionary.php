@@ -102,6 +102,18 @@ function HasVigor($cardID, $player)
 
 function HasTrueSight($cardID, $player, $index)
 {
+  global $currentTurnEffects;
+  $allies = &GetAllies($player);
+  $uniqueID = $allies[$index+5];
+  for($i=0; $i<count($currentTurnEffects); $i+=CurrentTurnPieces())
+  {
+    if($currentTurnEffects[$i+2] != $uniqueID) continue;
+    switch($currentTurnEffects[$i])
+    {
+      case "i1f0ht2tsn-TRUE": return true;
+      default: break;
+    }
+  }
   switch($cardID)
   {
     case "3TfIePpuZO": return true;//Trained Hawk
