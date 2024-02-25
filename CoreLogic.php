@@ -3330,6 +3330,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "zi5h8asbie"://Scatter Essence
       MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=PHANTASIA");
       break;
+    case "xy5lh23qu7"://Obelisk of Fabrication
+      $index = PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
+      $ally = new Ally("MYALLY-" . $index);
+      $ally->AddBuffCounter();
+      break;
     default: break;
   }
 }
