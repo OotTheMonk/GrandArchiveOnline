@@ -55,6 +55,7 @@ function EffectAttackModifier($cardID)
     case "5kt3q2svd5": return $subparam;//Amorphous Strike
     case "659ytyj2s3": return $subparam;//Imperious Highlander
     case "i1f0ht2tsn": return 1;//Strategic Warfare
+    case "huqj5bbae3": return 2;//Winds of Retribution
     default: return 0;
   }
 }
@@ -423,7 +424,8 @@ function IsCombatEffectActive($cardID)
     case "7t9m4muq2r": return true;//Thieving Cut
     case "5kt3q2svd5": return true;//Amorphous Strike
     case "659ytyj2s3": return true;//Imperious Highlander
-    case "i1f0ht2tsn": return true;//Strategic Warfare
+    case "i1f0ht2tsn": return IsAlly($attackID);//Strategic Warfare
+    case "huqj5bbae3": return IsAlly($attackID);//Winds of Retribution
     default: return false;
   }
 }
@@ -445,7 +447,8 @@ function IsCombatEffectPersistent($cardID)
     case "fMv7tIOZwLAttack": return true;//Aqueous Enchanting
     case "rxxwQT054x": return true;//Command the Hunt
     case "vcZSHNHvKX": return true;//Spirit Blade: Ghost Strike
-    case "i1f0ht2tsn": return IsAllyAttacking();//Strategic Warfare
+    case "i1f0ht2tsn": return true;//Strategic Warfare
+    case "huqj5bbae3": return true;//Winds of Retribution
     default:
       return false;
   }
