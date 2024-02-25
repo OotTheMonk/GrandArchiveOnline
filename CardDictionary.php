@@ -189,6 +189,7 @@ function HasTaunt($cardID, $player, $index)
   {
     case "23yfzk96yd": return SearchCurrentTurnEffects($cardID, $player);//Veteran Blazebearer
     case "eifnz0fgm3": return true;//Stalwart Shieldmate
+    case "pufyoz23yf": return IsClassBonusActive($player, "GUARDIAN");//Waverider Protector
     default: return false;
   }
 }
