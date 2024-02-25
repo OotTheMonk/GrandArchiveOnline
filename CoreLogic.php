@@ -3310,6 +3310,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "i1f0ht2tsn-TRUE,HAND", 1);
       }
       break;
+    case "igka5av43e"://Incendiary Fractal
+      $damage = 2;
+      if(IsClassBonusActive($currentPlayer, "MAGE")) $damage = 4;
+      DealArcane($damage, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      break;
     default: break;
   }
 }
@@ -3446,6 +3451,7 @@ function PlayRequiresTarget($cardID)
     case "2ugmnmp5af": return 2;//Take Cover
     case "bro89w0ejc": return 2;//Displace
     case "ch2bbmoqk2": return 2;//Organize the Alliance
+    case "igka5av43e": return 3;//Incendiary Fractal
     default: return -1;
   }
 }
