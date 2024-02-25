@@ -117,6 +117,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $mzID = AttackerMZID($mainPlayer);
       $ally = new Ally($mzID);
       return $ally->IsDistant() ? 1 : 0;
+    case "ygojwk0pw0"://Automaton Bomber
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 4 : 0;
     default: return 0;
   }
 }
