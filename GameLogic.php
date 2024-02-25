@@ -224,9 +224,8 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
     case "ADDHAND":
       AddPlayerHand($lastResult, $player, "-");
       return $lastResult;
-    case "ADDMYPITCH":
-      $pitch = &GetPitch($player);
-      array_push($pitch, $lastResult);
+    case "ADDMEMORY":
+      AddMemory($lastResult, $player, "HAND", "DOWN");
       return $lastResult;
     case "ADDARSENAL":
       $params = explode("-", $parameter);
@@ -809,10 +808,10 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
         }
         PrependDecisionQueue("PAYRESOURCES", $player, $parameter, 1);
         PrependDecisionQueue("SUBPITCHVALUE", $player, $lastResult, 1);
-        PrependDecisionQueue("ADDMYPITCH", $player, "-", 1);
+        PrependDecisionQueue("ADDMEMORY", $player, "-", 1);
         PrependDecisionQueue("REMOVEMYHAND", $player, "-", 1);
         PrependDecisionQueue("CHOOSEHANDCANCEL", $player, "<-", 1);
-        PrependDecisionQueue("SETDQCONTEXT", $player, "Choose a pitch card", 1);
+        PrependDecisionQueue("SETDQCONTEXT", $player, "Choose a card to reserve", 1);
         PrependDecisionQueue("FINDINDICES", $player, "HAND", 1);
       }
       return $parameter;
@@ -829,7 +828,7 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
       AppendClassState($player, $parameters[0], $parameters[1]);
       return $lastResult;
     case "SUBPITCHVALUE":
-      return $parameter - PitchValue($lastResult);
+      return $parameter - 1;
     case "BUFFARCANE":
       AddCurrentTurnEffect($parameter . "-" . $lastResult, $player);
       return $lastResult;

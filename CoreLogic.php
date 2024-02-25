@@ -3292,8 +3292,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       break;
     case "fdt8ptrz1b"://Scavenging Raccoon
-      MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
-      MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
+      if($from != "PLAY") {
+        MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
+        MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
+      }
       break;
     case "fp66pv4n1n"://Rusted Warshield
       AddCurrentTurnEffect($cardID, $currentPlayer);
@@ -3334,6 +3336,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $index = PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
       $ally = new Ally("MYALLY-" . $index);
       $ally->AddBuffCounter();
+      break;
+    case "y5ttkk39i1"://Winbless Gatekeeper
+      if($from != "PLAY") {
+        AddDecisionQueue("YESNO", $currentPlayer, "if you want to pay 2 to buff an ally", 0, 1);
+        AddDecisionQueue("NOPASS", $currentPlayer, "-");
+        AddDecisionQueue("PAYRESOURCES", $currentPlayer, "2", 1);
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY:class=GUARDIAN", 1);
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
+      }
       break;
     default: break;
   }
