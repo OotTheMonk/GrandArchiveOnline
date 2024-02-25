@@ -130,6 +130,7 @@ function AllyPride($cardID)
     case "krgjMyVHRd": return 6;//Lakeside Serpent
     case "075L8pLihO": return 5;//Arima, Gaia's Wings
     case "wFH1kBLrWh": return 7;//Arcane Elemental
+    case "p3nq0ymvdd": return 2;//Ordinary Bear
     default: return -1;
   }
 }
