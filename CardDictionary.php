@@ -3,6 +3,14 @@
 include "Constants.php";
 include "GeneratedCode/GeneratedCardDictionaries.php";
 
+/**
+ * @param $cardName
+ * @return string UUID of the card in question
+ */
+function CardIdFromName($cardName):string{
+  return CardUUIDFromName(trim(strtolower($cardName)) . ";");
+}
+
 function CardType($cardID)
 {
   if(!$cardID) return "";

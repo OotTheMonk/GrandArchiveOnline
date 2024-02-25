@@ -49,7 +49,7 @@
       AddToTrie($subtypeTrie, $card->uuid, 0, implode(",", $card->subtypes));
       AddToTrie($elementTrie, $card->uuid, 0, $card->element);
       AddToTrie($nameTrie, $card->uuid, 0, $card->name);
-      AddToTrie($nameToUUIDTrie, $card->name . ";", 0, $card->uuid);
+      AddToTrie($nameToUUIDTrie, strtolower($card->name) . ";", 0, $card->uuid);
       AddToTrie($memoryCostTrie, $card->uuid, 0, ($card->cost_memory == null ? -1 : $card->cost_memory));
       AddToTrie($reserveCostTrie, $card->uuid, 0, ($card->cost_reserve == null ? -1 : $card->cost_reserve));
       AddToTrie($levelTrie, $card->uuid, 0, ($card->level == null ? 0 : $card->level));
