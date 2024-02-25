@@ -3320,6 +3320,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "huqj5bbae3"://Winds of Retribution
       AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
+    case "r0zadf9q1w"://Conjure Downpour
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      if(IsClassBonusActive($currentPlayer, "CLERIC") && MemoryCount($currentPlayer) >= 4) DrawIntoMemory($currentPlayer);
+      break;
     default: break;
   }
 }
@@ -3351,6 +3355,11 @@ function SpiritBladeDispersion($player)
 function Chill($player, $amount=1)
 {
 
+}
+
+function MemoryCount($player) {
+  $memory = &GetMemory($player);
+  return count($memory)/MemoryPieces();
 }
 
 function MemoryRevealRandom($player)
