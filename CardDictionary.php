@@ -174,6 +174,7 @@ function HasStealth($cardID, $player, $index)
     case "4s0c9XgLg7": return true;//Snow Fairy
     case "ZfCtSldRIy": return true;//Windrider Mage
     case "FWnxKjSeB1": return true;//Spark Fairy
+    case "wklzjmwuir": return true;//Shimmercloak Assassin
     default: return false;
   }
 }
