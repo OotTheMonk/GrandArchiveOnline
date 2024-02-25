@@ -382,7 +382,9 @@ function CurrentEffectEndTurnAbilities()
       AddNextTurnEffect($currentTurnEffects[$i], $currentTurnEffects[$i + 1]);
     }
     switch($currentTurnEffects[$i]) {
-
+      case "wzh973fdt8"://Develop Mana
+        AddNextTurnEffect($currentTurnEffects[$i], $currentTurnEffects[$i + 1]);
+        break;
       default: break;
     }
     if($remove) RemoveCurrentTurnEffect($i);
@@ -574,6 +576,7 @@ function CurrentEffectLevelModifier($player)
         case "AnEPyfFfHj": $levelModifier += $subparam;//Power Overwhelming
         case "i0a5uhjxhk": $levelModifier += 1; break;//Blightroot (1)
         case "5joh300z2s": $levelModifier += 1; break;//Mana Root (2)
+        case "wzh973fdt8": $levelModifier += 1;//Develop Mana
         default:
           break;
       }

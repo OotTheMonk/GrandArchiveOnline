@@ -3353,6 +3353,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
       AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
       break;
+    case "wzh973fdt8"://Develop Mana
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      break;
     default: break;
   }
 }
