@@ -1921,6 +1921,7 @@ function SelfCostModifier($cardID)
     case "ao8bls6g7x": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Healing Aura
     case "huqj5bbae3": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") && CharacterLevel($currentPlayer) >= 2 ? 2 : 0); break;//Winds of Retribution
     case "kvoqk1l75t": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? 2 : 0); break;//Heavy Swing
+    case "xhs5jwsl7d": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Enchaining Gale
     default: break;
   }
   return $modifier;
@@ -3346,6 +3347,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
         AddDecisionQueue("MZOP", $currentPlayer, "BUFFALLY", 1);
       }
+      break;
+    case "xhs5jwsl7d"://Enchaining Gale
+      AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY");
+      AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
       break;
     default: break;
   }
