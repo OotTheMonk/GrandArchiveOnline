@@ -1920,6 +1920,7 @@ function SelfCostModifier($cardID)
     case "99sx6q3p6i": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Spellshield: Wind
     case "ao8bls6g7x": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Healing Aura
     case "huqj5bbae3": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") && CharacterLevel($currentPlayer) >= 2 ? 2 : 0); break;//Winds of Retribution
+    case "kvoqk1l75t": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? 2 : 0); break;//Heavy Swing
     default: break;
   }
   return $modifier;
