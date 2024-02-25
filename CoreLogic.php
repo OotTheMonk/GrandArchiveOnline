@@ -3356,6 +3356,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "wzh973fdt8"://Develop Mana
       AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
+    case "x7u6wzh973"://Frostbinder Apostle
+      if(CharacterLevel($currentPlayer) >= 2) {
+        DealArcane(4, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
+      }
+      break;
     default: break;
   }
 }
@@ -3498,6 +3503,7 @@ function PlayRequiresTarget($cardID)
     case "bro89w0ejc": return 2;//Displace
     case "ch2bbmoqk2": return 2;//Organize the Alliance
     case "igka5av43e": return 3;//Incendiary Fractal
+    case "x7u6wzh973": return 2;//Frostbinder Apostle
     default: return -1;
   }
 }

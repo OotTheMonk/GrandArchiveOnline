@@ -209,6 +209,7 @@ function HasIntercept($cardID, $player, $index)
   switch($cardID)
   {
     case "c9p4lpnvx7": return SearchCount(SearchAuras($player, type:"PHANTASIA"));//Awakened Deacon
+    case "x7u6wzh973": return true;//Frostbinder Apostle
     default: return false;
   }
 }

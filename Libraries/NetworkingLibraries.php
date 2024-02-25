@@ -1485,6 +1485,7 @@ function MaterializeCardEffect($cardID)
   global $currentPlayer;
   switch($cardID)
   {
+    //Spirit of Fire, Spirit of Water, Spirit of Wind, Lost Spirit
     case "LMyKyVC2O9": case "tafqldAGRF": case "pNiyaGlIe7": case "cFdWXaILRT":
       for($i=0; $i<7; ++$i) Draw($currentPlayer);
       break;
