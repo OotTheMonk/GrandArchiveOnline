@@ -3324,6 +3324,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect($cardID, $currentPlayer);
       if(IsClassBonusActive($currentPlayer, "CLERIC") && MemoryCount($currentPlayer) >= 4) DrawIntoMemory($currentPlayer);
       break;
+    case "zadf9q1wl8"://Harvest Herbs
+      Gather($currentPlayer, 1);
+      break;
     default: break;
   }
 }
