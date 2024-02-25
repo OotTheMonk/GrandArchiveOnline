@@ -3327,6 +3327,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "zadf9q1wl8"://Harvest Herbs
       Gather($currentPlayer, 1);
       break;
+    case "zi5h8asbie"://Scatter Essence
+      MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=PHANTASIA");
+      break;
     default: break;
   }
 }
