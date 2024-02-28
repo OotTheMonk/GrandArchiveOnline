@@ -84,6 +84,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "EQZZsiUDyl"://Storm Tyrant's Eye
     case "1bqry41lw9"://Explosive Rune
     case "fp66pv4n1n"://Rusted Warshield
+    case "73fdt8ptrz"://Windwalker Boots
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
@@ -260,7 +261,13 @@ function ItemEndTurnAbilities()
   for($i = count($items) - ItemPieces(); $i >= 0; $i -= ItemPieces()) {
     $remove = false;
     switch($items[$i]) {
-
+      case "73fdt8ptrz"://Windwalker Boots
+        $char = &GetPlayerCharacter($mainPlayer);
+        if(IsClassBonusActive($mainPlayer, "ASSASSIN") && $char[1] == "2") {
+          WriteLog("Windwalker Boots adds a preparation counter for $mainPlayer");
+          AddPreparationCounters($mainPlayer, 1);
+        }
+        break;
       default: break;
     }
     if($remove) DestroyItemForPlayer($mainPlayer, $i);
