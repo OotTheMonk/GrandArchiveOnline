@@ -3362,6 +3362,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         DealArcane(4, 1, "PLAYCARD", $cardID, resolvedTarget: $target);
       }
       break;
+    case "a4dk88zq9o"://Varuckan Acolyte
+      if($from != "PLAY") {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYITEMS:type=REGALIA;maxCost=0&THEIRITEMS:type=REGALIA;maxCost=0&MYCHAR:type=REGALIA;maxCost=0&THEIRCHAR:type=REGALIA;maxCost=0");
+        AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a regalia to destroy", 1);
+        AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
+      }
+      break;
     default: break;
   }
 }

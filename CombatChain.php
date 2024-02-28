@@ -52,8 +52,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
     case "LUfgfsWTTO": return SearchDiscard($mainPlayer, element:"FIRE");//Fiery Momentum
     case "vBetRTn3eW": if(IsClassBonusActive($mainPlayer, "WARRIOR")) { $memory = &GetMemory($mainPlayer); return count($memory)/MemoryPieces() == 1 ? 2 : 0; } return 0;//Opening Cut
     case "TgYTZg6TaG": return (IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 : 0);
-    case "7NMFSRR5V3": return SearchCount(SearchAllies($playerID, subtype:"BEAST")) > 0 ? 1 : 0;//Fervent Beastmaster
-    case "csMiEObm2l": return CharacterLevel($playerID) >= 3 && IsClassBonusActive($playerID, "WARRIOR") ? 1 :0;//Strapping Conscript
+    case "7NMFSRR5V3": return SearchCount(SearchAllies($mainPlayer, subtype:"BEAST")) > 0 ? 1 : 0;//Fervent Beastmaster
+    case "csMiEObm2l": return CharacterLevel($mainPlayer) >= 3 && IsClassBonusActive($mainPlayer, "WARRIOR") ? 1 :0;//Strapping Conscript
     case "LNSRQ5xW6E"://Stillwater Patrol
       $target = GetAttackTarget();
       $targetArr = explode("-", $target);
@@ -121,6 +121,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $mzID = AttackerMZID($mainPlayer);
       $ally = new Ally($mzID);
       return $ally->IsDistant() ? 4 : 0;
+    case "a4dk88zq9o"://Varuckan Acolyte
+      return CharacterLevel($mainPlayer) >= 3 ? 3 : 0;
     default: return 0;
   }
 }
