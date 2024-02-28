@@ -123,6 +123,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return $ally->IsDistant() ? 4 : 0;
     case "a4dk88zq9o"://Varuckan Acolyte
       return CharacterLevel($mainPlayer) >= 3 ? 3 : 0;
+    case "1gxrpx8jyp"://Fanatical Devotee
+      return MemoryCount($mainPlayer) >= 4 ? 1 : 0;
     default: return 0;
   }
 }

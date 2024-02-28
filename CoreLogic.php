@@ -2474,7 +2474,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       }
       break;
     case "soO3hjaVfN"://Rending Flames
-      if(SearchCount(SearchDiscard($currentPlayer, element:"FIRE")) >= 3 && (true || IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "WARRIOR")))
+      if(SearchCount(SearchDiscard($currentPlayer, element:"FIRE")) >= 3 && (IsClassBonusActive($currentPlayer, "ASSASSIN") || IsClassBonusActive($currentPlayer, "WARRIOR")))
       {
         AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=FIRE");
         AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
@@ -3368,6 +3368,24 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a regalia to destroy", 1);
         AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
         AddDecisionQueue("MZDESTROY", $currentPlayer, "-", 1);
+      }
+      break;
+    case "1gxrpx8jyp"://Fanatical Devotee
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      if(SearchCount(SearchDiscard($currentPlayer, element:"FIRE")) >= 2 && (IsClassBonusActive($currentPlayer, "CLERIC") || IsClassBonusActive($currentPlayer, "TAMER")))
+      {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=FIRE");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZBANISH", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+        for($i=0; $i<2; ++$i)
+        {
+          AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:element=FIRE", 1);
+          AddDecisionQueue("CHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+          AddDecisionQueue("MZBANISH", $currentPlayer, "<-", 1);
+          AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+        }
+        AddDecisionQueue("TAKEDAMAGE", $otherPlayer, "3-1gxrpx8jyp-ONDEATH", 1);
       }
       break;
     default: break;
