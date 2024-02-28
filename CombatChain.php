@@ -125,6 +125,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return CharacterLevel($mainPlayer) >= 3 ? 3 : 0;
     case "1gxrpx8jyp"://Fanatical Devotee
       return MemoryCount($mainPlayer) >= 4 ? 1 : 0;
+    case "8kmoi0a5uh"://Bulwark Sword
+      return IsClassBonusActive($mainPlayer, "GUARDIAN") ? 1 : 0;
     default: return 0;
   }
 }

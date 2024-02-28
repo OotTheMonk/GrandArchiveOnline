@@ -251,6 +251,8 @@ function AbilityCost($cardID)
 {
   global $currentPlayer;
   switch($cardID) {
+    case "8kmoi0a5uh"://Bulwark Sword
+      return 2;
     case "0z2snsdwmx"://Scale of Souls
       return 2;
     case "5swaf8urrq"://Whirlwind Vizier
