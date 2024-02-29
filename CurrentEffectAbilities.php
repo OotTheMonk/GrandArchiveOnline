@@ -57,6 +57,7 @@ function EffectAttackModifier($cardID)
     case "i1f0ht2tsn": return 1;//Strategic Warfare
     case "huqj5bbae3": return 2;//Winds of Retribution
     case "r0zadf9q1w": return -2;//Conjure Downpour
+    case "fzcyfrzrpl": return 1;//Heatwave Generator
     default: return 0;
   }
 }
@@ -434,6 +435,7 @@ function IsCombatEffectActive($cardID)
     case "i1f0ht2tsn": return IsAlly($attackID);//Strategic Warfare
     case "huqj5bbae3": return IsAlly($attackID);//Winds of Retribution
     case "r0zadf9q1w": return true;//Conjure Downpour
+    case "fzcyfrzrpl": return true;//Heatwave Generator
     default: return false;
   }
 }

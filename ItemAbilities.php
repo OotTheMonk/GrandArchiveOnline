@@ -215,6 +215,12 @@ function ItemStartTurnAbilities()
       case "P7hHZBVScB"://Orb of Glitter
         PlayerOpt($mainPlayer, 1);
         break;
+      case "fzcyfrzrpl"://Heatwave Generator
+        AddDecisionQueue("MULTIZONEINDICES", $mainPlayer, "MYALLY");
+        AddDecisionQueue("CHOOSEMULTIZONE", $mainPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $mainPlayer, "GETUNIQUEID", 1);
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $mainPlayer, "fzcyfrzrpl-TRUE,HAND", 1);
+        break;
       default: break;
     }
   }
