@@ -127,6 +127,7 @@ function HasTrueSight($cardID, $player, $index)
     case "3TfIePpuZO": return true;//Trained Hawk
     case "LNSRQ5xW6E": return true;//Stillwater Patrol
     case "Dz8I0eJzaf": return IsClassBonusActive($player, "WARRIOR");//Sword of Seeking
+    case "du50pcescf": return CharacterLevel($player) >= 2;//Gawain, Chivalrous Thief
     default: return false;
   }
 }

@@ -37,6 +37,15 @@ function ProcessHitEffect($cardID)
         AddDecisionQueue("MILL", $mainPlayer, 1, 1);
       }
       break;
+    case "du50pcescf"://Gawain, Chivalrous Thief
+      if(IsClassBonusActive($mainPlayer, "ASSASSIN") || IsClassBonusActive($mainPlayer, "RANGER"))
+      {
+        AddDecisionQueue("YESNO", $mainPlayer, "if you want to sacrifice Gawain");
+        AddDecisionQueue("NOPASS", $mainPlayer, "-");
+        AddDecisionQueue("PASSPARAMETER", $mainPlayer, AttackerMZID($mainPlayer), 1);
+        AddDecisionQueue("MZDESTROY", $mainPlayer, "-", 1);
+        MZMoveCard($mainPlayer, "THEIRMEMORY", "THEIRDISCARD,MEMORY", isSubsequent:true);
+      }
     default: break;
   }
 
