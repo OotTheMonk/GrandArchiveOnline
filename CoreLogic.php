@@ -2330,6 +2330,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "kk46Whz7CJ"://Surveillance Stone
     case "1XegCUjBnY"://Life Essence Amulet
     case "73fdt8ptrz"://Windwalker Boots
+    case "jxhkurfp66"://Charged Manaplate
       Draw($currentPlayer);
       break;
     case "YOjdZJpOO1"://Blissful Calling

@@ -373,6 +373,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "fp66pv4n1n"://Rusted Warshield
     case "73fdt8ptrz"://Windwalker Boots
     case "af098kmoi0"://Orb of Hubris
+    case "jxhkurfp66"://Charged Manaplate
       return "I";
     case "i0a5uhjxhk"://Blightroot (1)
     case "5joh300z2s"://Mana Root (2)
