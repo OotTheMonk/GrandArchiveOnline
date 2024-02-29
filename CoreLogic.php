@@ -1921,6 +1921,7 @@ function SelfCostModifier($cardID)
     case "kvoqk1l75t": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? 2 : 0); break;//Heavy Swing
     case "xhs5jwsl7d": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Enchaining Gale
     case "fzcyfrzrpl": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? 1 : 0); break;//Heatwave Generator
+    case "lq2kkvoqk1": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Necklace of Foresight
     default: break;
   }
   return $modifier;
@@ -3410,6 +3411,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         $index = PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
         $ally = new Ally("MYALLY-" . $index);
         $ally->AddBuffCounter();
+      }
+      break;
+    case "lq2kkvoqk1"://Necklace of Foresight
+      if($from == "PLAY") {
+        PlayerOpt($currentPlayer, 4);
       }
       break;
     default: break;

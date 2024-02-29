@@ -87,6 +87,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "73fdt8ptrz"://Windwalker Boots
     case "af098kmoi0"://Orb of Hubris
     case "jxhkurfp66"://Charged Manaplate
+    case "lq2kkvoqk1"://Necklace of Foresight
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
