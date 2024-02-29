@@ -3388,6 +3388,18 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("TAKEDAMAGE", $otherPlayer, "3-1gxrpx8jyp-ONDEATH", 1);
       }
       break;
+    case "af098kmoi0"://Orb of Hubris
+      Draw($currentPlayer);
+      Draw($currentPlayer);
+      Draw($currentPlayer);
+      AddDecisionQueue("FINDINDICES", $currentPlayer, "HAND");
+      AddDecisionQueue("PREPENDLASTRESULT", $currentPlayer, "3-");
+      AddDecisionQueue("APPENDLASTRESULT", $currentPlayer, "-3");
+      AddDecisionQueue("MULTICHOOSEHAND", $currentPlayer, "<-", 1);
+      AddDecisionQueue("MULTIREMOVEHAND", $currentPlayer, "-", 1);
+      AddDecisionQueue("MULTIADDDECK", $currentPlayer, "-", 1);
+      AddDecisionQueue("SHUFFLEDECK", $currentPlayer, "-", 1);
+      break;
     default: break;
   }
 }
