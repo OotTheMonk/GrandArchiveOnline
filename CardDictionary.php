@@ -268,6 +268,8 @@ function AbilityCost($cardID)
       $cost = 4 - SearchCount(SearchAura($currentPlayer, "DOMAIN"));
       if($cost < 0) $cost = 0;
       return $cost;
+    case "j68m69iq4d"://Sentinel Fabricator
+      return 3;
     default: break;
   }
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return 0;
@@ -385,6 +387,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "1lw9n0wpbh"://Protective Fractal
     case "xy5lh23qu7"://Obelisk of Fabrication
     case "d6soporhlq"://Obelisk of Protection
+    case "j68m69iq4d"://Sentinel Fabricator
       return "I";
     case "0z2snsdwmx"://Scale of Souls
     case "2ha4dk88zq"://Cloak of Stillwater

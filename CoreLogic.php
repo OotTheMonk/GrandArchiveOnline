@@ -3405,6 +3405,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddCurrentTurnEffect($cardID, $currentPlayer);
       }
       break;
+    case "j68m69iq4d"://Sentinel Fabricator
+      if($from == "PLAY") {
+        $index = PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
+        $ally = new Ally("MYALLY-" . $index);
+        $ally->AddBuffCounter();
+      }
+      break;
     default: break;
   }
 }

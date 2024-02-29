@@ -102,6 +102,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "2ha4dk88zq"://Cloak of Stillwater
     case "xy5lh23qu7"://Obelisk of Fabrication
     case "d6soporhlq"://Obelisk of Protection
+    case "j68m69iq4d"://Sentinel Fabricator
       $items = &GetItems($currentPlayer);
       $items[$index+2] = 1;
       break;
