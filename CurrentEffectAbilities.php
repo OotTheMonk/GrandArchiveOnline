@@ -215,6 +215,10 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           if($preventable) $damage -= 2;
           $remove = true;
           break;
+        case "d6soporhlq"://Obelisk of Protection
+          if($preventable) $damage -= 2;
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

@@ -3398,6 +3398,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("MULTIADDDECK", $currentPlayer, "-", 1);
       AddDecisionQueue("SHUFFLEDECK", $currentPlayer, "-", 1);
       break;
+    case "d6soporhlq"://Obelisk of Protection
+      if($from == "PLAY") {
+        AddCurrentTurnEffect($cardID, $currentPlayer);
+      }
+      break;
     default: break;
   }
 }
