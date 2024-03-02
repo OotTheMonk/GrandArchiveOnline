@@ -1308,6 +1308,9 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
     case "NEGATE":
       NegateLayer($parameter);
       return "";
+    case "DRAWINTOMEMORY":
+      DrawIntoMemory($player);
+      return "";
     default:
       return "NOTSTATIC";
   }

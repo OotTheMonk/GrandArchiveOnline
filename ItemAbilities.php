@@ -104,6 +104,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "xy5lh23qu7"://Obelisk of Fabrication
     case "d6soporhlq"://Obelisk of Protection
     case "j68m69iq4d"://Sentinel Fabricator
+    case "8c9htu9agw"://Prototype Staff
       $items = &GetItems($currentPlayer);
       $items[$index+2] = 1;
       break;
@@ -323,6 +324,7 @@ function ItemLevelModifiers($player)
     {
       case "JPcFmCpdiF": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$modifier; break;//Beastbond Ears
       case "WAFNy2lY5t": if(SearchCount(SearchAllies($player, "", "BEAST")) + SearchCount(SearchAllies($player, "", "ANIMAL")) > 0) ++$modifier; break;//Melodious Flute
+      case "8c9htu9agw": if(IsClassBonusActive($player, "CLERIC") && MemoryCount($player) >= 4) ++$modifier; break;//Prototype Staff
       default: break;
     }
   }

@@ -3418,6 +3418,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         PlayerOpt($currentPlayer, 4);
       }
       break;
+    case "8c9htu9agw"://Prototype Staff
+      if(CharacterLevel($currentPlayer) >= 4) {
+        BottomDeck($currentPlayer, true, shouldDraw:false);
+        AddDecisionQueue("DRAWINTOMEMORY", $currentPlayer, "-", 1);
+      }
+      break;
     default: break;
   }
 }
