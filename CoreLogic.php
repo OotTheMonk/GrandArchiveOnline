@@ -1922,6 +1922,7 @@ function SelfCostModifier($cardID)
     case "xhs5jwsl7d": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Enchaining Gale
     case "fzcyfrzrpl": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? 1 : 0); break;//Heatwave Generator
     case "lq2kkvoqk1": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Necklace of Foresight
+    case "ht2tsn0ye3": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Meltdown
     default: break;
   }
   return $modifier;
@@ -3443,6 +3444,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $items = &GetItems($currentPlayer);
       $draws = floor($items[$index+1]/4);
       for($i=0; $i<$draws; ++$i) Draw($currentPlayer);
+      break;
+    case "ht2tsn0ye3"://Meltdown
+      MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=DOMAIN&THEIRITEMS&THEIRCHAR:type=WEAPON", may:false);
       break;
     default: break;
   }
