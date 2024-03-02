@@ -58,6 +58,10 @@ function EffectAttackModifier($cardID)
     case "huqj5bbae3": return 2;//Winds of Retribution
     case "r0zadf9q1w": return -2;//Conjure Downpour
     case "fzcyfrzrpl": return 1;//Heatwave Generator
+    case "44vm5kt3q2"://Battlefield Spotter
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 1 : 0;
     default: return 0;
   }
 }
@@ -436,6 +440,7 @@ function IsCombatEffectActive($cardID)
     case "huqj5bbae3": return IsAlly($attackID);//Winds of Retribution
     case "r0zadf9q1w": return true;//Conjure Downpour
     case "fzcyfrzrpl": return true;//Heatwave Generator
+    case "44vm5kt3q2": return true;//Battlefield Spotter
     default: return false;
   }
 }

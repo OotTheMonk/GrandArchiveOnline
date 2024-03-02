@@ -273,6 +273,9 @@ function AllyAttackAbilities($attackID)
       case "IAkuSSnzYB"://Banner Knight
         if($allies[$i+5] != $combatChainState[$CCS_AttackUniqueID] && IsClassBonusActive($mainPlayer, "WARRIOR") && CharacterLevel($mainPlayer) >= 2) AddCurrentTurnEffect("IAkuSSnzYB", $mainPlayer, "PLAY");
         break;
+      case "44vm5kt3q2"://Battlefield Spotter
+        if(CharacterLevel($mainPlayer) >= 2 && $allies[$i+5] != $combatChainState[$CCS_AttackUniqueID]) AddCurrentTurnEffect("44vm5kt3q2", $mainPlayer, "PLAY");
+        break;
       default: break;
     }
   }

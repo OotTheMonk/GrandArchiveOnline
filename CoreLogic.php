@@ -3424,6 +3424,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("DRAWINTOMEMORY", $currentPlayer, "-", 1);
       }
       break;
+    case "44vm5kt3q2"://Battlefield Spotter
+      if(IsClassBonusActive($currentPlayer, "RANGER")) {
+        $ally = new Ally($target);
+        $ally->SetDistant();
+      }
+      break;
     default: break;
   }
 }
@@ -3567,6 +3573,7 @@ function PlayRequiresTarget($cardID)
     case "ch2bbmoqk2": return 2;//Organize the Alliance
     case "igka5av43e": return 3;//Incendiary Fractal
     case "x7u6wzh973": return 2;//Frostbinder Apostle
+    case "44vm5kt3q2": return 2;//Battlefield Spotter
     default: return -1;
   }
 }
