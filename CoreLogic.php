@@ -3459,6 +3459,21 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "klryvfq3hu"://Deployment Beacon
       PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
       break;
+    case "96659ytyj2"://Crimson Protective Trinket
+      if($from == "PLAY") {
+        $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+        $memory = &GetMemory($otherPlayer);
+        $amount = count($memory)/MemoryPieces() > 1 ? 2 : count($memory)/MemoryPieces();
+        for($i=0; $i<$amount; ++$i) {
+          $index = MemoryRevealRandom($otherPlayer);
+          if($index > -1 && ElementContains($memory[$index], "WIND", $otherPlayer)) {
+            $cardID = $memory[$index];
+            RemoveMemory($otherPlayer, $index);
+            BanishCardForPlayer($cardID, $otherPlayer, "MEMORY", "-", "MEMORY");
+          }
+        }
+      }
+      break;
     default: break;
   }
 }
@@ -3497,13 +3512,14 @@ function MemoryCount($player) {
   return count($memory)/MemoryPieces();
 }
 
-function MemoryRevealRandom($player)
+function MemoryRevealRandom($player, $returnIndex=false)
 {
   $memory = &GetMemory($player);
   $rand = GetRandom()%(count($memory)/MemoryPieces());
-  $toReveal = $memory[$rand*MemoryPieces()];
+  $index = $rand*MemoryPieces();
+  $toReveal = $memory[$index];
   $wasRevealed = RevealCards($toReveal);
-  return $wasRevealed ? $toReveal : "";
+  return $wasRevealed ? ($returnIndex ? $toReveal : $index) : ($returnIndex ? -1 : "");
 }
 
 function DamagePlayerAllies($player, $damage, $source, $type)
