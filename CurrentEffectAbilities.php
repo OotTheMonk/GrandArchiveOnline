@@ -224,6 +224,9 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           if($preventable) $damage -= 2;
           $remove = true;
           break;
+        case "isxy5lh23q"://Flash Grenade
+          if($preventable) $damage -= 3;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

@@ -3448,6 +3448,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "ht2tsn0ye3"://Meltdown
       MZChooseAndDestroy($currentPlayer, "THEIRAURAS:type=DOMAIN&THEIRITEMS&THEIRCHAR:type=WEAPON", may:false);
       break;
+    case "isxy5lh23q"://Flash Grenade
+      if($from != "PLAY") {
+        Draw($currentPlayer);
+      }
+      else {
+        AddCurrentTurnEffect($cardID, $currentPlayer);
+      }
+      break;
     default: break;
   }
 }
