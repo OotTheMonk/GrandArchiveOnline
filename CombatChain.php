@@ -136,6 +136,11 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return MemoryCount($mainPlayer) >= 4 ? 1 : 0;
     case "8kmoi0a5uh"://Bulwark Sword
       return IsClassBonusActive($mainPlayer, "GUARDIAN") ? 1 : 0;
+    case "d53zc9p4lp"://Airship Cannoneer
+      if(!IsClassBonusActive($mainPlayer, "RANGER")) return 0;
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 4 : 0;
     default: return 0;
   }
 }

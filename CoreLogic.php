@@ -3430,6 +3430,14 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         $ally->SetDistant();
       }
       break;
+    case "d53zc9p4lp"://Airship Cannoneer
+      if($from == "PLAY" && SearchCount(SearchDiscard($currentPlayer, element:"FIRE")) >= 3) {
+        MZMoveCard($currentPlayer, "MYDISCARD:element=FIRE", "MYBANISH,GY,-", may:true);
+        MZMoveCard($currentPlayer, "MYDISCARD:element=FIRE", "MYBANISH,GY,-", may:true);
+        MZMoveCard($currentPlayer, "MYDISCARD:element=FIRE", "MYBANISH,GY,-", may:true);
+        AddDecisionQueue("ATTACKEROP", $currentPlayer, "SETDISTANT", 1);
+      }
+      break;
     default: break;
   }
 }
