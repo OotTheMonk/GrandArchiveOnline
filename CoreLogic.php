@@ -3456,6 +3456,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddCurrentTurnEffect($cardID, $currentPlayer);
       }
       break;
+    case "klryvfq3hu"://Deployment Beacon
+      PlayAlly("mu6gvnta6q", $currentPlayer);//Automaton Drone
+      break;
     default: break;
   }
 }

@@ -153,6 +153,12 @@ function DestroyItemForPlayer($player, $index, $skipDestroy=false)
     unset($items[$i]);
   }
   $items = array_values($items);
+  switch($cardID) {
+    case "klryvfq3hu"://Deployment Beacon
+      if(IsClassBonusActive($player, "GUARDIAN")) PlayAlly("mu6gvnta6q", $player);//Automaton Drone
+      break;
+    default: break;
+  }
   return $cardID;
 }
 
