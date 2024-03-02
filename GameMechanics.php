@@ -21,6 +21,13 @@ function Gather($player, $amount) {
     }
     if($herb != "") PutItemIntoPlay($herb);
     WriteLog("Gathered " . CardLink($herb, $herb));
+    $items = &GetItems($player);
+    for($i=0; $i<count($items); $i+=ItemPieces()) {
+      switch($items[$i]) {
+        case "ettczb14m4": ++$items[$i+1]; break;//Alchemist's Kit
+        default: break;
+      }
+    }
   }
 }
 

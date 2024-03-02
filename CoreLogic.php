@@ -1268,7 +1268,7 @@ function ClassOverride($cardID, $player="")
   $otherCharacter = &GetPlayerCharacter($otherPlayer);
 
   if(SearchCurrentTurnEffects("UPR187", $player)) return "NONE";//Erase Face
-  if(SearchCurrentTurnEffects($otherCharacter[0] . "-SHIYANA", $player)) {
+  if(count($otherCharacter) > 0 && SearchCurrentTurnEffects($otherCharacter[0] . "-SHIYANA", $player)) {
     if($cardClass != "") $cardClass .= ",";
     $cardClass .= CardClass($otherCharacter[0]) . ",SHAPESHIFTER";
   }
@@ -3437,6 +3437,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         MZMoveCard($currentPlayer, "MYDISCARD:element=FIRE", "MYBANISH,GY,-", may:true);
         AddDecisionQueue("ATTACKEROP", $currentPlayer, "SETDISTANT", 1);
       }
+      break;
+    case "ettczb14m4"://Alchemist's Kit
+      $index = GetClassState($currentPlayer, $CS_PlayIndex);
+      $items = &GetItems($currentPlayer);
+      $draws = floor($items[$index+1]/4);
+      for($i=0; $i<$draws; ++$i) Draw($currentPlayer);
       break;
     default: break;
   }
