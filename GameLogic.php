@@ -314,6 +314,12 @@ function DecisionQueueStaticEffect($phase, $player, $parameter, $lastResult)
             $ally->SetDistant();
           }
           break;
+        case "ADDDURABILITY":
+          if($type == "CHAR") {
+            $character = &GetPlayerCharacter($currentPlayer);
+            ++$character[GetMZIndex($mzID) + 2];
+          }
+          break;
         default: break;
       }
       return $lastResult;

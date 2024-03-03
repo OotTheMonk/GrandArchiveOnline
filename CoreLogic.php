@@ -3504,6 +3504,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect($cardID, $otherPlayer);
       AddNextTurnEffect($cardID, $otherPlayer);
       break;
+    case "j4lx6xwr42"://Firetongue
+      if($from == "EQUIP" && SearchCount(SearchDiscard($currentPlayer, element:"FIRE")) >= 1) {
+        MZMoveCard($currentPlayer, "MYDISCARD:element=FIRE", "MYBANISH,GY,-", may:true);
+        AddDecisionQueue("ATTACKEROP", $currentPlayer, "ADDDURABILITY", 1);
+      }
+      break;
     default: break;
   }
 }

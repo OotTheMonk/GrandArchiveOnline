@@ -1664,6 +1664,8 @@ function PlayCardEffect($cardID, $from, $resourcesPaid, $target = "-", $addition
       PlayAura($cardID, $currentPlayer);
     } else if ($cardSubtype == "Landmark") {
       PlayLandmark($cardID, $currentPlayer);
+    } else if(DelimStringContains($cardTypes, "WEAPON")) {
+      AddCharacter($cardID, $currentPlayer);
     } else if ($definedCardType != "C" && $definedCardType != "E" && $definedCardType != "W") {
       $goesWhere = GoesWhereAfterResolving($cardID, $from, $currentPlayer, resourcesPaid:$resourcesPaid);
       switch ($goesWhere) {

@@ -392,3 +392,8 @@ function GetMZType($mzIndex) {
   else if($mzArr[0] == "MYCHAR" || $mzArr[0] == "THEIRCHAR") return "CHAR";
   return "";
 }
+
+function GetMZIndex($mzIndex) {
+  $mzArr = explode("-", $mzIndex);
+  return $mzArr[1];
+}
