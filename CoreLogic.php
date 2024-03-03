@@ -1939,6 +1939,7 @@ function SelfCostModifier($cardID)
     case "fzcyfrzrpl": $modifier -= (IsClassBonusActive($currentPlayer, "GUARDIAN") ? 1 : 0); break;//Heatwave Generator
     case "lq2kkvoqk1": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Necklace of Foresight
     case "ht2tsn0ye3": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Meltdown
+    case "ls6g7xgwve": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? 1 : 0); break;//Excoriate
     default: break;
   }
   return $modifier;
@@ -3509,6 +3510,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         MZMoveCard($currentPlayer, "MYDISCARD:element=FIRE", "MYBANISH,GY,-", may:true);
         AddDecisionQueue("ATTACKEROP", $currentPlayer, "ADDDURABILITY", 1);
       }
+      break;
+    case "ls6g7xgwve"://Excoriate
+      MZChooseAndDestroy($currentPlayer, "THEIRALLY:maxCost=4", may:false);
       break;
     default: break;
   }
