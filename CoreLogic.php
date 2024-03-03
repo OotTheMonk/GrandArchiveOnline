@@ -249,6 +249,22 @@ function AddFloatingMemoryChoice($fromDQ=false)
 
   }
   else {
+    $items = &GetItems($currentPlayer);
+    for($i=0; $i<count($items); $i+=ItemPieces()) {
+      switch($items[$i]) {
+        case "h23qu7d6so"://Temporal Spectrometer
+          AddDecisionQueue("YESNO", $currentPlayer, "if you want to sacrifice Temporal Spectrometer to reduce the cost");
+          AddDecisionQueue("NOPASS", $currentPlayer, "-");
+          AddDecisionQueue("PASSPARAMETER", $currentPlayer, "MYITEMS-" . $i, 1);
+          AddDecisionQueue("MZBANISH", $currentPlayer, "PLAY," . $items[$i], 1);
+          AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
+          for($j=0; $j<$items[$i+1]; $j++) {
+            AddDecisionQueue("DECDQVAR", $currentPlayer, "0", 1);
+          }
+          break;
+        default: break;
+      }
+    }
     AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYDISCARD:floatingMemoryOnly=true");
     AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Choose a floating memory card to banish", 1);
     AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
@@ -3472,6 +3488,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
             BanishCardForPlayer($cardID, $otherPlayer, "MEMORY", "-", "MEMORY");
           }
         }
+      }
+      break;
+    case "h23qu7d6so"://Temporal Spectrometer
+      if($from == "PLAY") {
+        $items = &GetItems($currentPlayer);
+        $index = GetClassState($currentPlayer, $CS_PlayIndex);
+        ++$items[$index+1];
       }
       break;
     default: break;

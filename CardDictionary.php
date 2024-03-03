@@ -380,6 +380,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "ettczb14m4"://Alchemist's Kit
     case "isxy5lh23q"://Flash Grenade
     case "96659ytyj2"://Crimson Protective Trinket
+    case "h23qu7d6so"://Temporal Spectrometer
       return "I";
     case "i0a5uhjxhk"://Blightroot (1)
     case "5joh300z2s"://Mana Root (2)
