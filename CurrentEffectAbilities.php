@@ -142,6 +142,9 @@ function CurrentEffectCostModifiers($cardID, $from)
           $costModifier -= 5;
           $remove = true;
           break;
+        case "ir99sx6q3p"://Plea for Peace
+          if(CardTypeContains($cardID, "AA", $currentPlayer) || ($from == "PLAY" && IsAlly($cardID, $currentPlayer))) $costModifier += 1;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

@@ -3497,6 +3497,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         ++$items[$index+1];
       }
       break;
+    case "ir99sx6q3p"://Plea for Peace
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      AddNextTurnEffect($cardID, $currentPlayer);
+      AddCurrentTurnEffect($cardID, $otherPlayer);
+      AddNextTurnEffect($cardID, $otherPlayer);
+      break;
     default: break;
   }
 }
