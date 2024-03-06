@@ -141,6 +141,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $mzID = AttackerMZID($mainPlayer);
       $ally = new Ally($mzID);
       return $ally->IsDistant() ? 4 : 0;
+    case "lzsmw3rrii"://Imperial Recruit
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsFostered() ? 1 : 0;
     default: return 0;
   }
 }
