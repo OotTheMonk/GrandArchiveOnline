@@ -3491,6 +3491,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         }
       }
       break;
+    case "m3pal7cpvn"://Azure Protective Trinket
+      if($from == "PLAY") {
+        MZMoveCard($currentPlayer, "THEIRDISCARD:element=FIRE", "THEIRBANISH,GY,-", may:true, isSubsequent: false);
+        MZMoveCard($currentPlayer, "THEIRDISCARD:element=FIRE", "THEIRBANISH,GY,-", may:true, isSubsequent: true);
+        MZMoveCard($currentPlayer, "THEIRDISCARD:element=FIRE", "THEIRBANISH,GY,-", may:true, isSubsequent: true);
+      }
+      break;
     case "h23qu7d6so"://Temporal Spectrometer
       if($from == "PLAY") {
         $items = &GetItems($currentPlayer);
