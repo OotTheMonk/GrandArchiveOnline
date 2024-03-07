@@ -145,6 +145,8 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $mzID = AttackerMZID($mainPlayer);
       $ally = new Ally($mzID);
       return $ally->IsFostered() ? 1 : 0;
+    case "m4c8ljyevp"://Academy Attendant
+      return IsClassBonusActive($mainPlayer, "CLERIC") && MemoryCount($mainPlayer) >= 4 ? 1 : 0;
     default: return 0;
   }
 }
