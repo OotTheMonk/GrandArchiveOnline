@@ -147,6 +147,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       return $ally->IsFostered() ? 1 : 0;
     case "m4c8ljyevp"://Academy Attendant
       return IsClassBonusActive($mainPlayer, "CLERIC") && MemoryCount($mainPlayer) >= 4 ? 1 : 0;
+    case "m4o98vn1vo"://Winbless Arbalest
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 2 : 0;
     default: return 0;
   }
 }

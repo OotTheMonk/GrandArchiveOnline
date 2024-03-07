@@ -104,6 +104,7 @@ function HasVigor($cardID, $player)
       return IsClassBonusActive($player, "WARRIOR") || IsClassBonusActive($player, "GUARDIAN");
     case "3TfIePpuZO": return true;//Trained Hawk
     case "7NMFSRR5V3": return IsClassBonusActive($player, "TAMER");
+    case "m4o98vn1vo": return IsClassBonusActive($player, "RANGER");//Winbless Arbalest
     default: return false;
   }
 }
