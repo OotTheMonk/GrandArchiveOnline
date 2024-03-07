@@ -46,9 +46,6 @@ function DestroyAlly($player, $index, $skipDestroy = false, $fromCombat = false)
     AllyDestroyedAbility($player, $index);
   }
   AllyLeavesPlayAbility($player, $index);
-  if(IsSpecificAllyAttacking($player, $index) || (IsSpecificAllyAttackTarget($player, $index) && !$fromCombat)) {
-    CloseCombatChain();
-  }
   $cardID = $allies[$index];
   if(!$skipDestroy) {
     if($cardID == "075L8pLihO") AddMemory($cardID, $player, "PLAY", "DOWN");
@@ -131,6 +128,7 @@ function AllyPride($cardID)
     case "075L8pLihO": return 5;//Arima, Gaia's Wings
     case "wFH1kBLrWh": return 7;//Arcane Elemental
     case "p3nq0ymvdd": return 2;//Ordinary Bear
+    case "mttsvbgl6f": return 3;//Red Slime
     default: return -1;
   }
 }
@@ -179,6 +177,10 @@ function AllyDestroyedAbility($player, $index)
       break;
     case "pnDhApDNvR"://Magus Disciple
       if(IsClassBonusActive($player, "MAGE") || IsClassBonusActive($player, "CLERIC")) Draw($player);
+      break;
+    case "mttsvbgl6f"://Red Slime
+      $ally = new Ally("MYALLY-" . $index);
+      DamageAllAllies($ally->CurrentPower(), $cardID);
       break;
     default: break;
   }
