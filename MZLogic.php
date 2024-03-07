@@ -114,6 +114,16 @@ function MZAddZone($player, $parameter, $lastResult)
       case "THEIRMATERIAL": AddMaterial($cardIDs[$i], $otherPlayer, $params[1]);
       case "THEIRDISCARD": AddGraveyard($cardIDs[$i], $otherPlayer, $params[1]);
       case "THEIRBANISH": BanishCardForPlayer($cardIDs[$i], $otherPlayer, $params[1], $params[2]); break;
+      case "MYDISCARD":
+        $from = $params[1];
+        AddGraveyard($cardIDs[$i], $player, "-", $from);
+        if($from == "HAND") CardDiscarded($player, $cardIDs[$i]);
+        break;
+      case "THEIRDISCARD":
+        $from = $params[1];
+        AddGraveyard($cardIDs[$i], $otherPlayer, "-", $from);
+        if($from == "HAND") CardDiscarded($otherPlayer, $cardIDs[$i]);
+        break;
       default: break;
     }
   }

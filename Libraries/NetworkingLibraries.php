@@ -1477,6 +1477,9 @@ function PayAdditionalCosts($cardID, $from)
       AddDecisionQueue("MZADDZONE", $currentPlayer, "MYMATERIAL", 1);
       AddDecisionQueue("MZREMOVE", $currentPlayer, "-", 1);
       break;
+    case "lzjmwuir99"://Firetuned Automaton
+      MZMoveCard($currentPlayer, "MYHAND:element=FIRE", "MYDISCARD,HAND", may:false, isSubsequent: false);
+      break;
     default:
       break;
   }
