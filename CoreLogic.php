@@ -3521,6 +3521,12 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "ls6g7xgwve"://Excoriate
       MZChooseAndDestroy($currentPlayer, "THEIRALLY:maxCost=4", may:false);
       break;
+    case "m6h38lrj52"://Rococo, Explosive Maven
+      $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
+      if(PlayerInfluence($otherPlayer) <= 4) {
+        DealArcane(2, $otherPlayer, "TRIGGER", $cardID, resolvedTarget:"THEIRCHAR-0", fromQueue:false, player:$player);
+      }
+      break;
     default: break;
   }
 }
