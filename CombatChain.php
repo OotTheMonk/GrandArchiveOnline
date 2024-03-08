@@ -3,7 +3,7 @@
 function ProcessHitEffect($cardID)
 {
   WriteLog("Processing hit effect for " . CardLink($cardID, $cardID));
-  global $mainPlayer, $combatChainState, $CCS_GoesWhereAfterLinkResolves, $defPlayer;
+  global $mainPlayer, $combatChainState, $CCS_GoesWhereAfterLinkResolves, $defPlayer, $CCS_AttackTarget;
   if(HitEffectsArePrevented()) return;
   switch($cardID)
   {
@@ -46,6 +46,18 @@ function ProcessHitEffect($cardID)
         AddDecisionQueue("MZDESTROY", $mainPlayer, "-", 1);
         MZMoveCard($mainPlayer, "THEIRMEMORY", "THEIRDISCARD,MEMORY", isSubsequent:true);
       }
+      break;
+    case "k2c7wklzjm"://Frigid Bash
+      if(IsClassBonusActive($mainPlayer, "GUARDIAN"))
+      {
+        AddDecisionQueue("YESNO", $defPlayer, "if you want to pay 2 to let the target wake up");
+        AddDecisionQueue("NOPASS", $defPlayer, "-");
+        AddDecisionQueue("PAYRESOURCES", $defPlayer, 2, 1, 1);
+        AddDecisionQueue("ELSE", $defPlayer, "-");
+        AddDecisionQueue("PASSPARAMETER", $defPlayer, $combatChainState[$CCS_AttackTarget], 1);
+        AddDecisionQueue("MZOP", $mainPlayer, "FREEZE", 1);
+      }
+      break;
     default: break;
   }
 
