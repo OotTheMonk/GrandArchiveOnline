@@ -180,6 +180,7 @@ function HasStealth($cardID, $player, $index)
     case "ZfCtSldRIy": return true;//Windrider Mage
     case "FWnxKjSeB1": return true;//Spark Fairy
     case "wklzjmwuir": return true;//Shimmercloak Assassin
+    case "oy34bro89w": return true;//Cunning Broker
     default: return false;
   }
 }
@@ -428,6 +429,8 @@ function GetAbilityTypes($cardID)
       return "A,AA";
     case "nl1gxrpx8j"://Perse, Relentless Raptor
       return "I,AA";
+    case "oy34bro89w"://Cunning Broker
+      return "I,AA";
     default: return "";
   }
 }
@@ -442,6 +445,8 @@ function GetAbilityNames($cardID, $index = -1)
       return "Sacrifice,Attack";
     case "nl1gxrpx8j"://Perse, Relentless Raptor
       return "Suppress,Attack";
+    case "oy34bro89w"://Cunning Broker
+      return "Broker,Attack";
     default: return "";
   }
 }

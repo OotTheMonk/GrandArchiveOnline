@@ -3593,6 +3593,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddDecisionQueue("ELSE", $currentPlayer, "-");
       DamageTrigger($currentPlayer, 3, "DAMAGE", "o98vn1voy5", canPass:true);
       break;
+    case "oy34bro89w"://Cunning Broker
+      if(GetResolvedAbilityType($cardID) == "I") {
+        Draw($currentPlayer);
+      }
     default: break;
   }
 }

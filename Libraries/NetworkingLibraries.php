@@ -1483,6 +1483,9 @@ function PayAdditionalCosts($cardID, $from)
     case "n1voy5ttkk"://Shatterfall Keep
       AddFloatingMemoryChoice();
       break;
+    case "oy34bro89w"://Cunning Broker
+      if($from == "PLAY") DecrementClassState($currentPlayer, $CS_PreparationCounters, 2);
+      break;
     default:
       break;
   }
