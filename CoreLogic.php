@@ -3540,13 +3540,15 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
       $numEnlighten = SearchCount(SearchAurasForCard("ENLIGHTEN", $currentPlayer));
     case "lx6xwr42i6"://Windrider Invoker
-      $numEnlighten = SearchCount(SearchAurasForCard("ENLIGHTEN", $currentPlayer));
-      if($numEnlighten >= 2)
-      {
-        AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Do you want to destroy 2 ENLIGHTEN for Windrider Invoker?");
-        AddDecisionQueue("YESNO", $currentPlayer, "-");
-        AddDecisionQueue("NOPASS", $currentPlayer, "-");
-        AddDecisionQueue("SPECIFICCARD", $currentPlayer, "WINDRIDERINVOKER", 1);
+      if($from != "PLAY") {
+        $numEnlighten = SearchCount(SearchAurasForCard("ENLIGHTEN", $currentPlayer));
+        if($numEnlighten >= 2)
+        {
+          AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Do you want to destroy 2 ENLIGHTEN for Windrider Invoker?");
+          AddDecisionQueue("YESNO", $currentPlayer, "-");
+          AddDecisionQueue("NOPASS", $currentPlayer, "-");
+          AddDecisionQueue("SPECIFICCARD", $currentPlayer, "WINDRIDERINVOKER", 1);
+        }
       }
       break;
     default: break;
