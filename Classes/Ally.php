@@ -52,6 +52,14 @@ class Ally {
         case "22tk3ir1o0"://Novice Mechanist
           PlayAlly("mu6gvnta6q", $this->playerID);
           break;
+        case "kuz07nk45s"://Forgelight Shieldmaiden
+          Draw($this->playerID);
+          Draw($this->playerID);
+          PummelHit($this->playerID);
+          AddDecisionQueue("ALLCARDELEMENTORPASS", $this->playerID, "FIRE", 1);
+          AddDecisionQueue("PASSPARAMETER", $this->playerID, "MYALLY-" . $this->index, 1);
+          AddDecisionQueue("MZOP", $this->playerID, "BUFFALLY", 1);
+          break;
       }
     }
     return $fosterActive;
