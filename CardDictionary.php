@@ -409,6 +409,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "d6soporhlq"://Obelisk of Protection
     case "j68m69iq4d"://Sentinel Fabricator
     case "8c9htu9agw"://Prototype Staff
+    case "n1voy5ttkk"://Shatterfall Keep
       return "I";
     case "0z2snsdwmx"://Scale of Souls
     case "2ha4dk88zq"://Cloak of Stillwater

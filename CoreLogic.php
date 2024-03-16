@@ -3562,6 +3562,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "n0wpbhigka,HAND", 1);
       }
       break;
+    case "n1voy5ttkk"://Shatterfall Keep
+      if($from == "PLAY") {
+        Mill($currentPlayer, 2);
+      }
+      break;
     default: break;
   }
 }

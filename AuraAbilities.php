@@ -246,6 +246,12 @@ function AuraStartTurnAbilities()
       case "c7wklzjmwu"://Palatial Concourse
         Opt($mainPlayer, 1);
         break;
+      case "n1voy5ttkk"://Shatterfall Keep
+        if(SearchCount(SearchDiscard($mainPlayer, element:"WATER")) < 3) {
+          WriteLog("Shatterfall Keep sacrifices itself");
+          DestroyAuraUniqueID($mainPlayer, $auras[$i + 6]);
+        }
+        break;
       default:
         break;
     }

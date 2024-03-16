@@ -1480,6 +1480,9 @@ function PayAdditionalCosts($cardID, $from)
     case "lzjmwuir99"://Firetuned Automaton
       MZMoveCard($currentPlayer, "MYHAND:element=FIRE", "MYDISCARD,HAND", may:false, isSubsequent: false);
       break;
+    case "n1voy5ttkk"://Shatterfall Keep
+      AddFloatingMemoryChoice();
+      break;
     default:
       break;
   }
