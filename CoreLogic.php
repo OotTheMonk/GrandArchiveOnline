@@ -2358,6 +2358,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "1XegCUjBnY"://Life Essence Amulet
     case "73fdt8ptrz"://Windwalker Boots
     case "jxhkurfp66"://Charged Manaplate
+    case "ojwk0pw0y6"://Crest of the Alliance
       Draw($currentPlayer);
       break;
     case "YOjdZJpOO1"://Blissful Calling

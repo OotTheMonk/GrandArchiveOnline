@@ -396,6 +396,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "h23qu7d6so"://Temporal Spectrometer
     case "m3pal7cpvn"://Azure Protective Trinket
     case "n0wpbhigka"://Wand of Frost
+    case "ojwk0pw0y6"://Crest of the Alliance
       return "I";
     case "i0a5uhjxhk"://Blightroot (1)
     case "5joh300z2s"://Mana Root (2)
