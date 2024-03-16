@@ -92,6 +92,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "isxy5lh23q"://Flash Grenade
     case "96659ytyj2"://Crimson Protective Trinket
     case "m3pal7cpvn"://Azure Protective Trinket
+    case "n0wpbhigka"://Wand of Frost
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;

@@ -3551,6 +3551,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         }
       }
       break;
+    case "n0wpbhigka"://Wand of Frost
+      if($from != "PLAY") {
+        if(IsClassBonusActive($currentPlayer, "MAGE") || IsClassBonusActive($currentPlayer, "CLERIC")) Draw($currentPlayer);
+      }
+      else {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "THEIRALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "GETUNIQUEID", 1);
+        AddDecisionQueue("ADDLIMITEDCURRENTEFFECT", $currentPlayer, "n0wpbhigka,HAND", 1);
+      }
+      break;
     default: break;
   }
 }
