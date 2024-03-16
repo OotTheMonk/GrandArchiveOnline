@@ -163,6 +163,10 @@ function AttackModifier($cardID, $from = "", $resourcesPaid = 0, $repriseActive 
       $mzID = AttackerMZID($mainPlayer);
       $ally = new Ally($mzID);
       return $ally->IsDistant() ? 2 : 0;
+    case "nl1gxrpx8j"://Perse, Relentless Raptor
+      $mzID = AttackerMZID($mainPlayer);
+      $ally = new Ally($mzID);
+      return $ally->IsDistant() ? 2 : 0;
     default: return 0;
   }
 }

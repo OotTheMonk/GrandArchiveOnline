@@ -3567,6 +3567,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         Mill($currentPlayer, 2);
       }
       break;
+    case "nl1gxrpx8j"://Perse, Relentless Raptor
+      if(GetResolvedAbilityType($cardID) == "I") {
+        AddDecisionQueue("MULTIZONEINDICES", $currentPlayer, "MYALLY&THEIRALLY");
+        AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
+      }
+      break;
     default: break;
   }
 }

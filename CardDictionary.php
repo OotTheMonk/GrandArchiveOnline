@@ -425,6 +425,8 @@ function GetAbilityTypes($cardID)
       return "A,AA";
     case "5swaf8urrq"://Whirlwind Vizier
       return "A,AA";
+    case "nl1gxrpx8j"://Perse, Relentless Raptor
+      return "I,AA";
     default: return "";
   }
 }
@@ -437,6 +439,8 @@ function GetAbilityNames($cardID, $index = -1)
       return "Remove Counters,Attack";
     case "5swaf8urrq"://Whirlwind Vizier
       return "Sacrifice,Attack";
+    case "nl1gxrpx8j"://Perse, Relentless Raptor
+      return "Suppress,Attack";
     default: return "";
   }
 }
