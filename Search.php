@@ -987,3 +987,8 @@ function ReservableIndices($player)
   }
   return $indices;
 }
+
+function SearchGetLast($search) {
+  $indices = explode(",", $search);
+  return $indices[count($indices) - 1];
+}

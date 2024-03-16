@@ -62,6 +62,7 @@ function EffectAttackModifier($cardID)
       $mzID = AttackerMZID($mainPlayer);
       $ally = new Ally($mzID);
       return $ally->IsDistant() ? 1 : 0;
+    case "lx6xwr42i6": return 3;//Windrider Invoker
     default: return 0;
   }
 }
@@ -447,6 +448,7 @@ function IsCombatEffectActive($cardID)
     case "r0zadf9q1w": return true;//Conjure Downpour
     case "fzcyfrzrpl": return true;//Heatwave Generator
     case "44vm5kt3q2": return true;//Battlefield Spotter
+    case "lx6xwr42i6": return true;//Windrider Invoker
     default: return false;
   }
 }

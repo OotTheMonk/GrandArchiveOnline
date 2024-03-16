@@ -88,6 +88,13 @@ function SpecificCardLogic($player, $card, $lastResult)
       for($i=0; $i<$counters; ++$i) DealArcane(1, 2, "TRIGGER", "7Rsid05Cf6", fromQueue:true, player:$player);
       SpiritBladeDispersion($player);
       return $lastResult;
+    case "WINDRIDERINVOKER":
+      DestroyNumThisAura($player, "ENLIGHTEN", 2);
+      Draw($player);
+      $allies = &GetAllies($player);
+      $index = SearchGetLast(SearchAlliesForCard($player, "lx6xwr42i6"));
+      AddCurrentTurnEffect("lx6xwr42i6", $player, "PLAY", $allies[$index+5]);
+      return $lastResult;
     default: return "";
   }
 }
