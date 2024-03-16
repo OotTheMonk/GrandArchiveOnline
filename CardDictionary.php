@@ -285,6 +285,7 @@ function AbilityCost($cardID)
     case "j68m69iq4d"://Sentinel Fabricator
       return 3;
     default: break;
+    case "pv4n1n3gyg": return 1;//Cleric's Robe
   }
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return 0;
   return 0;
@@ -413,6 +414,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "j68m69iq4d"://Sentinel Fabricator
     case "8c9htu9agw"://Prototype Staff
     case "n1voy5ttkk"://Shatterfall Keep
+    case "pv4n1n3gyg"://Cleric's Robe
       return "I";
     case "0z2snsdwmx"://Scale of Souls
     case "2ha4dk88zq"://Cloak of Stillwater

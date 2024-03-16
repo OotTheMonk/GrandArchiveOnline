@@ -3598,6 +3598,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       if(GetResolvedAbilityType($cardID) == "I") {
         Draw($currentPlayer);
       }
+      break;
+    case "pv4n1n3gyg"://Cleric's Robe
+      if($from == "PLAY") AddCurrentTurnEffect($cardID, $currentPlayer);
+      break;
     default: break;
   }
 }

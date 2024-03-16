@@ -26,6 +26,12 @@ function PutItemIntoPlayForPlayer($item, $player, $steamCounterModifier = 0, $nu
     array_push($items, $myHoldState);
     array_push($items, $theirHoldState);
   }
+  switch($item) {
+    case "pv4n1n3gyg"://Cleric Robes
+      if(IsClassBonusActive($player, "CLERIC")) Draw($player);
+      break;
+      default: break;
+  }
 }
 
 function ItemEntersPlayState($cardID)
@@ -113,6 +119,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "j68m69iq4d"://Sentinel Fabricator
     case "8c9htu9agw"://Prototype Staff
     case "h23qu7d6so"://Temporal Spectrometer
+    case "pv4n1n3gyg"://Cleric's Robe
       $items = &GetItems($currentPlayer);
       $items[$index+2] = 1;
       break;
