@@ -232,6 +232,13 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
         case "isxy5lh23q"://Flash Grenade
           if($preventable) $damage -= 3;
           break;
+        case "nmp5af098k"://Spellshield: Astra
+          if($preventable) {
+            PlayerOpt($player, $damage);
+            $damage -= $damage;
+          }
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

@@ -1946,6 +1946,7 @@ function SelfCostModifier($cardID)
       $oppGY = &GetDiscard($otherPlayer);
       $modifier -= (count($oppGY)/DiscardPieces() >= 4 ? 1 : 0);
       break;
+    case "nmp5af098k": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 2 : 0); break;//Spellshield: Astra
     default: break;
   }
   return $modifier;
@@ -3573,6 +3574,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("MAYCHOOSEMULTIZONE", $currentPlayer, "<-", 1);
         AddDecisionQueue("MZOP", $currentPlayer, "SUPPRESS", 1);
       }
+      break;
+    case "nmp5af098k"://Spellshield: Astra
+      AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
     default: break;
   }
