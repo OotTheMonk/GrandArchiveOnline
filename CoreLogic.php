@@ -1947,6 +1947,7 @@ function SelfCostModifier($cardID)
       $modifier -= (count($oppGY)/DiscardPieces() >= 4 ? 1 : 0);
       break;
     case "nmp5af098k": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 2 : 0); break;//Spellshield: Astra
+    case "o7eanl1gxr": $modifier -= (SearchCount(SearchItems($currentPlayer, subtype:"SHIELD")) > 0 ? 1 : 0); break;//Diffusive Block
     default: break;
   }
   return $modifier;
@@ -3579,6 +3580,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
     case "nsdwmxz1vd"://Martial Guard
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      break;
+    case "o7eanl1gxr"://Diffusive Block
       AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
     default: break;
