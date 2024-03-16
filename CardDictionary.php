@@ -94,7 +94,7 @@ function HasCleave($cardID)
   }
 }
 
-function HasVigor($cardID, $player)
+function HasVigor($cardID, $player, $index)
 {
   $isAlly = IsAlly($cardID);
   if($isAlly && SearchCurrentTurnEffects("rxxwQT054x", $player)) return true;
@@ -105,6 +105,9 @@ function HasVigor($cardID, $player)
     case "3TfIePpuZO": return true;//Trained Hawk
     case "7NMFSRR5V3": return IsClassBonusActive($player, "TAMER");
     case "m4o98vn1vo": return IsClassBonusActive($player, "RANGER");//Winbless Arbalest
+    case "mnu1xhs5jw"://Awakened Frostguard
+      $allies = &GetAllies($player);
+      return $allies[$index+10] == 2;
     default: return false;
   }
 }

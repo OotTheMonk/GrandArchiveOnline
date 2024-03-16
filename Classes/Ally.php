@@ -60,6 +60,16 @@ class Ally {
           AddDecisionQueue("PASSPARAMETER", $this->playerID, "MYALLY-" . $this->index, 1);
           AddDecisionQueue("MZOP", $this->playerID, "BUFFALLY", 1);
           break;
+        case "mnu1xhs5jw"://Awakened Frostguard
+          if(!IsClassBonusActive($this->playerID, "GUARDIAN")) break;
+          for($i=0; $i<2; ++$i) {
+            AddFloatingMemoryChoice();
+            AddDecisionQueue("DRAW", $this->playerID, "-", 1);
+            AddDecisionQueue("PASSPARAMETER", $this->playerID, "MYALLY-" . $this->index, 1);
+            AddDecisionQueue("MZOP", $this->playerID, "BUFFALLY", 1);
+          }
+          break;
+        default: break;
       }
     }
     return $fosterActive;

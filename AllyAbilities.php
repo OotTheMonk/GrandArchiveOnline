@@ -389,7 +389,7 @@ function AllyBeginEndTurnEffects()
   $mainAllies = &GetAllies($mainPlayer);
   for($i = count($mainAllies) - AllyPieces(); $i >= 0; $i -= AllyPieces()) {
     if($mainAllies[$i+1] != 0) {
-      if(HasVigor($mainAllies[$i], $mainPlayer)) $mainAllies[$i+1] = 2;
+      if(HasVigor($mainAllies[$i], $mainPlayer, $i)) $mainAllies[$i+1] = 2;
       $mainAllies[$i+2] = AllyHealth($mainAllies[$i], $mainPlayer) + $mainAllies[$i+7];
       $mainAllies[$i+3] = 0;
       $mainAllies[$i+8] = 1;
