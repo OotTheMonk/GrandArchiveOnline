@@ -1941,6 +1941,11 @@ function SelfCostModifier($cardID)
     case "ht2tsn0ye3": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Meltdown
     case "ls6g7xgwve": $modifier -= (IsClassBonusActive($currentPlayer, "MAGE") ? 1 : 0); break;//Excoriate
     case "k2c7wklzjm": $modifier -= (SearchCount(SearchItems($currentPlayer, subtype:"SHIELD")) > 0 ? 2 : 0); break;//Frigid Bash
+    case "mxqsm4o98v"://Seasprite Diver
+      $otherPlayer = $currentPlayer == 1 ? 2 : 1;
+      $oppGY = &GetDiscard($otherPlayer);
+      $modifier -= (count($oppGY)/DiscardPieces() >= 4 ? 1 : 0);
+      break;
     default: break;
   }
   return $modifier;
@@ -3526,6 +3531,11 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       $otherPlayer = ($currentPlayer == 1 ? 2 : 1);
       if(PlayerInfluence($otherPlayer) <= 4) {
         DealArcane(2, $otherPlayer, "TRIGGER", $cardID, resolvedTarget:"THEIRCHAR-0", fromQueue:false, player:$player);
+      }
+      break;
+    case "mxqsm4o98v"://Seasprite Diver
+      if($from != "PLAY") {
+        MZMoveCard($currentPlayer, "THEIRDISCARD", "THEIRBANISH,GY,-", may:true);
       }
       break;
     default: break;
