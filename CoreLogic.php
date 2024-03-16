@@ -487,9 +487,9 @@ function HasIncreasedAttack()
   return false;
 }
 
-function DamageTrigger($player, $damage, $type, $source="NA")
+function DamageTrigger($player, $damage, $type, $source="NA", $canPass=false)
 {
-  AddDecisionQueue("DEALDAMAGE", $player, $damage . "-" . $source . "-" . $type);
+  AddDecisionQueue("DEALDAMAGE", $player, $damage . "-" . $source . "-" . $type, ($canPass ? 1 : "0"));
   return $damage;
 }
 
@@ -3584,6 +3584,13 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       break;
     case "o7eanl1gxr"://Diffusive Block
       AddCurrentTurnEffect($cardID, $currentPlayer);
+      break;
+    case "o98vn1voy5"://Lavaheated Brew
+      Draw($currentPlayer);
+      PummelHit($currentPlayer);
+      AddDecisionQueue("ALLCARDSUBTYPEORPASS", $currentPlayer, "POTION", 1);
+      AddDecisionQueue("ELSE", $currentPlayer, "-");
+      DamageTrigger($currentPlayer, 3, "DAMAGE", "o98vn1voy5", canPass:true);
       break;
     default: break;
   }
