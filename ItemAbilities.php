@@ -94,6 +94,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "m3pal7cpvn"://Azure Protective Trinket
     case "n0wpbhigka"://Wand of Frost
     case "ojwk0pw0y6"://Crest of the Alliance
+    case "porhlq2kkv"://Wayfinder's Map
       DestroyItemForPlayer($currentPlayer, $index, true);
       BanishCardForPlayer($cardID, $currentPlayer, $from, "-", $currentPlayer);
       break;
@@ -165,6 +166,22 @@ function DestroyItemForPlayer($player, $index, $skipDestroy=false)
     default: break;
   }
   return $cardID;
+}
+
+function ItemCostModifiers($cardID)
+{
+  global $currentPlayer;
+  $items = &GetItems($currentPlayer);
+  for($i=0; $i<count($items); $i+=ItemPieces()) {
+    switch($items[$i]) {
+      case "porhlq2kkv"://Wayfinder's Map
+        $cardTypes = CardTypes($cardID);
+        if(DelimStringContains($cardTypes, "DOMAIN")) $cost -= 1;
+        break;
+      default: break;
+    }
+  }
+  return $cost;
 }
 
 function StealItem($srcPlayer, $index, $destPlayer)

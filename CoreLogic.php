@@ -2359,6 +2359,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "73fdt8ptrz"://Windwalker Boots
     case "jxhkurfp66"://Charged Manaplate
     case "ojwk0pw0y6"://Crest of the Alliance
+    case "porhlq2kkv"://Wayfinder's Map
       Draw($currentPlayer);
       break;
     case "YOjdZJpOO1"://Blissful Calling
