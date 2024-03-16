@@ -239,6 +239,10 @@ function CurrentEffectDamagePrevention($player, $type, $damage, $source, $preven
           }
           $remove = true;
           break;
+        case "nsdwmxz1vd"://Martial Guard
+          if($preventable) $damage -= 2;
+          $remove = true;
+          break;
         default: break;
       }
       if($remove) RemoveCurrentTurnEffect($i);

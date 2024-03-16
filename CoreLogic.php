@@ -3578,6 +3578,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "nmp5af098k"://Spellshield: Astra
       AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
+    case "nsdwmxz1vd"://Martial Guard
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      break;
     default: break;
   }
 }
