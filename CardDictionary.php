@@ -224,6 +224,15 @@ function MemoryCost($cardID, $player)
     case "s23UHXgcZq": if(IsClassBonusActive($player, "ASSASSIN")) --$cost; break;//Luxera's Map
     default: break;
   }
+  $allies = &GetAllies($player);
+  for($i=0; $i<count($allies); $i+=AllyPieces())
+  {
+    switch($allies[$i])
+    {
+      case "kk39i1f0ht": if(CardType($cardID) == "C") --$cost; break;//Academy Guide
+      default: break;
+    }
+  }
   return $cost;
 }
 
