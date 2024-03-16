@@ -227,6 +227,12 @@ function MZRest($player, $target)
     case "THEIRALLY": case "MYALLY":
       $zone[$pieces[1]+1] = 1;
       break;
+    case "MYITEMS": case "THEIRITEMS":
+      $zone[$pieces[1]+2] = 1;
+      break;
+    case "MYAURAS": case "THEIRAURAS":
+      $zone[$pieces[1]+1] = 1;
+      break;
     default: break;
   }
 }

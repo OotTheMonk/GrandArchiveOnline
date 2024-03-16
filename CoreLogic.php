@@ -3602,6 +3602,16 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "pv4n1n3gyg"://Cleric's Robe
       if($from == "PLAY") AddCurrentTurnEffect($cardID, $currentPlayer);
       break;
+    case "rp5k1vt1cn"://Fractal of Insight
+      if($from != "PLAY") {
+        AddDecisionQueue("SETDQCONTEXT", $currentPlayer, "Do you want to rest Fractal of Insight?");
+        AddDecisionQueue("YESNO", $currentPlayer, "-", 1);
+        AddDecisionQueue("NOPASS", $currentPlayer, "-", 1);
+        AddDecisionQueue("PASSPARAMETER", $currentPlayer, "MYAURAS-" . SearchGetLast(SearchAurasForCard($cardID, $currentPlayer)), 1);
+        AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
+        AddDecisionQueue("OPTX", $currentPlayer, 2, 1);
+      }
+      break;
     default: break;
   }
 }

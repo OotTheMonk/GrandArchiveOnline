@@ -145,6 +145,7 @@ function HasReservable($cardID, $player, $index)
     case "cfpwakb1k0": return true;//Fractal of Intrusion
     case "hjdu50pces": return true;//Deep Sea Fractal
     case "igka5av43e": return true;//Incendiary Fractal
+    case "rp5k1vt1cn": return true;//Fractal of Insight
     default: return false;
   }
 }

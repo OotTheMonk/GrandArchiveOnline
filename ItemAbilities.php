@@ -30,7 +30,7 @@ function PutItemIntoPlayForPlayer($item, $player, $steamCounterModifier = 0, $nu
     case "pv4n1n3gyg"://Cleric Robes
       if(IsClassBonusActive($player, "CLERIC")) Draw($player);
       break;
-      default: break;
+    default: break;
   }
 }
 
