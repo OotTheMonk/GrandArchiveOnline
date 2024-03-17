@@ -3634,6 +3634,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "u7d6soporh"://Ingredient Pouch
       if($from == "PLAY") Gather($currentPlayer, 1);
       break;
+    case "wa4x7e22tk"://Stream of Consciousness
+      if(IsClassBonusActive($currentPlayer, "CLERIC") && MemoryCount($currentPlayer) >= 4) PlayerOpt($currentPlayer, 3);
+      DrawIntoMemory($currentPlayer);
+      break;
     default: break;
   }
 }
