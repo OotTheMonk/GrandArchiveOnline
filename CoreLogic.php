@@ -1948,6 +1948,7 @@ function SelfCostModifier($cardID)
       break;
     case "nmp5af098k": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 2 : 0); break;//Spellshield: Astra
     case "o7eanl1gxr": $modifier -= (SearchCount(SearchItems($currentPlayer, subtype:"SHIELD")) > 0 ? 1 : 0); break;//Diffusive Block
+    case "rqtjot4nmx": $modifier -= (IsClassBonusActive($currentPlayer, "CLERIC") ? 1 : 0); break;//Scavenge the Distillery
     default: break;
   }
   return $modifier;
@@ -3611,6 +3612,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         AddDecisionQueue("MZOP", $currentPlayer, "REST", 1);
         AddDecisionQueue("OPTX", $currentPlayer, 2, 1);
       }
+      break;
+    case "rqtjot4nmx"://Scavenge the Distillery
+      MZMoveCard($currentPlayer, "MYDISCARD:subtype=POTION", "MYHAND", may:true);
       break;
     default: break;
   }
