@@ -284,6 +284,10 @@ function AbilityCost($cardID)
       $cost = 4 - SearchCount(SearchAura($currentPlayer, "DOMAIN"));
       if($cost < 0) $cost = 0;
       return $cost;
+    case "wk0pw0y6is"://Obelisk of Armaments
+      $cost = 5 - SearchCount(SearchAura($currentPlayer, "DOMAIN"));
+      if($cost < 0) $cost = 0;
+      return $cost;
     case "j68m69iq4d"://Sentinel Fabricator
       return 3;
     case "pv4n1n3gyg": return 1;//Cleric's Robe
@@ -414,6 +418,7 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "1lw9n0wpbh"://Protective Fractal
     case "xy5lh23qu7"://Obelisk of Fabrication
     case "d6soporhlq"://Obelisk of Protection
+    case "wk0pw0y6is"://Obelisk of Armaments
     case "j68m69iq4d"://Sentinel Fabricator
     case "8c9htu9agw"://Prototype Staff
     case "n1voy5ttkk"://Shatterfall Keep

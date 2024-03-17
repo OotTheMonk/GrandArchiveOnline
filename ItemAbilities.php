@@ -116,6 +116,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "2ha4dk88zq"://Cloak of Stillwater
     case "xy5lh23qu7"://Obelisk of Fabrication
     case "d6soporhlq"://Obelisk of Protection
+    case "wk0pw0y6is"://Obelisk of Armaments
     case "j68m69iq4d"://Sentinel Fabricator
     case "8c9htu9agw"://Prototype Staff
     case "h23qu7d6so"://Temporal Spectrometer

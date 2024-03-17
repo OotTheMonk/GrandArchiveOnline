@@ -3638,6 +3638,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       if(IsClassBonusActive($currentPlayer, "CLERIC") && MemoryCount($currentPlayer) >= 4) PlayerOpt($currentPlayer, 3);
       DrawIntoMemory($currentPlayer);
       break;
+    case "wk0pw0y6is"://Obelisk of Armaments
+      if($from == "PLAY") AddCharacter("hkurfp66pv", $currentPlayer);//Aurosteel Greatsword
+      break;
     default: break;
   }
 }
