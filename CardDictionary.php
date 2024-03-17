@@ -217,6 +217,7 @@ function HasIntercept($cardID, $player, $index)
   {
     case "c9p4lpnvx7": return SearchCount(SearchAuras($player, type:"PHANTASIA"));//Awakened Deacon
     case "x7u6wzh973": return true;//Frostbinder Apostle
+    case "urfp66pv4n": return true;//Caretaker Drone
     default: return false;
   }
 }

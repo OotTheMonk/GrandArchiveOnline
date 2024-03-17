@@ -182,6 +182,9 @@ function AllyDestroyedAbility($player, $index)
       $ally = new Ally("MYALLY-" . $index);
       DamageAllAllies($ally->CurrentPower(), $cardID);
       break;
+    case "urfp66pv4n"://Caretaker Drone
+      if(IsClassBonusActive($player, "CLERIC")) PlayerOpt($player, 4);
+      break;
     default: break;
   }
 }
