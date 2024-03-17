@@ -286,8 +286,9 @@ function AbilityCost($cardID)
       return $cost;
     case "j68m69iq4d"://Sentinel Fabricator
       return 3;
-    default: break;
     case "pv4n1n3gyg": return 1;//Cleric's Robe
+    case "u7d6soporh": return 1;//Ingredient Pouch
+    default: break;
   }
   if(CardTypeContains($cardID, "ALLY", $currentPlayer)) return 0;
   return 0;
@@ -421,6 +422,8 @@ function GetAbilityType($cardID, $index = -1, $from="-")
     case "0z2snsdwmx"://Scale of Souls
     case "2ha4dk88zq"://Cloak of Stillwater
       return "I";
+    case "u7d6soporh"://Ingredient Pouch
+      return IsClassBonusActive($currentPlayer, "CLERIC") ? "I" : "";
     default: return "";
   }
 }

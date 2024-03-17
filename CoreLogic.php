@@ -3631,6 +3631,9 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
         $char->SetDistant();
       }
       break;
+    case "u7d6soporh"://Ingredient Pouch
+      if($from == "PLAY") Gather($currentPlayer, 1);
+      break;
     default: break;
   }
 }

@@ -120,6 +120,7 @@ function PayItemAbilityAdditionalCosts($cardID, $from)
     case "8c9htu9agw"://Prototype Staff
     case "h23qu7d6so"://Temporal Spectrometer
     case "pv4n1n3gyg"://Cleric's Robe
+    case "u7d6soporh"://Ingredient Pouch
       $items = &GetItems($currentPlayer);
       $items[$index+2] = 1;
       break;
