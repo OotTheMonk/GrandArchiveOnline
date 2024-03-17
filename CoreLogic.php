@@ -3616,6 +3616,10 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
     case "rqtjot4nmx"://Scavenge the Distillery
       MZMoveCard($currentPlayer, "MYDISCARD:subtype=POTION", "MYHAND", may:true);
       break;
+    case "sbierp5k1v"://Steady Verse
+      AddCurrentTurnEffect($cardID, $currentPlayer);
+      DrawIntoMemory($currentPlayer);
+      break;
     default: break;
   }
 }
