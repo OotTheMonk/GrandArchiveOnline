@@ -3620,6 +3620,17 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       AddCurrentTurnEffect($cardID, $currentPlayer);
       DrawIntoMemory($currentPlayer);
       break;
+    case "vfq3huqj5b"://Reposition
+      $type = GetMZType($target);
+      if($type == "ALLY") {
+        $ally = new Ally($target);
+        $ally->SetDistant();
+      }
+      else {
+        $char = new Character($currentPlayer, 0);
+        $char->SetDistant();
+      }
+      break;
     default: break;
   }
 }
@@ -3765,6 +3776,7 @@ function PlayRequiresTarget($cardID)
     case "igka5av43e": return 3;//Incendiary Fractal
     case "x7u6wzh973": return 2;//Frostbinder Apostle
     case "44vm5kt3q2": return 2;//Battlefield Spotter
+    case "vfq3huqj5b": return 2;//Reposition
     default: return -1;
   }
 }
