@@ -3639,7 +3639,7 @@ function PlayAbility($cardID, $from, $resourcesPaid, $target = "-", $additionalC
       DrawIntoMemory($currentPlayer);
       break;
     case "wk0pw0y6is"://Obelisk of Armaments
-      if($from == "PLAY") AddCharacter("hkurfp66pv", $currentPlayer);//Aurosteel Greatsword
+      if($from == "PLAY") AddCharacter("hkurfp66pv", $currentPlayer);//Aurousteel Greatsword
       break;
     default: break;
   }
